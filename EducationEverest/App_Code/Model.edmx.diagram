@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="393e47aef1d84350ac9d3ae5d6976166" Name="Diagram1">
+        <EntityTypeShape EntityType="EducationEverestModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EducationEverestModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
+        <EntityTypeShape EntityType="EducationEverestModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="EducationEverestModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="1" />
+        <EntityTypeShape EntityType="EducationEverestModel.AspNetUser" Width="1.5" PointX="6" PointY="1.375" />
+        <AssociationConnector Association="EducationEverestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EducationEverestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EducationEverestModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="EducationEverestModel.Application" Width="1.5" PointX="8.25" PointY="7.375" />
+        <AssociationConnector Association="EducationEverestModel.FK__Applicati__UserI__25869641" />
+        <EntityTypeShape EntityType="EducationEverestModel.Portfolio" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="EducationEverestModel.University" Width="1.5" PointX="0.75" PointY="7.625" />
+        <AssociationConnector Association="EducationEverestModel.FK__Portfolio__Uni_I__30F848ED" />
+        <EntityTypeShape EntityType="EducationEverestModel.AdmissionDetail" Width="1.5" PointX="3" PointY="11.375" />
+        <AssociationConnector Association="EducationEverestModel.FK__Admission__Uni_I__36B12243" />
+        <EntityTypeShape EntityType="EducationEverestModel.Category" Width="1.5" PointX="3" PointY="14.75" />
+        <AssociationConnector Association="EducationEverestModel.FK__Categorie__Uni_I__398D8EEE" />
+        <EntityTypeShape EntityType="EducationEverestModel.Department" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="EducationEverestModel.FK__Departmen__Uni_I__3C69FB99" />
+        <EntityTypeShape EntityType="EducationEverestModel.Programm" Width="1.5" PointX="5.25" PointY="6.25" />
+        <AssociationConnector Association="EducationEverestModel.FK__Programms__Depar__403A8C7D" />
+        <AssociationConnector Association="EducationEverestModel.FK__Programms__Uni_I__3F466844" />
+        <EntityTypeShape EntityType="EducationEverestModel.ProgrammCategory" Width="1.5" PointX="7.5" PointY="10.375" />
+        <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Categ__44FF419A" />
+        <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Depar__440B1D61" />
+        <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Progr__45F365D3" />
+        <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
