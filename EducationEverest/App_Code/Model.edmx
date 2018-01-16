@@ -86,6 +86,14 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Campuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Uni_ID" Type="int" Nullable="false" />
+          <Property Name="Campus_Name" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="Categories">
           <Key>
             <PropertyRef Name="id" />
@@ -163,6 +171,18 @@
             </Principal>
             <Dependent Role="Applications">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Campuses__Uni_ID__49C3F6B7">
+          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+          <End Role="Campuses" Type="Self.Campuses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campuses">
+              <PropertyRef Name="Uni_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -339,6 +359,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Campuses" EntityType="Self.Campuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolios" EntityType="Self.Portfolios" Schema="dbo" store:Type="Tables" />
@@ -352,6 +373,10 @@
           <AssociationSet Name="FK__Applicati__UserI__22AA2996" Association="Self.FK__Applicati__UserI__22AA2996">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Applications" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Campuses__Uni_ID__49C3F6B7" Association="Self.FK__Campuses__Uni_ID__49C3F6B7">
+            <End Role="Universities" EntitySet="Universities" />
+            <End Role="Campuses" EntitySet="Campuses" />
           </AssociationSet>
           <AssociationSet Name="FK__Categorie__Uni_I__398D8EEE" Association="Self.FK__Categorie__Uni_I__398D8EEE">
             <End Role="Universities" EntitySet="Universities" />
@@ -479,6 +504,11 @@
           <AssociationSet Name="FK__ProgrammC__Uni_I__4316F928" Association="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928">
             <End Role="University" EntitySet="Universities" />
             <End Role="ProgrammCategory" EntitySet="ProgrammCategories" />
+          </AssociationSet>
+          <EntitySet Name="Campuses" EntityType="EducationEverestModel.Campus" />
+          <AssociationSet Name="FK__Campuses__Uni_ID__49C3F6B7" Association="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Campus" EntitySet="Campuses" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -623,6 +653,7 @@
           <NavigationProperty Name="Departments" Relationship="EducationEverestModel.FK__Departmen__Uni_I__3C69FB99" FromRole="University" ToRole="Department" />
           <NavigationProperty Name="Programms" Relationship="EducationEverestModel.FK__Programms__Uni_I__3F466844" FromRole="University" ToRole="Programm" />
           <NavigationProperty Name="ProgrammCategories" Relationship="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928" FromRole="University" ToRole="ProgrammCategory" />
+          <NavigationProperty Name="Campuses" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7" FromRole="University" ToRole="Campus" />
         </EntityType>
         <Association Name="FK__Portfolio__Uni_I__30F848ED">
           <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
@@ -802,6 +833,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Campus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Uni_ID" Type="Int32" Nullable="false" />
+          <Property Name="Campus_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7" FromRole="Campus" ToRole="University" />
+        </EntityType>
+        <Association Name="FK__Campuses__Uni_ID__49C3F6B7">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.Campus" Role="Campus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campus">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -950,6 +1002,15 @@
                 <ScalarProperty Name="Programm_ID" ColumnName="Programm_ID" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+                <ScalarProperty Name="Uni_ID" ColumnName="Uni_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Campuses">
+            <EntityTypeMapping TypeName="EducationEverestModel.Campus">
+              <MappingFragment StoreEntitySet="Campuses">
+                <ScalarProperty Name="Campus_Name" ColumnName="Campus_Name" />
                 <ScalarProperty Name="Uni_ID" ColumnName="Uni_ID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

@@ -220,6 +220,28 @@ public partial class Universities : System.Web.UI.Page
         }
     }
 
+    public void populate_campus()
+    {
+        if (db.Campuses.Any(x => x.Uni_ID == uni_id))
+        {
+            List<Campus> cmps = db.Campuses.Where(x => x.Uni_ID == uni_id).ToList();
+
+            var i = 0;
+            foreach (Control ctrl in PlaceHolder4.Controls)
+            {
+                if (ctrl is TextBox && i < cmps.Count)
+                {
+                    TextBox tb = (TextBox)ctrl;
+                    tb.Text = cmps[i].Campus_Name;
+                    tb.ID = cmps[i].id.ToString();
+                    i++;
+                }
+
+            }
+        }
+    }
+
+
     public void populate_categories()
     {
         if (db.Categories.Any(x => x.Uni_ID == uni_id))
@@ -546,6 +568,7 @@ public partial class Universities : System.Web.UI.Page
             populate_admission_details();
         }
 
+        populate_campus();
         populate_categories();
         populate_department();
         dynamic3();
@@ -901,6 +924,56 @@ public partial class Universities : System.Web.UI.Page
             db.Portfolios.Add(portfolio);
             db.SaveChanges();
         }
+
+        foreach (Control ctrl in PlaceHolder4.Controls)
+        {
+            if (ctrl is TextBox)
+            {
+                TextBox txtb = (TextBox)ctrl;
+                string value = txtb.Text;
+                string s_id = txtb.ID;
+
+                if (IsDigitsOnly(s_id))
+                {
+                    int id = Convert.ToInt32(txtb.ID);
+                    Campus cmps = db.Campuses.Single(x => x.id == id);
+                    if (cmps != null)
+                    {
+                        if (cmps.Campus_Name!= value)
+                        {
+                            if (value == "")
+                            {
+                                db.Campuses.Remove(cmps);
+                                db.SaveChanges();
+
+                            }
+                            else
+                            {
+                                cmps.Campus_Name= value;
+                                db.SaveChanges();
+                            }
+                        }
+
+                    }
+
+                }
+                else if (value != "" && !(db.Campuses.Any(x => x.Campus_Name == value && x.Uni_ID == uni_id)))
+                {
+                    Campus cp = new Campus
+                    {
+                        Campus_Name = value,
+                        Uni_ID = uni_id
+                    };
+                    db.Campuses.Add(cp);
+                    db.SaveChanges();
+
+                }
+            }
+        }
+
+        Response.Redirect(Request.RawUrl);
+
+
     }
 
     protected void Criteria_Click(object sender, EventArgs e)

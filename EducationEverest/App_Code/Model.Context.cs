@@ -36,4 +36,5 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<Department> Departments { get; set; }
     public virtual DbSet<Programm> Programms { get; set; }
     public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
+    public virtual DbSet<Campus> Campuses { get; set; }
 }

@@ -20,6 +20,7 @@
             
             </div>
             <div class="col-md-12" style="min-height:400px;">
+                
   <div class="tab-content">
     <div id="home" class="tab-pane fade">
    
@@ -28,7 +29,14 @@
              <div class="col-md-4">
                  <h3>About University</h3>
         University Name: <asp:TextBox ID="TextBox1"  placeholder="Enter University Name" CssClass="form-control" runat="server"></asp:TextBox> 
-                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" display="Dynamic" validationgroup="UniversityGroup" ErrorMessage="Cannot Be Blank" ForeColor="Red"></asp:RequiredFieldValidator>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" display="Dynamic" validationgroup="UniversityGroup" ErrorMessage="Cannot Be Blank" ForeColor="Red"></asp:RequiredFieldValidator><br />
+                 <h4>Campuses</h4>
+                 <asp:PlaceHolder ID="PlaceHolder4" runat="server">
+                     <asp:TextBox ID="TextBox9"  CssClass="form-control" style="margin-top:5px;" runat="server"></asp:TextBox>
+                     <asp:TextBox ID="TextBox10" CssClass="form-control" style="margin-top:5px;" runat="server"></asp:TextBox>
+                     <asp:TextBox ID="TextBox31" CssClass="form-control" style="margin-top:5px;" runat="server"></asp:TextBox>
+                     <asp:TextBox ID="TextBox32" CssClass="form-control" style="margin-top:5px;" runat="server"></asp:TextBox>
+                 </asp:PlaceHolder>
     </div>
             <div class="col-md-1"></div>
             <div class="col-md-5">

@@ -108,6 +108,15 @@ public partial class C__MigrationHistory
     public string ProductVersion { get; set; }
 }
 
+public partial class Campus
+{
+    public int id { get; set; }
+    public int Uni_ID { get; set; }
+    public string Campus_Name { get; set; }
+
+    public virtual University University { get; set; }
+}
+
 public partial class Category
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -204,6 +213,7 @@ public partial class University
         this.Departments = new HashSet<Department>();
         this.Programms = new HashSet<Programm>();
         this.ProgrammCategories = new HashSet<ProgrammCategory>();
+        this.Campuses = new HashSet<Campus>();
     }
 
     public int id { get; set; }
@@ -221,4 +231,6 @@ public partial class University
     public virtual ICollection<Programm> Programms { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Campus> Campuses { get; set; }
 }
