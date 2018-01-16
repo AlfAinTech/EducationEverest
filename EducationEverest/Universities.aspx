@@ -107,10 +107,10 @@
 
 
       <div id="menu5" class="tab-pane fade">
-          <h4>Departments And Programs</h4>
           
           <div class="row"><div class="col-md-1"></div>
               <div class="col-md-5">
+                  <h4>Departments</h4>
            <asp:PlaceHolder ID="PlaceHolder2" runat="server">
            <div class="row">
           <div class="col-md-12"><asp:TextBox ID="TextBox21" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
@@ -135,7 +135,7 @@
               <div class="col-md-6">
                   
 
-                  
+                  <h4>Programms</h4>
                 <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder><br />
                   <asp:Button ID="Button4" runat="server" CssClass="btn btn-primary" OnClick="Button4_Click" Text="Save" />
 
