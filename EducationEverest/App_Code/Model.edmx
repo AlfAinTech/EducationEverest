@@ -149,6 +149,9 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="last_updated" Type="datetime" />
+          <Property Name="updated_by" Type="nvarchar" MaxLength="128" />
+          <Property Name="data_progress" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <Association Name="FK__Admission__Uni_I__36B12243">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
@@ -654,6 +657,9 @@
           <NavigationProperty Name="Programms" Relationship="EducationEverestModel.FK__Programms__Uni_I__3F466844" FromRole="University" ToRole="Programm" />
           <NavigationProperty Name="ProgrammCategories" Relationship="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928" FromRole="University" ToRole="ProgrammCategory" />
           <NavigationProperty Name="Campuses" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7" FromRole="University" ToRole="Campus" />
+          <Property Name="last_updated" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="data_progress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Portfolio__Uni_I__30F848ED">
           <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
@@ -952,6 +958,9 @@
           <EntitySetMapping Name="Universities">
             <EntityTypeMapping TypeName="EducationEverestModel.University">
               <MappingFragment StoreEntitySet="Universities">
+                <ScalarProperty Name="data_progress" ColumnName="data_progress" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="last_updated" ColumnName="last_updated" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

@@ -3,14 +3,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <script src="Content/vendor/jquery/jquery.min.js"></script>
-    
+    <script type ="text/javascript">
+        $(function () {
+            $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+                localStorage.setItem('lastTab', $(this).attr('href'));
+            });
+            var lastTab = localStorage.getItem('lastTab');
+            if (lastTab) {
+                $('[href="' + lastTab + '"]').tab('show');
+            }
+        });
+    </script>
     <div class="container" style="margin-top:100px;">
         
+        <asp:Button ID="Button7" CssClass="btn btn-outline-primary" OnClick ="ButtonBack_Click" runat="server" Text="Back" />
         
         <div class="row" style="background-color:rgba(0,0,0,0.03);border-radius:4px;">
         <div class="col-md-12">
     <ul class="nav nav-pills nav-fill">
-    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#home">Portfolio</a></li>
+    <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#home">Portfolio</a></li>
     <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#menu1">Criteria</a></li>
     <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#menu2">Admission Documents</a></li>
     <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#menu3">Fee Structure</a></li>

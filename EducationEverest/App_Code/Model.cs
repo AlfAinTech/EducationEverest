@@ -218,6 +218,9 @@ public partial class University
 
     public int id { get; set; }
     public string Name { get; set; }
+    public Nullable<System.DateTime> last_updated { get; set; }
+    public string updated_by { get; set; }
+    public string data_progress { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Portfolio> Portfolios { get; set; }

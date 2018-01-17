@@ -11,7 +11,7 @@ public partial class Universities : System.Web.UI.Page
     public string program_name;
     public int dpt_id;
     public int depart_id;
-    public int uni_id = 76;
+    public int uni_id;
     public int pg_id;
     public int pgg_id;
     public string pg_name;
@@ -562,6 +562,11 @@ public partial class Universities : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["value"] != null)
+        {
+            this.uni_id = Convert.ToInt32(Session["value"]);
+        }
+
         if (!IsPostBack)
         {
             populate_university();
@@ -1138,4 +1143,12 @@ public partial class Universities : System.Web.UI.Page
 
         Response.Redirect(Request.RawUrl);
     }
-}
+
+
+    protected void ButtonBack_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Main_Uni.aspx");
+    }
+
+
+    }
