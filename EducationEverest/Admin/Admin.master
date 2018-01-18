@@ -59,7 +59,7 @@
                         </li>
                         
                         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Universities">
-                            <a class="nav-link" href="Universities.aspx">
+                            <a class="nav-link" href="Main_Uni.aspx">
                                 <i class="fa fa-university"></i>
                                 <span class="nav-link-text">Universities</span>
                             </a>
