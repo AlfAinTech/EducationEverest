@@ -737,7 +737,7 @@ public partial class Universities : System.Web.UI.Page
                                     }
 
                                 }
-                                else if (txtb.Text != "")
+                                else if (txtb.Text != "" && !(db.Programms.Any(x=> x.Program_Name == txtb.Text && x.Uni_ID == uni_id && x.Department_ID == dpt_id)))
                                 {
                                     Programm pgmm = new Programm
                                     {
