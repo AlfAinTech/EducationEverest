@@ -795,68 +795,75 @@ public partial class Universities : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        foreach (Control ctrl in PlaceHolder2.Controls)
+        if (!(db.Universities.Any(x => x.id == uni_id)))
         {
-            if (ctrl is TextBox)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('First Enter And Save Data In Portfolio')", true);
+        }
+        else
+        {
+            foreach (Control ctrl in PlaceHolder2.Controls)
             {
-                TextBox txtb = (TextBox)ctrl;
-                string value = txtb.Text;
-                string s_id = txtb.ID;
-
-                if (IsDigitsOnly(s_id))
+                if (ctrl is TextBox)
                 {
-                    int id = Convert.ToInt32(txtb.ID);
-                    Department dpt = db.Departments.Single(x => x.id == id);
-                    if (dpt != null)
+                    TextBox txtb = (TextBox)ctrl;
+                    string value = txtb.Text;
+                    string s_id = txtb.ID;
+
+                    if (IsDigitsOnly(s_id))
                     {
-                        if (dpt.Department_Name != value)
+                        int id = Convert.ToInt32(txtb.ID);
+                        Department dpt = db.Departments.Single(x => x.id == id);
+                        if (dpt != null)
                         {
-                            if (value == "")
+                            if (dpt.Department_Name != value)
                             {
-                                if (db.Programms.Any(x => x.Department_ID == id))
+                                if (value == "")
                                 {
-                                    List<Programm> pg = db.Programms.Where(x => x.Department_ID == id).ToList();
-                                    db.Programms.RemoveRange(pg);
-                                }
+                                    if (db.Programms.Any(x => x.Department_ID == id))
+                                    {
+                                        List<Programm> pg = db.Programms.Where(x => x.Department_ID == id).ToList();
+                                        db.Programms.RemoveRange(pg);
+                                    }
 
-                                if (db.ProgrammCategories.Any(x => x.Department_ID == id))
+                                    if (db.ProgrammCategories.Any(x => x.Department_ID == id))
+                                    {
+                                        List<ProgrammCategory> pgcat = db.ProgrammCategories.Where(x => x.Department_ID == id).ToList();
+                                        db.ProgrammCategories.RemoveRange(pgcat);
+                                    }
+
+
+
+                                    db.Departments.Remove(dpt);
+                                    db.SaveChanges();
+
+                                }
+                                else
                                 {
-                                    List<ProgrammCategory> pgcat = db.ProgrammCategories.Where(x => x.Department_ID == id).ToList();
-                                    db.ProgrammCategories.RemoveRange(pgcat);
+                                    dpt.Department_Name = value;
+                                    db.SaveChanges();
                                 }
-
-
-
-                                db.Departments.Remove(dpt);
-                                db.SaveChanges();
-
                             }
-                            else
-                            {
-                                dpt.Department_Name = value;
-                                db.SaveChanges();
-                            }
+
                         }
 
                     }
-
-                }
-                else if (value != "" && !(db.Departments.Any(x => x.Department_Name == value && x.Uni_ID == uni_id)))
-                {
-                    Department department = new Department
+                    else if (value != "" && !(db.Departments.Any(x => x.Department_Name == value && x.Uni_ID == uni_id)))
                     {
-                        Department_Name = value,
-                        Uni_ID = uni_id
-                    };
-                    db.Departments.Add(department);
-                    db.SaveChanges();
+                        Department department = new Department
+                        {
+                            Department_Name = value,
+                            Uni_ID = uni_id
+                        };
+                        db.Departments.Add(department);
+                        db.SaveChanges();
 
+                    }
                 }
             }
+
+
+            Response.Redirect(Request.RawUrl);
         }
-
-
-        Response.Redirect(Request.RawUrl);
     }
 
 
@@ -983,165 +990,192 @@ public partial class Universities : System.Web.UI.Page
 
     protected void Criteria_Click(object sender, EventArgs e)
     {
-        if (db.AdmissionDetails.Any(x => x.Uni_ID == uni_id))
+        if (!(db.Universities.Any(x => x.id == uni_id)))
         {
-            AdmissionDetail adm = db.AdmissionDetails.Where(x => x.Uni_ID == uni_id).First();
-            string value = adm.Criteria;
-            if (TextArea1.Value != value)
-            {
-                if (TextArea1.Value == "")
-                {
-                    adm.Criteria = "";
-                    db.SaveChanges();
-                }
-                else
-                {
-                    adm.Criteria = TextArea1.Value;
-                    db.SaveChanges();
-                }
-
-
-            }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('First Enter And Save Data In Portfolio')", true);
         }
         else
         {
-            AdmissionDetail adm = new AdmissionDetail
-            {
-                Criteria = TextArea1.Value,
-                Uni_ID = uni_id
-            };
-            db.AdmissionDetails.Add(adm);
-            db.SaveChanges();
-        }
 
+            if (db.AdmissionDetails.Any(x => x.Uni_ID == uni_id))
+            {
+                AdmissionDetail adm = db.AdmissionDetails.Where(x => x.Uni_ID == uni_id).First();
+                string value = adm.Criteria;
+                if (TextArea1.Value != value)
+                {
+                    if (TextArea1.Value == "")
+                    {
+                        adm.Criteria = "";
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        adm.Criteria = TextArea1.Value;
+                        db.SaveChanges();
+                    }
+
+
+                }
+            }
+            else
+            {
+                AdmissionDetail adm = new AdmissionDetail
+                {
+                    Criteria = TextArea1.Value,
+                    Uni_ID = uni_id
+                };
+                db.AdmissionDetails.Add(adm);
+                db.SaveChanges();
+            }
+        }
     }
 
     protected void Document_Click(object sender, EventArgs e)
     {
-        if (db.AdmissionDetails.Any(x => x.Uni_ID == uni_id))
+        if (!(db.Universities.Any(x => x.id == uni_id)))
         {
-            AdmissionDetail adm = db.AdmissionDetails.Where(x => x.Uni_ID == uni_id).First();
-            string value = adm.AdmissionDocuments;
-            if (TextArea2.Value != value)
-            {
-                if (TextArea2.Value == "")
-                {
-                    adm.AdmissionDocuments = "";
-                    db.SaveChanges();
-                }
-                else
-                {
-                    adm.AdmissionDocuments = TextArea2.Value;
-                    db.SaveChanges();
-                }
-
-
-            }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('First Enter And Save Data In Portfolio')", true);
         }
         else
         {
-            AdmissionDetail adm = new AdmissionDetail
+            if (db.AdmissionDetails.Any(x => x.Uni_ID == uni_id))
             {
-                AdmissionDocuments = TextArea2.Value,
-                Uni_ID = uni_id
-            };
-            db.AdmissionDetails.Add(adm);
-            db.SaveChanges();
-        }
+                AdmissionDetail adm = db.AdmissionDetails.Where(x => x.Uni_ID == uni_id).First();
+                string value = adm.AdmissionDocuments;
+                if (TextArea2.Value != value)
+                {
+                    if (TextArea2.Value == "")
+                    {
+                        adm.AdmissionDocuments = "";
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        adm.AdmissionDocuments = TextArea2.Value;
+                        db.SaveChanges();
+                    }
 
+
+                }
+            }
+            else
+            {
+                AdmissionDetail adm = new AdmissionDetail
+                {
+                    AdmissionDocuments = TextArea2.Value,
+                    Uni_ID = uni_id
+                };
+                db.AdmissionDetails.Add(adm);
+                db.SaveChanges();
+            }
+        }
     }
 
     protected void Fee_Click(object sender, EventArgs e)
     {
-        if (db.AdmissionDetails.Any(x => x.Uni_ID == uni_id))
+        if (!(db.Universities.Any(x => x.id == uni_id)))
         {
-            AdmissionDetail adm = db.AdmissionDetails.Where(x => x.Uni_ID == uni_id).First();
-            string value = adm.FreeStructure;
-            if (TextArea3.Value != value)
-            {
-                if (TextArea3.Value == "")
-                {
-                    adm.FreeStructure = "";
-                    db.SaveChanges();
-                }
-                else
-                {
-                    adm.FreeStructure = TextArea3.Value;
-                    db.SaveChanges();
-                }
-
-
-            }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('First Enter And Save Data In Portfolio')", true);
         }
         else
         {
-            AdmissionDetail adm = new AdmissionDetail
+            if (db.AdmissionDetails.Any(x => x.Uni_ID == uni_id))
             {
-                FreeStructure = TextArea3.Value,
-                Uni_ID = uni_id
-            };
-            db.AdmissionDetails.Add(adm);
-            db.SaveChanges();
-        }
+                AdmissionDetail adm = db.AdmissionDetails.Where(x => x.Uni_ID == uni_id).First();
+                string value = adm.FreeStructure;
+                if (TextArea3.Value != value)
+                {
+                    if (TextArea3.Value == "")
+                    {
+                        adm.FreeStructure = "";
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        adm.FreeStructure = TextArea3.Value;
+                        db.SaveChanges();
+                    }
 
+
+                }
+            }
+            else
+            {
+                AdmissionDetail adm = new AdmissionDetail
+                {
+                    FreeStructure = TextArea3.Value,
+                    Uni_ID = uni_id
+                };
+                db.AdmissionDetails.Add(adm);
+                db.SaveChanges();
+            }
+
+        }
     }
 
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        foreach (Control ctrl in PlaceHolder1.Controls)
+        if (!(db.Universities.Any(x => x.id == uni_id)))
         {
-            if (ctrl is TextBox)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('First Enter And Save Data In Portfolio')", true);
+        }
+        else
+        {
+            foreach (Control ctrl in PlaceHolder1.Controls)
             {
-                TextBox txtb = (TextBox)ctrl;
-                string value = txtb.Text;
-                string s_id = txtb.ID;
-
-                if (IsDigitsOnly(s_id))
+                if (ctrl is TextBox)
                 {
-                    int id = Convert.ToInt32(txtb.ID);
-                    Category cat = db.Categories.Single(x => x.id == id);
-                    if (cat != null)
-                    {
-                        if (cat.Category_Name != value)
-                        {
-                            if (value == "")
-                            {
-                                if(db.ProgrammCategories.Any(x=> x.Category_ID == id))
-                                {
-                                    List<ProgrammCategory> pgcat = db.ProgrammCategories.Where(y => y.Category_ID == id).ToList();
-                                    db.ProgrammCategories.RemoveRange(pgcat);
-                                }
-                                db.Categories.Remove(cat);
-                                db.SaveChanges();
+                    TextBox txtb = (TextBox)ctrl;
+                    string value = txtb.Text;
+                    string s_id = txtb.ID;
 
-                            }
-                            else
+                    if (IsDigitsOnly(s_id))
+                    {
+                        int id = Convert.ToInt32(txtb.ID);
+                        Category cat = db.Categories.Single(x => x.id == id);
+                        if (cat != null)
+                        {
+                            if (cat.Category_Name != value)
                             {
-                                cat.Category_Name = value;
-                                db.SaveChanges();
+                                if (value == "")
+                                {
+                                    if (db.ProgrammCategories.Any(x => x.Category_ID == id))
+                                    {
+                                        List<ProgrammCategory> pgcat = db.ProgrammCategories.Where(y => y.Category_ID == id).ToList();
+                                        db.ProgrammCategories.RemoveRange(pgcat);
+                                    }
+                                    db.Categories.Remove(cat);
+                                    db.SaveChanges();
+
+                                }
+                                else
+                                {
+                                    cat.Category_Name = value;
+                                    db.SaveChanges();
+                                }
                             }
+
                         }
 
                     }
-
-                }
-                else if (value != "" && !(db.Categories.Any(x => x.Category_Name == value && x.Uni_ID == uni_id)))
-                {
-                    Category cat = new Category
+                    else if (value != "" && !(db.Categories.Any(x => x.Category_Name == value && x.Uni_ID == uni_id)))
                     {
-                        Category_Name = value,
-                        Uni_ID = uni_id
-                    };
-                    db.Categories.Add(cat);
-                    db.SaveChanges();
+                        Category cat = new Category
+                        {
+                            Category_Name = value,
+                            Uni_ID = uni_id
+                        };
+                        db.Categories.Add(cat);
+                        db.SaveChanges();
 
+                    }
                 }
             }
+
+
+            Response.Redirect(Request.RawUrl);
         }
-
-
-        Response.Redirect(Request.RawUrl);
     }
 
 
