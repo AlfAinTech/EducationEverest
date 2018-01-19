@@ -46,7 +46,7 @@ public partial class Main_Uni : System.Web.UI.Page
 
     protected void AddUni_Click(object sender, EventArgs e)
     {
-        int count = (from University in db.Universities select University.id).Count();
+        /*int count = (from University in db.Universities select University.id).Count();
 
         if (count == 0)
         {
@@ -58,8 +58,11 @@ public partial class Main_Uni : System.Web.UI.Page
             var max_id = db.Universities.OrderByDescending(i => i.id).FirstOrDefault();
             int Id = Convert.ToInt32(max_id.id) + 1;
             Session["value"] = Id;
+
             Response.Redirect("Universities.aspx");
-        }
+        }*/
+        Session["value"] = 0;
+        Response.Redirect("Universities.aspx");
     }
 
 
