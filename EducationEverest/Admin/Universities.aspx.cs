@@ -889,40 +889,19 @@ public partial class Universities : System.Web.UI.Page
 
     protected void ButtonUni_Click(object sender, EventArgs e)
     {
-        if (db.Universities.Any(x => x.Name == TextBox1.Text))
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University name already exists.Write New Name')", true);
-        }
-        else
-        {
-
+        
             if (db.Universities.Any(x => x.id == uni_id))
             {
                 University univ = db.Universities.Where(x => x.id == uni_id).First();
                 string univ_name = univ.Name;
                 string v = TextBox1.Text;
+            
 
-                if (univ_name != v)
+                if (univ_name != v && !(db.Universities.Any(x => x.Name == TextBox1.Text)))
                 {
                     univ.Name = v;
                     db.SaveChanges();
                 }
-            }
-            else
-            {
-                univname = TextBox1.Text;
-                University university = new University
-                {
-                    Name = TextBox1.Text
-                };
-                
-
-                db.Universities.Add(university);
-                db.SaveChanges();
-
-                University uni = db.Universities.Single(x => x.Name == TextBox1.Text);
-                uni_id = uni.id;
-            }
 
             if (db.Portfolios.Any(x => x.Uni_ID == uni_id))
             {
@@ -938,7 +917,7 @@ public partial class Universities : System.Web.UI.Page
             }
             else
             {
-                
+
 
                 Portfolio portfolio = new Portfolio
                 {
@@ -955,7 +934,6 @@ public partial class Universities : System.Web.UI.Page
                 db.Portfolios.Add(portfolio);
                 db.SaveChanges();
             }
-
             foreach (Control ctrl in PlaceHolder4.Controls)
             {
                 if (ctrl is TextBox)
@@ -1001,12 +979,94 @@ public partial class Universities : System.Web.UI.Page
                     }
                 }
             }
-            Session["value"] = uni_id;
-            Response.Redirect(Request.RawUrl);
-            
-
         }
-    }
+
+            else
+            {
+                if (db.Universities.Any(x => x.Name == TextBox1.Text))
+                {
+                            
+                }
+                else
+                {
+                    univname = TextBox1.Text;
+                    University university = new University
+                    {
+                        Name = TextBox1.Text
+                    };
+
+
+                    db.Universities.Add(university);
+                    db.SaveChanges();
+
+                    University uni = db.Universities.Single(x => x.Name == TextBox1.Text);
+                    uni_id = uni.id;
+
+                Portfolio portfolio = new Portfolio
+                {
+                    Contact1 = TextBox2.Text,
+                    Contact2 = TextBox3.Text,
+                    Contact3 = TextBox4.Text,
+                    Contact4 = TextBox5.Text,
+                    Email = TextBox6.Text,
+                    Address = TextBox7.Text,
+                    Category = TextBox8.Text,
+                    Uni_ID = uni_id
+
+                };
+                db.Portfolios.Add(portfolio);
+                db.SaveChanges();
+
+                foreach (Control ctrl in PlaceHolder4.Controls)
+                {
+                    if (ctrl is TextBox)
+                    {
+                        TextBox txtb = (TextBox)ctrl;
+                        string value = txtb.Text;
+                        string s_id = txtb.ID;
+
+                        if (IsDigitsOnly(s_id))
+                        {
+                            int id = Convert.ToInt32(txtb.ID);
+                            Campus cmps = db.Campuses.Single(x => x.id == id);
+                            if (cmps != null)
+                            {
+                                if (cmps.Campus_Name != value)
+                                {
+                                    if (value == "")
+                                    {
+                                        db.Campuses.Remove(cmps);
+                                        db.SaveChanges();
+
+                                    }
+                                    else
+                                    {
+                                        cmps.Campus_Name = value;
+                                        db.SaveChanges();
+                                    }
+                                }
+
+                            }
+
+                        }
+                        else if (value != "" && !(db.Campuses.Any(x => x.Campus_Name == value && x.Uni_ID == uni_id)))
+                        {
+                            Campus cp = new Campus
+                            {
+                                Campus_Name = value,
+                                Uni_ID = uni_id
+                            };
+                            db.Campuses.Add(cp);
+                            db.SaveChanges();
+
+                        }
+                    }
+                }
+
+            }
+  }
+        Session["value"] = uni_id;
+        Response.Redirect(Request.RawUrl); }
 
     protected void Criteria_Click(object sender, EventArgs e)
     {
