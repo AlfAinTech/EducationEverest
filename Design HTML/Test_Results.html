@@ -14,46 +14,7 @@
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/myScript.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-
-
-   /* a.link.active { color:#f12328; } */
-
-       
-        .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color:  #F2F2F2;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
-
-  <script type="text/javascript">
+   <script type="text/javascript">
     $(function() {
    var links = $('a.link').click(function() {
        links.removeClass('active');
@@ -63,37 +24,42 @@
 
   </script>
 </head>
-<nav class="navbar">
-  <div class="container-fluid header_background_1_">
+<div class="navbar-inverse" style="border-radius: 0px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <a href="#" class="Logo_1_"></a>
+      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="nav navbar-nav" style="margin-left: 130px">
-        <li class="NormalCharacterStyle16"><a href="#">Home</a></li>
-        <li> <a href="" class=" header_dashboard_button_1_ "></a></li>
-        
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#" style="font-size: 20px;top: 6px;">Home </a></li>
+        <li><a href="#"><img src="images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
+        <li style="color: transparent;">home</li>
       </ul>
-      <form class="navbar-form navbar-left" style="margin-left: 100px">
-       <div class="form-group">
-          <input type="text" class="form-control" placeholder="UET" style="width: 280px;height: 35px">
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">
         </div>
-         <a href="#"><div class="btn search_button"></div> </a>
-        <a href="#"><div class="btn filter_button"></div> </a>
+        <span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
+        <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" class="header_notification_icon_1_"></a></li>
-        <li><a href="#" class="header_username_1_"></a></li>
-        <li><a href="#" class="header_profile_icon_1_"></a></li>
-        
+        <li><a href="#"><img src="images/header_notification_icon_1_.png"></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="images/header_username_1_.png">&nbsp;<img src="images/header_profile_icon_1_.png"></a>
+          <ul class="dropdown-menu myprofile_dropdown">
+            <li><a href="My_Profile.html" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
+             <li role="separator" class="profile_divider"></li>
+            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Settings</a></li>
+            <li role="separator" class="profile_divider"></li>
+            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Log Out</a></li>
+          </ul>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+</div>
 <body>
 
 
