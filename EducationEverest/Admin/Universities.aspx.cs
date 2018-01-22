@@ -111,7 +111,7 @@ public partial class Universities : System.Web.UI.Page
                                     {
                                         TextBox dd = (TextBox)d;
                                         dd.Text = pgm[y].Program_Name;
-                                        dd.ID = pgm[y].id.ToString();
+                                        dd.ID = pgm[y].id + "_pg";
                                         Programm ppp = db.Programms.Where(x => x.Uni_ID == uni_id && x.Department_ID == depart_id && x.Program_Name == dd.Text).First();
                                         pgg_id = ppp.id;
                                         y++;
@@ -136,7 +136,7 @@ public partial class Universities : System.Web.UI.Page
                                                 if(db.ProgrammCategories.Any(x=>x.Category_ID == ctt_id && x.Programm_ID == pgg_id))
                                                 {
                                                    ProgrammCategory pgcategory= db.ProgrammCategories.Where(x => x.Category_ID == ctt_id && x.Programm_ID == pgg_id).First();
-                                                    ee.ID = pgcategory.id.ToString();
+                                                    ee.ID = pgcategory.id + "_cb";
 
                                                 }
 
@@ -212,7 +212,7 @@ public partial class Universities : System.Web.UI.Page
                 {
                     TextBox tb = (TextBox)ctrl;
                     tb.Text = dpt[i].Department_Name;
-                    tb.ID = dpt[i].id.ToString();
+                    tb.ID = dpt[i].id + "_dpt";
                     i++;
                 }
 
@@ -255,7 +255,7 @@ public partial class Universities : System.Web.UI.Page
                 {
                     TextBox tb = (TextBox)ctrl;
                     tb.Text = cat[i].Category_Name;
-                    tb.ID = cat[i].id.ToString();
+                    tb.ID = cat[i].id + "_ct";
                     i++;
                 }
 
@@ -416,17 +416,17 @@ public partial class Universities : System.Web.UI.Page
 
                 TextBox tb1 = new TextBox();
                 tb1.CssClass = "form-control";
-                tb1.ID = k + "_" + 1;
+                tb1.ID = k + "l" + 1;
                 k++;
 
                 TextBox tb2 = new TextBox();
                 tb2.CssClass = "form-control";
-                tb2.ID = k + "_" + 1;
+                tb2.ID = k + "l" + 1;
                 k++;
 
                 TextBox tb3 = new TextBox();
                 tb3.CssClass = "form-control";
-                tb3.ID = k + "_" + 1;
+                tb3.ID = k + "l" + 1;
                 k++;
 
 
@@ -620,9 +620,12 @@ public partial class Universities : System.Web.UI.Page
                                 TextBox txtb = (TextBox)d;
                                 string s_id = txtb.ID;
 
-                                if (IsDigitsOnly(s_id))
+                                string[] split = txtb.ID.Split('_');
+                                string txtb_pg_id = split[0];
+
+                                if (IsDigitsOnly(txtb_pg_id))
                                 {
-                                    int programm_id = Convert.ToInt32(txtb.ID);
+                                    int programm_id = Convert.ToInt32(txtb_pg_id);
                                     Programm pgg = db.Programms.Single(x => x.id == programm_id);
                                     if (pgg != null)
                                     {
@@ -658,12 +661,15 @@ public partial class Universities : System.Web.UI.Page
                                                         Category ct = db.Categories.Where(x => x.Uni_ID == uni_id && x.Category_Name == cbx.Text).First();
                                                         int ct_id = ct.id;
 
-                                                        if (IsDigitsOnly(cbx.ID))
+                                                        string[] splitcb = txtb.ID.Split('_');
+                                                        string cbb_id = splitcb[0];
+
+                                                        if (IsDigitsOnly(cbb_id))
                                                         {
 
                                                             if (cbx.Checked == false)
                                                             {
-                                                                int IDD = Convert.ToInt32(cbx.ID);
+                                                                int IDD = Convert.ToInt32(cbb_id);
                                                                 ProgrammCategory pgcats = db.ProgrammCategories.Where(x => x.id == IDD).First();
                                                                 db.ProgrammCategories.Remove(pgcats);
                                                                 db.SaveChanges();
@@ -817,9 +823,12 @@ public partial class Universities : System.Web.UI.Page
                     string value = txtb.Text;
                     string s_id = txtb.ID;
 
-                    if (IsDigitsOnly(s_id))
+                    string[] split = txtb.ID.Split('_');
+                    string txtb_id = split[0];
+
+                    if (IsDigitsOnly(txtb_id))
                     {
-                        int id = Convert.ToInt32(txtb.ID);
+                        int id = Convert.ToInt32(txtb_id);
                         Department dpt = db.Departments.Single(x => x.id == id);
                         if (dpt != null)
                         {
@@ -1210,9 +1219,12 @@ public partial class Universities : System.Web.UI.Page
                     string value = txtb.Text;
                     string s_id = txtb.ID;
 
-                    if (IsDigitsOnly(s_id))
+                    string[] split = txtb.ID.Split('_');
+                    string txtb_id = split[0];
+
+                    if (IsDigitsOnly(txtb_id))
                     {
-                        int id = Convert.ToInt32(txtb.ID);
+                        int id = Convert.ToInt32(txtb_id);
                         Category cat = db.Categories.Single(x => x.id == id);
                         if (cat != null)
                         {
