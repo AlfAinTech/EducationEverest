@@ -1511,10 +1511,10 @@ margin-right: -10em;
 }
 .check_box
 {
-  border-style : Solid;
-  border-color : #FF9800;
-  border-color : rgba(255, 152, 0, 1);
-  border-width : 2px;
+  /*border-style : Solid;
+  border-color : #FF9800;*/
+  /*border-color : rgba(255, 152, 0, 1);
+  border-width : 2px;*/
   width : 20px;
   height : 20px;
 

@@ -34,6 +34,8 @@
         <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928" />
         <EntityTypeShape EntityType="EducationEverestModel.Campus" Width="1.5" PointX="3" PointY="18.125" />
         <AssociationConnector Association="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7" />
+        <EntityTypeShape EntityType="EducationEverestModel.UserProfile" Width="1.5" PointX="8.25" PointY="14.375" />
+        <AssociationConnector Association="EducationEverestModel.FK_UserProfile_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
