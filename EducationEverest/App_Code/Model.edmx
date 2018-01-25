@@ -179,14 +179,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="128" />
           <Property Name="LastName" Type="nvarchar" MaxLength="128" />
           <Property Name="Phone" Type="nvarchar" MaxLength="128" />
           <Property Name="City" Type="nvarchar" MaxLength="128" />
           <Property Name="AspNetUserID" Type="nvarchar" MaxLength="128" />
         </EntityType>
-        <Association Name="FK__Admission__Uni_I__2B3F6F97">
+        <Association Name="FK__Admission__Uni_I__36B12243">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="AdmissionDetails" Type="Self.AdmissionDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -198,7 +198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__UserI__2C3393D0">
+        <Association Name="FK__Applicati__UserI__22AA2996">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -210,7 +210,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Campuses__Uni_ID__30F848ED">
+        <Association Name="FK__Campuses__Uni_ID__49C3F6B7">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="Campuses" Type="Self.Campuses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -222,7 +222,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Categorie__Uni_I__31EC6D26">
+        <Association Name="FK__Categorie__Uni_I__398D8EEE">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -234,7 +234,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Departmen__Uni_I__32E0915F">
+        <Association Name="FK__Departmen__Uni_I__3C69FB99">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -246,7 +246,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
         <Association Name="FK__Media__User_ID__4F7CD00D">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Media" Type="Self.Media" Multiplicity="*" />
@@ -272,9 +271,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Portfolio__Uni_I__30F848ED">
-=======
-        <Association Name="FK__Portfolio__Uni_I__33D4B598">
->>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="Portfolios" Type="Self.Portfolios" Multiplicity="*" />
           <ReferentialConstraint>
@@ -286,7 +282,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgrammC__Categ__34C8D9D1">
+        <Association Name="FK__ProgrammC__Categ__44FF419A">
           <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
           <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -298,7 +294,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgrammC__Depar__35BCFE0A">
+        <Association Name="FK__ProgrammC__Depar__440B1D61">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -310,7 +306,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgrammC__Progr__36B12243">
+        <Association Name="FK__ProgrammC__Progr__45F365D3">
           <End Role="Programms" Type="Self.Programms" Multiplicity="1" />
           <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -322,7 +318,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgrammC__Uni_I__37A5467C">
+        <Association Name="FK__ProgrammC__Uni_I__4316F928">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -334,7 +330,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Programms__Depar__38996AB5">
+        <Association Name="FK__Programms__Depar__403A8C7D">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="Programms" Type="Self.Programms" Multiplicity="*" />
           <ReferentialConstraint>
@@ -346,7 +342,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Programms__Uni_I__398D8EEE">
+        <Association Name="FK__Programms__Uni_I__3F466844">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="Programms" Type="Self.Programms" Multiplicity="*" />
           <ReferentialConstraint>
@@ -445,27 +441,26 @@
           <EntitySet Name="Programms" EntityType="Self.Programms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Universities" EntityType="Self.Universities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Admission__Uni_I__2B3F6F97" Association="Self.FK__Admission__Uni_I__2B3F6F97">
+          <AssociationSet Name="FK__Admission__Uni_I__36B12243" Association="Self.FK__Admission__Uni_I__36B12243">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="AdmissionDetails" EntitySet="AdmissionDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__UserI__2C3393D0" Association="Self.FK__Applicati__UserI__2C3393D0">
+          <AssociationSet Name="FK__Applicati__UserI__22AA2996" Association="Self.FK__Applicati__UserI__22AA2996">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Campuses__Uni_ID__30F848ED" Association="Self.FK__Campuses__Uni_ID__30F848ED">
+          <AssociationSet Name="FK__Campuses__Uni_ID__49C3F6B7" Association="Self.FK__Campuses__Uni_ID__49C3F6B7">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Campuses" EntitySet="Campuses" />
           </AssociationSet>
-          <AssociationSet Name="FK__Categorie__Uni_I__31EC6D26" Association="Self.FK__Categorie__Uni_I__31EC6D26">
+          <AssociationSet Name="FK__Categorie__Uni_I__398D8EEE" Association="Self.FK__Categorie__Uni_I__398D8EEE">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
-          <AssociationSet Name="FK__Departmen__Uni_I__32E0915F" Association="Self.FK__Departmen__Uni_I__32E0915F">
+          <AssociationSet Name="FK__Departmen__Uni_I__3C69FB99" Association="Self.FK__Departmen__Uni_I__3C69FB99">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Departments" EntitySet="Departments" />
           </AssociationSet>
-<<<<<<< HEAD
           <AssociationSet Name="FK__Media__User_ID__4F7CD00D" Association="Self.FK__Media__User_ID__4F7CD00D">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Media" EntitySet="Media" />
@@ -475,33 +470,30 @@
             <End Role="Personal_Details" EntitySet="Personal_Details" />
           </AssociationSet>
           <AssociationSet Name="FK__Portfolio__Uni_I__30F848ED" Association="Self.FK__Portfolio__Uni_I__30F848ED">
-=======
-          <AssociationSet Name="FK__Portfolio__Uni_I__33D4B598" Association="Self.FK__Portfolio__Uni_I__33D4B598">
->>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Portfolios" EntitySet="Portfolios" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgrammC__Categ__34C8D9D1" Association="Self.FK__ProgrammC__Categ__34C8D9D1">
+          <AssociationSet Name="FK__ProgrammC__Categ__44FF419A" Association="Self.FK__ProgrammC__Categ__44FF419A">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgrammC__Depar__35BCFE0A" Association="Self.FK__ProgrammC__Depar__35BCFE0A">
+          <AssociationSet Name="FK__ProgrammC__Depar__440B1D61" Association="Self.FK__ProgrammC__Depar__440B1D61">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgrammC__Progr__36B12243" Association="Self.FK__ProgrammC__Progr__36B12243">
+          <AssociationSet Name="FK__ProgrammC__Progr__45F365D3" Association="Self.FK__ProgrammC__Progr__45F365D3">
             <End Role="Programms" EntitySet="Programms" />
             <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgrammC__Uni_I__37A5467C" Association="Self.FK__ProgrammC__Uni_I__37A5467C">
+          <AssociationSet Name="FK__ProgrammC__Uni_I__4316F928" Association="Self.FK__ProgrammC__Uni_I__4316F928">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__Programms__Depar__38996AB5" Association="Self.FK__Programms__Depar__38996AB5">
+          <AssociationSet Name="FK__Programms__Depar__403A8C7D" Association="Self.FK__Programms__Depar__403A8C7D">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Programms" EntitySet="Programms" />
           </AssociationSet>
-          <AssociationSet Name="FK__Programms__Uni_I__398D8EEE" Association="Self.FK__Programms__Uni_I__398D8EEE">
+          <AssociationSet Name="FK__Programms__Uni_I__3F466844" Association="Self.FK__Programms__Uni_I__3F466844">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Programms" EntitySet="Programms" />
           </AssociationSet>
@@ -605,24 +597,22 @@
             <End Role="University" EntitySet="Universities" />
             <End Role="Campus" EntitySet="Campuses" />
           </AssociationSet>
-<<<<<<< HEAD
           <EntitySet Name="Media" EntityType="EducationEverestModel.Medium" />
-          <EntitySet Name="Personal_Details" EntityType="EducationEverestModel.Personal_Details" />
           <AssociationSet Name="FK__Media__User_ID__4F7CD00D" Association="EducationEverestModel.FK__Media__User_ID__4F7CD00D">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Medium" EntitySet="Media" />
           </AssociationSet>
+          <EntitySet Name="Personal_Details" EntityType="EducationEverestModel.Personal_Details" />
+          <EntitySet Name="UserProfiles" EntityType="EducationEverestModel.UserProfile" />
           <AssociationSet Name="FK__Personal___User___4CA06362" Association="EducationEverestModel.FK__Personal___User___4CA06362">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Personal_Details" EntitySet="Personal_Details" />
-=======
-          <EntitySet Name="UserProfiles" EntityType="EducationEverestModel.UserProfile" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserProfile_AspNetUsers" Association="EducationEverestModel.FK_UserProfile_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
->>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -682,13 +672,11 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="EducationEverestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="AspNetRoles" Relationship="EducationEverestModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="Applications" Relationship="EducationEverestModel.FK__Applicati__UserI__25869641" FromRole="AspNetUser" ToRole="Application" />
-<<<<<<< HEAD
+
           <NavigationProperty Name="Media" Relationship="EducationEverestModel.FK__Media__User_ID__4F7CD00D" FromRole="AspNetUser" ToRole="Medium" />
           <NavigationProperty Name="Personal_Details" Relationship="EducationEverestModel.FK__Personal___User___4CA06362" FromRole="AspNetUser" ToRole="Personal_Details" />
-=======
           <NavigationProperty Name="UserProfiles" Relationship="EducationEverestModel.FK_UserProfile_AspNetUsers" FromRole="AspNetUser" ToRole="UserProfile" />
->>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
-        </EntityType>
+          </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -975,7 +963,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
         <EntityType Name="Medium">
           <Key>
             <PropertyRef Name="id" />
@@ -985,6 +972,18 @@
           <Property Name="Path" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Media__User_ID__4F7CD00D" FromRole="Medium" ToRole="AspNetUser" />
         </EntityType>
+        <Association Name="FK__Media__User_ID__4F7CD00D">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Medium" Role="Medium" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medium">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Personal_Details">
           <Key>
             <PropertyRef Name="id" />
@@ -1000,22 +999,6 @@
           <Property Name="Application_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Personal___User___4CA06362" FromRole="Personal_Details" ToRole="AspNetUser" />
         </EntityType>
-        <Association Name="FK__Media__User_ID__4F7CD00D">
-          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="EducationEverestModel.Medium" Role="Medium" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Medium">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Personal___User___4CA06362">
-          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="EducationEverestModel.Personal_Details" Role="Personal_Details" Multiplicity="*" />
-=======
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="ID" />
@@ -1028,25 +1011,31 @@
           <Property Name="AspNetUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK_UserProfile_AspNetUsers" FromRole="UserProfile" ToRole="AspNetUser" />
         </EntityType>
-        <Association Name="FK_UserProfile_AspNetUsers">
-          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="EducationEverestModel.UserProfile" Role="UserProfile" Multiplicity="*" />
->>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
+        <Association Name="FK__Personal___User___4CA06362">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Personal_Details" Role="Personal_Details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
-<<<<<<< HEAD
             <Dependent Role="Personal_Details">
               <PropertyRef Name="User_ID" />
-=======
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="AspNetUserID" />
->>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_UserProfile_AspNetUsers">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="EducationEverestModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="AspNetUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1211,7 +1200,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-<<<<<<< HEAD
           <EntitySetMapping Name="Media">
             <EntityTypeMapping TypeName="EducationEverestModel.Medium">
               <MappingFragment StoreEntitySet="Media">
@@ -1233,7 +1221,9 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="id" ColumnName="id" />
-=======
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserProfiles">
             <EntityTypeMapping TypeName="EducationEverestModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
@@ -1243,7 +1233,6 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
->>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
