@@ -56,8 +56,12 @@ public partial class AspNetUser
         this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
         this.AspNetRoles = new HashSet<AspNetRole>();
         this.Applications = new HashSet<Application>();
+<<<<<<< HEAD
         this.Media = new HashSet<Medium>();
         this.Personal_Details = new HashSet<Personal_Details>();
+=======
+        this.UserProfiles = new HashSet<UserProfile>();
+>>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
     }
 
     public string Id { get; set; }
@@ -82,9 +86,13 @@ public partial class AspNetUser
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Application> Applications { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+<<<<<<< HEAD
     public virtual ICollection<Medium> Media { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Personal_Details> Personal_Details { get; set; }
+=======
+    public virtual ICollection<UserProfile> UserProfiles { get; set; }
+>>>>>>> 5615ccaf691f3ff2fb646568aee3d78139b83638
 }
 
 public partial class AspNetUserClaim
@@ -266,4 +274,16 @@ public partial class University
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Campus> Campuses { get; set; }
+}
+
+public partial class UserProfile
+{
+    public int ID { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Phone { get; set; }
+    public string City { get; set; }
+    public string AspNetUserID { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
 }
