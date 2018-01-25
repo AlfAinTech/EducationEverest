@@ -110,6 +110,28 @@
           <Property Name="Uni_ID" Type="int" Nullable="false" />
           <Property Name="Department_Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Personal_Details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Father_Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="128" />
+          <Property Name="Father_CNIC" Type="nvarchar" MaxLength="128" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="128" />
+          <Property Name="Application_ID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="Portfolios">
           <Key>
             <PropertyRef Name="id" />
@@ -210,6 +232,30 @@
             </Principal>
             <Dependent Role="Departments">
               <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Media__User_ID__4F7CD00D">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Media" Type="Self.Media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Personal___User___4CA06362">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Personal_Details" Type="Self.Personal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personal_Details">
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -365,6 +411,8 @@
           <EntitySet Name="Campuses" EntityType="Self.Campuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal_Details" EntityType="Self.Personal_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolios" EntityType="Self.Portfolios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgrammCategories" EntityType="Self.ProgrammCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Programms" EntityType="Self.Programms" Schema="dbo" store:Type="Tables" />
@@ -388,6 +436,14 @@
           <AssociationSet Name="FK__Departmen__Uni_I__3C69FB99" Association="Self.FK__Departmen__Uni_I__3C69FB99">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Media__User_ID__4F7CD00D" Association="Self.FK__Media__User_ID__4F7CD00D">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Personal___User___4CA06362" Association="Self.FK__Personal___User___4CA06362">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Personal_Details" EntitySet="Personal_Details" />
           </AssociationSet>
           <AssociationSet Name="FK__Portfolio__Uni_I__30F848ED" Association="Self.FK__Portfolio__Uni_I__30F848ED">
             <End Role="Universities" EntitySet="Universities" />
@@ -513,6 +569,16 @@
             <End Role="University" EntitySet="Universities" />
             <End Role="Campus" EntitySet="Campuses" />
           </AssociationSet>
+          <EntitySet Name="Media" EntityType="EducationEverestModel.Medium" />
+          <EntitySet Name="Personal_Details" EntityType="EducationEverestModel.Personal_Details" />
+          <AssociationSet Name="FK__Media__User_ID__4F7CD00D" Association="EducationEverestModel.FK__Media__User_ID__4F7CD00D">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Medium" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Personal___User___4CA06362" Association="EducationEverestModel.FK__Personal___User___4CA06362">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Personal_Details" EntitySet="Personal_Details" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -573,6 +639,8 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="EducationEverestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="AspNetRoles" Relationship="EducationEverestModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="Applications" Relationship="EducationEverestModel.FK__Applicati__UserI__25869641" FromRole="AspNetUser" ToRole="Application" />
+          <NavigationProperty Name="Media" Relationship="EducationEverestModel.FK__Media__User_ID__4F7CD00D" FromRole="AspNetUser" ToRole="Medium" />
+          <NavigationProperty Name="Personal_Details" Relationship="EducationEverestModel.FK__Personal___User___4CA06362" FromRole="AspNetUser" ToRole="Personal_Details" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -860,6 +928,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Medium">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Media__User_ID__4F7CD00D" FromRole="Medium" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Personal_Details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Father_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Father_CNIC" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Nationality" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Application_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Personal___User___4CA06362" FromRole="Personal_Details" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK__Media__User_ID__4F7CD00D">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Medium" Role="Medium" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medium">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Personal___User___4CA06362">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Personal_Details" Role="Personal_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personal_Details">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1021,6 +1137,30 @@
               <MappingFragment StoreEntitySet="Campuses">
                 <ScalarProperty Name="Campus_Name" ColumnName="Campus_Name" />
                 <ScalarProperty Name="Uni_ID" ColumnName="Uni_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media">
+            <EntityTypeMapping TypeName="EducationEverestModel.Medium">
+              <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal_Details">
+            <EntityTypeMapping TypeName="EducationEverestModel.Personal_Details">
+              <MappingFragment StoreEntitySet="Personal_Details">
+                <ScalarProperty Name="Application_ID" ColumnName="Application_ID" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Father_CNIC" ColumnName="Father_CNIC" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="Father_Name" ColumnName="Father_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

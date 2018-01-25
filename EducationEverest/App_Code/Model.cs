@@ -56,6 +56,8 @@ public partial class AspNetUser
         this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
         this.AspNetRoles = new HashSet<AspNetRole>();
         this.Applications = new HashSet<Application>();
+        this.Media = new HashSet<Medium>();
+        this.Personal_Details = new HashSet<Personal_Details>();
     }
 
     public string Id { get; set; }
@@ -79,6 +81,10 @@ public partial class AspNetUser
     public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Application> Applications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Medium> Media { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Personal_Details> Personal_Details { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -152,6 +158,30 @@ public partial class Department
     public virtual ICollection<Programm> Programms { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
+}
+
+public partial class Medium
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public string Path { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
+}
+
+public partial class Personal_Details
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public string Name { get; set; }
+    public string Father_Name { get; set; }
+    public string CNIC { get; set; }
+    public string Father_CNIC { get; set; }
+    public Nullable<System.DateTime> DOB { get; set; }
+    public string Nationality { get; set; }
+    public string Application_ID { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
 }
 
 public partial class Portfolio

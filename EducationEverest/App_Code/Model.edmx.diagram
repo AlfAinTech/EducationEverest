@@ -34,6 +34,10 @@
         <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928" />
         <EntityTypeShape EntityType="EducationEverestModel.Campus" Width="1.5" PointX="3" PointY="18.125" />
         <AssociationConnector Association="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7" />
+        <EntityTypeShape EntityType="EducationEverestModel.Medium" Width="1.5" PointX="8.25" PointY="17.625" />
+        <EntityTypeShape EntityType="EducationEverestModel.Personal_Details" Width="1.5" PointX="8.25" PointY="13.875" />
+        <AssociationConnector Association="EducationEverestModel.FK__Media__User_ID__4F7CD00D" />
+        <AssociationConnector Association="EducationEverestModel.FK__Personal___User___4CA06362" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
