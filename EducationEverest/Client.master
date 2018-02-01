@@ -93,9 +93,9 @@
     <div class="collapse" id="clps2">
       <br/>
         <li class="menu_list selected_bg"><a href="Personal_Details" class="NormalCharacterStyle22">Personal Details</a></li>
-        <li class="menu_list"><a href="Make_Choices.html" class="NormalCharacterStyle24">Make Choices</a></li>
-        <li class="menu_list"><a href="Educational_Details.html" class="NormalCharacterStyle24">Educational Details</a></li>
-        <li class="menu_list"><a href="Test_Results.html" class="NormalCharacterStyle24">Test Results</a></li>
+        <li class="menu_list"><a href="choices" class="NormalCharacterStyle24">Make Choices</a></li>
+        <li class="menu_list"><a href="educational_detail" class="NormalCharacterStyle24">Educational Details</a></li>
+        <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24">Test Results</a></li>
         <li class="menu_list"><a href="Upload_Documents.html" class="NormalCharacterStyle24">Documents</a></li>
         <li class="menu_list"><a href="Payments.html" class="NormalCharacterStyle24">Payments</a></li>
     </div>   

@@ -40,4 +40,8 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<Medium> Media { get; set; }
     public virtual DbSet<Personal_Details> Personal_Details { get; set; }
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
+    public virtual DbSet<ContactInformation> ContactInformations { get; set; }
+    public virtual DbSet<Intermediate_Education> Intermediate_Education { get; set; }
+    public virtual DbSet<Matriculation_Education> Matriculation_Education { get; set; }
+    public virtual DbSet<MakeChoice> MakeChoices { get; set; }
 }

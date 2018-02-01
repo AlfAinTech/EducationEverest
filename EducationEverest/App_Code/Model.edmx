@@ -102,6 +102,20 @@
           <Property Name="Uni_ID" Type="int" Nullable="false" />
           <Property Name="Category_Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="ContactInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Current_Address" Type="nvarchar" MaxLength="128" />
+          <Property Name="Permanent_Address" Type="nvarchar" MaxLength="128" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" />
+          <Property Name="Landline" Type="nvarchar" MaxLength="128" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="128" />
+          <Property Name="Phone_Father" Type="nvarchar" MaxLength="128" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="id" />
@@ -109,6 +123,46 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Uni_ID" Type="int" Nullable="false" />
           <Property Name="Department_Name" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Intermediate_Education">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Board" Type="nvarchar" MaxLength="128" />
+          <Property Name="Rollno" Type="nvarchar" MaxLength="128" />
+          <Property Name="Passing_Year" Type="nvarchar" MaxLength="128" />
+          <Property Name="Total_Marks" Type="nvarchar" MaxLength="128" />
+          <Property Name="Obtained_Marks" Type="nvarchar" MaxLength="128" />
+          <Property Name="Percentage" Type="nvarchar" MaxLength="128" />
+          <Property Name="Division" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="MakeChoices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Uni_ID" Type="int" Nullable="false" />
+          <Property Name="Campus_Id" Type="int" Nullable="false" />
+          <Property Name="Department_Id" Type="int" Nullable="false" />
+          <Property Name="Programm_Id" Type="int" Nullable="false" />
+          <Property Name="Category_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matriculation_Education">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Board" Type="nvarchar" MaxLength="128" />
+          <Property Name="Rollno" Type="nvarchar" MaxLength="128" />
+          <Property Name="Passing_Year" Type="nvarchar" MaxLength="128" />
+          <Property Name="Total_Marks" Type="nvarchar" MaxLength="128" />
+          <Property Name="Obtained_Marks" Type="nvarchar" MaxLength="128" />
+          <Property Name="Percentage" Type="nvarchar" MaxLength="128" />
+          <Property Name="Division" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Media">
           <Key>
@@ -234,6 +288,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ContactIn__User___5535A963">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactInformation">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Departmen__Uni_I__3C69FB99">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
@@ -243,6 +309,102 @@
             </Principal>
             <Dependent Role="Departments">
               <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Intermedi__User___628FA481">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Intermediate_Education" Type="Self.Intermediate_Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intermediate_Education">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Campu__71D1E811">
+          <End Role="Campuses" Type="Self.Campuses" Multiplicity="1" />
+          <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campuses">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoices">
+              <PropertyRef Name="Campus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Categ__74AE54BC">
+          <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="1" />
+          <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgrammCategories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoices">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Depar__72C60C4A">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoices">
+              <PropertyRef Name="Department_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Progr__73BA3083">
+          <End Role="Programms" Type="Self.Programms" Multiplicity="1" />
+          <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programms">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoices">
+              <PropertyRef Name="Programm_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Uni_I__70DDC3D8">
+          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+          <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoices">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__User___6FE99F9F">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakeChoices">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Matricula__User___5FB337D6">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Matriculation_Education" Type="Self.Matriculation_Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matriculation_Education">
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -433,7 +595,11 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Campuses" EntityType="Self.Campuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactInformation" EntityType="Self.ContactInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Intermediate_Education" EntityType="Self.Intermediate_Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MakeChoices" EntityType="Self.MakeChoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matriculation_Education" EntityType="Self.Matriculation_Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personal_Details" EntityType="Self.Personal_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolios" EntityType="Self.Portfolios" Schema="dbo" store:Type="Tables" />
@@ -457,9 +623,45 @@
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
+          <AssociationSet Name="FK__ContactIn__User___5535A963" Association="Self.FK__ContactIn__User___5535A963">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ContactInformation" EntitySet="ContactInformation" />
+          </AssociationSet>
           <AssociationSet Name="FK__Departmen__Uni_I__3C69FB99" Association="Self.FK__Departmen__Uni_I__3C69FB99">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Intermedi__User___628FA481" Association="Self.FK__Intermedi__User___628FA481">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Intermediate_Education" EntitySet="Intermediate_Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Campu__71D1E811" Association="Self.FK__MakeChoic__Campu__71D1E811">
+            <End Role="Campuses" EntitySet="Campuses" />
+            <End Role="MakeChoices" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Categ__74AE54BC" Association="Self.FK__MakeChoic__Categ__74AE54BC">
+            <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
+            <End Role="MakeChoices" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Depar__72C60C4A" Association="Self.FK__MakeChoic__Depar__72C60C4A">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="MakeChoices" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Progr__73BA3083" Association="Self.FK__MakeChoic__Progr__73BA3083">
+            <End Role="Programms" EntitySet="Programms" />
+            <End Role="MakeChoices" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Uni_I__70DDC3D8" Association="Self.FK__MakeChoic__Uni_I__70DDC3D8">
+            <End Role="Universities" EntitySet="Universities" />
+            <End Role="MakeChoices" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__User___6FE99F9F" Association="Self.FK__MakeChoic__User___6FE99F9F">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MakeChoices" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Matricula__User___5FB337D6" Association="Self.FK__Matricula__User___5FB337D6">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Matriculation_Education" EntitySet="Matriculation_Education" />
           </AssociationSet>
           <AssociationSet Name="FK__Media__User_ID__4F7CD00D" Association="Self.FK__Media__User_ID__4F7CD00D">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -612,6 +814,46 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
+          <EntitySet Name="ContactInformations" EntityType="EducationEverestModel.ContactInformation" />
+          <AssociationSet Name="FK__ContactIn__User___5535A963" Association="EducationEverestModel.FK__ContactIn__User___5535A963">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ContactInformation" EntitySet="ContactInformations" />
+          </AssociationSet>
+          <EntitySet Name="Intermediate_Education" EntityType="EducationEverestModel.Intermediate_Education" />
+          <EntitySet Name="Matriculation_Education" EntityType="EducationEverestModel.Matriculation_Education" />
+          <AssociationSet Name="FK__Intermedi__User___628FA481" Association="EducationEverestModel.FK__Intermedi__User___628FA481">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Intermediate_Education" EntitySet="Intermediate_Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Matricula__User___5FB337D6" Association="EducationEverestModel.FK__Matricula__User___5FB337D6">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Matriculation_Education" EntitySet="Matriculation_Education" />
+          </AssociationSet>
+          <EntitySet Name="MakeChoices" EntityType="EducationEverestModel.MakeChoice" />
+          <AssociationSet Name="FK__MakeChoic__User___6FE99F9F" Association="EducationEverestModel.FK__MakeChoic__User___6FE99F9F">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Campu__71D1E811" Association="EducationEverestModel.FK__MakeChoic__Campu__71D1E811">
+            <End Role="Campus" EntitySet="Campuses" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Depar__72C60C4A" Association="EducationEverestModel.FK__MakeChoic__Depar__72C60C4A">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Categ__74AE54BC" Association="EducationEverestModel.FK__MakeChoic__Categ__74AE54BC">
+            <End Role="ProgrammCategory" EntitySet="ProgrammCategories" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Progr__73BA3083" Association="EducationEverestModel.FK__MakeChoic__Progr__73BA3083">
+            <End Role="Programm" EntitySet="Programms" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Uni_I__70DDC3D8" Association="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -676,6 +918,10 @@
           <NavigationProperty Name="Media" Relationship="EducationEverestModel.FK__Media__User_ID__4F7CD00D" FromRole="AspNetUser" ToRole="Medium" />
           <NavigationProperty Name="Personal_Details" Relationship="EducationEverestModel.FK__Personal___User___4CA06362" FromRole="AspNetUser" ToRole="Personal_Details" />
           <NavigationProperty Name="UserProfiles" Relationship="EducationEverestModel.FK_UserProfile_AspNetUsers" FromRole="AspNetUser" ToRole="UserProfile" />
+          <NavigationProperty Name="ContactInformations" Relationship="EducationEverestModel.FK__ContactIn__User___5535A963" FromRole="AspNetUser" ToRole="ContactInformation" />
+          <NavigationProperty Name="Intermediate_Education" Relationship="EducationEverestModel.FK__Intermedi__User___628FA481" FromRole="AspNetUser" ToRole="Intermediate_Education" />
+          <NavigationProperty Name="Matriculation_Education" Relationship="EducationEverestModel.FK__Matricula__User___5FB337D6" FromRole="AspNetUser" ToRole="Matriculation_Education" />
+          <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__User___6FE99F9F" FromRole="AspNetUser" ToRole="MakeChoice" />
           </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -763,6 +1009,7 @@
           <Property Name="last_updated" Type="DateTime" Precision="3" />
           <Property Name="updated_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="data_progress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8" FromRole="University" ToRole="MakeChoice" />
         </EntityType>
         <Association Name="FK__Portfolio__Uni_I__30F848ED">
           <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
@@ -831,6 +1078,7 @@
           <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Departmen__Uni_I__3C69FB99" FromRole="Department" ToRole="University" />
           <NavigationProperty Name="Programms" Relationship="EducationEverestModel.FK__Programms__Depar__403A8C7D" FromRole="Department" ToRole="Programm" />
           <NavigationProperty Name="ProgrammCategories" Relationship="EducationEverestModel.FK__ProgrammC__Depar__440B1D61" FromRole="Department" ToRole="ProgrammCategory" />
+          <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Depar__72C60C4A" FromRole="Department" ToRole="MakeChoice" />
         </EntityType>
         <Association Name="FK__Departmen__Uni_I__3C69FB99">
           <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
@@ -855,6 +1103,7 @@
           <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK__Programms__Depar__403A8C7D" FromRole="Programm" ToRole="Department" />
           <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Programms__Uni_I__3F466844" FromRole="Programm" ToRole="University" />
           <NavigationProperty Name="ProgrammCategories" Relationship="EducationEverestModel.FK__ProgrammC__Progr__45F365D3" FromRole="Programm" ToRole="ProgrammCategory" />
+          <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Progr__73BA3083" FromRole="Programm" ToRole="MakeChoice" />
         </EntityType>
         <Association Name="FK__Programms__Depar__403A8C7D">
           <End Type="EducationEverestModel.Department" Role="Department" Multiplicity="1" />
@@ -893,6 +1142,7 @@
           <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK__ProgrammC__Depar__440B1D61" FromRole="ProgrammCategory" ToRole="Department" />
           <NavigationProperty Name="Programm" Relationship="EducationEverestModel.FK__ProgrammC__Progr__45F365D3" FromRole="ProgrammCategory" ToRole="Programm" />
           <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928" FromRole="ProgrammCategory" ToRole="University" />
+          <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Categ__74AE54BC" FromRole="ProgrammCategory" ToRole="MakeChoice" />
         </EntityType>
         <Association Name="FK__ProgrammC__Categ__44FF419A">
           <End Type="EducationEverestModel.Category" Role="Category" Multiplicity="1" />
@@ -950,6 +1200,7 @@
           <Property Name="Uni_ID" Type="Int32" Nullable="false" />
           <Property Name="Campus_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7" FromRole="Campus" ToRole="University" />
+          <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Campu__71D1E811" FromRole="Campus" ToRole="MakeChoice" />
         </EntityType>
         <Association Name="FK__Campuses__Uni_ID__49C3F6B7">
           <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
@@ -1032,6 +1283,177 @@
             </Principal>
             <Dependent Role="UserProfile">
               <PropertyRef Name="AspNetUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContactInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Current_Address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Permanent_Address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Landline" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_Father" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__ContactIn__User___5535A963" FromRole="ContactInformation" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK__ContactIn__User___5535A963">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.ContactInformation" Role="ContactInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ContactInformation">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Intermediate_Education">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Board" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rollno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Passing_Year" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Obtained_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Division" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Intermedi__User___628FA481" FromRole="Intermediate_Education" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Matriculation_Education">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Board" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rollno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Passing_Year" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Obtained_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Division" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Matricula__User___5FB337D6" FromRole="Matriculation_Education" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK__Intermedi__User___628FA481">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Intermediate_Education" Role="Intermediate_Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Intermediate_Education">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Matricula__User___5FB337D6">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Matriculation_Education" Role="Matriculation_Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Matriculation_Education">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MakeChoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Uni_ID" Type="Int32" Nullable="false" />
+          <Property Name="Campus_Id" Type="Int32" Nullable="false" />
+          <Property Name="Department_Id" Type="Int32" Nullable="false" />
+          <Property Name="Programm_Id" Type="Int32" Nullable="false" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__MakeChoic__User___6FE99F9F" FromRole="MakeChoice" ToRole="AspNetUser" />
+          <NavigationProperty Name="Campus" Relationship="EducationEverestModel.FK__MakeChoic__Campu__71D1E811" FromRole="MakeChoice" ToRole="Campus" />
+          <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK__MakeChoic__Depar__72C60C4A" FromRole="MakeChoice" ToRole="Department" />
+          <NavigationProperty Name="ProgrammCategory" Relationship="EducationEverestModel.FK__MakeChoic__Categ__74AE54BC" FromRole="MakeChoice" ToRole="ProgrammCategory" />
+          <NavigationProperty Name="Programm" Relationship="EducationEverestModel.FK__MakeChoic__Progr__73BA3083" FromRole="MakeChoice" ToRole="Programm" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8" FromRole="MakeChoice" ToRole="University" />
+        </EntityType>
+        <Association Name="FK__MakeChoic__User___6FE99F9F">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Campu__71D1E811">
+          <End Type="EducationEverestModel.Campus" Role="Campus" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campus">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="Campus_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Depar__72C60C4A">
+          <End Type="EducationEverestModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="Department_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Categ__74AE54BC">
+          <End Type="EducationEverestModel.ProgrammCategory" Role="ProgrammCategory" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProgrammCategory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Progr__73BA3083">
+          <End Type="EducationEverestModel.Programm" Role="Programm" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programm">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="Programm_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Uni_I__70DDC3D8">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="Uni_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1233,6 +1655,64 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactInformations">
+            <EntityTypeMapping TypeName="EducationEverestModel.ContactInformation">
+              <MappingFragment StoreEntitySet="ContactInformation">
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone_Father" ColumnName="Phone_Father" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Landline" ColumnName="Landline" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Permanent_Address" ColumnName="Permanent_Address" />
+                <ScalarProperty Name="Current_Address" ColumnName="Current_Address" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Intermediate_Education">
+            <EntityTypeMapping TypeName="EducationEverestModel.Intermediate_Education">
+              <MappingFragment StoreEntitySet="Intermediate_Education">
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Obtained_Marks" ColumnName="Obtained_Marks" />
+                <ScalarProperty Name="Total_Marks" ColumnName="Total_Marks" />
+                <ScalarProperty Name="Passing_Year" ColumnName="Passing_Year" />
+                <ScalarProperty Name="Rollno" ColumnName="Rollno" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matriculation_Education">
+            <EntityTypeMapping TypeName="EducationEverestModel.Matriculation_Education">
+              <MappingFragment StoreEntitySet="Matriculation_Education">
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Obtained_Marks" ColumnName="Obtained_Marks" />
+                <ScalarProperty Name="Total_Marks" ColumnName="Total_Marks" />
+                <ScalarProperty Name="Passing_Year" ColumnName="Passing_Year" />
+                <ScalarProperty Name="Rollno" ColumnName="Rollno" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MakeChoices">
+            <EntityTypeMapping TypeName="EducationEverestModel.MakeChoice">
+              <MappingFragment StoreEntitySet="MakeChoices">
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Programm_Id" ColumnName="Programm_Id" />
+                <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
+                <ScalarProperty Name="Campus_Id" ColumnName="Campus_Id" />
+                <ScalarProperty Name="Uni_ID" ColumnName="Uni_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

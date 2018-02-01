@@ -59,6 +59,10 @@ public partial class AspNetUser
         this.Media = new HashSet<Medium>();
         this.Personal_Details = new HashSet<Personal_Details>();
         this.UserProfiles = new HashSet<UserProfile>();
+        this.ContactInformations = new HashSet<ContactInformation>();
+        this.Intermediate_Education = new HashSet<Intermediate_Education>();
+        this.Matriculation_Education = new HashSet<Matriculation_Education>();
+        this.MakeChoices = new HashSet<MakeChoice>();
     }
 
     public string Id { get; set; }
@@ -88,6 +92,14 @@ public partial class AspNetUser
     public virtual ICollection<Personal_Details> Personal_Details { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<UserProfile> UserProfiles { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<ContactInformation> ContactInformations { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Intermediate_Education> Intermediate_Education { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Matriculation_Education> Matriculation_Education { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -119,11 +131,19 @@ public partial class C__MigrationHistory
 
 public partial class Campus
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Campus()
+    {
+        this.MakeChoices = new HashSet<MakeChoice>();
+    }
+
     public int id { get; set; }
     public int Uni_ID { get; set; }
     public string Campus_Name { get; set; }
 
     public virtual University University { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
 }
 
 public partial class Category
@@ -143,6 +163,21 @@ public partial class Category
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
 }
 
+public partial class ContactInformation
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public string Current_Address { get; set; }
+    public string Permanent_Address { get; set; }
+    public string Email { get; set; }
+    public string Landline { get; set; }
+    public string Phone { get; set; }
+    public string Phone_Father { get; set; }
+    public string Zip { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
+}
+
 public partial class Department
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -150,6 +185,7 @@ public partial class Department
     {
         this.Programms = new HashSet<Programm>();
         this.ProgrammCategories = new HashSet<ProgrammCategory>();
+        this.MakeChoices = new HashSet<MakeChoice>();
     }
 
     public int id { get; set; }
@@ -161,6 +197,56 @@ public partial class Department
     public virtual ICollection<Programm> Programms { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
+}
+
+public partial class Intermediate_Education
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public string Board { get; set; }
+    public string Rollno { get; set; }
+    public string Passing_Year { get; set; }
+    public string Total_Marks { get; set; }
+    public string Obtained_Marks { get; set; }
+    public string Percentage { get; set; }
+    public string Division { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
+}
+
+public partial class MakeChoice
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public int Uni_ID { get; set; }
+    public int Campus_Id { get; set; }
+    public int Department_Id { get; set; }
+    public int Programm_Id { get; set; }
+    public int Category_Id { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
+    public virtual Campus Campus { get; set; }
+    public virtual Department Department { get; set; }
+    public virtual ProgrammCategory ProgrammCategory { get; set; }
+    public virtual Programm Programm { get; set; }
+    public virtual University University { get; set; }
+}
+
+public partial class Matriculation_Education
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public string Board { get; set; }
+    public string Rollno { get; set; }
+    public string Passing_Year { get; set; }
+    public string Total_Marks { get; set; }
+    public string Obtained_Marks { get; set; }
+    public string Percentage { get; set; }
+    public string Division { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
 }
 
 public partial class Medium
@@ -208,6 +294,7 @@ public partial class Programm
     public Programm()
     {
         this.ProgrammCategories = new HashSet<ProgrammCategory>();
+        this.MakeChoices = new HashSet<MakeChoice>();
     }
 
     public int id { get; set; }
@@ -219,10 +306,18 @@ public partial class Programm
     public virtual University University { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
 }
 
 public partial class ProgrammCategory
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public ProgrammCategory()
+    {
+        this.MakeChoices = new HashSet<MakeChoice>();
+    }
+
     public int id { get; set; }
     public int Uni_ID { get; set; }
     public int Department_ID { get; set; }
@@ -233,6 +328,8 @@ public partial class ProgrammCategory
     public virtual Department Department { get; set; }
     public virtual Programm Programm { get; set; }
     public virtual University University { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
 }
 
 public partial class University
@@ -247,6 +344,7 @@ public partial class University
         this.Programms = new HashSet<Programm>();
         this.ProgrammCategories = new HashSet<ProgrammCategory>();
         this.Campuses = new HashSet<Campus>();
+        this.MakeChoices = new HashSet<MakeChoice>();
     }
 
     public int id { get; set; }
@@ -269,6 +367,8 @@ public partial class University
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Campus> Campuses { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
 }
 
 public partial class UserProfile
