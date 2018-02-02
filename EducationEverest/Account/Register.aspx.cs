@@ -128,7 +128,7 @@ public partial class Account_Register : Page
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("ibrarexam@gmail.com", "Engineering123#");
+            NetworkCredential NetworkCred = new NetworkCredential("farazpk705@gmail.com", "bulbul100");
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;
