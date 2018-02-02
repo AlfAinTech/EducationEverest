@@ -557,6 +557,16 @@
 	height: 0px;
 	width: 100%;
 }
+.profile_divider2
+{
+	border-style : Solid;
+	border-color : #CCCCCC;
+	border-color : rgba(204, 204, 204, 1);
+	border-width : 1px;
+	position : absolute ;
+	height: 0px;
+	width: 97%;
+}
 .input_base_line
 {
 	border-style : Solid;
@@ -861,6 +871,12 @@
 	box-shadow : 2px 2px 2px rgba(114, 114, 114, 0.75);
 	filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='#727272') ;
 }
+.card_bg2
+{
+	height : 160px;
+	box-shadow : 2px 2px 2px rgba(114, 114, 114, 0.75);
+	filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='#727272') ;
+}
 .progress_text
 {
 	font-family : Raleway;
@@ -903,7 +919,7 @@
 }
 .upload_documents_names
 {
-	font-family : Gotham Rounded;
+	font-family : 'Gotham Rounded';
 	font-size : 17px;
 	color : #666666;
 	color : rgb(102, 102, 102);
@@ -923,7 +939,17 @@
 	border-color : rgba(204, 204, 204, 1);
 	border-width : 1px;
 	position : absolute ;
-	width : 925px;
+	width : 950px;
+	height : 0px;
+}
+.panel_divider2
+{
+	border-style : Solid;
+	border-color : #CCCCCC;
+	border-color : rgba(204, 204, 204, 1);
+	border-width : 1px;
+	position : absolute ;
+	width : 920px;
 	height : 0px;
 }
 .upload_documents_complete_text
@@ -1072,7 +1098,7 @@ div.callout {
 }
 
 .filter_callout.bottom::before {
-	left: 48%;
+	left: 45.5%;
 	top: -20px;
 	border-bottom: 10px solid #F2F2F2;;
 }
@@ -1093,7 +1119,7 @@ div.callout {
 }
 
 .filter_results_callout.bottom::before {
-	left: 54%;
+	left: 55%;
 	top: -20px;
 	border-bottom: 10px solid white;
 }
@@ -1198,10 +1224,12 @@ div.callout {
   border-width : 1px;
    border-radius : 2px;
    margin-right: 40px;
+   width: 165px;
+   height: 165px;
 }
 .myprofile_dropdown_link{
-	margin-top: 5px;
-	margin-bottom: 5px;
+height: 48px;
+margin-top: 5px;
 
 	}
 .myprofile_tabs{
@@ -1212,16 +1240,16 @@ div.callout {
   color : rgb(153, 153, 153);
 }
 .myprofile_tabs_padding1{
-	padding-left: 7.8em;     
-margin-left: -7.8em;
-padding-right: 7.8em;     
-margin-right: -7.8em;
+	padding-left: 7.5em;     
+margin-left: -7.5em;
+padding-right: 7.5em;     
+margin-right: -7.5em;
 }
 .myprofile_tabs_padding2{
-	padding-left: 5.9em;     
-margin-left: -5.9em;
-padding-right: 10em;     
-margin-right: -10em;
+	padding-left: 5.5em;     
+margin-left: -5.5em;
+padding-right: 10.8em;     
+margin-right: -10.8em;
 }
 .profile_card_bg_2
 {
@@ -1324,7 +1352,8 @@ margin-right: -10em;
 .profile_sidemenu{
 	background-color: transparent;
 	border-right: solid 2px #F2F2F2;
-	margin-top: 7px;
+	margin-top: 4px;
+		width: 20%;
 }
 .edit_icon_1_
 {
@@ -1380,7 +1409,7 @@ margin-right: -10em;
   border-color : #CCCCCC;
   border-color : rgba(204, 204, 204, 1);
   border-width : 1px;
-  width : 170px;
+  width : 100%;
   height : 0px;
   margin-left: -5px;
 }
@@ -1412,7 +1441,7 @@ margin-right: -10em;
 	-webkit-border-radius : 2px;
 	filter: alpha(opacity=88) progid:DXImageTransform.Microsoft.Alpha(opacity=88) ;
 }
-.make_paymeny_button_bg
+.make_payment_button_bg
 {
   background : #8BC34A;
   background : rgba(139, 195, 74, 1);
@@ -1711,6 +1740,15 @@ margin-right: -10em;
   color : #FF9800;
   color : rgb(255, 152, 0);
 }
+.NormalCharacterStyle2019
+{
+  font-family : Raleway;
+  font-size : 18px;
+  line-height : 22px;
+  color : #E6E6E6;
+  color : rgb(230, 230, 230);
+}
+
 
 .uni_details_page_bg_2_
 {
@@ -1736,4 +1774,12 @@ margin-right: -10em;
   position: absolute;
   width : 250px;
   height : 152px;
+}
+.dashboard_image
+{
+	background-image : url(../images/dashboard2.png);
+  background-repeat : no-repeat;
+  position: absolute;
+  height: 60px;
+
 }

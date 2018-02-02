@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="393e47aef1d84350ac9d3ae5d6976166" Name="Diagram1">
+      <Diagram DiagramId="393e47aef1d84350ac9d3ae5d6976166" Name="Diagram1" ZoomLevel="89">
         <EntityTypeShape EntityType="EducationEverestModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="EducationEverestModel.AspNetRole" Width="1.5" PointX="3.75" PointY="2.5" />
+        <EntityTypeShape EntityType="EducationEverestModel.AspNetRole" Width="1.5" PointX="3.75" PointY="3.5" />
         <EntityTypeShape EntityType="EducationEverestModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="3.625" />
         <EntityTypeShape EntityType="EducationEverestModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="1" />
-        <EntityTypeShape EntityType="EducationEverestModel.AspNetUser" Width="1.5" PointX="6" PointY="1.375" />
+        <EntityTypeShape EntityType="EducationEverestModel.AspNetUser" Width="1.5" PointX="10.125" PointY="1.375" />
         <AssociationConnector Association="EducationEverestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="EducationEverestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="EducationEverestModel.AspNetUserRoles" />
@@ -34,8 +34,34 @@
         <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Uni_I__4316F928" />
         <EntityTypeShape EntityType="EducationEverestModel.Campus" Width="1.5" PointX="3" PointY="18.125" />
         <AssociationConnector Association="EducationEverestModel.FK__Campuses__Uni_ID__49C3F6B7" />
-        <EntityTypeShape EntityType="EducationEverestModel.UserProfile" Width="1.5" PointX="8.25" PointY="14.375" />
+<<<<<<< HEAD
+        <EntityTypeShape EntityType="EducationEverestModel.Medium" Width="1.5" PointX="8.25" PointY="17.625" />
+        <AssociationConnector Association="EducationEverestModel.FK__Media__User_ID__4F7CD00D" />
+        <EntityTypeShape EntityType="EducationEverestModel.Personal_Details" Width="1.5" PointX="0.495602723441833" PointY="8.8504387330498719" />
+        <EntityTypeShape EntityType="EducationEverestModel.UserProfile" Width="1.5" PointX="10.325254769215945" PointY="8.1738569476519984" />
+        <AssociationConnector Association="EducationEverestModel.FK__Personal___User___4CA06362" />
         <AssociationConnector Association="EducationEverestModel.FK_UserProfile_AspNetUsers" />
+        <EntityTypeShape EntityType="EducationEverestModel.ContactInformation" Width="1.5" PointX="11.703932493787228" PointY="17.590082936729342" />
+        <AssociationConnector Association="EducationEverestModel.FK__ContactIn__User___5535A963" />
+        <EntityTypeShape EntityType="EducationEverestModel.Intermediate_Education" Width="1.5" PointX="9.0534134642469759" PointY="28.139239056100713" />
+        <EntityTypeShape EntityType="EducationEverestModel.Matriculation_Education" Width="1.5" PointX="1.9976902147744271" PointY="8.438178438897328" />
+        <AssociationConnector Association="EducationEverestModel.FK__Intermedi__User___628FA481" />
+        <AssociationConnector Association="EducationEverestModel.FK__Matricula__User___5FB337D6" />
+        <EntityTypeShape EntityType="EducationEverestModel.MakeChoice" Width="1.5" PointX="8.399422459490328" PointY="17.388191320648506" />
+        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__User___6FE99F9F" />
+        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Campu__71D1E811" />
+        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Depar__72C60C4A" />
+        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Categ__74AE54BC" />
+        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Progr__73BA3083" />
+        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8" />
+        
+        
+=======
+        
+        
+        
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 5615ccaf691f3ff2fb646568aee3d78139b83638
+      &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5615ccaf691f3ff2fb646568aee3d78139b83638
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
