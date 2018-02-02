@@ -116,7 +116,7 @@ public partial class Account_Register : Page
             }
         }
 
-        using (MailMessage mm = new MailMessage("ibrarexam@gmail.com", Email.Text))
+        using (MailMessage mm = new MailMessage("www.hahisb@gmail.com", Email.Text))  //here ID changed 02-feb-18
         {
             mm.Subject = "Account Activation";
             string body = "Hello " + Email.Text.Trim() + ",";
@@ -128,7 +128,7 @@ public partial class Account_Register : Page
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("farazpk705@gmail.com", "bulbul100");
+            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "educationeverest"); // here ID and password changed 02-feb-18
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;
