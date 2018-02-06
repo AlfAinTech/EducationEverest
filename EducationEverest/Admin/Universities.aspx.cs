@@ -661,7 +661,7 @@ public partial class Universities : System.Web.UI.Page
                                                         Category ct = db.Categories.Where(x => x.Uni_ID == uni_id && x.Category_Name == cbx.Text).First();
                                                         int ct_id = ct.id;
 
-                                                        string[] splitcb = txtb.ID.Split('_');
+                                                        string[] splitcb = cbx.ID.Split('_');
                                                         string cbb_id = splitcb[0];
 
                                                         if (IsDigitsOnly(cbb_id))

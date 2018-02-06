@@ -24,27 +24,28 @@ public partial class EducationEverestEntities : DbContext
     }
 
     public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+    public virtual DbSet<AdmissionDetail> AdmissionDetails { get; set; }
+    public virtual DbSet<Application> Applications { get; set; }
     public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
     public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
     public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
     public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-    public virtual DbSet<Application> Applications { get; set; }
-    public virtual DbSet<Portfolio> Portfolios { get; set; }
-    public virtual DbSet<University> Universities { get; set; }
-    public virtual DbSet<AdmissionDetail> AdmissionDetails { get; set; }
-    public virtual DbSet<Category> Categories { get; set; }
-    public virtual DbSet<Department> Departments { get; set; }
-    public virtual DbSet<Programm> Programms { get; set; }
-    public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
     public virtual DbSet<Campus> Campuses { get; set; }
+    public virtual DbSet<Category> Categories { get; set; }
+    public virtual DbSet<Contact_Us> Contact_Us { get; set; }
+    public virtual DbSet<ContactInformation> ContactInformations { get; set; }
+    public virtual DbSet<Department> Departments { get; set; }
+    public virtual DbSet<Intermediate_Education> Intermediate_Education { get; set; }
+    public virtual DbSet<MakeChoice> MakeChoices { get; set; }
+    public virtual DbSet<Matriculation_Education> Matriculation_Education { get; set; }
     public virtual DbSet<Medium> Media { get; set; }
     public virtual DbSet<Personal_Details> Personal_Details { get; set; }
-    public virtual DbSet<UserProfile> UserProfiles { get; set; }
-    public virtual DbSet<ContactInformation> ContactInformations { get; set; }
-    public virtual DbSet<Intermediate_Education> Intermediate_Education { get; set; }
-    public virtual DbSet<Matriculation_Education> Matriculation_Education { get; set; }
-    public virtual DbSet<MakeChoice> MakeChoices { get; set; }
+    public virtual DbSet<Portfolio> Portfolios { get; set; }
+    public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
+    public virtual DbSet<Programm> Programms { get; set; }
+    public virtual DbSet<Test_Results> Test_Results { get; set; }
+    public virtual DbSet<University> Universities { get; set; }
     public virtual DbSet<University_Tests> University_Tests { get; set; }
     public virtual DbSet<UserActivation> UserActivations { get; set; }
-    public virtual DbSet<Contact_Us> Contact_Us { get; set; }
+    public virtual DbSet<UserProfile> UserProfiles { get; set; }
 }
