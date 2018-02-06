@@ -61,7 +61,7 @@ public partial class Personal_Detail : System.Web.UI.Page
             x.Father_Name = father_name.Value;
             x.CNIC = student_cnic.Value;
             x.Father_CNIC = father_cnic.Value;
-            x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
+           // x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
             x.Nationality = nationality.Value;
 
             db.SaveChanges();

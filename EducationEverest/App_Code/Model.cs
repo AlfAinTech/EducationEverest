@@ -52,19 +52,19 @@ public partial class AspNetUser
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public AspNetUser()
     {
+        this.Applications = new HashSet<Application>();
         this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
         this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
-        this.AspNetRoles = new HashSet<AspNetRole>();
-        this.Applications = new HashSet<Application>();
-        this.Media = new HashSet<Medium>();
-        this.Personal_Details = new HashSet<Personal_Details>();
-        this.UserProfiles = new HashSet<UserProfile>();
         this.ContactInformations = new HashSet<ContactInformation>();
         this.Intermediate_Education = new HashSet<Intermediate_Education>();
-        this.Matriculation_Education = new HashSet<Matriculation_Education>();
         this.MakeChoices = new HashSet<MakeChoice>();
+        this.Matriculation_Education = new HashSet<Matriculation_Education>();
+        this.Media = new HashSet<Medium>();
+        this.Personal_Details = new HashSet<Personal_Details>();
         this.Test_Results = new HashSet<Test_Results>();
         this.Contact_Us = new HashSet<Contact_Us>();
+        this.UserProfiles = new HashSet<UserProfile>();
+        this.AspNetRoles = new HashSet<AspNetRole>();
     }
 
     public string Id { get; set; }
@@ -81,30 +81,31 @@ public partial class AspNetUser
     public string UserName { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Application> Applications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Application> Applications { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Medium> Media { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Personal_Details> Personal_Details { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<UserProfile> UserProfiles { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ContactInformation> ContactInformations { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Intermediate_Education> Intermediate_Education { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Matriculation_Education> Matriculation_Education { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Matriculation_Education> Matriculation_Education { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Medium> Media { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Personal_Details> Personal_Details { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Test_Results> Test_Results { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Contact_Us> Contact_Us { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<UserProfile> UserProfiles { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -198,9 +199,9 @@ public partial class Department
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public Department()
     {
-        this.Programms = new HashSet<Programm>();
-        this.ProgrammCategories = new HashSet<ProgrammCategory>();
         this.MakeChoices = new HashSet<MakeChoice>();
+        this.ProgrammCategories = new HashSet<ProgrammCategory>();
+        this.Programms = new HashSet<Programm>();
     }
 
     public int id { get; set; }
@@ -209,11 +210,11 @@ public partial class Department
 
     public virtual University University { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Programm> Programms { get; set; }
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
+    public virtual ICollection<Programm> Programms { get; set; }
 }
 
 public partial class Intermediate_Education
@@ -308,8 +309,8 @@ public partial class Programm
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public Programm()
     {
-        this.ProgrammCategories = new HashSet<ProgrammCategory>();
         this.MakeChoices = new HashSet<MakeChoice>();
+        this.ProgrammCategories = new HashSet<ProgrammCategory>();
     }
 
     public int id { get; set; }
@@ -318,11 +319,11 @@ public partial class Programm
     public string Program_Name { get; set; }
 
     public virtual Department Department { get; set; }
-    public virtual University University { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
+    public virtual University University { get; set; }
 }
 
 public partial class ProgrammCategory
@@ -341,10 +342,10 @@ public partial class ProgrammCategory
 
     public virtual Category Category { get; set; }
     public virtual Department Department { get; set; }
-    public virtual Programm Programm { get; set; }
-    public virtual University University { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
+    public virtual Programm Programm { get; set; }
+    public virtual University University { get; set; }
 }
 
 public partial class Test_Results
@@ -368,14 +369,14 @@ public partial class University
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public University()
     {
-        this.Portfolios = new HashSet<Portfolio>();
         this.AdmissionDetails = new HashSet<AdmissionDetail>();
+        this.Campuses = new HashSet<Campus>();
         this.Categories = new HashSet<Category>();
         this.Departments = new HashSet<Department>();
-        this.Programms = new HashSet<Programm>();
-        this.ProgrammCategories = new HashSet<ProgrammCategory>();
-        this.Campuses = new HashSet<Campus>();
         this.MakeChoices = new HashSet<MakeChoice>();
+        this.Portfolios = new HashSet<Portfolio>();
+        this.ProgrammCategories = new HashSet<ProgrammCategory>();
+        this.Programms = new HashSet<Programm>();
         this.University_Tests = new HashSet<University_Tests>();
     }
 
@@ -386,21 +387,21 @@ public partial class University
     public string data_progress { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Portfolio> Portfolios { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<AdmissionDetail> AdmissionDetails { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Campus> Campuses { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Category> Categories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Department> Departments { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Programm> Programms { get; set; }
+    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Portfolio> Portfolios { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Campus> Campuses { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<MakeChoice> MakeChoices { get; set; }
+    public virtual ICollection<Programm> Programms { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<University_Tests> University_Tests { get; set; }
 }
