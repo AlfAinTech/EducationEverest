@@ -1,7 +1,7 @@
 USE [EducationEverest]
 GO
 
-/****** Object:  Table [dbo].[UserProfile]    Script Date: 06-Feb-18 3:14:54 PM ******/
+/****** Object:  Table [dbo].[UserProfile]    Script Date: 06-Feb-18 3:15:21 PM ******/
 SET ANSI_NULLS ON
 GO
 
