@@ -4,6 +4,18 @@ using System.Linq;
 using System.Web.UI;
 using EducationEverest;
 
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Net.Mail;
+using System.Net;
+using System.IO;
+
+
+
 public partial class Account_Register : Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
@@ -12,6 +24,9 @@ public partial class Account_Register : Page
     protected void CreateUser_Click(object sender, EventArgs e)
 
     {
+        string userId;
+
+
         if (CheckBox1.Checked == true)
         {
 
@@ -20,24 +35,47 @@ public partial class Account_Register : Page
             IdentityResult result = manager.Create(user, password.Text);
             if (result.Succeeded)
             {
+
                 UserProfile up = new UserProfile();
-                up.FirstName = fName.Text;
-                up.LastName = lName.Text;
-                up.Phone = phone.Text;
-                up.City = city.Text;
+
+
                 up.AspNetUserID = user.Id;
-                db.UserProfiles.Add(up);
-                db.SaveChanges();
-                //Label1.Visible = true;
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Confirmation Link has been sent to your Emaild ID')", true);
+                userId = up.AspNetUserID;
+                
+                //db.UserProfiles.Add(up);
+                //db.SaveChanges();
 
-                //IdentityHelper.SignIn(manager, user, isPersistent: false);
-                //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            }
-            else
-            {
+                SendActivationEmail(userId);
 
-                //ErrorMessage.Text = result.Errors.FirstOrDefault();
+
+                //up.FirstName = fName.Text;
+                //up.LastName = lName.Text;
+                //up.Phone = phone.Text;
+                //up.City = city.Text;
+
+
+
+                //db.UserProfiles.Add(up);
+                //db.SaveChanges();
+
+
+                //string message = string.Empty;
+
+                //switch (userId)
+                //{
+                //    //case -1:
+                //    //    message = "Username already exists.\\nPlease choose a different username.";
+                //    //    break;
+                //    case -2:
+                //        message = "Supplied email address has already been used.";
+                //        break;
+                //    default:
+                //        message = "Registration successful. Activation email has been sent.";
+
+                //        break;
+                //}
+                //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' Email sent ');", true);
             }
         }
         else
@@ -45,8 +83,73 @@ public partial class Account_Register : Page
             lblCheckBox.Visible = true;
         }
     }
+    private void SendActivationEmail(string userId)
+    {
+        string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        string activationCode = Guid.NewGuid().ToString();
+        using (SqlConnection con = new SqlConnection(constr))
+        {
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO UserActivation VALUES(@UserId, @ActivationCode)"))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    cmd.Parameters.AddWithValue("@ActivationCode", activationCode);
+                    //cmd.Parameters.AddWithValue("@AspNetUserID", AspNetUserID);
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    //insert profile
+                    UserProfile up = new UserProfile();
+                    up.FirstName = fName.Text;
+                    up.LastName = lName.Text;
+                    up.Phone = phone.Text;
+                    up.City = city.Text;
+                    up.AspNetUserID = userId;
+                    //up.Email = 
+                    db.UserProfiles.Add(up);
+                    db.SaveChanges();
+                    con.Close();
+                }
+            }
+        }
+
+        using (MailMessage mm = new MailMessage("www.hahisb@gmail.com", Email.Text))  //here ID changed 02-feb-18
+        {
+            mm.Subject = "Account Activation";
+            string body = "Hello " + Email.Text.Trim() + ",";
+            body += "<br /><br />Please click the following link to activate your account";
+            body += "<br /><a href = '" + "http://localhost:65465/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
+            body += "<br /><br />Thanks";
+            mm.Body = body;
+            mm.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.EnableSsl = true;
+            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "educationeverest"); // here ID and password changed 02-feb-18
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = NetworkCred;
+            smtp.Port = 587;
+            smtp.Send(mm);
+        }
+    }
+
+    //Label1.Visible = true;
+   // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Confirmation Link has been sent to your Emaild ID')", true);
+
+                //IdentityHelper.SignIn(manager, user, isPersistent: false);
+                //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+            
+            
+        
+      }
+
+    
    
        
-    }
+    
+
 
     

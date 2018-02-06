@@ -64,6 +64,7 @@ public partial class AspNetUser
         this.Matriculation_Education = new HashSet<Matriculation_Education>();
         this.MakeChoices = new HashSet<MakeChoice>();
         this.Test_Results = new HashSet<Test_Results>();
+        this.Contact_Us = new HashSet<Contact_Us>();
     }
 
     public string Id { get; set; }
@@ -103,6 +104,7 @@ public partial class AspNetUser
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Test_Results> Test_Results { get; set; }
+    public virtual ICollection<Contact_Us> Contact_Us { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -164,6 +166,16 @@ public partial class Category
     public virtual University University { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<ProgrammCategory> ProgrammCategories { get; set; }
+}
+
+public partial class Contact_Us
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public string User_Email { get; set; }
+    public string Message { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
 }
 
 public partial class ContactInformation
@@ -402,6 +414,12 @@ public partial class University_Tests
     public virtual University University { get; set; }
 }
 
+public partial class UserActivation
+{
+    public string UserId { get; set; }
+    public System.Guid ActivationCode { get; set; }
+}
+
 public partial class UserProfile
 {
     public int ID { get; set; }
@@ -410,6 +428,7 @@ public partial class UserProfile
     public string Phone { get; set; }
     public string City { get; set; }
     public string AspNetUserID { get; set; }
+    public string Email { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
 }

@@ -54,10 +54,18 @@
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Categ__74AE54BC" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Progr__73BA3083" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8" />
+<<<<<<< HEAD
         <EntityTypeShape EntityType="EducationEverestModel.University_Tests" Width="1.5" PointX="4.0278367344419639" PointY="31.45661504541366" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Uni_I__778AC167" />
         <EntityTypeShape EntityType="EducationEverestModel.Test_Results" Width="1.5" PointX="10.568197761926893" PointY="16.464178435720587" />
         <AssociationConnector Association="EducationEverestModel.FK__Test_Resu__User___7A672E12" />
+=======
+        <EntityTypeShape EntityType="EducationEverestModel.University_Tests" Width="1.5" PointX="5.2222060138463071" PointY="10.639788856096468" />
+        <EntityTypeShape EntityType="EducationEverestModel.UserActivation" Width="1.5" PointX="7.6947580164739673" PointY="18.669002228728029" />
+        <AssociationConnector Association="EducationEverestModel.FK__Universit__Uni_I__6C190EBB" />
+        <EntityTypeShape EntityType="EducationEverestModel.Contact_Us" Width="1.5" PointX="9.3756147499082676" PointY="1.3169128304891813" />
+        <AssociationConnector Association="EducationEverestModel.FK_Contact_Us_Contact_Us" />
+>>>>>>> b451432d71856dda65fb84645753e3f7fef51bd1
         
         
 =======
