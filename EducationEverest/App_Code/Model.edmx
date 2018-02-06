@@ -219,6 +219,21 @@
           <Property Name="Department_ID" Type="int" Nullable="false" />
           <Property Name="Program_Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="Test_Results">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Test_Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Board" Type="nvarchar" MaxLength="128" />
+          <Property Name="Rollno" Type="nvarchar" MaxLength="128" />
+          <Property Name="Passing_Year" Type="nvarchar" MaxLength="128" />
+          <Property Name="Total_Marks" Type="nvarchar" MaxLength="128" />
+          <Property Name="Obtained_Marks" Type="nvarchar" MaxLength="128" />
+          <Property Name="Percentage" Type="nvarchar" MaxLength="128" />
+          <Property Name="Division" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="Universities">
           <Key>
             <PropertyRef Name="id" />
@@ -228,6 +243,14 @@
           <Property Name="last_updated" Type="datetime" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="128" />
           <Property Name="data_progress" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="University_Tests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Uni_ID" Type="int" Nullable="false" />
+          <Property Name="Test_Name" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -516,6 +539,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Test_Resu__User___7A672E12">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Test_Results" Type="Self.Test_Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test_Results">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Universit__Uni_I__778AC167">
+          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+          <End Role="University_Tests" Type="Self.University_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="University_Tests">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -605,7 +652,9 @@
           <EntitySet Name="Portfolios" EntityType="Self.Portfolios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgrammCategories" EntityType="Self.ProgrammCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Programms" EntityType="Self.Programms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test_Results" EntityType="Self.Test_Results" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Universities" EntityType="Self.Universities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="University_Tests" EntityType="Self.University_Tests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Admission__Uni_I__36B12243" Association="Self.FK__Admission__Uni_I__36B12243">
             <End Role="Universities" EntitySet="Universities" />
@@ -698,6 +747,14 @@
           <AssociationSet Name="FK__Programms__Uni_I__3F466844" Association="Self.FK__Programms__Uni_I__3F466844">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Programms" EntitySet="Programms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test_Resu__User___7A672E12" Association="Self.FK__Test_Resu__User___7A672E12">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Test_Results" EntitySet="Test_Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Universit__Uni_I__778AC167" Association="Self.FK__Universit__Uni_I__778AC167">
+            <End Role="Universities" EntitySet="Universities" />
+            <End Role="University_Tests" EntitySet="University_Tests" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -854,6 +911,16 @@
             <End Role="University" EntitySet="Universities" />
             <End Role="MakeChoice" EntitySet="MakeChoices" />
           </AssociationSet>
+          <EntitySet Name="University_Tests" EntityType="EducationEverestModel.University_Tests" />
+          <AssociationSet Name="FK__Universit__Uni_I__778AC167" Association="EducationEverestModel.FK__Universit__Uni_I__778AC167">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="University_Tests" EntitySet="University_Tests" />
+          </AssociationSet>
+          <EntitySet Name="Test_Results" EntityType="EducationEverestModel.Test_Results" />
+          <AssociationSet Name="FK__Test_Resu__User___7A672E12" Association="EducationEverestModel.FK__Test_Resu__User___7A672E12">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Test_Results" EntitySet="Test_Results" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -922,6 +989,7 @@
           <NavigationProperty Name="Intermediate_Education" Relationship="EducationEverestModel.FK__Intermedi__User___628FA481" FromRole="AspNetUser" ToRole="Intermediate_Education" />
           <NavigationProperty Name="Matriculation_Education" Relationship="EducationEverestModel.FK__Matricula__User___5FB337D6" FromRole="AspNetUser" ToRole="Matriculation_Education" />
           <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__User___6FE99F9F" FromRole="AspNetUser" ToRole="MakeChoice" />
+          <NavigationProperty Name="Test_Results" Relationship="EducationEverestModel.FK__Test_Resu__User___7A672E12" FromRole="AspNetUser" ToRole="Test_Results" />
           </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1010,6 +1078,7 @@
           <Property Name="updated_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="data_progress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8" FromRole="University" ToRole="MakeChoice" />
+          <NavigationProperty Name="University_Tests" Relationship="EducationEverestModel.FK__Universit__Uni_I__778AC167" FromRole="University" ToRole="University_Tests" />
         </EntityType>
         <Association Name="FK__Portfolio__Uni_I__30F848ED">
           <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
@@ -1457,6 +1526,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="University_Tests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Uni_ID" Type="Int32" Nullable="false" />
+          <Property Name="Test_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Universit__Uni_I__778AC167" FromRole="University_Tests" ToRole="University" />
+        </EntityType>
+        <Association Name="FK__Universit__Uni_I__778AC167">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.University_Tests" Role="University_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="University_Tests">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Test_Results">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Test_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Board" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rollno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Passing_Year" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Obtained_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Division" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Test_Resu__User___7A672E12" FromRole="Test_Results" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK__Test_Resu__User___7A672E12">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Test_Results" Role="Test_Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test_Results">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1711,6 +1829,31 @@
                 <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
                 <ScalarProperty Name="Campus_Id" ColumnName="Campus_Id" />
                 <ScalarProperty Name="Uni_ID" ColumnName="Uni_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="University_Tests">
+            <EntityTypeMapping TypeName="EducationEverestModel.University_Tests">
+              <MappingFragment StoreEntitySet="University_Tests">
+                <ScalarProperty Name="Test_Name" ColumnName="Test_Name" />
+                <ScalarProperty Name="Uni_ID" ColumnName="Uni_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_Results">
+            <EntityTypeMapping TypeName="EducationEverestModel.Test_Results">
+              <MappingFragment StoreEntitySet="Test_Results">
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Obtained_Marks" ColumnName="Obtained_Marks" />
+                <ScalarProperty Name="Total_Marks" ColumnName="Total_Marks" />
+                <ScalarProperty Name="Passing_Year" ColumnName="Passing_Year" />
+                <ScalarProperty Name="Rollno" ColumnName="Rollno" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="Test_Name" ColumnName="Test_Name" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

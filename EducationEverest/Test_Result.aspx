@@ -13,7 +13,7 @@
      <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
       <div class="panel-heading" style="height: 60px">
         <h4 class="panel-title">
-         <div class="NormalCharacterStyle10 margin_top">Engineering College Admission Test (ECAT)<div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
+         <div class="NormalCharacterStyle10 margin_top"><asp:Label ID="Label12" runat="server" Text='<%#Eval("Test_Name")%>'></asp:Label><div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
         </h4>
 
               </div></a>
@@ -26,60 +26,81 @@
 <div class="col-md-10 text-left">
 <div class="col-md-12">
          <div class="form">
-     <select class="combobox col-md-12 select_option">
+             <asp:DropDownList ID="select_board" Class="combobox col-md-12 select_option" runat="server">
+                 <Items>
+                   <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
+                     <asp:ListItem Text="FBISE" Enabled="true" Selected="false" Value="FBISE" />
+                     <asp:ListItem Text="BISE Lahore" Enabled="true" Selected="false" Value="BISE Lahore" />
+                 </Items>
+             </asp:DropDownList>
+     <%--<select class="combobox col-md-12 select_option">
   <option selected="selected">Select Board (example:BISE Lahore)</option>
   <option value="PA">Pennsylvania</option>
   <option value="CT">Connecticut</option>
   <option value="NY">New York</option>
   <option value="MD">Maryland</option>
   <option value="VA">Virginia</option>
-</select>
+</select>--%>
     </div>
 </div>
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" type="text" name="roll_number" placeholder="Roll Number" >
+        <asp:TextBox ID="roll_number" class="inputs" placeholder="Roll Number" runat="server"></asp:TextBox>
+     <%--<input class="inputs" type="text" name="roll_number" placeholder="Roll Number" >--%>
     </div>
 </div>
 
 
  <div class="col-md-6">
          <div class="form">
-     <select class="combobox select_campus">
+             <asp:DropDownList ID="year_of_passing" Class="combobox select_campus" runat="server">
+                 <Items>
+                   <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
+                     <asp:ListItem Text="2015" Enabled="true" Selected="false" Value="2015" />
+                     <asp:ListItem Text="2014" Enabled="true" Selected="false" Value="2014" />
+                     <asp:ListItem Text="2013" Enabled="true" Selected="false" Value="2013" />
+                     <asp:ListItem Text="2012" Enabled="true" Selected="false" Value="2012" />
+                 </Items>
+             </asp:DropDownList>
+     <%--<select class="combobox select_campus">
   <option selected="selected">Year of Passing</option>
   <option value="PA">Pennsylvania</option>
   <option value="CT">Connecticut</option>
   <option value="NY">New York</option>
   <option value="MD">Maryland</option>
   <option value="VA">Virginia</option>
-</select>
+</select>--%>
 
 </div></div>
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" type="text" name="marks" placeholder="Total Marks" >
+        <asp:TextBox ID="total_marks" class="inputs" Placeholder="Total Marks" runat="server"></asp:TextBox>
+     <%--<input class="inputs" type="text" name="marks" placeholder="Total Marks" >--%>
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" type="text" name="obtained_marks" placeholder="Obtained Marks" >
+        <asp:TextBox ID="obtained_marks" class="inputs" Placeholder="Obtained Marks" runat="server"></asp:TextBox>
+     <%--<input class="inputs" type="text" name="obtained_marks" placeholder="Obtained Marks" >--%>
     </div>
 </div>
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" type="text" name="percentage" placeholder="Percentage" >
+        <asp:TextBox ID="percentage" class="inputs" Placeholder="Percentage" runat="server"></asp:TextBox>
+     <%--<input class="inputs" type="text" name="percentage" placeholder="Percentage" >--%>
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" type="text" name="Division" placeholder="Division" >
+        <asp:TextBox ID="division" class="inputs" Placeholder="Division" runat="server"></asp:TextBox>
+     <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
     </div>
 </div>
 <br/><br/>
@@ -109,7 +130,7 @@
    
 
    <br/><br/>
-         <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">NEXT</span></button>
+         <button type="button" onserverclick="save_click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
          <br/><br/><br/><br/>
   </div>
 </div>

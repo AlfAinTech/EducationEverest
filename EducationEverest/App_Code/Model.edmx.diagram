@@ -54,6 +54,10 @@
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Categ__74AE54BC" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Progr__73BA3083" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8" />
+        <EntityTypeShape EntityType="EducationEverestModel.University_Tests" Width="1.5" PointX="4.0278367344419639" PointY="31.45661504541366" />
+        <AssociationConnector Association="EducationEverestModel.FK__Universit__Uni_I__778AC167" />
+        <EntityTypeShape EntityType="EducationEverestModel.Test_Results" Width="1.5" PointX="10.568197761926893" PointY="16.464178435720587" />
+        <AssociationConnector Association="EducationEverestModel.FK__Test_Resu__User___7A672E12" />
         
         
 =======
