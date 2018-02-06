@@ -44,4 +44,7 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<Intermediate_Education> Intermediate_Education { get; set; }
     public virtual DbSet<Matriculation_Education> Matriculation_Education { get; set; }
     public virtual DbSet<MakeChoice> MakeChoices { get; set; }
+    public virtual DbSet<University_Tests> University_Tests { get; set; }
+    public virtual DbSet<UserActivation> UserActivations { get; set; }
+    public virtual DbSet<Contact_Us> Contact_Us { get; set; }
 }

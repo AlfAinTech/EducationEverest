@@ -11,7 +11,7 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Session["username"] = Email.Text;
     }
     protected void LogIn(object sender, EventArgs e)
     {
@@ -29,7 +29,7 @@ public partial class Login : System.Web.UI.Page
                 }
                 else
                 {
-                    IdentityHelper.RedirectToReturnUrl("~/Applications.aspx", Response);
+                    IdentityHelper.RedirectToReturnUrl("~/My_Profile.aspx", Response);
                 }
             }
             else
