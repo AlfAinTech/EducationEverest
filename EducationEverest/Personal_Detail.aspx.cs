@@ -19,7 +19,7 @@ public partial class Personal_Detail : System.Web.UI.Page
             father_name.Value = personal.Father_Name;
             student_cnic.Value = personal.CNIC;
             father_cnic.Value = personal.Father_CNIC;
-           // DateTime s = DateTime.ParseExact(personal.DOB, "MM/dd/yyyy", null);
+            dob.Value = personal.DOB.ToString();
             nationality.Value = personal.Nationality;
         }
     }
@@ -62,6 +62,7 @@ public partial class Personal_Detail : System.Web.UI.Page
             x.CNIC = student_cnic.Value;
             x.Father_CNIC = father_cnic.Value;
            // x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
+            x.DOB = Convert.ToDateTime(dob.Value);
             x.Nationality = nationality.Value;
 
             db.SaveChanges();
@@ -74,8 +75,8 @@ public partial class Personal_Detail : System.Web.UI.Page
                 Father_Name = father_name.Value,
                 CNIC = student_cnic.Value,
                 Father_CNIC = father_cnic.Value,
-                DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null),
-            Nationality = nationality.Value,
+                DOB = Convert.ToDateTime(dob.Value),
+                Nationality = nationality.Value,
                 User_ID = current_user
 
             };
@@ -101,7 +102,6 @@ public partial class Personal_Detail : System.Web.UI.Page
         {
             ContactInformation ci = new ContactInformation
             {
-                User_ID = current_user,
                 Current_Address = current_address.Value,
                 Permanent_Address = permanent_address.Value,
                 Email = email.Value,

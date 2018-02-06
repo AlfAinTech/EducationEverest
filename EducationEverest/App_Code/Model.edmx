@@ -1137,14 +1137,14 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AspNetUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_UserProfile_AspNetUsers" FromRole="UserProfile" ToRole="AspNetUsers" />
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_UserProfile_AspNetUsers" FromRole="UserProfile" ToRole="AspNetUsers" />
         </EntityType>
         <Association Name="FK__Admission__Uni_I__36B12243">
           <End Role="Universities" Type="Self.University" Multiplicity="1" />
@@ -1934,13 +1934,13 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySetMapping Name="UserProfiles">
             <EntityTypeMapping TypeName="EducationEverestModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="AspNetUserID" ColumnName="AspNetUserID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
