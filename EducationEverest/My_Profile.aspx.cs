@@ -93,7 +93,7 @@ public partial class My_Profile : System.Web.UI.Page
 
         Contact_Us cs = new Contact_Us();
         cs.Message = txtMessage.Text;
-        cs.User_Email = txtEmailMessage.Text;
+        cs.User_Email = txtMessageEmail.Text;
         cs.User_ID = logged.userid;
         db.Contact_Us.Add(cs);
         db.SaveChanges();
