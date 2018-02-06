@@ -1,7 +1,7 @@
 USE [EducationEverest]
 GO
 
-/****** Object:  Table [dbo].[UserProfile]    Script Date: 23-Jan-18 6:07:23 PM ******/
+/****** Object:  Table [dbo].[UserProfile]    Script Date: 06-Feb-18 3:14:54 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,12 +9,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[UserProfile](
-	[ID] [int] NOT NULL,
+	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](128) NULL,
 	[LastName] [nvarchar](128) NULL,
 	[Phone] [nvarchar](128) NULL,
 	[City] [nvarchar](128) NULL,
 	[AspNetUserID] [nvarchar](128) NULL,
+	[Email] [nvarchar](256) NULL,
  CONSTRAINT [PK_UserProfile] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -28,6 +29,13 @@ REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
 
 ALTER TABLE [dbo].[UserProfile] CHECK CONSTRAINT [FK_UserProfile_AspNetUsers]
+GO
+
+ALTER TABLE [dbo].[UserProfile]  WITH CHECK ADD  CONSTRAINT [FK_UserProfile_AspNetUsers1] FOREIGN KEY([Email])
+REFERENCES [dbo].[AspNetUsers] ([UserName])
+GO
+
+ALTER TABLE [dbo].[UserProfile] CHECK CONSTRAINT [FK_UserProfile_AspNetUsers1]
 GO
 
 
