@@ -145,7 +145,7 @@
           <div class="col-md-12"><asp:TextBox ID="TextBox29" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
           <div class="col-md-12"><asp:TextBox ID="TextBox30" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>  
           </div>
-        </asp:PlaceHolder>
+               </asp:PlaceHolder>
                   <asp:Button ID="Button2" style="float:left;" class="btn btn-primary"  Text="Save" OnClick="Button2_Click" runat="server" />
               </div>
               
