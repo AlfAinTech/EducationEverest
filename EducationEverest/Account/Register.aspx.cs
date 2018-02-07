@@ -25,6 +25,7 @@ public partial class Account_Register : Page
 
     {
         string userId;
+        
 
 
         if (CheckBox1.Checked == true)
@@ -41,6 +42,7 @@ public partial class Account_Register : Page
 
                 up.AspNetUserID = user.Id;
                 userId = up.AspNetUserID;
+                
                 
                 //db.UserProfiles.Add(up);
                 //db.SaveChanges();
@@ -108,7 +110,7 @@ public partial class Account_Register : Page
                     up.Phone = phone.Text;
                     up.City = city.Text;
                     up.AspNetUserID = userId;
-                    //up.Email = 
+                    up.Email = Email.Text;
                     db.UserProfiles.Add(up);
                     db.SaveChanges();
                     con.Close();

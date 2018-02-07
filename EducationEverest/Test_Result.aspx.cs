@@ -10,6 +10,9 @@ public partial class Test_Result : System.Web.UI.Page
     EducationEverestEntities db = new EducationEverestEntities();
     string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";
 
+
+
+
     public void panels()
     {
         List<MakeChoice> mk = db.MakeChoices.Where(x => x.User_ID == current_user).ToList();
@@ -28,18 +31,23 @@ public partial class Test_Result : System.Web.UI.Page
         Repeater1.DataBind();
     }
 
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        panels();
-        populate_panels();
+        
+        if (!IsPostBack)
+        {
+            panels();
+            populate_panels();
+        }
     }
+
 
     public void populate_panels()
     {
         foreach (RepeaterItem item in Repeater1.Items)
         {
             Label label = item.FindControl("Label12") as Label;
- 
 
             DropDownList board = ((DropDownList)item.FindControl("select_board"));
             TextBox roll_no = item.FindControl("roll_number") as TextBox;
@@ -48,7 +56,7 @@ public partial class Test_Result : System.Web.UI.Page
             TextBox obtained_marks = item.FindControl("obtained_marks") as TextBox;
             TextBox percentage = item.FindControl("percentage") as TextBox;
             TextBox division = item.FindControl("division") as TextBox;
- 
+
             if (db.Test_Results.Any(x => x.User_ID == current_user && x.Test_Name == label.Text))
             {
                 var p = db.Test_Results.Single(x => x.User_ID == current_user && x.Test_Name == label.Text);
@@ -64,10 +72,9 @@ public partial class Test_Result : System.Web.UI.Page
 
      }
 
-
     protected void save_click(object sender, EventArgs e)
     {
-        foreach(RepeaterItem item in Repeater1.Items)
+        foreach (RepeaterItem item in Repeater1.Items)
         {
             Label label = item.FindControl("Label12") as Label;
 
@@ -112,8 +119,8 @@ public partial class Test_Result : System.Web.UI.Page
                 db.SaveChanges();
             }
         }
- 
-     }
+    }
 
+   
 
 }

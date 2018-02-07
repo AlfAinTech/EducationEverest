@@ -162,16 +162,16 @@
         <div class="col-md-1"></div>
         <div class="col-md-10"><br/>
            
-            <asp:TextBox ID="txtEmailMessage" runat="server" placeholder="Email" class="form-control" ></asp:TextBox>
-           <asp:RequiredFieldValidator ID="txtEmailMessageValidator" runat="server" ErrorMessage="Email is Required" ControlToValidate="txtEmailMessage" ForeColor="Red"></asp:RequiredFieldValidator>
-           <asp:RegularExpressionValidator ID="txtEmailMessageValidator2" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="txtEmailMessage" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
+            <asp:TextBox ID="txtMessageEmail" runat="server" placeholder="Email" class="form-control" ></asp:TextBox>
+           <asp:RequiredFieldValidator ID="txtMessageRequiredValidator" ValidationGroup="vgMessageEmail" runat="server" ErrorMessage="Email is Required" ControlToValidate="txtMessageEmail" ForeColor="Red"></asp:RequiredFieldValidator>
+           <asp:RegularExpressionValidator ID="txtMessageValidator2" ValidationGroup="vgMessageEmail" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="txtMessageEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
 
           <%--<input  type="text" class="form-control" name="card holder" placeholder="Email">--%>
           <%--<textarea class="form-control" rows="7"  placeholder="Your Message" style="margin-top: 5px;resize: none;"></textarea><br/>--%>
                 <asp:TextBox ID="txtMessage"  runat="server" placeholder="Message"  class="form-control" style="margin-top: 5px;margin-bottom:20px; resize: none; height:150px; padding-bottom:120px "></asp:TextBox>
-                <asp:RequiredFieldValidator ID="txtMessageValidator" runat="server" ErrorMessage="Enter Message" ControlToValidate="txtMessage" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="txtMessageRegularValidator" ValidationGroup="vgMessageEmail" runat="server" ErrorMessage="Enter Message" ControlToValidate="txtMessage" ForeColor="Red"></asp:RequiredFieldValidator>
 
-             <asp:Button ID="btnMessage" OnClick="btnMessage_Click"  causesValidation="False"  class="btn profile_contact_panel_button pull-right" runat="server" Text="ADD"   />
+             <asp:Button ID="btnMessage" OnClick="btnMessage_Click"  ValidationGroup="vgMessageEmail"   class="btn profile_contact_panel_button pull-right" runat="server" Text="ADD"   />
               
 
                  <%--<button type="button" class="btn profile_contact_panel_button pull-right">ADD</button>--%>
@@ -208,10 +208,10 @@
         <div class="col-md-10"><br/>
              
             <asp:TextBox ID="txtEmailSend" class="form-control"  placeholder="Email" style="margin-bottom:20px"  runat="server" ></asp:TextBox>
-             <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ErrorMessage="Email is Required" ControlToValidate="txtEmailSend" ForeColor="Red"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="txtEmailSend" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
-
-            <asp:Button ID="btnInvite" OnClick="SendEmail_Click" class="btn profile_contact_panel_button pull-right"   runat="server" Text="INVITE" />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="vgSendEmail" runat="server" ErrorMessage="Please Enter Email ID" ControlToValidate="txtEmailSend"></asp:RequiredFieldValidator>
+           <asp:RegularExpressionValidator ID="rvEmailSend" ValidationGroup="vgSendEmail" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="txtEmailSend" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
+<%--            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ValidationGroup="vgSendEmail" runat="server" ErrorMessage="Please enter Valid Email" ControlToValidate="txtEmailSend"></asp:RegularExpressionValidator>--%>
+            <asp:Button ID="btnInvite" OnClick="SendEmail_Click" ValidationGroup="vgSendEmail" class="btn profile_contact_panel_button pull-right"   runat="server" Text="INVITE" />
           <%--<input  type="text" class="form-control" name="card holder" placeholder="Email"><br/>
           
           <button type="button" class="btn profile_contact_panel_button pull-right">INVITE</button>--%>
