@@ -370,7 +370,7 @@
     </div>
 
 <br/>
-         <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">NEXT</span></button>
+         <button type="button" runat="server" onserverclick="next_click" class=" btn button_bg"><span class="NormalCharacterStyle">NEXT</span></button>
          <br/><br/><br/><br/>
   </div>
 </div>

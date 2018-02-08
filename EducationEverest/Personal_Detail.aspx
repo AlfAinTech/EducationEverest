@@ -48,7 +48,7 @@
 <br/><br/><br/><br/>
  <div class="col-md-5">
          <div class="form">
-     <input id="dob" class="input_DOB" type="date" name="dob" placeholder="Date of Birth" runat="server" />
+     <input id="dob" class="input_DOB" type="date" name="dob" placeholder="Date of Birth" min="1980-01-01" max="2005-01-01" runat="server" />
     </div>
 </div>
 

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 public partial class Choices : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
-    public static string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";
+    public static string current_user = HttpContext.Current.User.Identity.GetUserId();
     public void populate_uni()
     {
         List<University> uv = db.Universities.ToList();
@@ -289,7 +290,11 @@ public partial class Choices : System.Web.UI.Page
 
     }
 
+    protected void next_click(object sender, EventArgs e)
 
+    {
+        Response.Redirect("Educational_Detail");
+    }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {

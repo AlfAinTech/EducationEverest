@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 public partial class Personal_Detail : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
-    string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";
+    string current_user = HttpContext.Current.User.Identity.GetUserId();
 
     public void populate_personal_details()
     {
@@ -20,7 +21,7 @@ public partial class Personal_Detail : System.Web.UI.Page
             student_cnic.Value = personal.CNIC;
             father_cnic.Value = personal.Father_CNIC;
 
-            //dob.Value = personal.DOB.ToString();
+            dob.Value = personal.DOB.Value.ToString("yyyy-MM-dd");
 
            // DateTime s = DateTime.ParseExact(personal.DOB, "MM/dd/yyyy", null);
             nationality.Value = personal.Nationality;
@@ -125,6 +126,6 @@ public partial class Personal_Detail : System.Web.UI.Page
             db.SaveChanges();
         }
 
-
+        Response.Redirect("choices");
     }
 }
