@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 public partial class Test_Result : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
-    string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";
+    string current_user = HttpContext.Current.User.Identity.GetUserId();
+
+
 
 
     public void panels()
@@ -28,6 +31,7 @@ public partial class Test_Result : System.Web.UI.Page
         Repeater1.DataSource = ut;
         Repeater1.DataBind();
     }
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -71,7 +75,7 @@ public partial class Test_Result : System.Web.UI.Page
 
     protected void save_click(object sender, EventArgs e)
     {
-        foreach(RepeaterItem item in Repeater1.Items)
+        foreach (RepeaterItem item in Repeater1.Items)
         {
             Label label = item.FindControl("Label12") as Label;
 
@@ -116,10 +120,13 @@ public partial class Test_Result : System.Web.UI.Page
                 db.SaveChanges();
             }
         }
+
         //button next click from Test Results to Document
         Response.Redirect("Upload_Documents.aspx");
 
+
     }
 
+   
 
 }

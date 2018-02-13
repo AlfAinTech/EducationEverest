@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 public partial class Educational_Detail : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
-    string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";
+    string current_user = HttpContext.Current.User.Identity.GetUserId();
 
     public void populate_matric_data()
     {
@@ -111,8 +112,14 @@ public partial class Educational_Detail : System.Web.UI.Page
             db.Intermediate_Education.Add(inter_edu);
             db.SaveChanges();
         }
+
         //button next click from Educational Details to Test Result
         Response.Redirect("Test_Result.aspx");
+
+
+       
+
+
     }
 
 }

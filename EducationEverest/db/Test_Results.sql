@@ -22,4 +22,3 @@ CREATE TABLE [dbo].[Test_Results](
 
 ) ON [PRIMARY] 
 GO
-

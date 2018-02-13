@@ -27,6 +27,7 @@
 <div class="col-md-12">
          <div class="form">
              <asp:DropDownList ID="select_board" Class="combobox col-md-12 select_option" runat="server">
+
                  <Items>
                    <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
                      <asp:ListItem Text="FBISE" Enabled="true" Selected="false" Value="FBISE" />
@@ -46,8 +47,10 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-        <asp:TextBox ID="roll_number" class="inputs" placeholder="Roll Number" runat="server"></asp:TextBox>
      <%--<input class="inputs" type="text" name="roll_number" placeholder="Roll Number" >--%>
+         <asp:TextBox ID="roll_number" class="inputs" placeholder="Roll Number" runat="server"></asp:TextBox>
+     <%--<input class="inputs" type="text" name="roll_number" placeholder="Roll Number" >--%>
+
     </div>
 </div>
 
@@ -76,8 +79,12 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-        <asp:TextBox ID="total_marks" class="inputs" Placeholder="Total Marks" runat="server"></asp:TextBox>
+
      <%--<input class="inputs" type="text" name="marks" placeholder="Total Marks" >--%>
+        <asp:TextBox ID="total_marks" class="inputs" Placeholder="Total Marks" runat="server"></asp:TextBox>
+
+     <%--<input class="inputs" type="text" name="marks" placeholder="Total Marks" >--%>
+
     </div>
 </div>
 
@@ -91,16 +98,24 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-        <asp:TextBox ID="percentage" class="inputs" Placeholder="Percentage" runat="server"></asp:TextBox>
+
      <%--<input class="inputs" type="text" name="percentage" placeholder="Percentage" >--%>
+         <asp:TextBox ID="percentage" class="inputs" Placeholder="Percentage" runat="server"></asp:TextBox>
+
+     <%--<input class="inputs" type="text" name="percentage" placeholder="Percentage" >--%>
+
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-        <asp:TextBox ID="division" class="inputs" Placeholder="Division" runat="server"></asp:TextBox>
+
      <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
+        <asp:TextBox ID="division" class="inputs" Placeholder="Division" runat="server"></asp:TextBox>
+
+     <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
+
     </div>
 </div>
 <br/><br/>

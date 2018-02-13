@@ -372,8 +372,12 @@
     </div>
 
 <br/>
+
         
          <button type="button" onserverclick="next_click"  class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
+
+         
+
          <br/><br/><br/><br/>
         <asp:HiddenField ID="hf_UniID" Value="0" runat="server" />
   </div>

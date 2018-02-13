@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 public partial class Personal_Detail : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
-    string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";
+    string current_user = HttpContext.Current.User.Identity.GetUserId();
 
     public void populate_personal_details()
     {
@@ -19,6 +20,9 @@ public partial class Personal_Detail : System.Web.UI.Page
             father_name.Value = personal.Father_Name;
             student_cnic.Value = personal.CNIC;
             father_cnic.Value = personal.Father_CNIC;
+
+            dob.Value = personal.DOB.Value.ToString("yyyy-MM-dd");
+
            // DateTime s = DateTime.ParseExact(personal.DOB, "MM/dd/yyyy", null);
             nationality.Value = personal.Nationality;
         }
@@ -63,7 +67,8 @@ public partial class Personal_Detail : System.Web.UI.Page
             x.Father_CNIC = father_cnic.Value;
             x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
            // x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
-            x.DOB = Convert.ToDateTime(dob.Value);
+            //x.DOB = Convert.ToDateTime(dob.Value);
+            x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
             x.Nationality = nationality.Value;
 
             db.SaveChanges();
@@ -72,12 +77,16 @@ public partial class Personal_Detail : System.Web.UI.Page
         {
             Personal_Details pds = new Personal_Details
             {
+                
                 Name = student_name.Value,
                 Father_Name = father_name.Value,
                 CNIC = student_cnic.Value,
                 Father_CNIC = father_cnic.Value,
                 DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null),
-            Nationality = nationality.Value,
+
+                Nationality = nationality.Value,
+
+
                 User_ID = current_user
 
             };
@@ -117,8 +126,10 @@ public partial class Personal_Detail : System.Web.UI.Page
             db.SaveChanges();
         }
 
+
         //button next click from Personal Details to Choice
         Response.Redirect("Choices.aspx");
+
     }
 
 }
