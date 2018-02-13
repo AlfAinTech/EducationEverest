@@ -134,7 +134,8 @@
 </div></div>
 <br/><br/><br/><br/>
 
-</div>
+</div> <%--outer ADD button--%>
+
 <button type="button" id="button1" class=" btn button_bg_1_ pull-right" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">ADD</span></button>
 </div>
 
@@ -161,7 +162,7 @@
     </div>
 </div>
 <br/><br/><br/><br/>
-<div class="row col-md-12">
+<div class="row col-md-12">  <%--here starts modal dropdown lists--%>
 <div class="col-md-6">
 
          <div class="form">
@@ -244,13 +245,14 @@
 <br/><br/><br/>
 
 </div>
-<button type="button" id="add_modal" class=" btn add_button_1_ pull-right" ><span class="NormalCharacterStyle">ADD</span></button>
+          <%--Model ADD Button--%>
+<button type="button" id="button_modal" class=" btn add_button_1_ pull-right" ><span class="NormalCharacterStyle">ADD</span></button>
 
 <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
 
 
-          <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server">
-              <Columns>
+          <asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
+              <%--<Columns>
 
                                   <asp:TemplateField>
                         <ItemTemplate>
@@ -278,7 +280,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-                  </Columns>
+                  </Columns>--%>
           </asp:GridView>
 
 <%--<table>
@@ -370,13 +372,23 @@
     </div>
 
 <br/>
-         <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">NEXT</span></button>
+        
+         <button type="button" onserverclick="next_click"  class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
          <br/><br/><br/><br/>
+        <asp:HiddenField ID="hf_UniID" Value="0" runat="server" />
   </div>
 </div>
 
     <script type="text/javascript">
         
+
+        function populateGridview(universityId){
+            alert("this is university Id : " + universityId);
+            document.getElementById('<%= hf_UniID.ClientID %>').value = universityId.toString();
+            alert(document.getElementById("hf_UniID").value);
+            <%= show() %>
+
+        }
 
 
         $(document).ready(function () {
@@ -542,7 +554,7 @@
             var category = $("[id*=DropDownList4]");
             var program = $("[id*=DropDownList5]");
             var hidden = $("[id*=HiddenField1]");
-
+            //outer button click success
             var button1 = $("[id*=button1]");
             button1.click(function () {
                 save_main_page_data(uni.val(), campus.val(), department.val(), category.val(), program.val());
@@ -557,7 +569,14 @@
                     dataType: "json",
                     failure: function (response) {
                         alert(response.d);
-                    }
+                        console.log("this is an error og");
+                    },
+                    success: function (result) {
+                        console.log("this is the data" + result.toString());
+                        
+                        //populateGridview(result);
+
+                }
                 });
             }
             
@@ -685,8 +704,8 @@
             var department10 = $("[id*=DropDownList7]");
             var category10 = $("[id*=DropDownList9]");
             var program10 = $("[id*=DropDownList8]");
-
-            var button_modal = $("[id*=add_modal]");
+            //Model Button Add Click
+            var button_modal = $("[id*=button_modal]");
             button_modal.click(function () {
                 save_main_page_data1(uni10.val(), campus10.val(), department10.val(), category10.val(), program10.val());
             });

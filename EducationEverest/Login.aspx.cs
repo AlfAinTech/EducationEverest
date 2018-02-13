@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 using EducationEverest;
 using Microsoft.AspNet.Identity;
 
+
 public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["username"] = Email.Text;
+        //Response.Redirect("Dashboard.aspx");
+
+        //Session["username"] = Email.Text;
     }
     protected void LogIn(object sender, EventArgs e)
     {
@@ -29,7 +32,7 @@ public partial class Login : System.Web.UI.Page
                 }
                 else
                 {
-                    IdentityHelper.RedirectToReturnUrl("~/My_Profile.aspx", Response);
+                    IdentityHelper.RedirectToReturnUrl("~/Dashboard.aspx", Response);
                 }
             }
             else

@@ -111,7 +111,8 @@ public partial class Educational_Detail : System.Web.UI.Page
             db.Intermediate_Education.Add(inter_edu);
             db.SaveChanges();
         }
-
+        //button next click from Educational Details to Test Result
+        Response.Redirect("Test_Result.aspx");
     }
 
 }
