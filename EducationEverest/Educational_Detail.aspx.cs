@@ -113,7 +113,12 @@ public partial class Educational_Detail : System.Web.UI.Page
             db.SaveChanges();
         }
 
-        Response.Redirect("Test_Result");
+        //button next click from Educational Details to Test Result
+        Response.Redirect("Test_Result.aspx");
+
+
+       
+
 
     }
 

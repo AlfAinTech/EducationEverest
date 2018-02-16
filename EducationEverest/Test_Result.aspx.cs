@@ -120,6 +120,11 @@ public partial class Test_Result : System.Web.UI.Page
                 db.SaveChanges();
             }
         }
+
+        //button next click from Test Results to Document
+        Response.Redirect("Upload_Documents.aspx");
+
+
     }
 
    

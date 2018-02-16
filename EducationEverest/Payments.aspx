@@ -1,6 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Payments.aspx.cs" MasterPageFile="~/Client.master" Inherits="Payments" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Payments.aspx.cs" Inherits="Payments" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     <div class="col-sm-9 text-left"> 
+
+
+    <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Payments</h3>
       <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
       <br/>
@@ -10,24 +13,14 @@
         <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
       </dl>
       <div class="panel panel-default panel_shadow">
-        <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
-      <div class="panel-heading" style="height: 60px">
+      <div class="panel-heading" style="height: 50px">
         <h4 class="panel-title">
-         <div class="NormalCharacterStyle10 margin_top">Application Invoice
-             <div class="icon-arrow-right pull-right">
-                 <div class="check-"></div>
-                 <i class="glyphicon glyphicon-chevron-down normal-color">
-                     
-                 </i></div>
-
-         </div> 
+          <div class="NormalCharacterStyle10">Application Invoice<div class="icon-arrow-right pull-right"><div class="check-"></div><a id="menu_toggle" ><i class="glyphicon glyphicon-chevron-down normal-color" data-toggle="collapse" data-parent="#accordion" href="#collapse2"></i></a></div></div> 
         </h4>
-
-              </div></a>
+              </div>
       <div id="collapse2" class="panel-collapse panel-heading collapse">
-        <div class="panel_divider"></div>
         <div class="panel-body" style="height: 400px;">
-            
+
         </div>
       </div>
     </div>
@@ -113,6 +106,10 @@
 
      	</div>
   </div>
+</div>
+
+  </div>
+</div>
 <script type="text/javascript">
   $('#menu_toggle').on('click', function () {
     var iSelector = $(this).find('i:first');
@@ -145,4 +142,9 @@
     }
 });
 </script>
+
+
+
+
 </asp:Content>
+

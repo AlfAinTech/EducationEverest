@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,10 +7,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
+
 public partial class Choices : System.Web.UI.Page
 {
+    string ddlvalue;
     EducationEverestEntities db = new EducationEverestEntities();
-    public static string current_user = HttpContext.Current.User.Identity.GetUserId();
+
+   // public static string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";   old ID by Faizan
+    public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";     //new ID by Ibrar
+
+   // public static string current_user = HttpContext.Current.User.Identity.GetUserId();
+
     public void populate_uni()
     {
         List<University> uv = db.Universities.ToList();
@@ -22,16 +30,29 @@ public partial class Choices : System.Web.UI.Page
         }
     }
 
-    public void show()
+    public String show()
     {
-        if (db.Universities.Any(x => x.Name == DropDownList1.SelectedValue))
+        int universityId = Convert.ToInt32(hf_UniID.Value);
+        if (universityId != 0)
         {
-            University uv = db.Universities.First(x => x.Name == DropDownList1.SelectedValue);
+            University university = db.Universities.Where(a => a.id == universityId).First();
 
-            var q = db.MakeChoices.Where(x => x.Uni_ID == uv.id && x.User_ID == current_user);
-            GridView1.DataSource = q.ToList();
+
+            // if (db.Universities.Any(x => x.Name == DropDownList1.SelectedValue))
+            // if (db.Universities.Any(x => x.Name == ddlvalue))
+
+
+            //University uv = db.Universities.First(x => x.Name == Convert.ToString(university));
+            // University uv = db.Universities.First(x => x.Name == DropDownList1.SelectedValue);
+            // University uv = db.Universities.First(x => x.Name == ddlsessionval);
+            // University uv = db.Universities.First(x => x.Name == ddlvalue);
+
+            List<MakeChoice> choices = db.MakeChoices.Where(x => x.Uni_ID == universityId && x.User_ID == current_user).ToList();
+            GridView1.DataSource = choices;
             GridView1.DataBind();
+           
         }
+        return "adf";
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -231,9 +252,12 @@ public partial class Choices : System.Web.UI.Page
 
 
     [System.Web.Services.WebMethod]
-    public static void SaveMainPageData(string uni,string cmp,string dpt,string ctg,string pgm)
-        
+   // public static List<MakeChoice> SaveMainPageData(string uni,string cmp,string dpt,string ctg,string pgm)
+        public static string SaveMainPageData(string uni, string cmp, string dpt, string ctg, string pgm)
+
     {
+        //List<MakeChoice> choicesdata = new List<MakeChoice>();
+        List<MakeChoice> choicesdata = new List<MakeChoice>();
         EducationEverestEntities dbcontext = new EducationEverestEntities();
         if (dbcontext.Universities.Any(x=> x.Name == uni))
         {
@@ -270,6 +294,21 @@ public partial class Choices : System.Web.UI.Page
                                     };
                                     dbcontext.MakeChoices.Add(choices);
                                     dbcontext.SaveChanges();
+
+
+
+                                     choicesdata = dbcontext.MakeChoices.Where(x => x.Uni_ID == univ.id && x.User_ID == current_user).ToList();
+                                    
+                                    //Choices ch = new Choices();
+
+
+                                    //show griview here after inserting data
+
+                                    //ch.show(univ.id);
+
+
+
+
                                 }
                                    
 
@@ -286,8 +325,10 @@ public partial class Choices : System.Web.UI.Page
 
 
 
-        }   
-
+        }
+        var js = JsonConvert.SerializeObject(choicesdata);
+        //choicesdata = dbcontext.MakeChoices.ToList();
+        return js;
     }
 
     protected void next_click(object sender, EventArgs e)
@@ -298,6 +339,20 @@ public partial class Choices : System.Web.UI.Page
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        show();
+
+        //ddlvalue = DropDownList1.SelectedItem.Value;
+
+
+        // Session["ddlsessionvalue"] = DropDownList1.SelectedValue;
+
+        //show();
     }
+    //button next click from make choice to educational details
+    protected void next_click(object sender, EventArgs e)
+    {
+
+        Response.Redirect("Educational_Detail.aspx");
+    }
+
+
 }
