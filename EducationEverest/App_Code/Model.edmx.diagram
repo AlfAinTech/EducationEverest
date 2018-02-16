@@ -16,7 +16,6 @@
         <EntityTypeShape EntityType="EducationEverestModel.Category" Width="1.5" PointX="3.75" PointY="46" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationEverestModel.Contact_Us" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationEverestModel.ContactInformation" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EducationEverestModel.Department" Width="1.5" PointX="6" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationEverestModel.Intermediate_Education" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationEverestModel.MakeChoice" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationEverestModel.Matriculation_Education" Width="1.5" PointX="5.25" PointY="28.125" IsExpanded="true" />
@@ -47,10 +46,6 @@
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Campu__71D1E811" ManuallyRouted="false" />
         <AssociationConnector Association="EducationEverestModel.FK__Categorie__Uni_I__398D8EEE" ManuallyRouted="false" />
         <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Categ__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="EducationEverestModel.FK__Departmen__Uni_I__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Depar__72C60C4A" ManuallyRouted="false" />
-        <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Depar__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="EducationEverestModel.FK__Programms__Depar__403A8C7D" ManuallyRouted="false" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Categ__74AE54BC" ManuallyRouted="false" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Progr__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Uni_I__70DDC3D8" ManuallyRouted="false" />
@@ -60,6 +55,16 @@
         <AssociationConnector Association="EducationEverestModel.FK__Programms__Uni_I__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Uni_I__778AC167" ManuallyRouted="false" />
         <AssociationConnector Association="EducationEverestModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EducationEverestModel.Document" Width="1.5" PointX="6" PointY="60.875" />
+        <EntityTypeShape EntityType="EducationEverestModel.TestResult_Document" Width="1.5" PointX="8.25" PointY="58" />
+        <AssociationConnector Association="EducationEverestModel.FK_Document_Personal_Details" />
+        <AssociationConnector Association="EducationEverestModel.FK_TestResult_Document_Document" />
+        <AssociationConnector Association="EducationEverestModel.FK_TestResult_Document_University_Tests" />
+        <EntityTypeShape EntityType="EducationEverestModel.Department" Width="1.5" PointX="6" PointY="24.375" />
+        <AssociationConnector Association="EducationEverestModel.FK__Departmen__Uni_I__59063A47" />
+        <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Depar__5CD6CB2B" />
+        <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Depar__656C112C" />
+        <AssociationConnector Association="EducationEverestModel.FK__Programms__Depar__68487DD7" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
