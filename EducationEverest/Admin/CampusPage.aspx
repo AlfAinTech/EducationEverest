@@ -32,7 +32,7 @@
                 <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_campusName" Display="Dynamic"
                         CssClass="text-danger" ErrorMessage="* Field is required." />
                     <asp:RegularExpressionValidator ID="re_tb_campusName" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[a-zA-Z]{1,100}$" ControlToValidate="tb_campusName" ForeColor="red"
+                        ValidationExpression="^[a-z A-Z]{1,100}$" ControlToValidate="tb_campusName" ForeColor="red"
                         ErrorMessage="* Name should consist of alphabets"></asp:RegularExpressionValidator>
             </div>
         </div>
@@ -41,10 +41,10 @@
                 Contact 1 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_campusContact1" CssClass="form-control" placeholder="Enter Campus Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" CssClass="text-danger"
+                <asp:TextBox runat="server" ID="tb_campusContact1" CssClass="form-control" placeholder="Enter Campus Contact"  ></asp:TextBox>
+                <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" CssClass="text-danger"
                         ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_campusContact1" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>--%>
             </div>
         </div>
         <div class="row">
@@ -52,10 +52,10 @@
                 Contact 2 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_campusContact2" CssClass="form-control" placeholder="Enter Campus Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" Display="Dynamic" CssClass="text-danger"
+                <asp:TextBox runat="server" ID="tb_campusContact2" CssClass="form-control" placeholder="Enter Campus Contact"  ></asp:TextBox>
+                <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" Display="Dynamic" CssClass="text-danger"
                         ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_campusContact2" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>--%>
             </div>
         </div>
         <div class="row">
@@ -63,10 +63,10 @@
                 Contact 3 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_campusContact3" CssClass="form-control" placeholder="Enter Campus Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" Display="Dynamic" CssClass="text-danger"
+                <asp:TextBox runat="server" ID="tb_campusContact3" CssClass="form-control" placeholder="Enter Campus Contact"  ></asp:TextBox>
+                <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" Display="Dynamic" CssClass="text-danger"
                         ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_campusContact3" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>--%>
             </div>
         </div>
         <div class="row">

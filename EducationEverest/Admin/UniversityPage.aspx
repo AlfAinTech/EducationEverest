@@ -31,10 +31,8 @@
                 Contact 1 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniContact1" CssClass="form-control" placeholder="Enter University Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_uniContact1" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                <asp:TextBox runat="server" ID="tb_uniContact1" CssClass="form-control" placeholder="Enter University Contact" ></asp:TextBox>
+                
             </div>
         </div>
         <div class="row">
@@ -42,10 +40,8 @@
                 Contact 2 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniContact2" CssClass="form-control" placeholder="Enter University Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_uniContact2" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                <asp:TextBox runat="server" ID="tb_uniContact2" CssClass="form-control" placeholder="Enter University Contact"  ></asp:TextBox>
+                
             </div>
         </div>
         <div class="row">
@@ -53,10 +49,7 @@
                 Contact 3 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniContact3" CssClass="form-control" placeholder="Enter University Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_uniContact3" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                <asp:TextBox runat="server" ID="tb_uniContact3" CssClass="form-control" placeholder="Enter University Contact"  ></asp:TextBox>
 
             </div>
         </div>
