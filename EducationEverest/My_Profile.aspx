@@ -37,7 +37,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#" class="NormalCharacterStyle2019" style="top: 6px;">Home </a></li>
-        <li><a href="#" class="dashboard_image" style="color: white; font-size : 18px; line-height : 22px;"><div style="margin-top: 5px">Dashboard</div></a></li>
+        <li><a href="Dashboard.aspx" class="dashboard_image" style="color: white; font-size : 18px; line-height : 22px;"><div style="margin-top: 5px">Dashboard</div></a></li>
         <li style="color: transparent;">home</li>&nbsp;&nbsp;&nbsp;
       </ul>
       <form class="navbar-form navbar-left">
@@ -50,9 +50,11 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
         <li class="dropdown" style="height: 60px;">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">Faizan</span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">
+              <asp:Label ID="lblLoggedUser" runat="server" Text=""  style="font-size:20px;color:#0094ff;border-bottom:1px solid;border-color:white"></asp:Label>
+          </span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
           <ul class="dropdown-menu myprofile_dropdown">
-            <li><a href="My_Profile.html" class="myprofile_dropdown_link NormalCharacterStyle25">Profile</a></li>
+            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle25">Profile</a></li>
              <li role="separator" class="profile_divider"></li>
             <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
             <li role="separator" class="profile_divider"></li>
@@ -238,7 +240,7 @@
 
 
     </div>
-             </form>
+            
 <br/>
     <div class="col-sm-9 text-center" style="margin-top:30px; "> 
 <div class=" col-md-12">
@@ -713,11 +715,13 @@
       </div>
     </div>
     <br/><br/>
- <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">File Admission Application</span></button>
+          
+          <asp:Button ID="btnFileAdmission" runat="server" Text="File Admission Application" class="btn button_bg NormalCharacterStyle " OnClick="btnFileAdmission_Click" />
+<%-- <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">File Admission Application</span></button>--%>
 
 </div>
 
-
+ </form>
       <div class="tab-pane fade in text-left""  id="paytab">
 
       <h3 class="NormalCharacterStyle12" style="margin-top: -20px">My Banks & Credit Cards</h3>

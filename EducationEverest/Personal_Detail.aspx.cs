@@ -126,6 +126,10 @@ public partial class Personal_Detail : System.Web.UI.Page
             db.SaveChanges();
         }
 
-        Response.Redirect("choices");
+
+        //button next click from Personal Details to Choice
+        Response.Redirect("Choices.aspx");
+
     }
+
 }
