@@ -65,7 +65,7 @@
                 Email : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniEmail" CssClass="form-control" placeholder="Enter University Contact" ></asp:TextBox>
+                <asp:TextBox runat="server" ID="tb_uniEmail" CssClass="form-control" placeholder="Enter University Email" ></asp:TextBox>
             </div>
         </div>
         <div class="row">
@@ -73,7 +73,7 @@
                 Address : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniAddress" CssClass="form-control" placeholder="Enter University Contact" ></asp:TextBox>
+                <asp:TextBox runat="server" ID="tb_uniAddress" CssClass="form-control" placeholder="Enter University Address" ></asp:TextBox>
             </div>
         </div>
         <div class="row">
