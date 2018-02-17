@@ -26,9 +26,7 @@
                 <asp:TextBox runat="server" ID="tb_ProgramName" CssClass="form-control" placeholder="Enter Program Name" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_ProgramName" Display="Dynamic"
                         CssClass="text-danger" ErrorMessage="* Field is required." />
-                    <asp:RegularExpressionValidator ID="re_tb_uniName" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[a-z A-Z]{1,100}$" ControlToValidate="tb_ProgramName" ForeColor="red"
-                        ErrorMessage="* Name should consist of alphabets"></asp:RegularExpressionValidator>
+                    
             </div>
         </div>
         
