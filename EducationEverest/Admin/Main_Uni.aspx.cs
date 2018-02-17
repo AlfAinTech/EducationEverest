@@ -10,9 +10,22 @@ public partial class Main_Uni : System.Web.UI.Page
     EducationEverestEntities db = new EducationEverestEntities();
     public void show()
     {
-        var q = from University in db.Universities
-                select University;
-        GridView1.DataSource = q.ToList();
+        var Universities = db.Universities.ToList();
+        List<University> universities = db.Universities.ToList();
+        foreach (var university in universities)
+        {
+            if (db.Campuses.Any(a => a.Uni_ID == university.id))
+            {
+                bool status = (bool)db.Campuses.First().Status;
+                int count = db.Campuses.Select(a => a.Status).Distinct().Count();
+                if (status && count == 1)
+                {
+                    university.Status = true;
+                }
+
+            }
+        }
+        GridView1.DataSource = Universities;
         GridView1.DataBind();
     }
 
@@ -46,23 +59,7 @@ public partial class Main_Uni : System.Web.UI.Page
 
     protected void AddUni_Click(object sender, EventArgs e)
     {
-        /*int count = (from University in db.Universities select University.id).Count();
-
-        if (count == 0)
-        {
-            Session["value"] = 1;
-            Response.Redirect("Universities.aspx");
-        }
-        else
-        {
-            var max_id = db.Universities.OrderByDescending(i => i.id).FirstOrDefault();
-            int Id = Convert.ToInt32(max_id.id) + 1;
-            Session["value"] = Id;
-
-            Response.Redirect("Universities.aspx");
-        }*/
-        Session["value"] = 0;
-        Response.Redirect("Universities.aspx");
+        Response.Redirect("UniversityPage.aspx");
     }
 
 
@@ -70,8 +67,7 @@ public partial class Main_Uni : System.Web.UI.Page
     {
         if(e.CommandName == "MyID")
         {
-            Session["value"] = e.CommandArgument;
-            Response.Redirect("Universities.aspx");
+            Response.Redirect("UniversityPage.aspx?uid=" +e.CommandArgument);
         }
 
     }
