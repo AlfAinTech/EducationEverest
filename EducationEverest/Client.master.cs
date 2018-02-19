@@ -22,6 +22,7 @@ public partial class Client : System.Web.UI.MasterPage
         //code to show user information
         var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em = q.Email, fn = q.FirstName, ln = q.LastName, c = q.City, p = q.Phone }).FirstOrDefault();
         //show user first name
-        lblLoggedUser.Text = logged.fn;
+        if(logged !=null)
+            lblLoggedUser.Text = logged.fn;
     }
 }

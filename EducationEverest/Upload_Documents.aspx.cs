@@ -228,4 +228,9 @@ public partial class Upload_Documents : System.Web.UI.Page
     {
         
     }
+
+    protected void SubmitToNext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Payments.aspx");
+    }
 }
