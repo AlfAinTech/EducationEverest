@@ -22,7 +22,11 @@ public partial class Main_Uni : System.Web.UI.Page
                 {
                     university.Status = true;
                 }
-
+                else
+                {
+                    university.Status = false;
+                }
+                db.SaveChanges();
             }
         }
         GridView1.DataSource = Universities;

@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="tb_campusName" CssClass="form-control" placeholder="Enter Campus Name" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_campusName" Display="Dynamic"
+                <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_campusName" ValidationGroup="CampusFields" Display="Dynamic"
                         CssClass="text-danger" ErrorMessage="* Field is required." />
                     
             </div>
@@ -91,7 +91,7 @@
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="tb_Ratings" CssClass="form-control" placeholder="Enter Campus Ratings i.e 3.5 ,4" TextMode="Number" MaxLength="1" max="10" min="0"  ></asp:TextBox>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[0-9]{1,2}$" ControlToValidate="tb_Ratings" ForeColor="red"
+                        ValidationExpression="^[0-9]{1,2}$" ControlToValidate="tb_Ratings" ValidationGroup="CampusFields" ForeColor="red"
                         ErrorMessage="* Rating should consist of maximum 1 digit"></asp:RegularExpressionValidator>
             </div>
         </div>
@@ -145,10 +145,11 @@
 
         <div class="row" style="margin-top:50px;">
             <div class="col-md-3" >
-                <asp:Button runat="server" ID="btn_addCategories" CssClass="btn btn-dark form-control" OnClick="btn_addCategories_Click" Text="Add Categories" />
+                <asp:Button runat="server" ID="btn_addCategories" CssClass="btn btn-dark form-control" ValidationGroup="CampusFields" OnClick="btn_addCategories_Click" Text="Add Categories" />
+
             </div>
             <div class="col-md-3" >
-                <asp:Button runat="server" ID="btn_addDepartments" Enabled="false" CssClass="btn btn-primary form-control" OnClick="btn_addDepartments_Click" Text="Next -> Add Departments" />
+                <asp:Button runat="server" ID="btn_addDepartments" Enabled="false" CssClass="btn btn-primary form-control" ValidationGroup="CampusFields" OnClick="btn_addDepartments_Click" Text="Next -> Add Departments" />
             </div>
             
         </div>

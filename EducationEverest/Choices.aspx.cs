@@ -331,11 +331,11 @@ public partial class Choices : System.Web.UI.Page
         return js;
     }
 
-    protected void next_click(object sender, EventArgs e)
+    //protected void next_click(object sender, EventArgs e)
 
-    {
-        Response.Redirect("Educational_Detail");
-    }
+    //{
+    //    Response.Redirect("Educational_Detail");
+    //}
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {

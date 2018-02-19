@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="tb_DepartmentName" CssClass="form-control" placeholder="Enter Department Name" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_DepartmentName" Display="Dynamic"
+                <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_DepartmentName" ValidationGroup="DepartmentFields" Display="Dynamic"
                         CssClass="text-danger" ErrorMessage="* Field is required." />
                     
             </div>
@@ -58,7 +58,7 @@
 
         <div class="row" style="margin-top:50px;">
             <div class="col-md-3" >
-                <asp:Button runat="server" ID="btn_addPrograms" CssClass="btn btn-primary form-control" OnClick="btn_addPrograms_Click"  Text="Next -> Add Programs" />
+                <asp:Button runat="server" ID="btn_addPrograms" CssClass="btn btn-primary form-control"  ValidationGroup="DepartmentFields" OnClick="btn_addPrograms_Click"  Text="Next -> Add Programs" />
             </div>
             
         </div>

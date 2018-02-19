@@ -92,8 +92,13 @@ public partial class Admin_Departments : System.Web.UI.Page
                 if(status && count == 1)
                 {
                     department.Status = true;
+                    
                 }
-
+                else
+                {
+                    department.Status = false;
+                }
+                db.SaveChanges();
             }
         }
         GridView1.DataSource = db.Departments.Where(a => a.CampusID == CampusId).ToList();
