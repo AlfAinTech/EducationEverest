@@ -107,6 +107,24 @@
         </div>
 
         <div class="row" style="margin-top:20px;">
+            <div class="col-md-2">
+                Admission Open ? : 
+            </div>
+             <div class="col-md-1">
+                <asp:CheckBox Text="Yes" runat="server"  ID="cb_AdmissionOpen"  Enabled="true" OnCheckedChanged="cb_AdmissionOpen_CheckedChanged" AutoPostBack="true" />
+                    </div>
+        </div>
+
+        <div class="row" visible="false" runat="server" id="divDeadline">
+            <div class="col-md-2">
+                Application Deadline : 
+            </div>
+             <div class="col-md-10">
+                <asp:TextBox runat="server" TextMode="Date" CssClass="form-control" ID="tb_Deadline" ></asp:TextBox>
+                     </div>
+        </div>
+
+        <div class="row" style="margin-top:20px;">
             <div class="col-md-2" >
                 Attach Logo : 
             </div>
