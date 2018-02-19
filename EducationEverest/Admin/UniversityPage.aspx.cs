@@ -44,6 +44,12 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
                 tb_uniContact2.Text = universityProfile.Contact2;
                 tb_uniContact3.Text = universityProfile.Contact3;
                 ddl_UniversityType.SelectedItem.Text = universityProfile.Type;
+                cb_AdmissionOpen.Checked = (bool)universityProfile.AdmissionOpen;
+                if (cb_AdmissionOpen.Checked)
+                {
+                    divDeadline.Visible = true;
+                }
+                tb_Deadline.Text = universityProfile.LastDate.Value.ToString("yyyy-MM-dd");
 
             }
         }
@@ -105,7 +111,12 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             newUniversityProfile.TestName = tb_TestName.Text;
             newUniversityProfile.Type = ddl_UniversityType.SelectedItem.Text;
             newUniversityProfile.FeeStructure = tb_FeeStructure.Text;
-
+            newUniversityProfile.AdmissionOpen = false;
+            if (cb_AdmissionOpen.Checked)
+            {
+                newUniversityProfile.AdmissionOpen = true;
+            }
+            newUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
             db.UniversityProfiles.Add(newUniversityProfile);
             db.SaveChanges();
 
@@ -151,7 +162,12 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             existingUniversityProfile.TestName = tb_TestName.Text;
             existingUniversityProfile.Type = ddl_UniversityType.SelectedItem.Text;
             existingUniversityProfile.FeeStructure = tb_FeeStructure.Text;
-            
+            existingUniversityProfile.AdmissionOpen = false;
+            if (cb_AdmissionOpen.Checked)
+            {
+                existingUniversityProfile.AdmissionOpen = true;
+            }
+            existingUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
             db.SaveChanges();
 
             Response.Redirect("campuses.aspx?uid=" + UniversityId);
@@ -162,5 +178,17 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
     {
         Response.Redirect("Main_Uni.aspx");
 
+    }
+
+    protected void cb_AdmissionOpen_CheckedChanged(object sender, EventArgs e)
+    {
+        if (cb_AdmissionOpen.Checked)
+        {
+            divDeadline.Visible = true;
+        }
+        else
+        {
+            divDeadline.Visible = false;
+        }
     }
 }

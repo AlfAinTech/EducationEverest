@@ -24,11 +24,9 @@
             </div>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="tb_ProgramName" CssClass="form-control" placeholder="Enter Program Name" ></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_ProgramName" Display="Dynamic"
+                <asp:RequiredFieldValidator ID="rfv1" runat="server" ControlToValidate="tb_ProgramName"  ValidationGroup="ProgramFields" Display="Dynamic"
                         CssClass="text-danger" ErrorMessage="* Field is required." />
-                    <asp:RegularExpressionValidator ID="re_tb_uniName" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[a-z A-Z]{1,100}$" ControlToValidate="tb_ProgramName" ForeColor="red"
-                        ErrorMessage="* Name should consist of alphabets"></asp:RegularExpressionValidator>
+                    
             </div>
         </div>
         
@@ -45,7 +43,7 @@
 
         <div class="row" style="margin-top:50px;">
             <div class="col-md-3" >
-                <asp:Button runat="server" ID="btn_Done" CssClass="btn btn-primary form-control" OnClick="btn_Done_Click"  Text="Done" />
+                <asp:Button runat="server" ID="btn_Done" CssClass="btn btn-primary form-control" ValidationGroup="ProgramFields" OnClick="btn_Done_Click"  Text="Done" />
             </div>
             
         </div>

@@ -35,7 +35,11 @@ public partial class Admin_campuses : System.Web.UI.Page
                 {
                     campus.Status = true;
                 }
-
+                else
+                {
+                    campus.Status = false;
+                }
+                db.SaveChanges();
             }
         }
 

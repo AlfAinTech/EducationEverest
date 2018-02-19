@@ -31,10 +31,8 @@
                 Contact 1 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniContact1" CssClass="form-control" placeholder="Enter University Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_uniContact1" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                <asp:TextBox runat="server" ID="tb_uniContact1" CssClass="form-control" placeholder="Enter University Contact" ></asp:TextBox>
+                
             </div>
         </div>
         <div class="row">
@@ -42,10 +40,8 @@
                 Contact 2 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniContact2" CssClass="form-control" placeholder="Enter University Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_uniContact2" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                <asp:TextBox runat="server" ID="tb_uniContact2" CssClass="form-control" placeholder="Enter University Contact"  ></asp:TextBox>
+                
             </div>
         </div>
         <div class="row">
@@ -53,10 +49,7 @@
                 Contact 3 : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniContact3" CssClass="form-control" placeholder="Enter University Contact" TextMode="Number" ></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" Display="Dynamic" CssClass="text-danger"
-                        ValidationExpression="^[0-9]{1,20}$" ControlToValidate="tb_uniContact3" ForeColor="red"
-                        ErrorMessage="* Contact should consist of digits"></asp:RegularExpressionValidator>
+                <asp:TextBox runat="server" ID="tb_uniContact3" CssClass="form-control" placeholder="Enter University Contact"  ></asp:TextBox>
 
             </div>
         </div>
@@ -65,7 +58,7 @@
                 Email : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniEmail" CssClass="form-control" placeholder="Enter University Contact" ></asp:TextBox>
+                <asp:TextBox runat="server" ID="tb_uniEmail" CssClass="form-control" placeholder="Enter University Email" ></asp:TextBox>
             </div>
         </div>
         <div class="row">
@@ -73,7 +66,7 @@
                 Address : 
             </div>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="tb_uniAddress" CssClass="form-control" placeholder="Enter University Contact" ></asp:TextBox>
+                <asp:TextBox runat="server" ID="tb_uniAddress" CssClass="form-control" placeholder="Enter University Address" ></asp:TextBox>
             </div>
         </div>
         <div class="row">
@@ -111,6 +104,24 @@
                     <asp:ListItem>Private</asp:ListItem>
                 </asp:DropDownList>
             </div>
+        </div>
+
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-2">
+                Admission Open ? : 
+            </div>
+             <div class="col-md-1">
+                <asp:CheckBox Text="Yes" runat="server"  ID="cb_AdmissionOpen"  Enabled="true" OnCheckedChanged="cb_AdmissionOpen_CheckedChanged" AutoPostBack="true" />
+                    </div>
+        </div>
+
+        <div class="row" visible="false" runat="server" id="divDeadline">
+            <div class="col-md-2">
+                Application Deadline : 
+            </div>
+             <div class="col-md-10">
+                <asp:TextBox runat="server" TextMode="Date" CssClass="form-control" ID="tb_Deadline" ></asp:TextBox>
+                     </div>
         </div>
 
         <div class="row" style="margin-top:20px;">

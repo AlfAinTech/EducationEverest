@@ -113,6 +113,19 @@ public partial class Admin_Programs : System.Web.UI.Page
 
                         db.Programms.Add(newProgram);
                         db.SaveChanges();
+
+                        List<Category> categories = db.Categories.ToList();
+                        foreach (Category category in categories)
+                        {
+                            //create new ProgramCateogry
+                            ProgrammCategory newProgramCategory = new ProgrammCategory();
+                            newProgramCategory.Category_ID = category.id;
+                            newProgramCategory.Programm_ID = newProgram.id;
+
+                            db.ProgrammCategories.Add(newProgramCategory);
+                            db.SaveChanges();
+                           
+                        }
                     }
                 }
             }
