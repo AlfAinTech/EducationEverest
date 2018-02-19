@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="Admin.master" AutoEventWireup="true" CodeFile="Universities.aspx.cs" Inherits="Universities" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script src="Content/vendor/jquery/jquery.min.js"></script>
     <script type ="text/javascript">
@@ -13,6 +13,8 @@
                 $('[href="' + lastTab + '"]').tab('show');
             }
         });
+
+        
     </script>
     <div class="container" style="margin-top:100px;">
         
@@ -132,8 +134,7 @@
                   <h4>Departments</h4>
            <asp:PlaceHolder ID="PlaceHolder2" runat="server">
            <div class="row">
-          <div class="col-md-12"><asp:TextBox ID="TextBox21" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
-          <div class="col-md-12"><asp:TextBox ID="TextBox22" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
+          <%--<div class="col-md-12"><asp:TextBox ID="TextBox22" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
           <div class="col-md-12"><asp:TextBox ID="TextBox23" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
           <div class="col-md-12"><asp:TextBox ID="TextBox24" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
           <div class="col-md-12"><asp:TextBox ID="TextBox25" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
@@ -143,10 +144,12 @@
           <div class="col-md-12"><asp:TextBox ID="TextBox27" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
           <div class="col-md-12"><asp:TextBox ID="TextBox28" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
           <div class="col-md-12"><asp:TextBox ID="TextBox29" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>
-          <div class="col-md-12"><asp:TextBox ID="TextBox30" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>  
+          <div class="col-md-12"><asp:TextBox ID="TextBox30" style="margin-bottom:5px;" placeholder="Enter Department Name" CssClass="form-control" runat="server"></asp:TextBox></div>  --%>
           </div>
                </asp:PlaceHolder>
-                  <asp:Button ID="Button2" style="float:left;" class="btn btn-primary"  Text="Save" OnClick="Button2_Click" runat="server" />
+                  <asp:LinkButton runat="server" Style="margin-left:100px;" OnClick="Load_more_departments" Text="More"></asp:LinkButton>
+                  <br />
+                  <asp:Button ID="Button2" style="align-self:center;"  class="btn btn-primary"  Text="Save Departments" OnClick="Button2_Click" runat="server" />
               </div>
               
           
@@ -155,8 +158,15 @@
                   
 
                   <h4>Programms</h4>
-                <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder><br />
-                  <asp:Button ID="Button4" runat="server" CssClass="btn btn-primary" OnClick="Button4_Click" Text="Save" />
+                  <div>
+                  <asp:DropDownList ID="ddl_SelectDepartment" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddl_SelectDepartment_SelectedIndexChanged" AutoPostBack="true" ></asp:DropDownList>
+                      
+                      </div>
+                  <asp:Label ID="lbl_department" Visible="false" Text="untitled" runat="server" Font-Bold="true"></asp:Label>
+                <asp:PlaceHolder ID="PlaceHolder3" runat="server"></asp:PlaceHolder>
+                  <asp:LinkButton runat="server" ID="lb_moreProgramms" Style="margin-left:100px;" Visible="false" OnClick="Load_More_Programms" Text="More"></asp:LinkButton>
+                  <br />
+                  <asp:Button ID="savePrograms" runat="server" style="margin-left:100px;" Visible="false" CssClass="btn btn-primary" OnClick="save_Programs" Text="Save Programs" />
 
 
 

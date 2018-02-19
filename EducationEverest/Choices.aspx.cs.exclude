@@ -110,9 +110,9 @@ public partial class Choices : System.Web.UI.Page
         {
 
             University univ = dbcontext.Universities.First(x => x.Name == id);
-            if (dbcontext.Departments.Any())
+            if (dbcontext.Departments.Any(x => x.Uni_ID == univ.id))
             {
-                List<Department> dpts = dbcontext.Departments.ToList();
+                List<Department> dpts = dbcontext.Departments.Where(x => x.Uni_ID == univ.id).ToList();
                 string[] array = new string[dpts.Count];
                 var i = 0;
                 foreach (var z in dpts)
@@ -148,17 +148,17 @@ public partial class Choices : System.Web.UI.Page
 
             University univ = dbcontext.Universities.First(x => x.Name == uniId);
 
-            if (dbcontext.Departments.Any(x => x.Department_Name == dptId))
+            if (dbcontext.Departments.Any(x => x.Uni_ID == univ.id && x.Department_Name == dptId))
             {
                 Department depart = dbcontext.Departments.First(x => x.Department_Name == dptId);
 
-                if(dbcontext.Programms.Any(x=>  x.Department_ID == depart.id && x.Program_Name == id))
+                if(dbcontext.Programms.Any(x=> x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Program_Name == id))
                 {
-                    Programm program = dbcontext.Programms.First(x =>  x.Department_ID == depart.id && x.Program_Name == id);
+                    Programm program = dbcontext.Programms.First(x => x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Program_Name == id);
 
-                    if(dbcontext.ProgrammCategories.Any(x=> x.Programm_ID == program.id))
+                    if(dbcontext.ProgrammCategories.Any(x=> x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Programm_ID == program.id))
                     {
-                        List<ProgrammCategory> pgcat = dbcontext.ProgrammCategories.Where(x =>  x.Programm_ID == program.id).ToList();
+                        List<ProgrammCategory> pgcat = dbcontext.ProgrammCategories.Where(x => x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Programm_ID == program.id).ToList();
                         string[] array = new string[pgcat.Count];
                         var i = 0;
                         foreach (var z in pgcat)
@@ -212,13 +212,13 @@ public partial class Choices : System.Web.UI.Page
         {
 
             University univ = dbcontext.Universities.First(x => x.Name == uniId);
-            if (dbcontext.Departments.Any(x =>  x.Department_Name == id))
+            if (dbcontext.Departments.Any(x => x.Uni_ID == univ.id && x.Department_Name == id))
             {
 
                 Department dpt = dbcontext.Departments.First(x => x.Department_Name == id);
-                if (dbcontext.Programms.Any(x =>  x.Department_ID == dpt.id))
+                if (dbcontext.Programms.Any(x => x.Uni_ID == univ.id && x.Department_ID == dpt.id))
                 {
-                    List<Programm> pgms = dbcontext.Programms.Where(x =>  x.Department_ID == dpt.id).ToList();
+                    List<Programm> pgms = dbcontext.Programms.Where(x => x.Uni_ID == univ.id && x.Department_ID == dpt.id).ToList();
                     string[] array = new string[pgms.Count];
                     var i = 0;
                     foreach (var z in pgms)
@@ -267,20 +267,20 @@ public partial class Choices : System.Web.UI.Page
             {
                 Campus cmps = dbcontext.Campuses.First(x => x.Campus_Name == cmp && x.Uni_ID == univ.id);
 
-                if(dbcontext.Departments.Any(x=> x.Department_Name == dpt ))
+                if(dbcontext.Departments.Any(x=> x.Department_Name == dpt && x.Uni_ID == univ.id))
                 {
-                    Department depart = dbcontext.Departments.First(x => x.Department_Name == dpt );
+                    Department depart = dbcontext.Departments.First(x => x.Department_Name == dpt && x.Uni_ID == univ.id);
 
-                    if(dbcontext.Programms.Any(x=> x.Program_Name == pgm &&  x.Department_ID == depart.id))
+                    if(dbcontext.Programms.Any(x=> x.Program_Name == pgm && x.Uni_ID == univ.id && x.Department_ID == depart.id))
                     {
-                        Programm prgm = dbcontext.Programms.First(x => x.Program_Name == pgm &&  x.Department_ID == depart.id);
+                        Programm prgm = dbcontext.Programms.First(x => x.Program_Name == pgm && x.Uni_ID == univ.id && x.Department_ID == depart.id);
                         //if(dbcontext.ProgrammCategories.Any(x=> x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Programm_ID == prgm.id && x.Category_ID == ctg))
-                        if(dbcontext.Categories.Any(x=> x.Category_Name == ctg))
+                        if(dbcontext.Categories.Any(x=> x.Category_Name == ctg && x.Uni_ID == univ.id))
                         {
-                            Category ctgory = dbcontext.Categories.First(x => x.Category_Name == ctg );
-                            if(dbcontext.ProgrammCategories.Any(x=>  x.Category_ID == ctgory.id && x.Programm_ID == prgm.id))
+                            Category ctgory = dbcontext.Categories.First(x => x.Category_Name == ctg && x.Uni_ID == univ.id);
+                            if(dbcontext.ProgrammCategories.Any(x=> x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Category_ID == ctgory.id && x.Programm_ID == prgm.id))
                             {
-                                ProgrammCategory pgcat = dbcontext.ProgrammCategories.First(x =>  x.Category_ID == ctgory.id && x.Programm_ID == prgm.id);
+                                ProgrammCategory pgcat = dbcontext.ProgrammCategories.First(x => x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Category_ID == ctgory.id && x.Programm_ID == prgm.id);
                                 if(!(dbcontext.MakeChoices.Any(x=> x.User_ID == current_user && x.Uni_ID == univ.id && x.Campus_Id ==cmps.id && x.Department_Id == depart.id && x.Programm_Id == prgm.id && x.Category_Id == pgcat.id)))
                                 {
                                     MakeChoice choices = new MakeChoice
@@ -331,11 +331,11 @@ public partial class Choices : System.Web.UI.Page
         return js;
     }
 
-    //protected void next_click(object sender, EventArgs e)
+    protected void next_click(object sender, EventArgs e)
 
-    //{
-    //    Response.Redirect("Educational_Detail");
-    //}
+    {
+        Response.Redirect("Educational_Detail");
+    }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {

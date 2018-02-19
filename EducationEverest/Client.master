@@ -16,7 +16,10 @@
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/myScript.js"></script>
+    <script type="text/javascript" src="Content/js/myScript.js"></script>
+    <%--<link rel="Stylesheet" type="text/css" href="Content/css/uploadify.css" />--%>
+    <link rel="Stylesheet" type="text/css" href="Content/css/MyStyle.css" />
+    <%--<script type="text/javascript" src="Content/js/jquery.uploadify.js"></script>--%>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
    <script type="text/javascript">
     $(function() {
@@ -30,7 +33,8 @@
 </head>
 
 <body>
-    <form id="form1" runat="server">
+    
+    <form id="form1" runat="server"><asp:ScriptManager ID="ScriptManager1"  EnablePartialRendering="true" runat="server"></asp:ScriptManager>
     <div>
         <div class="navbar-inverse" style="border-radius: 0px;">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -90,19 +94,15 @@
 </div>
 
       <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" data-target="#clps2" class="main_list NormalCharacterStyle18">File Admission App<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></a></div></a>
+    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle18">File Admission App<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></a></div></a>
     <div class="collapse" id="clps2">
       <br/>
-
-        <li class="menu_list selected_bg"><a href="Personal_Detail" class="NormalCharacterStyle22">Personal Details</a></li>
-
-        
-
+        <li class="menu_list selected_bg"><a href="Personal_Detail" class="NormalCharacterStyle24">Personal Detail</a></li>
         <li class="menu_list"><a href="choices" class="NormalCharacterStyle24">Make Choices</a></li>
         <li class="menu_list"><a href="educational_detail" class="NormalCharacterStyle24">Educational Details</a></li>
         <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24">Test Results</a></li>
-        <li class="menu_list"><a href="Upload_Documents" class="NormalCharacterStyle24">Documents</a></li>
-        <li class="menu_list"><a href="Payments.html" class="NormalCharacterStyle24">Payments</a></li>
+        <li class="menu_list"><a href="Upload_Documents.aspx" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a></li>
+        <li class="menu_list"><a href="Payments.aspx" class="NormalCharacterStyle24">Payments</a></li>
 
 
 

@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Search : System.Web.UI.Page
+{
+    EducationEverestEntities db = new EducationEverestEntities();
+    public void show()
+    {
+        var q = from University in db.Universities
+                select University;
+        rptSearch.DataSource = q.ToList();
+        rptSearch.DataBind();
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+       if(!IsPostBack)
+        {
+            show();
+        }
+    }
+   
+   
+
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        var a = TextBox1.Text;
+        if (a == "")
+        {
+            show();
+        }
+        else
+        {
+
+            var k = db.Universities.Where(x => x.Name.Contains(a)).ToList();
+            rptSearch.DataSource = k;
+            rptSearch.DataBind();
+        }
+
+    }
+}

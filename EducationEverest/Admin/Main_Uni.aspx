@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class ="container">
 
-        <div class="row" style="margin-top:50px;">
+        <div class="row" style="margin-top:50px; margin-bottom:50px;">
             <div class="col-md-2">
             </div>
 
@@ -20,7 +20,7 @@
                 </div>
 
             </div>
-        <div class="row">
+        <div class="row" style="margin-bottom:20px;">
             <div class="col-md-2"></div>
             <div class="col-md-8" style="margin-top:5px; margin-bottom:5px;">
         <asp:Button ID="Button2" class="btn btn-primary"  runat="server" OnClick="AddUni_Click" Text="Create New University" />
@@ -38,7 +38,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText= "Last Updated">
+            <%--<asp:TemplateField HeaderText= "Last Updated">
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%#Eval("last_updated") %>'></asp:Label>
                 </ItemTemplate>
@@ -48,12 +48,12 @@
                 <ItemTemplate>
                     <asp:Label ID="Label3" runat="server" Text='<%#Eval("updated_by") %>'></asp:Label>
                 </ItemTemplate>
-            </asp:TemplateField>
+            </asp:TemplateField>--%>
 
 
-            <asp:TemplateField HeaderText= "Data Progress">
+            <asp:TemplateField HeaderText= "Status">
                 <ItemTemplate>
-                    <asp:Label ID="Label4" runat="server" Text='<%#Eval("data_progress") %>'></asp:Label>
+                    <asp:Label ID="lbl_UniStatus" runat="server"  Text='<%# Convert.ToBoolean(Eval("Status"))==true?"Complete":"Incomplete" %>' ></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 
