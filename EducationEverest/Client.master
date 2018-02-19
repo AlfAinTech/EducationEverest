@@ -96,7 +96,7 @@
 </div>
 
       <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list">File Admission App<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></a></div></a>
+    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25">File Admission App<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></a></div></a>
     <div class="collapse" id="clps2">
       <br/>
         <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail">Personal Detail</a></li>

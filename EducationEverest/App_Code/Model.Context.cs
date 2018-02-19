@@ -49,9 +49,9 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<CampusProfile> CampusProfiles { get; set; }
     public virtual DbSet<DepartmentProfile> DepartmentProfiles { get; set; }
     public virtual DbSet<UniversityMedia> UniversityMedias { get; set; }
-    public virtual DbSet<UniversityProfile> UniversityProfiles { get; set; }
     public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Department> Departments { get; set; }
     public virtual DbSet<Programm> Programms { get; set; }
     public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
+    public virtual DbSet<UniversityProfile> UniversityProfiles { get; set; }
 }

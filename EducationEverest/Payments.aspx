@@ -29,10 +29,15 @@
    
          <button type="button" class=" btn button_bg" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">Make Payment</span></button>
 
-        <div class="modal fade" id="exampleModalCenter" >
+            <div class="modal fade" id="exampleModalCenter" >
   <div class="modal-dialog">
      	<div class="panel panel-heading pop_bg text-center">
-     	<div class="NormalCharacterStyle12">Select Payment Method</div>
+     	<div class="NormalCharacterStyle12" style="margin-top: 5px;">Select Payment Method
+  <span> <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span><img src="/Content/img/close_icon.png"></span>
+        </button></span>
+     	</div>
+
      	<br/>
      	<div class="pop_divider"></div>
      	<br/>
@@ -44,72 +49,66 @@
 		<br/>
 		<div class="col-md-12">
 
-				<a href=""><div class="col-md-2">
-				<div class="popup_cards">
-					<div class="credit_card_icon"></div><br/><br/><br/><br/><br/>
-					<div class="payment_methods_text">Credit Card</div>
-				</div></div></a>
 
-				<a href=""><div class="col-md-2" style="margin-left: 50px;">
+				<a href="" data-toggle="tab" data-target="#easypaisatab"><div class="col-md-2" style="margin-left: 150px;">
 				<div class="popup_cards2">
 					<div class="easy_paisa_logo"></div><br/><br/><br/><br/><br/>
 					<div class="payment_methods_text">Easypaisa</div>
 				</div></div></a>
 
-				<a href=""><div class="col-md-2" style="margin-left: 50px;">
+				<a href="" data-toggle="tab" data-target="#jazztab"><div class="col-md-2" style="margin-left: 50px;">
 				<div class="popup_cards2" >
 					<div class="jazz_cash_logo"></div><br/><br/><br/><br/><br/>
 					<div class="payment_methods_text">Jazz Cash</div>
 				</div></div></a>
 
-				<a href=""><div class="col-md-2" style="margin-left: 50px;">
-				<div class="popup_cards2" >
-					<div class="paypal_icon"></div><br/><br/><br/><br/><br/>
-					<div class="payment_methods_text">Paypal</div>
-				</div></div></a>
+
+
+				  <div class="tab-content">
+      <div class="tab-pane fade in active" id="easypaisatab">
+
 
 				<div class="callout bottom text-center">
-					<div class="col-md-12" style="margin-top: 40px">
-					<div class="col-md-1"></div>
-					<div class="col-md-10">
-					      <div class="input-group">
-    <span class="input-group-addon"><img src="images/credit_card_icon_1_.png" height="20px"></span>
-    <input  type="text" class="form-control" name="card number" placeholder="4524 - 2452 - 7214 - 8765">
-  </div>
-  <br/>
-
-    <input  type="text" class="form-control" name="card holder" placeholder="Card Holder Name">
-<br/>
-
-  <div class="form-row">
-  	<div class="col-md-2">
-  		<label class="NormalCharacterStyle7">Expire</label>
-  	</div>
-  	<div class="col-md-3">
-    <input  type="text" class="form-control" name="card number" placeholder="Month"></div>
-  	<div class="col-md-3">
-    <input  type="text" class="form-control" name="card number" placeholder="Year"></div>
-  	<div class="col-md-4">
-    <input  type="text" class="form-control" name="card number" placeholder="CVC/CVV"></div>
-
-  </div>
-<br/>
-
-</div>
-<div class="col-md-1"></div>
+					<div class="col-md-12 text-center" style="margin-top: 40px">
+						<div class="NormalCharacterStyle16">Please contact the following representative for <br/>
+payment information.</div>
+					<br/><br/>
+					<div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4567</div>
+					<br/><br/>
+					<div class="NormalCharacterStyle16">Our representative will guide you through.</div>
+					
 </div>
 
 				</div>
-     	<br/><br/>
-     	 <button type="button" class="btn payment_btn"><span class="NormalCharacterStyle">Make Payment</span></button>
+
+						</div>
+ <div class="tab-pane fade in" id="jazztab">
+
+
+				<div class="payment_callout bottom text-center">
+					<div class="col-md-12 text-center" style="margin-top: 40px">
+						<div class="NormalCharacterStyle16">Please contact the following representative for <br/>
+payment information.</div>
+					<br/><br/>
+					<div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4567</div>
+					<br/><br/>
+					<div class="NormalCharacterStyle16">Our representative will guide you through.</div>
+					
+</div>
+
+				</div>
+
+						</div>
+
+
+					</div>
+
 		</div>
 
      	</div>
   </div>
-</div>
+</div></div>
 
-  </div>
-</div>
 <script type="text/javascript">
   $('#menu_toggle').on('click', function () {
     var iSelector = $(this).find('i:first');

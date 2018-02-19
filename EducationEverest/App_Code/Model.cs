@@ -521,6 +521,8 @@ public partial class UniversityProfile
     public string TestName { get; set; }
     public Nullable<int> LogoAttachment { get; set; }
     public string FeeStructure { get; set; }
+    public Nullable<bool> AdmissionOpen { get; set; }
+    public Nullable<System.DateTime> LastDate { get; set; }
 
     public virtual Medium Medium { get; set; }
     public virtual University University { get; set; }

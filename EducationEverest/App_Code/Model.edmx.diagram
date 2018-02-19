@@ -53,11 +53,8 @@
         <EntityTypeShape EntityType="EducationEverestModel.CampusProfile" Width="1.5" PointX="8.25" PointY="0.875" />
         <EntityTypeShape EntityType="EducationEverestModel.DepartmentProfile" Width="1.5" PointX="8.25" PointY="25.875" />
         <EntityTypeShape EntityType="EducationEverestModel.UniversityMedia" Width="1.5" PointX="6" PointY="64.75" />
-        <EntityTypeShape EntityType="EducationEverestModel.UniversityProfile" Width="1.5" PointX="7.5" PointY="15.375" />
         <AssociationConnector Association="EducationEverestModel.FK__CampusPro__Campu__123EB7A3" />
-        <AssociationConnector Association="EducationEverestModel.FK__Universit__LogoA__2180FB33" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__1BC821DD" />
-        <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__208CD6FA" />
         <EntityTypeShape EntityType="EducationEverestModel.Category" Width="1.5" PointX="8.25" PointY="5.625" />
         <AssociationConnector Association="EducationEverestModel.FK__Categorie__Campu__22751F6C" />
         <EntityTypeShape EntityType="EducationEverestModel.Department" Width="1.5" PointX="8.25" PointY="9.25" />
@@ -71,6 +68,9 @@
         <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Categ__6477ECF3" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Categ__5BE2A6F2" />
         <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Progr__66603565" />
+        <EntityTypeShape EntityType="EducationEverestModel.UniversityProfile" Width="1.5" PointX="7.5" PointY="15.25" />
+        <AssociationConnector Association="EducationEverestModel.FK__Universit__LogoA__2180FB33" />
+        <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__208CD6FA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

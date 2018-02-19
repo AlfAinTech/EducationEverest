@@ -348,7 +348,7 @@
 <br/>
 
         
-         <button type="button" onserverclick="next_click"  class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
+         <asp:LinkButton type="button" runat="server" OnClick="next_click"  class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
          
 

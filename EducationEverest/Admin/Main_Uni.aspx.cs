@@ -24,7 +24,7 @@ public partial class Main_Uni : System.Web.UI.Page
                 }
                 else
                 {
-                    university.Status = false;
+                  //  university.Status = false;
                 }
                 db.SaveChanges();
             }

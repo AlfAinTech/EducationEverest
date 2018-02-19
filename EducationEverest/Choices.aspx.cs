@@ -386,6 +386,11 @@ public partial class Choices : System.Web.UI.Page
     {
 
     }
+
+    protected void next_click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/educational_detail.aspx");
+    }
 }
 
 
