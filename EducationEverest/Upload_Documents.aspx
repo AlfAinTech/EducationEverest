@@ -7,19 +7,22 @@
                  $("#Upload_Documents").removeClass("NormalCharacterStyle24")
                  $("#Upload_Documents").addClass("NormalCharacterStyle22");
                  $("#menu_togglePersonalDoc").click();
+                 $("#fileAdmission").addClass("NormalCharacterStyle18");
                  document.getElementById("fileAdmission").click();
              }
-             function OpenTestPanel()
+             function OpenEducationPanel()
              {
                  $("#Upload_Documents").addClass("NormalCharacterStyle24")
                  $("#Upload_Documents").removeClass("NormalCharacterStyle22");
                  $("#menu_toggleEducationalDoc").click();
+                 $("#fileAdmission").addClass("NormalCharacterStyle18");
                  document.getElementById("fileAdmission").click();
              }
-             function OpenEducationPanel() {
+             function OpenTestPanel() {
                  $("#Upload_Documents").addClass("NormalCharacterStyle24")
                  $("#Upload_Documents").removeClass("NormalCharacterStyle22");
                  $("#menu_toggleTest").click();
+                 $("#fileAdmission").addClass("NormalCharacterStyle18");
                  document.getElementById("fileAdmission").click();
 
              }
@@ -508,7 +511,7 @@
    
 
    <br/><br/>
-         <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">NEXT</span></button>
+         <asp:LinkButton runat="server" ID="SubmitToNext"  OnClick="SubmitToNext_Click" type="button" class=" btn button_bg"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
          <br/><br/><br/><br/>
   </div>
     </asp:Content>

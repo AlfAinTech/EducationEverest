@@ -31,7 +31,6 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
     public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     public virtual DbSet<Campus> Campuses { get; set; }
-    public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Contact_Us> Contact_Us { get; set; }
     public virtual DbSet<ContactInformation> ContactInformations { get; set; }
     public virtual DbSet<Intermediate_Education> Intermediate_Education { get; set; }
@@ -40,8 +39,6 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<Medium> Media { get; set; }
     public virtual DbSet<Personal_Details> Personal_Details { get; set; }
     public virtual DbSet<Portfolio> Portfolios { get; set; }
-    public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
-    public virtual DbSet<Programm> Programms { get; set; }
     public virtual DbSet<Test_Results> Test_Results { get; set; }
     public virtual DbSet<University> Universities { get; set; }
     public virtual DbSet<University_Tests> University_Tests { get; set; }
@@ -49,5 +46,12 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
     public virtual DbSet<Document> Documents { get; set; }
     public virtual DbSet<TestResult_Document> TestResult_Document { get; set; }
+    public virtual DbSet<CampusProfile> CampusProfiles { get; set; }
+    public virtual DbSet<DepartmentProfile> DepartmentProfiles { get; set; }
+    public virtual DbSet<UniversityMedia> UniversityMedias { get; set; }
+    public virtual DbSet<UniversityProfile> UniversityProfiles { get; set; }
+    public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Department> Departments { get; set; }
+    public virtual DbSet<Programm> Programms { get; set; }
+    public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
 }

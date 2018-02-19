@@ -53,7 +53,7 @@
 
             <asp:TemplateField HeaderText= "Status">
                 <ItemTemplate>
-                    <asp:Label ID="lbl_UniStatus" runat="server"  Text='<%# Convert.ToBoolean(Eval("Status"))==true?"Complete":"Incomplete" %>' ></asp:Label>
+                    <%--<asp:Label ID="lbl_UniStatus" runat="server"  Text='<%# Convert.ToBoolean(Eval("Status"))==true?"Complete":"Incomplete" %>' ></asp:Label>--%>
                 </ItemTemplate>
             </asp:TemplateField>
 

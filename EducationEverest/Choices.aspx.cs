@@ -6,17 +6,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
-
+using System.Web.Script.Serialization;
 
 public partial class Choices : System.Web.UI.Page
 {
     string ddlvalue;
     EducationEverestEntities db = new EducationEverestEntities();
 
-   // public static string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";   old ID by Faizan
-    public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";     //new ID by Ibrar
+    // public static string current_user = "aca4d4f8-686c-4c1b-897b-fc0057dee50f";   old ID by Faizan
 
-   // public static string current_user = HttpContext.Current.User.Identity.GetUserId();
+    public static string current_user = HttpContext.Current.User.Identity.GetUserId();     //new ID by Ibrar
+
+    // public static string current_user = HttpContext.Current.User.Identity.GetUserId();
 
     public void populate_uni()
     {
@@ -48,9 +49,9 @@ public partial class Choices : System.Web.UI.Page
             // University uv = db.Universities.First(x => x.Name == ddlvalue);
 
             List<MakeChoice> choices = db.MakeChoices.Where(x => x.Uni_ID == universityId && x.User_ID == current_user).ToList();
-            GridView1.DataSource = choices;
-            GridView1.DataBind();
-           
+            //GridView1.DataSource = choices;
+            //GridView1.DataBind();
+
         }
         return "adf";
     }
@@ -61,6 +62,10 @@ public partial class Choices : System.Web.UI.Page
         {
             populate_uni();
             
+             current_user = HttpContext.Current.User.Identity.GetUserId();
+            ChoicesList.DataSource = db.MakeChoices.Where(q => q.User_ID == current_user).ToList();
+            ChoicesList.DataBind();
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
         }
     }
 
@@ -140,7 +145,7 @@ public partial class Choices : System.Web.UI.Page
 
 
     [System.Web.Services.WebMethod]
-    public static Array GetCategoryData(string id,string uniId, string dptId)
+    public static Array GetCategoryData(string id, string uniId, string dptId)
     { EducationEverestEntities dbcontext = new EducationEverestEntities();
 
         if (dbcontext.Universities.Any(x => x.Name == uniId))
@@ -186,7 +191,7 @@ public partial class Choices : System.Web.UI.Page
                     return array;
                 }
 
-                
+
 
             }
             else
@@ -252,18 +257,17 @@ public partial class Choices : System.Web.UI.Page
 
 
     [System.Web.Services.WebMethod]
-   // public static List<MakeChoice> SaveMainPageData(string uni,string cmp,string dpt,string ctg,string pgm)
-        public static string SaveMainPageData(string uni, string cmp, string dpt, string ctg, string pgm)
+    // public static List<MakeChoice> SaveMainPageData(string uni,string cmp,string dpt,string ctg,string pgm)
+    public static string SaveMainPageData(string uni, string cmp, string dpt, string ctg, string pgm)
 
     {
         //List<MakeChoice> choicesdata = new List<MakeChoice>();
-        List<MakeChoice> choicesdata = new List<MakeChoice>();
+        IEnumerable<MakeChoice> choicesdata = new List<MakeChoice>();
         EducationEverestEntities dbcontext = new EducationEverestEntities();
-        if (dbcontext.Universities.Any(x=> x.Name == uni))
+        if (dbcontext.Universities.Any(x => x.Name == uni))
         {
             University univ = dbcontext.Universities.First(x => x.Name == uni);
-
-            if(dbcontext.Campuses.Any(x=>x.Campus_Name == cmp && x.Uni_ID == univ.id))
+            if (dbcontext.Campuses.Any(x => x.Campus_Name == cmp && x.Uni_ID == univ.id))
             {
                 Campus cmps = dbcontext.Campuses.First(x => x.Campus_Name == cmp && x.Uni_ID == univ.id);
 
@@ -281,8 +285,9 @@ public partial class Choices : System.Web.UI.Page
                             if(dbcontext.ProgrammCategories.Any(x=>  x.Category_ID == ctgory.id && x.Programm_ID == prgm.id))
                             {
                                 ProgrammCategory pgcat = dbcontext.ProgrammCategories.First(x =>  x.Category_ID == ctgory.id && x.Programm_ID == prgm.id);
-                                if(!(dbcontext.MakeChoices.Any(x=> x.User_ID == current_user && x.Uni_ID == univ.id && x.Campus_Id ==cmps.id && x.Department_Id == depart.id && x.Programm_Id == prgm.id && x.Category_Id == pgcat.id)))
+                                if (!(dbcontext.MakeChoices.Any(x => x.User_ID == current_user && x.Uni_ID == univ.id && x.Campus_Id == cmps.id && x.Department_Id == depart.id && x.Programm_Id == prgm.id && x.Category_Id == pgcat.id)))
                                 {
+                                    //b7f8e747-9167-4340-8c23-b914eda6d11f
                                     MakeChoice choices = new MakeChoice
                                     {
                                         User_ID = current_user,
@@ -297,8 +302,8 @@ public partial class Choices : System.Web.UI.Page
 
 
 
-                                     choicesdata = dbcontext.MakeChoices.Where(x => x.Uni_ID == univ.id && x.User_ID == current_user).ToList();
-                                    
+                                    //  choicesdata = dbcontext.MakeChoices.Where(x => x.Uni_ID == univ.id && x.User_ID == current_user).ToList();
+
                                     //Choices ch = new Choices();
 
 
@@ -310,7 +315,7 @@ public partial class Choices : System.Web.UI.Page
 
 
                                 }
-                                   
+
 
                             }
 
@@ -323,14 +328,38 @@ public partial class Choices : System.Web.UI.Page
             }
 
 
+            choicesdata = dbcontext.MakeChoices.Where(x => x.Uni_ID == univ.id && x.User_ID == current_user).ToList();
 
 
         }
-        var js = JsonConvert.SerializeObject(choicesdata);
+        var data1 = choicesdata.Select(q => new { q.id, departmentName = q.Department.Department_Name, campusName = q.Campus.Campus_Name, catagory = q.ProgrammCategory.Category.Category_Name }).ToArray();
+        // JsonConvert.SerializeObject(data1);
+        var serializer = new JavaScriptSerializer();
+        //String result = serializer.Serialize(data1);
+        var js = JsonConvert.SerializeObject(data1);
+        String result = serializer.Serialize(data1);
         //choicesdata = dbcontext.MakeChoices.ToList();
-        return js;
+        return result;
     }
-
+    [System.Web.Services.WebMethod]
+    public static string deletePreference(string id)
+    {
+        EducationEverestEntities db = new EducationEverestEntities();
+        int id_ = int.Parse(id);
+        MakeChoice pref = db.MakeChoices.Where(q=>q.id == id_).FirstOrDefault();
+        int univID = pref.Uni_ID;
+        db.MakeChoices.Remove(pref);
+        db.SaveChanges();
+        IEnumerable<MakeChoice> choicesdata = db.MakeChoices.Where(x => x.Uni_ID == univID && x.User_ID == current_user).ToList();
+        var data1 = choicesdata.Select(q => new { q.id, departmentName = q.Department.Department_Name, campusName = q.Campus.Campus_Name, catagory = q.ProgrammCategory.Category.Category_Name }).ToArray();
+        // JsonConvert.SerializeObject(data1);
+        var serializer = new JavaScriptSerializer();
+        //String result = serializer.Serialize(data1);
+        var js = JsonConvert.SerializeObject(data1);
+        String result = serializer.Serialize(data1);
+        //choicesdata = dbcontext.MakeChoices.ToList();
+        return result;
+    }
     protected void next_click(object sender, EventArgs e)
 
     {
@@ -348,11 +377,15 @@ public partial class Choices : System.Web.UI.Page
         //show();
     }
     //button next click from make choice to educational details
-    protected void next_click(object sender, EventArgs e)
+    //protected void next_click(object sender, EventArgs e)
+    //{
+
+    //    Response.Redirect("Educational_Detail.aspx");
+
+    protected void buttonEdit_Click(object sender, EventArgs e)
     {
 
-        Response.Redirect("Educational_Detail.aspx");
     }
-
-
 }
+
+

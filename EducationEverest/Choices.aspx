@@ -23,7 +23,7 @@
 <div class="col-md-12">
 <div class="col-md-10 text-left">
 <div class="col-md-12">
-         <div class="form">
+<div class="form">
      
              <asp:DropDownList ID="DropDownList1" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Class="combobox col-md-12 select_option" runat="server">
                  <Items>
@@ -32,15 +32,6 @@
 
 
              </asp:DropDownList>
-             
-             <%--<select class="combobox col-md-12 select_option" runat="server">
-  <option selected="selected">Select University College</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
     </div>
 </div>
 <br/><br/><br/><br/>
@@ -77,17 +68,6 @@
 
              </asp:DropDownList>
 
-
-
-     <%--<select class="combobox select_campus">
-  <option selected="selected">Department</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
-
 </div></div>
 <br/><br/><br/><br/>
  <div class="col-md-6">
@@ -101,16 +81,7 @@
 
 
              </asp:DropDownList>
-             
-             
-             <%--<select class="combobox select_campus">
-  <option selected="selected">Degree Program</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
+        
     </div></div>
 
 
@@ -122,14 +93,7 @@
    </Items>
              </asp:DropDownList>
 
-     <%--<select class="combobox select_campus">
-  <option selected="selected">Catagory</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
+     
 
 </div></div>
 <br/><br/><br/><br/>
@@ -249,9 +213,43 @@
 <button type="button" id="button_modal" class=" btn add_button_1_ pull-right" ><span class="NormalCharacterStyle">ADD</span></button>
 
 <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
+          <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>
 
+     <table class="css-serial" style="display:inline-block">
+                  <thead>
+    <tr>
+        <th>#</th>
+        <th>Degree Program</th>
+         <th>Campus</th>
+          <th>Catagory/Semester</th>
+           <th></th>
+    </tr>
+                      </thead>
+                   
+          <script id="preferences_template" type="text/x-jquery-tmpl">
+              
+             
+               
+    <tr class="text-left">
+        <td></td>
+        <td><input value='${departmentName}' disabled="disabled" id='departmentName${id}' style="background-color:#e6e6e6;border:0px"/></td>
+              <td><input value='${campusName}' disabled="disabled" id='campusName{id}' style="background-color:#e6e6e6;border:0px"/></td>
+        <td><input value='${catagory}' disabled="disabled" id='catagory{id}' style="background-color:#e6e6e6;border:0px"/></td>
+              <td><a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>
+                  <a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a id='delete${id}'   onclick="return deletePreferences('${id}')"><span class="delete_icon"></span></a></td>
 
-          <asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
+    </tr>
+                
+          </script>
+               
+
+              <tbody  id="GridPreferences" style="overflow-y:scroll">
+    </tbody>
+             </table>           
+              </ContentTemplate></asp:UpdatePanel>
+          <%--<asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
               <%--<Columns>
 
                                   <asp:TemplateField>
@@ -280,8 +278,8 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-                  </Columns>--%>
-          </asp:GridView>
+                  </Columns>
+          </asp:GridView>--%>
 
 <%--<table>
     <tr>
@@ -318,34 +316,10 @@
      <div class="NormalCharacterStyle12"><h4>Your Choices</h4></div>
 
     
-       
-<div class="panel panel-default ">
-      <div class="panel-heading card_bg">
-        <div class="row text-left">
-          <div class="col-md-1">
-             <img src="images/uet_logo.png" ></div>
-             <div class="col-md-11">
-        <h4 class="panel-title margin_top">
-                  <div class="NormalCharacterStyle_new1 margin_left"> University of Engineering and Technology, Lahore Pakistan<small class="progress_text pull-right"><b> Pending</b></small></div>
-        </h4>
-        <div  class="NormalCharacterStyle_new2 margin_left margin_top">Civil Engineering &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Catagory A &nbsp; ...</div>
-        <h4 class="blue_text margin_left">Application ID: 4643 13 244</h4>
-        <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text">16<sup>th</sup> Dec 2017</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text">16<sup>th</sup> Dec 2017</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text">Submitted</span>
-      </div>
-        </div>
-        </div><br/>
-        <div class="divider"></div><br/>
-       <a href="" class="pull-right NormalCharacterStyle18" style="margin-right: 30px;"><b>VIEW</b></a>
-      </div>
-
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">Some Text</div>
-      </div>
-    </div>
+      
 
 
-
+        <asp:Repeater ID="ChoicesList" runat="server"><ItemTemplate>
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left">
@@ -353,10 +327,10 @@
              <img src="images/image.png" ></div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
-                  <div class="NormalCharacterStyle_new1 margin_left"> Lahore University of Management and Sciences, Lahore Pakistan<small class="rejected_text pull-right"></span><b>Pending</b></small></div>
+                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class="rejected_text pull-right"></span><b>Pending</b></small></div>
         </h4>
-        <div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>
-        <h4 class="blue_text margin_left">Application ID: 4643 13 244</h4>
+        <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>
+        <h4 class="blue_text margin_left">Application ID: <%# Eval("AspNetUser.id") %></h4>
         <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text">16<sup>th</sup> Dec 2017</span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text">16<sup>th</sup> Dec 2017</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text">Pending</span>
       </div>
@@ -370,7 +344,7 @@
         <div class="panel-body">Some Text</div>
       </div>
     </div>
-
+</ItemTemplate></asp:Repeater>
 <br/>
 
         
@@ -398,7 +372,7 @@
         $(document).ready(function () {
 
 
-                
+            var count = 0;
             
             
                 $('a').click(function () {
@@ -577,7 +551,7 @@
                     },
                     success: function (result) {
                         console.log("this is the data" + result.toString());
-                        
+                        BindData(result)
                         //populateGridview(result);
 
                 }
@@ -711,6 +685,7 @@
             //Model Button Add Click
             var button_modal = $("[id*=button_modal]");
             button_modal.click(function () {
+               // alert("here")
                 save_main_page_data1(uni10.val(), campus10.val(), department10.val(), category10.val(), program10.val());
             });
 
@@ -723,17 +698,79 @@
                     dataType: "json",
                     failure: function (response) {
                         alert(response.d);
+                    },
+                    success: function(response)
+                    {
+                       
+                        BindData(response)
+
                     }
                 });
             }
+            deletePreferences = function (id) {
+                console.log(id);
+                $.ajax({
+                    type: "POST",
+                    url: "Choices.aspx/deletePreference",
+                    data: '{"id":"' + id + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    failure: function (response) {
+                        alert(response.d);
+                        return false;;
+                    },
+                    success: function (response) {
+                        //alert("here");
+                        BindData(response);
+                        return false;
+                    },
+                    error:function(error)
+                    {
+                        alert(error);
+                    }
+                });
 
-
+            }
+            
             
 
 
 
         })
-        
+        BindData = function (response)
+        {
+            //alert(response.d);
+            var data = response.d;
+            data1 =  JSON.parse(data);
+            console.log(data1);
+            $("#GridPreferences")[0].innerHTML = "";
+            $("#preferences_template").tmpl(data1).appendTo("#GridPreferences");
+            // $("GridPreferences")
+        }
+       
+        EditPreferences = function (id) {
+            alert(id);
+            $("catagory" + id).disabled = false;
+            $("departmentName" + id).disabled = false;
+            $("campusName" + id).disabled = false;
+            $("buttonEdit" + id).style.display = "none";
+            $("addEdit$" + id).style.display = "block";
+            return false;
+            
+        }
+        addPreferences= function(id)
+        {
+           var catagory =  $("catagory" + id).value;
+           var departmentName = $("departmentName" + id).value;
+           var campusName = $("campusName" + id).value;
+            
+        }
+        function OpenCurrentPage() {
+            $("#makeChoices").parent().addClass("selected_bg");
+            $("#makeChoices").removeClass("NormalCharacterStyle24")
+            $("#makeChoices").addClass("NormalCharacterStyle22");
+            document.getElementById("fileAdmission").click();
+        }
     </script>
 
 </asp:Content>

@@ -62,7 +62,7 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
         {
             University newUniversity = new University();
             newUniversity.Name = tb_uniName.Text;
-            newUniversity.Status = false;
+           // newUniversity.Status = false;
 
             db.Universities.Add(newUniversity);
             db.SaveChanges();
@@ -115,7 +115,7 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
         {
             University existingUniversity = db.Universities.Where(a => a.id == UniversityId).First();
             existingUniversity.Name = tb_uniName.Text;
-            existingUniversity.Status = false;
+           // existingUniversity.Status = false;
 
             //save university logo 
             string filePath = "";
