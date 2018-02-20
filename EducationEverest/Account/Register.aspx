@@ -43,16 +43,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#" style="font-size: 20px;top: 6px;">Homee </a></li>
+        <li><a href="#" style="font-size: 20px;top: 6px;">Home </a></li>
         <li><a href="#"><img src="/images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
-        <li style="color: transparent;">homee</li>
+        <li style="color: transparent;">home</li>
       </ul>
         <div class="form-group">
           <input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">
         </div>
         <span><a href=""><img src="/images/search_button.png" style="margin-top: 4px;"></a></span>
         <span><a href=""><img src="/images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>
-      <ul class="nav navbar-nav navbar-right">
+     <%-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><img src="/images/header_notification_icon_1_.png"></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/images/Guest_Image.png">&nbsp;<img src="/images/header_profile_icon_1_.png"></a>
@@ -64,7 +64,7 @@
             <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Log Outt</a></li>
           </ul>
         </li>
-      </ul>
+      </ul>--%>
     </div><!-- /.navbar-collapse -->
 </div>
 <body>

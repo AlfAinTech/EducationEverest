@@ -67,7 +67,7 @@
     <form id="form" runat="server">
 <div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
   
-    <div style="margin-top: 12px">Dashboard > Login</div>
+    <div style="margin-top: 12px"></div>
 
 </div>
 <br/>
@@ -78,7 +78,11 @@
 		<div class="col-md-2"></div>
   <div class="col-md-8" style="margin-left: 320px;">
   <div class="text-left NormalCharacterStyle12" style="margin-top: 50px;margin-left: 15px">Login</div>
-
+      <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                   <p class="text-danger" style="font-size:20px;margin-left:100px" >
+                        <asp:Literal runat="server" ID="FailureText" />
+                    </p>
+                </asp:PlaceHolder>
   <br/><br/>
 
 <div class="col-md-12">

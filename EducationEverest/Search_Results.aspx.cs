@@ -81,93 +81,85 @@ public partial class Search_Results : System.Web.UI.Page
         }
 
 
-        //setFilters();
-        //FillData(locationStatus, degreeStatus, universityStatus, admissionStatus, rankingStatus);
+        setFilters();
+        FillData(locationStatus, degreeStatus, universityStatus, admissionStatus, rankingStatus);
     }
 
 
 
 
-   // protected void FillData(string locationStatus, string degreeStatus,string  universityStatus,string  admissionStatus,string  rankingStatus)
-    //{
-    //    EducationEverestEntities db = new EducationEverestEntities();
-    //    if (db.Applications.Any())
-    //    {
-    //        if (ApplicationID != 0)
-    //        {
-    //            var applications = db.Applications.Where(x => x.id == ApplicationID && x.UserID.Contains(UserID) && x.Region.Contains(Region) && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
-    //            dataTable.DataSource = applications;
-    //            dataTable.DataBind();
-    //        }
-    //        else
-    //        {
-    //            var applications = db.Applications.Where(x => x.UserID.Contains(UserID) && x.Region.Contains(Region) && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
-    //            dataTable.DataSource = applications;
-    //            dataTable.DataBind();
-    //        }
-    //    }
-    //    else
-    //    {
-    //        dataTable.DataSource = null;
-    //        dataTable.DataBind();
-    //    }
-    //}
+    protected void FillData(string locationStatus, string degreeStatus, string universityStatus, string admissionStatus, string rankingStatus)
+    {
+        EducationEverestEntities db = new EducationEverestEntities();
+       
+                //var Filters = db.Applications.Where(x =>  x.locationStatus.Contains(locationStatus) && x.degreeStatus.Contains(degreeStatus) && x.universityStatus.Contains(universityStatus) && x.admissionStatus.Contains(admissionStatus)&& x.rankingStatus.Contains(rankingStatus)).ToList();
+                //dataTable.DataSource = Filters;
+                //dataTable.DataBind();
+            }
+            
+        
+        //else
+        //{
+        //    dataTable.DataSource = null;
+        //    dataTable.DataBind();
+        //}
+    
 
 
+    
 
+    protected void setFilters()
+    {
 
-    //protected void setFilters()
-    //{
+        btn_reset.Visible = false;
 
-    //    btn_reset.Visible = false;
+        if (ddlLocation.SelectedIndex > 0)
+        {
+            panel1.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel1.Visible = false;
+        }
+        if (ddlDegree_Courses.SelectedIndex > 0)
+        {
+            panel2.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel2.Visible = false;
+        }
+        if (ddlUniversityType.SelectedIndex > 0)
+        {
+            panel3.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel3.Visible = false;
+        }
+        if (ddlAdmissionStatus.SelectedIndex > 0)
+        {
+            panel4.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel4.Visible = false;
+        }
 
-    //    if (ddlLocation.SelectedIndex > 0)
-    //    {
-    //        panel1.Visible = true;
-    //        btn_reset.Visible = true;
-    //    }
-    //    else
-    //    {
-    //        panel1.Visible = false;
-    //    }
-    //    if (ddlDegree_Courses.SelectedIndex > 0)
-    //    {
-    //        panel2.Visible = true;
-    //        btn_reset.Visible = true;
-    //    }
-    //    else
-    //    {
-    //        panel2.Visible = false;
-    //    }
-    //    if (ddlUniversityType.SelectedIndex > 0)
-    //    {
-    //        panel3.Visible = true;
-    //        btn_reset.Visible = true;
-    //    }
-    //    else
-    //    {
-    //        panel3.Visible = false;
-    //    }
-    //    if (ddlAdmissionStatus.SelectedIndex > 0)
-    //    {
-    //        panel4.Visible = true;
-    //        btn_reset.Visible = true;
-    //    }
-    //    else
-    //    {
-    //        panel4.Visible = false;
-    //    }
-
-    //    if (ddlHECRanking.SelectedIndex > 0)
-    //    {
-    //        panel5.Visible = true;
-    //        btn_reset.Visible = true;
-    //    }
-    //    else
-    //    {
-    //        panel5.Visible = false;
-    //    }
-    //}
+        if (ddlHECRanking.SelectedIndex > 0)
+        {
+            panel5.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel5.Visible = false;
+        }
+    }
 
 
 
@@ -191,5 +183,48 @@ public partial class Search_Results : System.Web.UI.Page
             
         }
 
+    }
+    protected void delete_filter(object sender, EventArgs e)
+    {
+        LinkButton lk = (LinkButton)sender;
+        string id = "panel" + lk.CommandArgument;
+        ContentPlaceHolder cont = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
+        Panel myPanel = (Panel)cont.FindControl(id);
+        myPanel.Visible = false;
+        if (id == "panel1")
+        {
+            ddlLocation.SelectedIndex = 0;
+        }
+        if (id == "panel2")
+        {
+            ddlDegree_Courses.SelectedIndex = 0;
+        }
+        if (id == "panel3")
+        {
+            ddlUniversityType.SelectedIndex = 0;
+        }
+        if (id == "panel4")
+        {
+            ddlAdmissionStatus.SelectedIndex = 0;
+        }
+        if (id == "panel5")
+        {
+            ddlHECRanking.SelectedIndex = 0;
+        }
+        
+
+        BindData();
+
+    }
+    protected void btn_reset_Click(object sender, EventArgs e)
+    {
+
+        ddlLocation.SelectedIndex = 0;
+        ddlDegree_Courses.SelectedIndex = 0;
+        ddlUniversityType.SelectedIndex = 0;
+        ddlAdmissionStatus.SelectedIndex = 0;
+        ddlHECRanking.SelectedIndex = 0;
+        
+        BindData();
     }
 }

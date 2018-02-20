@@ -56,9 +56,9 @@
           <ul class="dropdown-menu myprofile_dropdown">
             <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle25">Profile</a></li>
              <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
-            <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>
+            <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
+            <li role="separator" class="profile_divider"></li>--%>
+            <li><a href="Login.aspx" class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>
           </ul>
         </li>
       </ul>

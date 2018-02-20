@@ -192,7 +192,7 @@
 
 
        <div class="dropdown"  style="margin-bottom: 15px;">
-    <a data-toggle="collapse" data-target="#clps2" class="main_list " ><div><span class="NormalCharacterStyle25"> </span><span class="icon-arrow-right pull-right main_list"><img src="images/arrow.png"></span></div></a>
+    <a data-toggle="collapse" data-target="#clps2" class="main_list " ><div><span class="NormalCharacterStyle25"> </span><span class="icon-arrow-right pull-right main_list"><img src="images/arrow.png" style="display:none"></span></div></a>
     <div class="collapse" id="clps2">
       <br/>
         <li class="list_items"><a href="Personal_Details.html" class="menu_list "><span  class="NormalCharacterStyle24">Personal Details</span></a>

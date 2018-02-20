@@ -15,24 +15,18 @@ public partial class My_Profile : System.Web.UI.Page
     
     EducationEverestEntities db = new EducationEverestEntities();
     // public static string current_user = HttpContext.Current.User.Identity.GetUserId(); //to be used later
-    public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";
+    //public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";
+    string current_user = HttpContext.Current.User.Identity.GetUserId();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
 
-    //session used here to redirect to login page
-    //if (Session["username"] == null)
-    //{
 
-    //    Response.Redirect("Login.aspx");
-    //}
-    //else
-    //{
-    //}
+        //if (current_user == null)
+        //{
+        //    Response.Redirect("Login.aspx");
+        //}
 
-    //string var = Session["username"].ToString();
-
-    UserProfile up = new UserProfile();
+        UserProfile up = new UserProfile();
 
         //code to show user information
 

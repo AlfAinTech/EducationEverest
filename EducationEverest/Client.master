@@ -65,11 +65,11 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <asp:Label ID="lblLoggedUser" runat="server" Text=""  style="font-size:20px;color:#0094ff;border-bottom:1px solid;border-color:white"></asp:Label>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
           <ul class="dropdown-menu myprofile_dropdown">
-            <li><a href="My_Profile" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
+            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
              <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Settings</a></li>
-            <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Log Out</a></li>
+            <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Settings</a></li>
+            <li role="separator" class="profile_divider"></li>--%>
+            <li><a href="Login.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Log Out</a></li>
           </ul>
         </li>
       </ul>
@@ -99,12 +99,12 @@
     <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list">File Admission App<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></a></div></a>
     <div class="collapse" id="clps2">
       <br/>
-        <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail">Personal Detail</a></li>
-        <li class="menu_list"><a href="choices" class="NormalCharacterStyle24" id="makeChoices">Make Choices</a></li>
-        <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" >Educational Details</a></li>
-        <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24" id="testResult">Test Results</a></li>
-        <li class="menu_list"><a href="Upload_Documents" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a></li>
-        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24">Payments</a></li>
+        <li class="menu_list"><a href="Personal_Detail.aspx" class="NormalCharacterStyle24" id="prsonalDetail">Personal Detail</a></li>
+        <li class="menu_list"><a href="Choices.aspx" class="NormalCharacterStyle24" id="makeChoices">Make Choices</a></li>
+        <li class="menu_list"><a href="Educational_Detail.aspx" id="educationalDocument"  class="NormalCharacterStyle24" >Educational Details</a></li>
+        <li class="menu_list"><a href="Test_Result.aspx" class="NormalCharacterStyle24" id="testResult">Test Results</a></li>
+        <li class="menu_list"><a href="Upload_Documents.aspx" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a></li>
+        <li class="menu_list"><a href="Payments.aspx" class="NormalCharacterStyle24">Payments</a></li>
 
 
 

@@ -214,7 +214,7 @@
         </button></div>--%>
         <%--panels start here--%>
 
-        <%--<div class="row">
+        <div class="row">
                             <div class="col-md-10" style="padding: 0; padding-top: 5px;">
                                 <ul class="tags">
                                     <asp:Panel ID="panel1" runat="server" Visible="false">
@@ -244,7 +244,7 @@
                             <div class="col-md-2">
                                 <asp:Button Text="Reset" CssClass="btn btn-dark form-control" Visible="false" ID="btn_reset" runat="server" OnClick="btn_reset_Click" />
                             </div>
-                        </div>--%>
+                        </div>
 
         <%--panels end here--%>
 
