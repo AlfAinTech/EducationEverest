@@ -30,10 +30,10 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
 
         if(db.CampusProfiles.Any(a => a.CampusID == CampusID))
         {
-            CampusProfile campus = db.CampusProfiles.Where(a => a.CampusID == CampusID).First();
-            if(campus.ApplicationFeeSame == true)
+            UniversityProfile university = db.Campuses.Where(a => a.id == CampusID).First().University.UniversityProfiles.First();
+            if(university.ApplicationFeeSame == true)
             {
-                tb_ApplicationFee.Text = campus.ApplicationFee;
+                tb_ApplicationFee.Text = university.ApplicationFee;
                 tb_ApplicationFee.Enabled = false;
             }
             else
