@@ -50,10 +50,13 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
             {
                 Department department = db.Departments.Where(a => a.id == DepartmentId).First();
                 tb_DepartmentName.Text = department.Department_Name;
-                DepartmentProfile departmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
-                tb_ApplicationFee.Text = departmentProfile.ApplicationFee;
-                tb_AdmissionDocs.Text = departmentProfile.AdmissionDocs;
-                tb_Criteria.Text = departmentProfile.Criteria;
+                if (db.DepartmentProfiles.Any(a => a.DepartmentID == department.id))
+                {
+                    DepartmentProfile departmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
+                    tb_ApplicationFee.Text = departmentProfile.ApplicationFee;
+                    tb_AdmissionDocs.Text = departmentProfile.AdmissionDocs;
+                    tb_Criteria.Text = departmentProfile.Criteria;
+                }
             }
         }
     }

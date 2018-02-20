@@ -173,7 +173,10 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             {
                 existingUniversityProfile.AdmissionOpen = true;
             }
-            existingUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
+            if (tb_Deadline.Text != "")
+            {
+                existingUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
+            }
             db.SaveChanges();
 
             Response.Redirect("campuses.aspx?uid=" + UniversityId);
