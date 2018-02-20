@@ -25,7 +25,7 @@ public partial class Login : System.Web.UI.Page
             ApplicationUser user = manager.Find(Email.Text, Password.Text);
             if (user != null)
             {
-                //IdentityHelper.SignIn(manager, user, RememberMe.Checked);
+                IdentityHelper.SignIn(manager, user, true);
                 if (Request.QueryString["ReturnUrl"] != null)
                 {
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
