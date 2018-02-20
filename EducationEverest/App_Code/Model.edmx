@@ -221,6 +221,14 @@
           <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Path" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="Media2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image_Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Image_Path" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="Personal_Details">
           <Key>
             <PropertyRef Name="id" />
@@ -297,7 +305,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
           <Property Name="last_updated" Type="datetime" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="128" />
-          <Property Name="data_progress" Type="nvarchar" MaxLength="128" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="University_Tests">
           <Key>
@@ -331,6 +339,8 @@
           <Property Name="TestName" Type="nvarchar" MaxLength="128" />
           <Property Name="LogoAttachment" Type="int" />
           <Property Name="FeeStructure" Type="nvarchar(max)" />
+          <Property Name="AdmissionOpen" Type="bit" />
+          <Property Name="LastDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserActivation">
           <Key>
@@ -351,7 +361,7 @@
           <Property Name="AspNetUserID" Type="nvarchar" MaxLength="128" />
           <Property Name="Email" Type="nvarchar" MaxLength="256" />
         </EntityType>
-        <Association Name="FK__Admission__Uni_I__4F7CD00D">
+        <Association Name="FK__Admission__Uni_I__2B3F6F97">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="AdmissionDetails" Type="Self.AdmissionDetails" Multiplicity="*" />
           <ReferentialConstraint>
@@ -375,7 +385,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__UserI__5070F446">
+        <Association Name="FK__Applicati__UserI__2C3393D0">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -387,7 +397,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Campuses__Uni_ID__5535A963">
+        <Association Name="FK__Campuses__Uni_ID__30F848ED">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="Campuses" Type="Self.Campuses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,7 +421,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CampusPro__Campu__123EB7A3">
+        <Association Name="FK__CampusPro__Campu__0C85DE4D">
           <End Role="Campuses" Type="Self.Campuses" Multiplicity="1" />
           <End Role="CampusProfile" Type="Self.CampusProfile" Multiplicity="*" />
           <ReferentialConstraint>
@@ -423,7 +433,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Categorie__Campu__22751F6C">
+        <Association Name="FK__Categorie__Campu__2180FB33">
           <End Role="Campuses" Type="Self.Campuses" Multiplicity="1" />
           <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -435,7 +445,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ContactIn__User___5812160E">
+        <Association Name="FK__ContactIn__User___5629CD9C">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
           <ReferentialConstraint>
@@ -447,7 +457,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Departmen__Campu__236943A5">
+        <Association Name="FK__Departmen__Campu__208CD6FA">
           <End Role="Campuses" Type="Self.Campuses" Multiplicity="1" />
           <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
           <ReferentialConstraint>
@@ -459,7 +469,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Departmen__Depar__17036CC0">
+        <Association Name="FK__Departmen__Depar__09A971A2">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="DepartmentProfile" Type="Self.DepartmentProfile" Multiplicity="*" />
           <ReferentialConstraint>
@@ -471,7 +481,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Intermedi__User___59FA5E80">
+        <Association Name="FK__Intermedi__User___59063A47">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Intermediate_Education" Type="Self.Intermediate_Education" Multiplicity="*" />
           <ReferentialConstraint>
@@ -483,7 +493,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MakeChoic__Campu__5AEE82B9">
+        <Association Name="FK__MakeChoic__Campu__5DCAEF64">
           <End Role="Campuses" Type="Self.Campuses" Multiplicity="1" />
           <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,7 +505,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MakeChoic__Categ__5BE2A6F2">
+        <Association Name="FK__MakeChoic__Categ__60A75C0F">
           <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="1" />
           <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -507,7 +517,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MakeChoic__Depar__5CD6CB2B">
+        <Association Name="FK__MakeChoic__Depar__5EBF139D">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -519,7 +529,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MakeChoic__Progr__5DCAEF64">
+        <Association Name="FK__MakeChoic__Progr__5FB337D6">
           <End Role="Programms" Type="Self.Programms" Multiplicity="1" />
           <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +541,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MakeChoic__Uni_I__5EBF139D">
+        <Association Name="FK__MakeChoic__Uni_I__5CD6CB2B">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -555,7 +565,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MakeChoic__User___5FB337D6">
+        <Association Name="FK__MakeChoic__User___5BE2A6F2">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="MakeChoices" Type="Self.MakeChoices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -567,7 +577,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Matricula__User___60A75C0F">
+        <Association Name="FK__Matricula__User___6383C8BA">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Matriculation_Education" Type="Self.Matriculation_Education" Multiplicity="*" />
           <ReferentialConstraint>
@@ -579,7 +589,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Media__User_ID__619B8048">
+        <Association Name="FK__Media__User_ID__66603565">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Media" Type="Self.Media" Multiplicity="*" />
           <ReferentialConstraint>
@@ -591,7 +601,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Personal___User___628FA481">
+        <Association Name="FK__Personal___User___693CA210">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Personal_Details" Type="Self.Personal_Details" Multiplicity="*" />
           <ReferentialConstraint>
@@ -600,6 +610,18 @@
             </Principal>
             <Dependent Role="Personal_Details">
               <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Portfolio__Uni_I__33D4B598">
+          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+          <End Role="Portfolios" Type="Self.Portfolios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Portfolios">
+              <PropertyRef Name="Uni_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -615,19 +637,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Portfolio__Uni_I__6383C8BA">
-          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
-          <End Role="Portfolios" Type="Self.Portfolios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Portfolios">
-              <PropertyRef Name="Uni_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProgrammC__Categ__6477ECF3">
+        <Association Name="FK__ProgrammC__Categ__17F790F9">
           <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
           <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -639,7 +649,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProgrammC__Progr__66603565">
+        <Association Name="FK__ProgrammC__Categ__34C8D9D1">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProgrammCategories">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProgrammC__Progr__18EBB532">
           <End Role="Programms" Type="Self.Programms" Multiplicity="1" />
           <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -651,7 +673,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Programms__Depar__68487DD7">
+        <Association Name="FK__ProgrammC__Progr__36B12243">
+          <End Role="Programms" Type="Self.Programms" Multiplicity="1" />
+          <End Role="ProgrammCategories" Type="Self.ProgrammCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programms">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProgrammCategories">
+              <PropertyRef Name="Programm_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Programms__Depar__38996AB5">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="Programms" Type="Self.Programms" Multiplicity="*" />
           <ReferentialConstraint>
@@ -663,7 +697,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Test_Resu__User___6A30C649">
+        <Association Name="FK__Test_Resu__User___245D67DE">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Test_Results" Type="Self.Test_Results" Multiplicity="*" />
           <ReferentialConstraint>
@@ -675,7 +709,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Universit__LogoA__2180FB33">
+        <Association Name="FK__Universit__LogoA__03F0984C">
           <End Role="Media" Type="Self.Media" Multiplicity="0..1" />
           <End Role="UniversityProfile" Type="Self.UniversityProfile" Multiplicity="*" />
           <ReferentialConstraint>
@@ -699,7 +733,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Universit__Uni_I__6B24EA82">
+        <Association Name="FK__Universit__Uni_I__6C190EBB">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="University_Tests" Type="Self.University_Tests" Multiplicity="*" />
           <ReferentialConstraint>
@@ -711,19 +745,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Universit__Unive__1BC821DD">
-          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
-          <End Role="UniversityMedia" Type="Self.UniversityMedia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="UniversityMedia">
-              <PropertyRef Name="UniversityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Universit__Unive__208CD6FA">
+        <Association Name="FK__Universit__Unive__02FC7413">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="UniversityProfile" Type="Self.UniversityProfile" Multiplicity="*" />
           <ReferentialConstraint>
@@ -732,6 +754,18 @@
             </Principal>
             <Dependent Role="UniversityProfile">
               <PropertyRef Name="UniversityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Universit__Unive__06CD04F7">
+          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+          <End Role="UniversityMedia" Type="Self.UniversityMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Universities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UniversityMedia">
+              <PropertyRef Name="UniversityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -875,6 +909,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySet Name="MakeChoices" EntityType="Self.MakeChoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Matriculation_Education" EntityType="Self.Matriculation_Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Media2" EntityType="Self.Media2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personal_Details" EntityType="Self.Personal_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolios" EntityType="Self.Portfolios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgrammCategories" EntityType="Self.ProgrammCategories" Schema="dbo" store:Type="Tables" />
@@ -887,7 +922,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySet Name="UniversityProfile" EntityType="Self.UniversityProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserActivation" EntityType="Self.UserActivation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Admission__Uni_I__4F7CD00D" Association="Self.FK__Admission__Uni_I__4F7CD00D">
+          <AssociationSet Name="FK__Admission__Uni_I__2B3F6F97" Association="Self.FK__Admission__Uni_I__2B3F6F97">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="AdmissionDetails" EntitySet="AdmissionDetails" />
           </AssociationSet>
@@ -895,11 +930,11 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="Universities" EntitySet="Universities" />
             <End Role="AdmissionDetails" EntitySet="AdmissionDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__UserI__5070F446" Association="Self.FK__Applicati__UserI__5070F446">
+          <AssociationSet Name="FK__Applicati__UserI__2C3393D0" Association="Self.FK__Applicati__UserI__2C3393D0">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
-          <AssociationSet Name="FK__Campuses__Uni_ID__5535A963" Association="Self.FK__Campuses__Uni_ID__5535A963">
+          <AssociationSet Name="FK__Campuses__Uni_ID__30F848ED" Association="Self.FK__Campuses__Uni_ID__30F848ED">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Campuses" EntitySet="Campuses" />
           </AssociationSet>
@@ -907,47 +942,47 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Campuses" EntitySet="Campuses" />
           </AssociationSet>
-          <AssociationSet Name="FK__CampusPro__Campu__123EB7A3" Association="Self.FK__CampusPro__Campu__123EB7A3">
+          <AssociationSet Name="FK__CampusPro__Campu__0C85DE4D" Association="Self.FK__CampusPro__Campu__0C85DE4D">
             <End Role="Campuses" EntitySet="Campuses" />
             <End Role="CampusProfile" EntitySet="CampusProfile" />
           </AssociationSet>
-          <AssociationSet Name="FK__Categorie__Campu__22751F6C" Association="Self.FK__Categorie__Campu__22751F6C">
+          <AssociationSet Name="FK__Categorie__Campu__2180FB33" Association="Self.FK__Categorie__Campu__2180FB33">
             <End Role="Campuses" EntitySet="Campuses" />
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
-          <AssociationSet Name="FK__ContactIn__User___5812160E" Association="Self.FK__ContactIn__User___5812160E">
+          <AssociationSet Name="FK__ContactIn__User___5629CD9C" Association="Self.FK__ContactIn__User___5629CD9C">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="ContactInformation" EntitySet="ContactInformation" />
           </AssociationSet>
-          <AssociationSet Name="FK__Departmen__Campu__236943A5" Association="Self.FK__Departmen__Campu__236943A5">
+          <AssociationSet Name="FK__Departmen__Campu__208CD6FA" Association="Self.FK__Departmen__Campu__208CD6FA">
             <End Role="Campuses" EntitySet="Campuses" />
             <End Role="Departments" EntitySet="Departments" />
           </AssociationSet>
-          <AssociationSet Name="FK__Departmen__Depar__17036CC0" Association="Self.FK__Departmen__Depar__17036CC0">
+          <AssociationSet Name="FK__Departmen__Depar__09A971A2" Association="Self.FK__Departmen__Depar__09A971A2">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="DepartmentProfile" EntitySet="DepartmentProfile" />
           </AssociationSet>
-          <AssociationSet Name="FK__Intermedi__User___59FA5E80" Association="Self.FK__Intermedi__User___59FA5E80">
+          <AssociationSet Name="FK__Intermedi__User___59063A47" Association="Self.FK__Intermedi__User___59063A47">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Intermediate_Education" EntitySet="Intermediate_Education" />
           </AssociationSet>
-          <AssociationSet Name="FK__MakeChoic__Campu__5AEE82B9" Association="Self.FK__MakeChoic__Campu__5AEE82B9">
+          <AssociationSet Name="FK__MakeChoic__Campu__5DCAEF64" Association="Self.FK__MakeChoic__Campu__5DCAEF64">
             <End Role="Campuses" EntitySet="Campuses" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__MakeChoic__Categ__5BE2A6F2" Association="Self.FK__MakeChoic__Categ__5BE2A6F2">
+          <AssociationSet Name="FK__MakeChoic__Categ__60A75C0F" Association="Self.FK__MakeChoic__Categ__60A75C0F">
             <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__MakeChoic__Depar__5CD6CB2B" Association="Self.FK__MakeChoic__Depar__5CD6CB2B">
+          <AssociationSet Name="FK__MakeChoic__Depar__5EBF139D" Association="Self.FK__MakeChoic__Depar__5EBF139D">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__MakeChoic__Progr__5DCAEF64" Association="Self.FK__MakeChoic__Progr__5DCAEF64">
+          <AssociationSet Name="FK__MakeChoic__Progr__5FB337D6" Association="Self.FK__MakeChoic__Progr__5FB337D6">
             <End Role="Programms" EntitySet="Programms" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__MakeChoic__Uni_I__5EBF139D" Association="Self.FK__MakeChoic__Uni_I__5EBF139D">
+          <AssociationSet Name="FK__MakeChoic__Uni_I__5CD6CB2B" Association="Self.FK__MakeChoic__Uni_I__5CD6CB2B">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
@@ -955,47 +990,55 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="Universities" EntitySet="Universities" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__MakeChoic__User___5FB337D6" Association="Self.FK__MakeChoic__User___5FB337D6">
+          <AssociationSet Name="FK__MakeChoic__User___5BE2A6F2" Association="Self.FK__MakeChoic__User___5BE2A6F2">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__Matricula__User___60A75C0F" Association="Self.FK__Matricula__User___60A75C0F">
+          <AssociationSet Name="FK__Matricula__User___6383C8BA" Association="Self.FK__Matricula__User___6383C8BA">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Matriculation_Education" EntitySet="Matriculation_Education" />
           </AssociationSet>
-          <AssociationSet Name="FK__Media__User_ID__619B8048" Association="Self.FK__Media__User_ID__619B8048">
+          <AssociationSet Name="FK__Media__User_ID__66603565" Association="Self.FK__Media__User_ID__66603565">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Media" EntitySet="Media" />
           </AssociationSet>
-          <AssociationSet Name="FK__Personal___User___628FA481" Association="Self.FK__Personal___User___628FA481">
+          <AssociationSet Name="FK__Personal___User___693CA210" Association="Self.FK__Personal___User___693CA210">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Personal_Details" EntitySet="Personal_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Portfolio__Uni_I__33D4B598" Association="Self.FK__Portfolio__Uni_I__33D4B598">
+            <End Role="Universities" EntitySet="Universities" />
+            <End Role="Portfolios" EntitySet="Portfolios" />
           </AssociationSet>
           <AssociationSet Name="FK__Portfolio__Uni_I__5441852A" Association="Self.FK__Portfolio__Uni_I__5441852A">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="Portfolios" EntitySet="Portfolios" />
           </AssociationSet>
-          <AssociationSet Name="FK__Portfolio__Uni_I__6383C8BA" Association="Self.FK__Portfolio__Uni_I__6383C8BA">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="Portfolios" EntitySet="Portfolios" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProgrammC__Categ__6477ECF3" Association="Self.FK__ProgrammC__Categ__6477ECF3">
+          <AssociationSet Name="FK__ProgrammC__Categ__17F790F9" Association="Self.FK__ProgrammC__Categ__17F790F9">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProgrammC__Progr__66603565" Association="Self.FK__ProgrammC__Progr__66603565">
+          <AssociationSet Name="FK__ProgrammC__Categ__34C8D9D1" Association="Self.FK__ProgrammC__Categ__34C8D9D1">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProgrammC__Progr__18EBB532" Association="Self.FK__ProgrammC__Progr__18EBB532">
             <End Role="Programms" EntitySet="Programms" />
             <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK__Programms__Depar__68487DD7" Association="Self.FK__Programms__Depar__68487DD7">
+          <AssociationSet Name="FK__ProgrammC__Progr__36B12243" Association="Self.FK__ProgrammC__Progr__36B12243">
+            <End Role="Programms" EntitySet="Programms" />
+            <End Role="ProgrammCategories" EntitySet="ProgrammCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Programms__Depar__38996AB5" Association="Self.FK__Programms__Depar__38996AB5">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Programms" EntitySet="Programms" />
           </AssociationSet>
-          <AssociationSet Name="FK__Test_Resu__User___6A30C649" Association="Self.FK__Test_Resu__User___6A30C649">
+          <AssociationSet Name="FK__Test_Resu__User___245D67DE" Association="Self.FK__Test_Resu__User___245D67DE">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Test_Results" EntitySet="Test_Results" />
           </AssociationSet>
-          <AssociationSet Name="FK__Universit__LogoA__2180FB33" Association="Self.FK__Universit__LogoA__2180FB33">
+          <AssociationSet Name="FK__Universit__LogoA__03F0984C" Association="Self.FK__Universit__LogoA__03F0984C">
             <End Role="Media" EntitySet="Media" />
             <End Role="UniversityProfile" EntitySet="UniversityProfile" />
           </AssociationSet>
@@ -1003,17 +1046,17 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="Universities" EntitySet="Universities" />
             <End Role="University_Tests" EntitySet="University_Tests" />
           </AssociationSet>
-          <AssociationSet Name="FK__Universit__Uni_I__6B24EA82" Association="Self.FK__Universit__Uni_I__6B24EA82">
+          <AssociationSet Name="FK__Universit__Uni_I__6C190EBB" Association="Self.FK__Universit__Uni_I__6C190EBB">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="University_Tests" EntitySet="University_Tests" />
           </AssociationSet>
-          <AssociationSet Name="FK__Universit__Unive__1BC821DD" Association="Self.FK__Universit__Unive__1BC821DD">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="UniversityMedia" EntitySet="UniversityMedia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Universit__Unive__208CD6FA" Association="Self.FK__Universit__Unive__208CD6FA">
+          <AssociationSet Name="FK__Universit__Unive__02FC7413" Association="Self.FK__Universit__Unive__02FC7413">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="UniversityProfile" EntitySet="UniversityProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Universit__Unive__06CD04F7" Association="Self.FK__Universit__Unive__06CD04F7">
+            <End Role="Universities" EntitySet="Universities" />
+            <End Role="UniversityMedia" EntitySet="UniversityMedia" />
           </AssociationSet>
           <AssociationSet Name="FK_Contact_Us_Contact_Us" Association="Self.FK_Contact_Us_Contact_Us">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -1075,8 +1118,9 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="Criteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AdmissionDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FreeStructure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="University" Relationship="Self.FK__Admission__Uni_I__36B12243" FromRole="AdmissionDetails" ToRole="Universities" />
-        </EntityType>
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Admission__Uni_I__2B3F6F97" FromRole="AdmissionDetail" ToRole="University" />
+          <NavigationProperty Name="University1" Relationship="EducationEverestModel.FK__Admission__Uni_I__628FA481" FromRole="AdmissionDetail" ToRole="University" />
+          </EntityType>
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="id" />
@@ -1142,10 +1186,10 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <NavigationProperty Name="Matriculation_Education" Relationship="Self.FK__Matricula__User___5FB337D6" FromRole="AspNetUsers" ToRole="Matriculation_Education" />
           <NavigationProperty Name="Media" Relationship="Self.FK__Media__User_ID__4F7CD00D" FromRole="AspNetUsers" ToRole="Media" />
           <NavigationProperty Name="Personal_Details" Relationship="Self.FK__Personal___User___4CA06362" FromRole="AspNetUsers" ToRole="Personal_Details" />
-          <NavigationProperty Name="Test_Results" Relationship="Self.FK__Test_Resu__User___7A672E12" FromRole="AspNetUsers" ToRole="Test_Results" />
           <NavigationProperty Name="Contact_Us" Relationship="Self.FK_Contact_Us_Contact_Us" FromRole="AspNetUsers" ToRole="Contact_Us" />
           <NavigationProperty Name="UserProfiles" Relationship="Self.FK_UserProfile_AspNetUsers" FromRole="AspNetUsers" ToRole="UserProfile" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="Test_Results" Relationship="EducationEverestModel.FK__Test_Resu__User___245D67DE" FromRole="AspNetUser" ToRole="Test_Results" />
         </EntityType>
         <EntityType Name="Campus">
           <Key>
@@ -1154,12 +1198,13 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Uni_ID" Type="Int32" Nullable="false" />
           <Property Name="Campus_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="University" Relationship="Self.FK__Campuses__Uni_ID__49C3F6B7" FromRole="Campuses" ToRole="Universities" />
           <NavigationProperty Name="MakeChoices" Relationship="Self.FK__MakeChoic__Campu__71D1E811" FromRole="Campuses" ToRole="MakeChoices" />
           <Property Name="Status" Type="Boolean" />
           <NavigationProperty Name="CampusProfiles" Relationship="EducationEverestModel.FK__CampusPro__Campu__123EB7A3" FromRole="Campus" ToRole="CampusProfile" />
           <NavigationProperty Name="Categories" Relationship="EducationEverestModel.FK__Categorie__Campu__22751F6C" FromRole="Campus" ToRole="Category" />
           <NavigationProperty Name="Departments" Relationship="EducationEverestModel.FK__Departmen__Campu__236943A5" FromRole="Campus" ToRole="Department" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__30F848ED" FromRole="Campus" ToRole="University" />
+          <NavigationProperty Name="University1" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__5CD6CB2B" FromRole="Campus" ToRole="University" />
         </EntityType>
         <EntityType Name="Contact_Us">
           <Key>
@@ -1214,10 +1259,11 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="Category_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK__MakeChoic__User___6FE99F9F" FromRole="MakeChoices" ToRole="AspNetUsers" />
           <NavigationProperty Name="Campus" Relationship="Self.FK__MakeChoic__Campu__71D1E811" FromRole="MakeChoices" ToRole="Campuses" />
-          <NavigationProperty Name="University" Relationship="Self.FK__MakeChoic__Uni_I__70DDC3D8" FromRole="MakeChoices" ToRole="Universities" />
           <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK__MakeChoic__Depar__5CD6CB2B" FromRole="MakeChoice" ToRole="Department" />
           <NavigationProperty Name="Programm" Relationship="EducationEverestModel.FK__MakeChoic__Progr__5DCAEF64" FromRole="MakeChoice" ToRole="Programm" />
           <NavigationProperty Name="ProgrammCategory" Relationship="EducationEverestModel.FK__MakeChoic__Categ__5BE2A6F2" FromRole="MakeChoice" ToRole="ProgrammCategory" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__5CD6CB2B" FromRole="MakeChoice" ToRole="University" />
+          <NavigationProperty Name="University1" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__72C60C4A" FromRole="MakeChoice" ToRole="University" />
         </EntityType>
         <EntityType Name="Matriculation_Education">
           <Key>
@@ -1273,40 +1319,8 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Category" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="University" Relationship="Self.FK__Portfolio__Uni_I__30F848ED" FromRole="Portfolios" ToRole="Universities" />
-        </EntityType>
-        <EntityType Name="Test_Results">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Test_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Board" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Rollno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Passing_Year" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Total_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Obtained_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Percentage" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Division" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Test_Resu__User___7A672E12" FromRole="Test_Results" ToRole="AspNetUsers" />
-        </EntityType>
-        <EntityType Name="University">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="last_updated" Type="DateTime" Precision="3" />
-          <Property Name="updated_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="data_progress" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AdmissionDetails" Relationship="Self.FK__Admission__Uni_I__36B12243" FromRole="Universities" ToRole="AdmissionDetails" />
-          <NavigationProperty Name="Campuses" Relationship="Self.FK__Campuses__Uni_ID__49C3F6B7" FromRole="Universities" ToRole="Campuses" />
-          <NavigationProperty Name="MakeChoices" Relationship="Self.FK__MakeChoic__Uni_I__70DDC3D8" FromRole="Universities" ToRole="MakeChoices" />
-          <NavigationProperty Name="Portfolios" Relationship="Self.FK__Portfolio__Uni_I__30F848ED" FromRole="Universities" ToRole="Portfolios" />
-          <NavigationProperty Name="University_Tests" Relationship="Self.FK__Universit__Uni_I__778AC167" FromRole="Universities" ToRole="University_Tests" />
-          <NavigationProperty Name="UniversityMedias" Relationship="EducationEverestModel.FK__Universit__Unive__1BC821DD" FromRole="University" ToRole="UniversityMedia" />
-          <NavigationProperty Name="UniversityProfiles" Relationship="EducationEverestModel.FK__Universit__Unive__208CD6FA" FromRole="University" ToRole="UniversityProfile" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Portfolio__Uni_I__33D4B598" FromRole="Portfolio" ToRole="University" />
+          <NavigationProperty Name="University1" Relationship="EducationEverestModel.FK__Portfolio__Uni_I__5441852A" FromRole="Portfolio" ToRole="University" />
         </EntityType>
         <EntityType Name="University_Tests">
           <Key>
@@ -1315,8 +1329,9 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Uni_ID" Type="Int32" Nullable="false" />
           <Property Name="Test_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="University" Relationship="Self.FK__Universit__Uni_I__778AC167" FromRole="University_Tests" ToRole="Universities" />
           <NavigationProperty Name="TestResult_Document" Relationship="EducationEverestModel.FK_TestResult_Document_University_Tests" FromRole="University_Tests" ToRole="TestResult_Document" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Universit__Uni_I__4D94879B" FromRole="University_Tests" ToRole="University" />
+          <NavigationProperty Name="University1" Relationship="EducationEverestModel.FK__Universit__Uni_I__6C190EBB" FromRole="University_Tests" ToRole="University" />
         </EntityType>
         <EntityType Name="UserActivation">
           <Key>
@@ -1338,18 +1353,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_UserProfile_AspNetUsers" FromRole="UserProfile" ToRole="AspNetUsers" />
         </EntityType>
-        <Association Name="FK__Admission__Uni_I__36B12243">
-          <End Role="Universities" Type="Self.University" Multiplicity="1" />
-          <End Role="AdmissionDetails" Type="Self.AdmissionDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="AdmissionDetails">
-              <PropertyRef Name="Uni_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Applicati__UserI__22AA2996">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
           <End Role="Applications" Type="Self.Application" Multiplicity="*" />
@@ -1462,18 +1465,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Test_Resu__User___7A672E12">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-          <End Role="Test_Results" Type="Self.Test_Results" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Test_Results">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Contact_Us_Contact_Us">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
           <End Role="Contact_Us" Type="Self.Contact_Us" Multiplicity="*" />
@@ -1498,18 +1489,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Campuses__Uni_ID__49C3F6B7">
-          <End Role="Universities" Type="Self.University" Multiplicity="1" />
-          <End Role="Campuses" Type="Self.Campus" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Campuses">
-              <PropertyRef Name="Uni_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__MakeChoic__Campu__71D1E811">
           <End Role="Campuses" Type="Self.Campus" Multiplicity="1" />
           <End Role="MakeChoices" Type="Self.MakeChoice" Multiplicity="*" />
@@ -1519,42 +1498,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Principal>
             <Dependent Role="MakeChoices">
               <PropertyRef Name="Campus_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__MakeChoic__Uni_I__70DDC3D8">
-          <End Role="Universities" Type="Self.University" Multiplicity="1" />
-          <End Role="MakeChoices" Type="Self.MakeChoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MakeChoices">
-              <PropertyRef Name="Uni_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Portfolio__Uni_I__30F848ED">
-          <End Role="Universities" Type="Self.University" Multiplicity="1" />
-          <End Role="Portfolios" Type="Self.Portfolio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Portfolios">
-              <PropertyRef Name="Uni_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Universit__Uni_I__778AC167">
-          <End Role="Universities" Type="Self.University" Multiplicity="1" />
-          <End Role="University_Tests" Type="Self.University_Tests" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="University_Tests">
-              <PropertyRef Name="Uni_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1579,15 +1522,9 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySet Name="Media" EntityType="Self.Medium" />
           <EntitySet Name="Personal_Details" EntityType="Self.Personal_Details" />
           <EntitySet Name="Portfolios" EntityType="Self.Portfolio" />
-          <EntitySet Name="Test_Results" EntityType="Self.Test_Results" />
-          <EntitySet Name="Universities" EntityType="Self.University" />
           <EntitySet Name="University_Tests" EntityType="Self.University_Tests" />
           <EntitySet Name="UserActivations" EntityType="Self.UserActivation" />
           <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
-          <AssociationSet Name="FK__Admission__Uni_I__36B12243" Association="Self.FK__Admission__Uni_I__36B12243">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="AdmissionDetails" EntitySet="AdmissionDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK__Applicati__UserI__22AA2996" Association="Self.FK__Applicati__UserI__22AA2996">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Applications" EntitySet="Applications" />
@@ -1624,10 +1561,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Personal_Details" EntitySet="Personal_Details" />
           </AssociationSet>
-          <AssociationSet Name="FK__Test_Resu__User___7A672E12" Association="Self.FK__Test_Resu__User___7A672E12">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Test_Results" EntitySet="Test_Results" />
-          </AssociationSet>
           <AssociationSet Name="FK_Contact_Us_Contact_Us" Association="Self.FK_Contact_Us_Contact_Us">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Contact_Us" EntitySet="Contact_Us" />
@@ -1636,43 +1569,13 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
-          <AssociationSet Name="FK__Campuses__Uni_ID__49C3F6B7" Association="Self.FK__Campuses__Uni_ID__49C3F6B7">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="Campuses" EntitySet="Campuses" />
-          </AssociationSet>
           <AssociationSet Name="FK__MakeChoic__Campu__71D1E811" Association="Self.FK__MakeChoic__Campu__71D1E811">
             <End Role="Campuses" EntitySet="Campuses" />
             <End Role="MakeChoices" EntitySet="MakeChoices" />
           </AssociationSet>
-          <AssociationSet Name="FK__MakeChoic__Uni_I__70DDC3D8" Association="Self.FK__MakeChoic__Uni_I__70DDC3D8">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="MakeChoices" EntitySet="MakeChoices" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Portfolio__Uni_I__30F848ED" Association="Self.FK__Portfolio__Uni_I__30F848ED">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="Portfolios" EntitySet="Portfolios" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Universit__Uni_I__778AC167" Association="Self.FK__Universit__Uni_I__778AC167">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="University_Tests" EntitySet="University_Tests" />
-          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="Documents" EntityType="EducationEverestModel.Document" />
-          <EntitySet Name="TestResult_Document" EntityType="EducationEverestModel.TestResult_Document" />
-          <AssociationSet Name="FK_Document_Personal_Details" Association="EducationEverestModel.FK_Document_Personal_Details">
-            <End Role="Personal_Details" EntitySet="Personal_Details" />
-            <End Role="Document" EntitySet="Documents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TestResult_Document_Document" Association="EducationEverestModel.FK_TestResult_Document_Document">
-            <End Role="Document" EntitySet="Documents" />
-            <End Role="TestResult_Document" EntitySet="TestResult_Document" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TestResult_Document_University_Tests" Association="EducationEverestModel.FK_TestResult_Document_University_Tests">
-            <End Role="University_Tests" EntitySet="University_Tests" />
-            <End Role="TestResult_Document" EntitySet="TestResult_Document" />
           </AssociationSet>
           <EntitySet Name="CampusProfiles" EntityType="EducationEverestModel.CampusProfile" />
           <EntitySet Name="DepartmentProfiles" EntityType="EducationEverestModel.DepartmentProfile" />
@@ -1684,14 +1587,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           </AssociationSet>
           <AssociationSet Name="FK__Universit__LogoA__2180FB33" Association="EducationEverestModel.FK__Universit__LogoA__2180FB33">
             <End Role="Medium" EntitySet="Media" />
-            <End Role="UniversityProfile" EntitySet="UniversityProfiles" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Universit__Unive__1BC821DD" Association="EducationEverestModel.FK__Universit__Unive__1BC821DD">
-            <End Role="University" EntitySet="Universities" />
-            <End Role="UniversityMedia" EntitySet="UniversityMedias" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Universit__Unive__208CD6FA" Association="EducationEverestModel.FK__Universit__Unive__208CD6FA">
-            <End Role="University" EntitySet="Universities" />
             <End Role="UniversityProfile" EntitySet="UniversityProfiles" />
           </AssociationSet>
           <EntitySet Name="Categories" EntityType="EducationEverestModel.Category" />
@@ -1734,66 +1629,76 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="Programm" EntitySet="Programms" />
             <End Role="ProgrammCategory" EntitySet="ProgrammCategories" />
           </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Document">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="documentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="documentURL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="userDetailID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Personal_Details" Relationship="EducationEverestModel.FK_Document_Personal_Details" FromRole="Document" ToRole="Personal_Details" />
-          <NavigationProperty Name="TestResult_Document" Relationship="EducationEverestModel.FK_TestResult_Document_Document" FromRole="Document" ToRole="TestResult_Document" />
-          <Property Name="documentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="documentSizeInKB" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TestResult_Document">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="documentID" Type="Int32" Nullable="false" />
-          <Property Name="UniTestID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Document" Relationship="EducationEverestModel.FK_TestResult_Document_Document" FromRole="TestResult_Document" ToRole="Document" />
-          <NavigationProperty Name="University_Tests" Relationship="EducationEverestModel.FK_TestResult_Document_University_Tests" FromRole="TestResult_Document" ToRole="University_Tests" />
-        </EntityType>
-        <Association Name="FK_Document_Personal_Details">
-          <End Type="EducationEverestModel.Personal_Details" Role="Personal_Details" Multiplicity="1" />
-          <End Type="EducationEverestModel.Document" Role="Document" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personal_Details">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Document">
-              <PropertyRef Name="userDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TestResult_Document_Document">
-          <End Type="EducationEverestModel.Document" Role="Document" Multiplicity="1" />
-          <End Type="EducationEverestModel.TestResult_Document" Role="TestResult_Document" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Document">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TestResult_Document">
-              <PropertyRef Name="documentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TestResult_Document_University_Tests">
-          <End Type="EducationEverestModel.University_Tests" Role="University_Tests" Multiplicity="1" />
-          <End Type="EducationEverestModel.TestResult_Document" Role="TestResult_Document" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="University_Tests">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TestResult_Document">
-              <PropertyRef Name="UniTestID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+          <EntitySet Name="Media2" EntityType="EducationEverestModel.Media2" />
+          <EntitySet Name="Documents" EntityType="EducationEverestModel.Document" />
+          <EntitySet Name="TestResult_Document" EntityType="EducationEverestModel.TestResult_Document" />
+          <EntitySet Name="Universities" EntityType="EducationEverestModel.University" />
+          <AssociationSet Name="FK__Admission__Uni_I__2B3F6F97" Association="EducationEverestModel.FK__Admission__Uni_I__2B3F6F97">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="AdmissionDetail" EntitySet="AdmissionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Admission__Uni_I__628FA481" Association="EducationEverestModel.FK__Admission__Uni_I__628FA481">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="AdmissionDetail" EntitySet="AdmissionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Campuses__Uni_ID__30F848ED" Association="EducationEverestModel.FK__Campuses__Uni_ID__30F848ED">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Campus" EntitySet="Campuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Campuses__Uni_ID__5CD6CB2B" Association="EducationEverestModel.FK__Campuses__Uni_ID__5CD6CB2B">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Campus" EntitySet="Campuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_Personal_Details" Association="EducationEverestModel.FK_Document_Personal_Details">
+            <End Role="Personal_Details" EntitySet="Personal_Details" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_Document_Document" Association="EducationEverestModel.FK_TestResult_Document_Document">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="TestResult_Document" EntitySet="TestResult_Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Uni_I__5CD6CB2B" Association="EducationEverestModel.FK__MakeChoic__Uni_I__5CD6CB2B">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MakeChoic__Uni_I__72C60C4A" Association="EducationEverestModel.FK__MakeChoic__Uni_I__72C60C4A">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="MakeChoice" EntitySet="MakeChoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Portfolio__Uni_I__33D4B598" Association="EducationEverestModel.FK__Portfolio__Uni_I__33D4B598">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Portfolio__Uni_I__5441852A" Association="EducationEverestModel.FK__Portfolio__Uni_I__5441852A">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="Portfolio" EntitySet="Portfolios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_Document_University_Tests" Association="EducationEverestModel.FK_TestResult_Document_University_Tests">
+            <End Role="University_Tests" EntitySet="University_Tests" />
+            <End Role="TestResult_Document" EntitySet="TestResult_Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Universit__Uni_I__4D94879B" Association="EducationEverestModel.FK__Universit__Uni_I__4D94879B">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="University_Tests" EntitySet="University_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Universit__Uni_I__6C190EBB" Association="EducationEverestModel.FK__Universit__Uni_I__6C190EBB">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="University_Tests" EntitySet="University_Tests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Universit__Unive__02FC7413" Association="EducationEverestModel.FK__Universit__Unive__02FC7413">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="UniversityProfile" EntitySet="UniversityProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Universit__Unive__06CD04F7" Association="EducationEverestModel.FK__Universit__Unive__06CD04F7">
+            <End Role="University" EntitySet="Universities" />
+            <End Role="UniversityMedia" EntitySet="UniversityMedias" />
+          </AssociationSet>
+          <EntitySet Name="Test_Results" EntityType="EducationEverestModel.Test_Results" />
+          <AssociationSet Name="FK__Test_Resu__User___245D67DE" Association="EducationEverestModel.FK__Test_Resu__User___245D67DE">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Test_Results" EntitySet="Test_Results" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="CampusProfile">
           <Key>
             <PropertyRef Name="id" />
@@ -1830,7 +1735,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UniversityId" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Universit__Unive__1BC821DD" FromRole="UniversityMedia" ToRole="University" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Universit__Unive__06CD04F7" FromRole="UniversityMedia" ToRole="University" />
         </EntityType>
         <EntityType Name="UniversityProfile">
           <Key>
@@ -1849,7 +1754,9 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <Property Name="LogoAttachment" Type="Int32" />
           <Property Name="FeeStructure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Medium" Relationship="EducationEverestModel.FK__Universit__LogoA__2180FB33" FromRole="UniversityProfile" ToRole="Medium" />
-          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Universit__Unive__208CD6FA" FromRole="UniversityProfile" ToRole="University" />
+          <Property Name="AdmissionOpen" Type="Boolean" />
+          <Property Name="LastDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__Universit__Unive__02FC7413" FromRole="UniversityProfile" ToRole="University" />
         </EntityType>
         <Association Name="FK__CampusPro__Campu__123EB7A3">
           <End Type="EducationEverestModel.Campus" Role="Campus" Multiplicity="1" />
@@ -1872,30 +1779,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Principal>
             <Dependent Role="UniversityProfile">
               <PropertyRef Name="LogoAttachment" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Universit__Unive__1BC821DD">
-          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
-          <End Type="EducationEverestModel.UniversityMedia" Role="UniversityMedia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="University">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="UniversityMedia">
-              <PropertyRef Name="UniversityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Universit__Unive__208CD6FA">
-          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
-          <End Type="EducationEverestModel.UniversityProfile" Role="UniversityProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="University">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="UniversityProfile">
-              <PropertyRef Name="UniversityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2053,7 +1936,268 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Media2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Image_Path" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="documentURL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="userDetailID" Type="Int32" Nullable="false" />
+          <Property Name="documentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="documentSizeInKB" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personal_Details" Relationship="EducationEverestModel.FK_Document_Personal_Details" FromRole="Document" ToRole="Personal_Details" />
+          <NavigationProperty Name="TestResult_Document" Relationship="EducationEverestModel.FK_TestResult_Document_Document" FromRole="Document" ToRole="TestResult_Document" />
+        </EntityType>
+        <EntityType Name="TestResult_Document">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documentID" Type="Int32" Nullable="false" />
+          <Property Name="UniTestID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="EducationEverestModel.FK_TestResult_Document_Document" FromRole="TestResult_Document" ToRole="Document" />
+          <NavigationProperty Name="University_Tests" Relationship="EducationEverestModel.FK_TestResult_Document_University_Tests" FromRole="TestResult_Document" ToRole="University_Tests" />
+        </EntityType>
+        <EntityType Name="University">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="last_updated" Type="DateTime" Precision="3" />
+          <Property Name="updated_by" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="AdmissionDetails" Relationship="EducationEverestModel.FK__Admission__Uni_I__2B3F6F97" FromRole="University" ToRole="AdmissionDetail" />
+          <NavigationProperty Name="AdmissionDetails1" Relationship="EducationEverestModel.FK__Admission__Uni_I__628FA481" FromRole="University" ToRole="AdmissionDetail" />
+          <NavigationProperty Name="Campuses" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__30F848ED" FromRole="University" ToRole="Campus" />
+          <NavigationProperty Name="Campuses1" Relationship="EducationEverestModel.FK__Campuses__Uni_ID__5CD6CB2B" FromRole="University" ToRole="Campus" />
+          <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__5CD6CB2B" FromRole="University" ToRole="MakeChoice" />
+          <NavigationProperty Name="MakeChoices1" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__72C60C4A" FromRole="University" ToRole="MakeChoice" />
+          <NavigationProperty Name="Portfolios" Relationship="EducationEverestModel.FK__Portfolio__Uni_I__33D4B598" FromRole="University" ToRole="Portfolio" />
+          <NavigationProperty Name="Portfolios1" Relationship="EducationEverestModel.FK__Portfolio__Uni_I__5441852A" FromRole="University" ToRole="Portfolio" />
+          <NavigationProperty Name="University_Tests" Relationship="EducationEverestModel.FK__Universit__Uni_I__4D94879B" FromRole="University" ToRole="University_Tests" />
+          <NavigationProperty Name="University_Tests1" Relationship="EducationEverestModel.FK__Universit__Uni_I__6C190EBB" FromRole="University" ToRole="University_Tests" />
+          <NavigationProperty Name="UniversityProfiles" Relationship="EducationEverestModel.FK__Universit__Unive__02FC7413" FromRole="University" ToRole="UniversityProfile" />
+          <NavigationProperty Name="UniversityMedias" Relationship="EducationEverestModel.FK__Universit__Unive__06CD04F7" FromRole="University" ToRole="UniversityMedia" />
+        </EntityType>
+        <Association Name="FK__Admission__Uni_I__2B3F6F97">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.AdmissionDetail" Role="AdmissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AdmissionDetail">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Admission__Uni_I__628FA481">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.AdmissionDetail" Role="AdmissionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AdmissionDetail">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Campuses__Uni_ID__30F848ED">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.Campus" Role="Campus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campus">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Campuses__Uni_ID__5CD6CB2B">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.Campus" Role="Campus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Campus">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_Personal_Details">
+          <End Type="EducationEverestModel.Personal_Details" Role="Personal_Details" Multiplicity="1" />
+          <End Type="EducationEverestModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal_Details">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="userDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_Document_Document">
+          <End Type="EducationEverestModel.Document" Role="Document" Multiplicity="1" />
+          <End Type="EducationEverestModel.TestResult_Document" Role="TestResult_Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TestResult_Document">
+              <PropertyRef Name="documentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Uni_I__5CD6CB2B">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MakeChoic__Uni_I__72C60C4A">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.MakeChoice" Role="MakeChoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MakeChoice">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Portfolio__Uni_I__33D4B598">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Portfolio__Uni_I__5441852A">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.Portfolio" Role="Portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Portfolio">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_Document_University_Tests">
+          <End Type="EducationEverestModel.University_Tests" Role="University_Tests" Multiplicity="1" />
+          <End Type="EducationEverestModel.TestResult_Document" Role="TestResult_Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University_Tests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TestResult_Document">
+              <PropertyRef Name="UniTestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Universit__Uni_I__4D94879B">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.University_Tests" Role="University_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="University_Tests">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Universit__Uni_I__6C190EBB">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.University_Tests" Role="University_Tests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="University_Tests">
+              <PropertyRef Name="Uni_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Universit__Unive__02FC7413">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.UniversityProfile" Role="UniversityProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UniversityProfile">
+              <PropertyRef Name="UniversityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Universit__Unive__06CD04F7">
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.UniversityMedia" Role="UniversityMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="University">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UniversityMedia">
+              <PropertyRef Name="UniversityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Test_Results">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Test_Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Board" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rollno" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Passing_Year" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Obtained_Marks" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Division" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Test_Resu__User___245D67DE" FromRole="Test_Results" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK__Test_Resu__User___245D67DE">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.Test_Results" Role="Test_Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Test_Results">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2253,33 +2397,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Test_Results">
-            <EntityTypeMapping TypeName="EducationEverestModel.Test_Results">
-              <MappingFragment StoreEntitySet="Test_Results">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="Test_Name" ColumnName="Test_Name" />
-                <ScalarProperty Name="Board" ColumnName="Board" />
-                <ScalarProperty Name="Rollno" ColumnName="Rollno" />
-                <ScalarProperty Name="Passing_Year" ColumnName="Passing_Year" />
-                <ScalarProperty Name="Total_Marks" ColumnName="Total_Marks" />
-                <ScalarProperty Name="Obtained_Marks" ColumnName="Obtained_Marks" />
-                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
-                <ScalarProperty Name="Division" ColumnName="Division" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Universities">
-            <EntityTypeMapping TypeName="EducationEverestModel.University">
-              <MappingFragment StoreEntitySet="Universities">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="last_updated" ColumnName="last_updated" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="data_progress" ColumnName="data_progress" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="University_Tests">
             <EntityTypeMapping TypeName="EducationEverestModel.University_Tests">
               <MappingFragment StoreEntitySet="University_Tests">
@@ -2318,27 +2435,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Documents">
-            <EntityTypeMapping TypeName="EducationEverestModel.Document">
-              <MappingFragment StoreEntitySet="Document">
-                <ScalarProperty Name="documentSizeInKB" ColumnName="documentSizeInKB" />
-                <ScalarProperty Name="documentType" ColumnName="documentType" />
-                <ScalarProperty Name="userDetailID" ColumnName="userDetailID" />
-                <ScalarProperty Name="documentURL" ColumnName="documentURL" />
-                <ScalarProperty Name="documentName" ColumnName="documentName" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TestResult_Document">
-            <EntityTypeMapping TypeName="EducationEverestModel.TestResult_Document">
-              <MappingFragment StoreEntitySet="TestResult_Document">
-                <ScalarProperty Name="UniTestID" ColumnName="UniTestID" />
-                <ScalarProperty Name="documentID" ColumnName="documentID" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CampusProfiles">
             <EntityTypeMapping TypeName="EducationEverestModel.CampusProfile">
               <MappingFragment StoreEntitySet="CampusProfile">
@@ -2380,6 +2476,8 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySetMapping Name="UniversityProfiles">
             <EntityTypeMapping TypeName="EducationEverestModel.UniversityProfile">
               <MappingFragment StoreEntitySet="UniversityProfile">
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="AdmissionOpen" ColumnName="AdmissionOpen" />
                 <ScalarProperty Name="FeeStructure" ColumnName="FeeStructure" />
                 <ScalarProperty Name="LogoAttachment" ColumnName="LogoAttachment" />
                 <ScalarProperty Name="TestName" ColumnName="TestName" />
@@ -2429,6 +2527,63 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
               <MappingFragment StoreEntitySet="ProgrammCategories">
                 <ScalarProperty Name="Programm_ID" ColumnName="Programm_ID" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media2">
+            <EntityTypeMapping TypeName="EducationEverestModel.Media2">
+              <MappingFragment StoreEntitySet="Media2">
+                <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
+                <ScalarProperty Name="Image_Name" ColumnName="Image_Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="EducationEverestModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="documentSizeInKB" ColumnName="documentSizeInKB" />
+                <ScalarProperty Name="documentType" ColumnName="documentType" />
+                <ScalarProperty Name="userDetailID" ColumnName="userDetailID" />
+                <ScalarProperty Name="documentURL" ColumnName="documentURL" />
+                <ScalarProperty Name="documentName" ColumnName="documentName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestResult_Document">
+            <EntityTypeMapping TypeName="EducationEverestModel.TestResult_Document">
+              <MappingFragment StoreEntitySet="TestResult_Document">
+                <ScalarProperty Name="UniTestID" ColumnName="UniTestID" />
+                <ScalarProperty Name="documentID" ColumnName="documentID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Universities">
+            <EntityTypeMapping TypeName="EducationEverestModel.University">
+              <MappingFragment StoreEntitySet="Universities">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="last_updated" ColumnName="last_updated" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_Results">
+            <EntityTypeMapping TypeName="EducationEverestModel.Test_Results">
+              <MappingFragment StoreEntitySet="Test_Results">
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Obtained_Marks" ColumnName="Obtained_Marks" />
+                <ScalarProperty Name="Total_Marks" ColumnName="Total_Marks" />
+                <ScalarProperty Name="Passing_Year" ColumnName="Passing_Year" />
+                <ScalarProperty Name="Rollno" ColumnName="Rollno" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="Test_Name" ColumnName="Test_Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

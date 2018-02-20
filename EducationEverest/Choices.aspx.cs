@@ -377,10 +377,11 @@ public partial class Choices : System.Web.UI.Page
         //show();
     }
     //button next click from make choice to educational details
-    //protected void next_click(object sender, EventArgs e)
-    //{
+    protected void next_click(object sender, EventArgs e)
+    {
 
-    //    Response.Redirect("Educational_Detail.aspx");
+        Response.Redirect("Educational_Detail.aspx");
+    }
 
     protected void buttonEdit_Click(object sender, EventArgs e)
     {
