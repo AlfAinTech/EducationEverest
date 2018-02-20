@@ -49,7 +49,10 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
                 {
                     divDeadline.Visible = true;
                 }
-                tb_Deadline.Text = universityProfile.LastDate.Value.ToString("yyyy-MM-dd");
+                if (universityProfile.LastDate != null)
+                {
+                    tb_Deadline.Text = universityProfile.LastDate.Value.ToString("yyyy-MM-dd");
+                }
 
             }
         }
@@ -116,7 +119,10 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             {
                 newUniversityProfile.AdmissionOpen = true;
             }
-            newUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
+            if (tb_Deadline.Text != "")
+            {
+                newUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
+            }
             db.UniversityProfiles.Add(newUniversityProfile);
             db.SaveChanges();
 
