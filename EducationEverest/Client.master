@@ -4,7 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Client Main Page</title>
+    <link href="~/Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
+    <title>Education Everest</title>
 
         <meta charset="utf-8" />
   <link rel="stylesheet" href="css/bootstrap.css" />
