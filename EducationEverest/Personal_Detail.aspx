@@ -2,7 +2,18 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+    <script type="text/javascript">
+        function browse(e) {
+            
+            document.getElementById('<%= FileUpload1.ClientID %>').click();
+            e.preventDefault();
+        }
+
+        function UploadFile() {
+            alert("hello there");
+            
+        }
+    </script>
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Personal Details</h3>
       <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur.</p>
@@ -61,12 +72,14 @@
 
 </div>
  <div class="col-md-2 pull-right">
-     
- <a href="" class="upload_photo"> <div class="well text-center" style="width: 150px;height: 180px">
+     <asp:ImageButton ImageUrl="~/images/fileUpload.png" runat="server" ID="ibtn_FileUpload" OnClientClick="browse()" />
+ <%--<a href="" onclick="browse()" class="upload_photo"> <div class="well text-center" style="width: 150px;height: 180px">
 <div class="upload_icon text-center"></div><br/><br/><br/><br/>
 <div class="upload_icon_text"> Upload</div>
 <div class="upload_icon_text">Passport Size Photograph</div>
-  </div></a>
+  </div></a>--%>
+     <asp:FileUpload ID="FileUpload1" style="display:none;" ClientIDMode="Static"   runat="server" onchange="this.form.submit()" />
+     <asp:Button ID="btn_UplaodImage" style="display:none;" OnClick="btn_UplaodImage_Click" runat="server"  />
 
     </div>
 
