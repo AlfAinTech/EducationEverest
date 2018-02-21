@@ -63,6 +63,7 @@
         <li><a href="#" class="NormalCharacterStyle2019" style="top: 6px;">Home </a></li>
         <li><a href="Dashboard.aspx" class="dashboard_image" style="color: white; font-size : 18px; line-height : 22px;"><div style="margin-top: 5px">Dashboard</div></a></li>
         <li style="color: transparent;">home</li>&nbsp;&nbsp;&nbsp;
+         
       </ul>
       <div class="navbar-form navbar-left">
         <div class="form-group">
@@ -71,12 +72,16 @@
         
           <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
         </div>
-                  <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search"  />
-   
+          <asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:imagebutton>
+          <asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" OnClick="btnFilter_Click"></asp:imagebutton>
+
+         <%-- <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search"  />
+          <asp:Button ID="btnFilter" runat="server" OnClick="btnFilter_Click" Text="Filter"  />--%>
+                
         <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>--%>
-        <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>
+        <%--<span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
       </div>
-      <ul class="nav navbar-nav navbar-right">
+     <%-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
         <li class="dropdown" style="height: 60px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">Faizan</span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
@@ -88,7 +93,7 @@
             <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>
           </ul>
         </li>
-      </ul>
+      </ul>--%>
     </div><!-- /.navbar-collapse -->
 </div>
 
@@ -109,24 +114,38 @@
     <div class="col-md-2">
 
          <div class="form">
-     <select class="combobox form-control filter_results_option">
+
+
+
+            
+                                                <asp:DropDownList ID="ddlLocation" CssClass="form-control" runat="server">
+                                                    <asp:ListItem Text="Select location"></asp:ListItem>
+                                                    <asp:ListItem Text="Lahore" Value="Received"></asp:ListItem>
+                                                    <asp:ListItem Text="Karachi" Value="Accepted"></asp:ListItem>
+                                                    <asp:ListItem Text="Islamabad" Value="Rejected"></asp:ListItem>
+                                                    
+                                                </asp:DropDownList>
+
+
+     <%--<select class="combobox form-control filter_results_option">
           <option selected="selected">Location</option>
 
   <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True" >
        <asp:ListItem Text="Select location" style="display:none"></asp:ListItem>
+      
         </asp:DropDownList>
-</select>
+</select>--%>
     </div></div>
- <div class="col-md-2">
+ <%--<div class="col-md-2">
          <div class="form">
      <select class="combobox form-control filter_results_option">
           <option selected="selected">Degree/Courses</option>
-  <asp:DropDownList ID="ddlDegree_Courses" runat="server" AutoPostBack="True" >
+  <asp:DropDownList ID="ddlProgram" runat="server" AutoPostBack="True" >
       <asp:ListItem Text="Select degree" style="display:none"></asp:ListItem>
         </asp:DropDownList>
 </select>
 
-</div></div>
+</div></div>--%>
  <div class="col-md-2">
          <div class="form">
      <select class="combobox form-control filter_results_option">

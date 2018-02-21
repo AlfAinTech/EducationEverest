@@ -21,10 +21,10 @@ public partial class My_Profile : System.Web.UI.Page
     {
 
 
-        //if (current_user == null)
-        //{
-        //    Response.Redirect("Login.aspx");
-        //}
+        if (current_user == null)
+        {
+            Response.Redirect("Login.aspx");
+        }
 
         UserProfile up = new UserProfile();
 
@@ -46,7 +46,13 @@ public partial class My_Profile : System.Web.UI.Page
 
 
     }
- 
+    protected void logout_Click(object sender, EventArgs e)
+    {
+        Context.GetOwinContext().Authentication.SignOut();
+        Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+    }
+
+
     protected void SendEmail_Click(object sender, EventArgs e)
     {
         //string var2 = Session["username"].ToString();
@@ -96,6 +102,8 @@ public partial class My_Profile : System.Web.UI.Page
         db.SaveChanges();
 
         ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' Your message is recorded successfully ');", true);
+        txtMessage.Text = "";
+        txtMessageEmail.Text = "";
     }
 
     protected void btnFileAdmission_Click(object sender, EventArgs e)

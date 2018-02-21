@@ -52,13 +52,13 @@
         <li><a href="Dashboard.aspx"><img src="images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
         <li style="color: transparent;">home</li>
       </ul>
-      <form class="navbar-form navbar-left">
+      <div class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">
         </div>
         <span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
         <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>
-      </form>
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><img src="images/header_notification_icon_1_.png"></a></li>
         <li class="dropdown">
@@ -69,7 +69,10 @@
              <li role="separator" class="profile_divider"></li>
             <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Settings</a></li>
             <li role="separator" class="profile_divider"></li>--%>
-            <li><a href="Login.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Log Out</a></li>
+            <%--<li><a href="Login.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Log Out</a></li>--%>
+              <li><asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
+                                        <i class="myprofile_dropdown_link NormalCharacterStyle24"></i>Logout
+                                    </asp:LinkButton></li>
           </ul>
         </li>
       </ul>
