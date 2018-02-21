@@ -51,6 +51,16 @@ public partial class My_Profile : System.Web.UI.Page
         Context.GetOwinContext().Authentication.SignOut();
         Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
     }
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Search_Results.aspx");
+    }
+
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Search_Results.aspx?searchBox=" + TextBox1.Text);
+    }
 
 
     protected void SendEmail_Click(object sender, EventArgs e)

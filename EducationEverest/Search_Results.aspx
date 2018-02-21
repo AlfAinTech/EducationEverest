@@ -60,23 +60,22 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#" class="NormalCharacterStyle2019" style="top: 6px;">Home </a></li>
-        <li><a href="Dashboard.aspx" class="dashboard_image" style="color: white; font-size : 18px; line-height : 22px;"><div style="margin-top: 5px">Dashboard</div></a></li>
-        <li style="color: transparent;">home</li>&nbsp;&nbsp;&nbsp;
-         
+       <li><a href="https://educationeverest.org/" target="_blank" style="font-size: 20px;top: 6px;">Home </a></li>
+        <li><a href="Dashboard.aspx"><img src="images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
+        <li style="color: transparent;">home</li>
       </ul>
       <div class="navbar-form navbar-left">
-        <div class="form-group">
+        <div class="form-group" style="margin-top:-40px">
     
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+       <span> <asp:TextBox ID="TextBox1" runat="server" style="height:32px"></asp:TextBox></span>
         
           <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
         </div>
-          <asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:imagebutton>
-          <asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" OnClick="btnFilter_Click"></asp:imagebutton>
+          <span><asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:imagebutton></span>
+          <span><asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" ></asp:imagebutton></span>
 
-         <%-- <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search"  />
-          <asp:Button ID="btnFilter" runat="server" OnClick="btnFilter_Click" Text="Filter"  />--%>
+         <%--<asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search"  />--%>
+          <%--<asp:Button ID="btnFilter" runat="server" OnClick="btnFilter_Click" Text="Filter"  />--%>
                 
         <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>--%>
         <%--<span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
@@ -99,113 +98,7 @@
 
 
 <%--Filter Starts here--%>
-        <div class="col-md-12 filter_results_border" style="background: white">
-  
-                        <div class="filter_results_callout bottom text-left">
-          <div class="col-md-12">
-<br/>
-            <div class="NormalCharacterStyle12">Filter Universities</div>
-            <br/>
-            <div class="filter_divider" style="width: 1290px"></div>
-
-            <br/>
-
-            <div class="row col-md-12">
-    <div class="col-md-2">
-
-         <div class="form">
-
-
-
-            
-                                                <asp:DropDownList ID="ddlLocation" CssClass="form-control" runat="server">
-                                                    <asp:ListItem Text="Select location"></asp:ListItem>
-                                                    <asp:ListItem Text="Lahore" Value="Received"></asp:ListItem>
-                                                    <asp:ListItem Text="Karachi" Value="Accepted"></asp:ListItem>
-                                                    <asp:ListItem Text="Islamabad" Value="Rejected"></asp:ListItem>
-                                                    
-                                                </asp:DropDownList>
-
-
-     <%--<select class="combobox form-control filter_results_option">
-          <option selected="selected">Location</option>
-
-  <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True" >
-       <asp:ListItem Text="Select location" style="display:none"></asp:ListItem>
-      
-        </asp:DropDownList>
-</select>--%>
-    </div></div>
- <%--<div class="col-md-2">
-         <div class="form">
-     <select class="combobox form-control filter_results_option">
-          <option selected="selected">Degree/Courses</option>
-  <asp:DropDownList ID="ddlProgram" runat="server" AutoPostBack="True" >
-      <asp:ListItem Text="Select degree" style="display:none"></asp:ListItem>
-        </asp:DropDownList>
-</select>
-
-</div></div>--%>
- <div class="col-md-2">
-         <div class="form">
-     <select class="combobox form-control filter_results_option">
-         <option selected="selected">University Type</option>
-  <asp:DropDownList ID="ddlUniversityType" runat="server" AutoPostBack="True" >
-      <asp:ListItem Text="Select university" style="display:none"></asp:ListItem>
-        </asp:DropDownList>
-</select>
-
-</div></div>
-<div class="col-md-2">
-
-         <div class="form">
-     <select class="combobox form-control filter_results_option">
-          <option selected="selected">Admission Status</option>
-  <asp:DropDownList ID="ddlAdmissionStatus" runat="server" AutoPostBack="True" >
-      <asp:ListItem Text="Select admission" style="display:none"></asp:ListItem>
-        </asp:DropDownList>
-</select>
-    </div></div>
-</div>
-
-<br/><br/>
-            <div class="filter_divider" style="margin-top: 10px;width: 1290px;"></div>
-
-            <div class="col-md-12" style="margin-top: 20px;">
-              <div class="col-md-2">
-                <div class="NormalCharacterStyle18">Fee Range</div>
-              </div>
-              <div class="col-md-2">
-                <div class="NormalCharacterStyle18">HEC Ranking</div>
-              </div>
-
-            </div>
-
-            <div class="col-md-12" style="margin-top: 5px;">
-              <div class="col-md-2">
-                <div><img src="images/range.png">
-  <p>25,000 - 80,000 <span id="demo"></span></p>
-</div>
-              </div>
-              <div class="col-md-2">
-                 <div class="form">
-     <select class="combobox form-control filter_results_option">
-  <option selected="selected">Ranking Status</option>
-  <asp:DropDownList ID="ddlHECRanking" runat="server" AutoPostBack="True" >
-      <asp:ListItem Text="select ranking" style="display:none"></asp:ListItem>
-        </asp:DropDownList>
-</select>
-
-</div>
-              </div>
-            </div>
-
-<br/>
-
-</div>
-
-        </div>
- </div>
+        
 
 
 <%--Filter Ends here--%>
@@ -231,39 +124,10 @@
         </button>&nbsp;<button type="button" class="btn btn-success">Private&nbsp;&nbsp;
           <span class="glyphicon glyphicon-remove"></span> 
         </button></div>--%>
+
         <%--panels start here--%>
 
-        <div class="row">
-                            <div class="col-md-10" style="padding: 0; padding-top: 5px;">
-                                <ul class="tags">
-                                    <asp:Panel ID="panel1" runat="server" Visible="false">
-                                        <li>
-                                            <asp:LinkButton ID="btn1" CssClass="tag" data-role="tagsinput" runat="server" CommandArgument="1" OnClick="delete_filter">Location</asp:LinkButton></li>
-                                    </asp:Panel>
-                                    <asp:Panel ID="panel2" runat="server" Visible="false">
-                                        <li>
-                                            <asp:LinkButton ID="btn2" runat="server" CssClass="tag" CommandArgument="2" OnClick="delete_filter">Degree/Course</asp:LinkButton></li>
-                                    </asp:Panel>
-                                    <asp:Panel ID="panel3" runat="server" Visible="false">
-                                        <li>
-                                            <asp:LinkButton runat="server" ID="btn3" CssClass="tag" CommandArgument="3" OnClick="delete_filter">University Type</asp:LinkButton></li>
-                                    </asp:Panel>
-                                    <asp:Panel ID="panel4" runat="server" Visible="false">
-                                        <li>
-                                            <asp:LinkButton runat="server" ID="btn4" CssClass="tag" CommandArgument="4" OnClick="delete_filter">Admission Status</asp:LinkButton></li>
-                                    </asp:Panel>
-                                    <asp:Panel ID="panel5" runat="server" Visible="false">
-                                        <li>
-                                            <asp:LinkButton runat="server" ID="btn5" CssClass="tag" CommandArgument="5" OnClick="delete_filter">Ranking Status</asp:LinkButton></li>
-                                    </asp:Panel>
-                                   
-
-                                </ul>
-                            </div>
-                            <div class="col-md-2">
-                                <asp:Button Text="Reset" CssClass="btn btn-dark form-control" Visible="false" ID="btn_reset" runat="server" OnClick="btn_reset_Click" />
-                            </div>
-                        </div>
+        
 
         <%--panels end here--%>
 

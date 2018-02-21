@@ -31,23 +31,31 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#" class="NormalCharacterStyle2019" style="top: 6px;">Home </a></li>
-        <li><a href="Dashboard.aspx" class="dashboard_image" style="color: white; font-size : 18px; line-height : 22px;"><div style="margin-top: 5px">Dashboard</div></a></li>
-        <li style="color: transparent;">home</li>&nbsp;&nbsp;&nbsp;
+       <li><a href="https://educationeverest.org/" target="_blank" style="font-size: 20px;top: 6px;">Home </a></li>
+        <li><a href="Dashboard.aspx"><img src="images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
+        <li style="color: transparent;">home</li>
       </ul>
       <div class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">
+        <div class="form-group" style="margin-top:-40px">
+          <asp:TextBox ID="TextBox1" runat="server" style="height:32px"></asp:TextBox>
+        
+          <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
         </div>
-        <span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
-        <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>
+          <span><asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:imagebutton></span>
+          <span><asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" OnClick="btnFilter_Click" ></asp:imagebutton></span>
+
+        <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
+        <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
+
       </div>
+
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
         <li class="dropdown" style="height: 60px;">
