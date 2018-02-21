@@ -29,8 +29,8 @@ public partial class Admin_campuses : System.Web.UI.Page
         {
             if (db.Departments.Any(a => a.CampusID == campus.id))
             {
-                bool status = (bool)db.Departments.First().Status;
-                int count = db.Departments.Select(a => a.Status).Distinct().Count();
+                bool status = (bool)db.Departments.Where(a => a.CampusID== campus.id).First().Status;
+                int count = db.Departments.Where(a => a.CampusID == campus.id).Select(a => a.Status).Distinct().Count();
                 if (status && count == 1)
                 {
                     campus.Status = true;
