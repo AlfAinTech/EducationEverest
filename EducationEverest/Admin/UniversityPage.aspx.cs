@@ -51,6 +51,7 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
                 {
                     cb_DifferentFee.Checked = true;
                     cb_sameFee.Checked = false;
+                    div_applicationFee.Visible = false;
                 }
                 tb_applicationFee.Text = universityProfile.ApplicationFee;
                 if (cb_AdmissionOpen.Checked)
