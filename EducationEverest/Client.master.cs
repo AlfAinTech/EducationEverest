@@ -28,4 +28,9 @@ public partial class Client : System.Web.UI.MasterPage
         if(logged !=null)
             lblLoggedUser.Text = logged.fn;
     }
+    protected void logout_Click(object sender, EventArgs e)
+    {
+        Context.GetOwinContext().Authentication.SignOut();
+        Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+    }
 }

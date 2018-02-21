@@ -30,10 +30,10 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
 
         if(db.CampusProfiles.Any(a => a.CampusID == CampusID))
         {
-            UniversityProfile university = db.Campuses.Where(a => a.id == CampusID).First().University.UniversityProfiles.First();
-            if(university.ApplicationFeeSame == true)
+            CampusProfile campus = db.CampusProfiles.Where(a => a.CampusID == CampusID).First();
+            if(campus.ApplicationFeeSame == true)
             {
-                tb_ApplicationFee.Text = university.ApplicationFee;
+                tb_ApplicationFee.Text = campus.ApplicationFee;
                 tb_ApplicationFee.Enabled = false;
             }
             else
@@ -50,13 +50,10 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
             {
                 Department department = db.Departments.Where(a => a.id == DepartmentId).First();
                 tb_DepartmentName.Text = department.Department_Name;
-                if (db.DepartmentProfiles.Any(a => a.DepartmentID == department.id))
-                {
-                    DepartmentProfile departmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
-                    tb_ApplicationFee.Text = departmentProfile.ApplicationFee;
-                    tb_AdmissionDocs.Text = departmentProfile.AdmissionDocs;
-                    tb_Criteria.Text = departmentProfile.Criteria;
-                }
+                DepartmentProfile departmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
+                tb_ApplicationFee.Text = departmentProfile.ApplicationFee;
+                tb_AdmissionDocs.Text = departmentProfile.AdmissionDocs;
+                tb_Criteria.Text = departmentProfile.Criteria;
             }
         }
     }

@@ -56,11 +56,11 @@ public partial class Search_Results : System.Web.UI.Page
         }
 
 
-        string degreeStatus = ddlDegree_Courses.SelectedItem.Text;
-        if (degreeStatus == "select degree")
-        {
-            degreeStatus = "";
-        }
+        //string program = ddlProgram.SelectedItem.Text;
+        //if (program == "select degree")
+        //{
+        //    program = "";
+        //}
 
         string universityStatus = ddlUniversityType.SelectedItem.Text;
         if (universityStatus == "select university")
@@ -82,20 +82,20 @@ public partial class Search_Results : System.Web.UI.Page
 
 
         setFilters();
-        FillData(locationStatus, degreeStatus, universityStatus, admissionStatus, rankingStatus);
+        FillData(locationStatus, /*program,*/ universityStatus, admissionStatus, rankingStatus);
     }
 
 
 
 
-    protected void FillData(string locationStatus, string degreeStatus, string universityStatus, string admissionStatus, string rankingStatus)
+    protected void FillData(string locationStatus, /*string program,*/ string universityStatus, string admissionStatus, string rankingStatus)
     {
         EducationEverestEntities db = new EducationEverestEntities();
-       
-                //var Filters = db.Applications.Where(x =>  x.locationStatus.Contains(locationStatus) && x.degreeStatus.Contains(degreeStatus) && x.universityStatus.Contains(universityStatus) && x.admissionStatus.Contains(admissionStatus)&& x.rankingStatus.Contains(rankingStatus)).ToList();
-                //dataTable.DataSource = Filters;
-                //dataTable.DataBind();
-            }
+
+        var Filters = db.UniversityProfiles.Where(x => x.Address.Contains(locationStatus) /*&& x.program.Contains(program)*/ && x.Type.Contains(universityStatus) && x.AdmissionOpen.ToString().Contains(admissionStatus) && x.HecRanking.Contains(rankingStatus)).ToList();
+        //dataTable.DataSource = Filters;
+        //dataTable.DataBind();
+    
             
         
         //else
@@ -103,12 +103,12 @@ public partial class Search_Results : System.Web.UI.Page
         //    dataTable.DataSource = null;
         //    dataTable.DataBind();
         //}
-    
+        }
 
 
-    
 
-    protected void setFilters()
+
+protected void setFilters()
     {
 
         btn_reset.Visible = false;
@@ -122,15 +122,15 @@ public partial class Search_Results : System.Web.UI.Page
         {
             panel1.Visible = false;
         }
-        if (ddlDegree_Courses.SelectedIndex > 0)
-        {
-            panel2.Visible = true;
-            btn_reset.Visible = true;
-        }
-        else
-        {
-            panel2.Visible = false;
-        }
+        //if (ddlProgram.SelectedIndex > 0)
+        //{
+        //    panel2.Visible = true;
+        //    btn_reset.Visible = true;
+        //}
+        //else
+        //{
+        //    panel2.Visible = false;
+        //}
         if (ddlUniversityType.SelectedIndex > 0)
         {
             panel3.Visible = true;
@@ -160,8 +160,11 @@ public partial class Search_Results : System.Web.UI.Page
             panel5.Visible = false;
         }
     }
-
-
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        BindData();
+    }
+    //basic search
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
@@ -188,17 +191,19 @@ public partial class Search_Results : System.Web.UI.Page
     {
         LinkButton lk = (LinkButton)sender;
         string id = "panel" + lk.CommandArgument;
-        ContentPlaceHolder cont = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
-        Panel myPanel = (Panel)cont.FindControl(id);
+        // ContentPlaceHolder cont = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
+        // Panel myPanel = (Panel)cont.FindControl(id);
+        Panel myPanel = new Panel();
+
         myPanel.Visible = false;
         if (id == "panel1")
         {
             ddlLocation.SelectedIndex = 0;
         }
-        if (id == "panel2")
-        {
-            ddlDegree_Courses.SelectedIndex = 0;
-        }
+        //if (id == "panel2")
+        //{
+        //    ddlProgram.SelectedIndex = 0;
+        //}
         if (id == "panel3")
         {
             ddlUniversityType.SelectedIndex = 0;
@@ -220,7 +225,7 @@ public partial class Search_Results : System.Web.UI.Page
     {
 
         ddlLocation.SelectedIndex = 0;
-        ddlDegree_Courses.SelectedIndex = 0;
+        //ddlProgram.SelectedIndex = 0;
         ddlUniversityType.SelectedIndex = 0;
         ddlAdmissionStatus.SelectedIndex = 0;
         ddlHECRanking.SelectedIndex = 0;

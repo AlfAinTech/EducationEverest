@@ -125,30 +125,6 @@
         </div>
 
         <div class="row" style="margin-top:20px;">
-            <div class="col-md-2">
-                Application Fee same for all Departments ? 
-            </div>
-                <div class="col-md-1">
-                <asp:CheckBox Text="Same" runat="server"  ID="cb_sameFee" Checked="true" Enabled="true" OnCheckedChanged="cb_sameFee_CheckedChanged" AutoPostBack="true" />
-                    </div>
-                <div class="col-md-2">
-                <asp:CheckBox Text="Differnt" runat="server"  ID="cb_DifferentFee" Enabled="true" AutoPostBack="true" OnCheckedChanged="cb_DifferentFee_CheckedChanged"  />
-                    </div>
-            
-        </div>
-
-        <div class="row" style="margin-top:20px;" runat="server" id="div_applicationFee">
-            <div class="col-md-2">
-                Application Fee :
-            </div>
-            <div class="col-md-10">
-                <div >
-                <asp:TextBox ID="tb_applicationFee" runat="server" placeholder="Enter Application Fee" CssClass="form-control" TextMode="Number" ></asp:TextBox>
-            </div>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top:20px;">
             <div class="col-md-2" >
                 Attach Logo : 
             </div>

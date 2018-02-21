@@ -142,6 +142,7 @@ public partial class Campus
     public Campus()
     {
         this.MakeChoices = new HashSet<MakeChoice>();
+        this.CampusProfiles = new HashSet<CampusProfile>();
         this.Categories = new HashSet<Category>();
         this.Departments = new HashSet<Department>();
     }
@@ -153,6 +154,8 @@ public partial class Campus
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<CampusProfile> CampusProfiles { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Category> Categories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -173,6 +176,10 @@ public partial class CampusProfile
     public string AdminRatings { get; set; }
     public string ProspectusLink { get; set; }
     public Nullable<bool> MainCampus { get; set; }
+    public Nullable<bool> ApplicationFeeSame { get; set; }
+    public string ApplicationFee { get; set; }
+
+    public virtual Campus Campus { get; set; }
 }
 
 public partial class Category
@@ -319,6 +326,13 @@ public partial class Matriculation_Education
     public string Division { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
+}
+
+public partial class Media2
+{
+    public int id { get; set; }
+    public string Image_Name { get; set; }
+    public string Image_Path { get; set; }
 }
 
 public partial class Medium
@@ -536,8 +550,6 @@ public partial class UniversityProfile
     public string FeeStructure { get; set; }
     public Nullable<bool> AdmissionOpen { get; set; }
     public Nullable<System.DateTime> LastDate { get; set; }
-    public Nullable<bool> ApplicationFeeSame { get; set; }
-    public string ApplicationFee { get; set; }
 
     public virtual Medium Medium { get; set; }
     public virtual University University { get; set; }

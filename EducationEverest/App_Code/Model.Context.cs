@@ -42,6 +42,7 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<University_Tests> University_Tests { get; set; }
     public virtual DbSet<UserActivation> UserActivations { get; set; }
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
+    public virtual DbSet<CampusProfile> CampusProfiles { get; set; }
     public virtual DbSet<DepartmentProfile> DepartmentProfiles { get; set; }
     public virtual DbSet<UniversityMedia> UniversityMedias { get; set; }
     public virtual DbSet<UniversityProfile> UniversityProfiles { get; set; }
@@ -49,9 +50,9 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<Department> Departments { get; set; }
     public virtual DbSet<Programm> Programms { get; set; }
     public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
+    public virtual DbSet<Media2> Media2 { get; set; }
     public virtual DbSet<Document> Documents { get; set; }
     public virtual DbSet<TestResult_Document> TestResult_Document { get; set; }
     public virtual DbSet<University> Universities { get; set; }
     public virtual DbSet<Test_Results> Test_Results { get; set; }
-    public virtual DbSet<CampusProfile> CampusProfiles { get; set; }
 }
