@@ -28,6 +28,8 @@ public partial class Upload_Documents : System.Web.UI.Page
         FatherIncomeCertiList.DataBind();
         MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti").ToList();
         MatricCertiList.DataBind();
+        InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti").ToList();
+        InterCertiList.DataBind();
         List<int> universities = db.MakeChoices.Select(q => q.Uni_ID).ToList();
         TestResultDocList.DataSource = db.University_Tests.Where(q => universities.Contains(q.Uni_ID)).ToList();
         TestResultDocList.DataBind();

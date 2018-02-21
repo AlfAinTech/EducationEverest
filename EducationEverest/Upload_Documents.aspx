@@ -404,7 +404,7 @@
 <br/>
             <asp:UpdatePanel ID="UpdatePanel5" runat="server"><ContentTemplate>
     <div class="upload_documents_names">&#9656;Intermediate Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
-   <asp:Repeater ID="Repeater1" runat="server">
+   <asp:Repeater ID="InterCertiList" runat="server">
        <ItemTemplate>
            <div class="col-md-12">
               <div class="col-md-1">

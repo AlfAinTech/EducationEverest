@@ -28,8 +28,12 @@ public partial class Application
     public string Region { get; set; }
     public Nullable<System.DateTime> SubmittedOn { get; set; }
     public string CurrentStatus { get; set; }
+    public int UnivID { get; set; }
+    public Nullable<int> deptID { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
+    public virtual Department Department { get; set; }
+    public virtual University University { get; set; }
 }
 
 public partial class AspNetRole
@@ -52,7 +56,6 @@ public partial class AspNetUser
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public AspNetUser()
     {
-        this.Applications = new HashSet<Application>();
         this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
         this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
         this.ContactInformations = new HashSet<ContactInformation>();
@@ -65,6 +68,7 @@ public partial class AspNetUser
         this.Contact_Us = new HashSet<Contact_Us>();
         this.UserProfiles = new HashSet<UserProfile>();
         this.AspNetRoles = new HashSet<AspNetRole>();
+        this.Applications = new HashSet<Application>();
     }
 
     public string Id { get; set; }
@@ -80,8 +84,6 @@ public partial class AspNetUser
     public int AccessFailedCount { get; set; }
     public string UserName { get; set; }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Application> Applications { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -106,6 +108,8 @@ public partial class AspNetUser
     public virtual ICollection<UserProfile> UserProfiles { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Application> Applications { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -141,9 +145,9 @@ public partial class Campus
     public Campus()
     {
         this.MakeChoices = new HashSet<MakeChoice>();
-        this.CampusProfiles = new HashSet<CampusProfile>();
         this.Categories = new HashSet<Category>();
         this.Departments = new HashSet<Department>();
+        this.CampusProfiles = new HashSet<CampusProfile>();
     }
 
     public int id { get; set; }
@@ -155,11 +159,11 @@ public partial class Campus
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<CampusProfile> CampusProfiles { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Category> Categories { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Department> Departments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<CampusProfile> CampusProfiles { get; set; }
 }
 
 public partial class CampusProfile
@@ -174,8 +178,6 @@ public partial class CampusProfile
     public string AdminRatings { get; set; }
     public string ProspectusLink { get; set; }
     public Nullable<bool> MainCampus { get; set; }
-    public Nullable<bool> ApplicationFeeSame { get; set; }
-    public string ApplicationFee { get; set; }
 
     public virtual Campus Campus { get; set; }
 }
@@ -230,6 +232,7 @@ public partial class Department
         this.DepartmentProfiles = new HashSet<DepartmentProfile>();
         this.MakeChoices = new HashSet<MakeChoice>();
         this.Programms = new HashSet<Programm>();
+        this.Applications = new HashSet<Application>();
     }
 
     public int id { get; set; }
@@ -244,6 +247,8 @@ public partial class Department
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Programm> Programms { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Application> Applications { get; set; }
 }
 
 public partial class DepartmentProfile
@@ -457,6 +462,7 @@ public partial class University
         this.University_Tests = new HashSet<University_Tests>();
         this.UniversityMedias = new HashSet<UniversityMedia>();
         this.UniversityProfiles = new HashSet<UniversityProfile>();
+        this.Applications = new HashSet<Application>();
     }
 
     public int id { get; set; }
@@ -479,6 +485,8 @@ public partial class University
     public virtual ICollection<UniversityMedia> UniversityMedias { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<UniversityProfile> UniversityProfiles { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Application> Applications { get; set; }
 }
 
 public partial class University_Tests
@@ -523,6 +531,8 @@ public partial class UniversityProfile
     public string FeeStructure { get; set; }
     public Nullable<bool> AdmissionOpen { get; set; }
     public Nullable<System.DateTime> LastDate { get; set; }
+    public Nullable<bool> ApplicationFeeSame { get; set; }
+    public string ApplicationFee { get; set; }
 
     public virtual Medium Medium { get; set; }
     public virtual University University { get; set; }

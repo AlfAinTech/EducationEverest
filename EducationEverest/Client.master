@@ -104,7 +104,7 @@
         <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" >Educational Details</a></li>
         <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24" id="testResult">Test Results</a></li>
         <li class="menu_list"><a href="Upload_Documents" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a></li>
-        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24">Payments</a></li>
+        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments">Payments</a></li>
 
 
 

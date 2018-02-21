@@ -327,12 +327,12 @@
              <img src="images/image.png" ></div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
-                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class="rejected_text pull-right"></span><b>Pending</b></small></div>
+                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="0"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("Appstatus") %></b></small></div>
         </h4>
         <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>
         <h4 class="blue_text margin_left">Application ID: <%# Eval("AspNetUser.id") %></h4>
-        <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text">16<sup>th</sup> Dec 2017</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text">16<sup>th</sup> Dec 2017</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text">Pending</span>
+        <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text"><%# Eval("ApplicationDate") %></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text"><%# Eval("university.deadLine") %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text"><%# Eval("Appstatus") %></span>
       </div>
         </div>
         </div><br/>
@@ -417,51 +417,32 @@
             }
 
             var uni = $("[id*=DropDownList1]");
-            //uni.on('change', function (e) {
-            //    GetCampusData(e.target.value);
-            //}
-            //)
-            GetCampusData(uni.val());
-            function GetCampusData(id) {
-                $.ajax({
-                    type: "POST",
-                    url: "Choices.aspx/GetDepartmentData",
-                    data: '{"id":"'+id+'"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: OnCampusSuccess,
-                    failure: function (response) {
-                        alert(response.d);
-                    }
-                });
-            }
-            function OnCampusSuccess(r) {
-                var ddl3 = $("[id*=DropDownList3]");
-                ddl3.empty().append('<option selected="selected" value="0">Select Department</option>');
-                for (var i = 0; i < r.d.length; i++) {
-                    ddl3.append('<option>' + r.d[i] + '</option>');
-                }
-            }
 
-            var uni = $("[id*=DropDownList1]");
-            uni.on('change', function (e) {
-                GetCampusData(e.target.value);
+         
+            $("[id*=DropDownList2]").on('change', function (e) {
+                GetCampusbasedDepartmentData(e.target.value);
             }
             )
-            function GetCampusData(id) {
+            $("[id*=DropDownList6]").on('change', function (e) {
+                GetModalDepartmentData(e.target.value);
+            }
+           )
+           // GetCampusData(campusval.val());
+            function GetCampusbasedDepartmentData(campusValue) {
+                window.alert(campusValue)
                 $.ajax({
                     type: "POST",
                     url: "Choices.aspx/GetDepartmentData",
-                    data: '{"id":"' + id + '"}',
+                    data: '{"id":"' + campusValue + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: OnCampusSuccess,
+                    success: OnCampusbasedDepartmentDataSuccess,
                     failure: function (response) {
                         alert(response.d);
                     }
                 });
             }
-            function OnCampusSuccess(r) {
+            function OnCampusbasedDepartmentDataSuccess(r) {
                 var ddl3 = $("[id*=DropDownList3]");
                 ddl3.empty().append('<option selected="selected" value="0">Select Department</option>');
                 for (var i = 0; i < r.d.length; i++) {
@@ -469,7 +450,7 @@
                 }
             }
 
-
+          
             var uni = $("[id*=DropDownList1]");
             var dpt = $("[id*=DropDownList3]");
             var program = $("[id*=DropDownList5]");
@@ -587,12 +568,8 @@
                 }
             }
 
-            var ddlCustomersuni1 = $("[id*=DropDownList1]");
-            //ddlCustomersuni1.on('change', function (e) {
-            //    GetModalDepartmentData(e.target.value);
-            //}
-            //)
-            GetModalDepartmentData(ddlCustomersuni1.val());
+            
+           // GetModalDepartmentData(ddlCustomersuni1.val());
             function GetModalDepartmentData(id) {
                 $.ajax({
                     type: "POST",
@@ -770,6 +747,8 @@
             $("#makeChoices").removeClass("NormalCharacterStyle24")
             $("#makeChoices").addClass("NormalCharacterStyle22");
             document.getElementById("fileAdmission").click();
+            $("#fileAdmission").removeClass("NormalCharacterStyle25")
+            $("#fileAdmission").addClass("NormalCharacterStyle18");
         }
     </script>
 

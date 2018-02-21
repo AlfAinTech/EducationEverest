@@ -63,7 +63,7 @@ public partial class Choices : System.Web.UI.Page
             populate_uni();
             
              current_user = HttpContext.Current.User.Identity.GetUserId();
-            ChoicesList.DataSource = db.MakeChoices.Where(q => q.User_ID == current_user).ToList();
+            ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
             ChoicesList.DataBind();
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
         }
@@ -111,13 +111,11 @@ public partial class Choices : System.Web.UI.Page
     public static Array GetDepartmentData(string id)
     {
         EducationEverestEntities dbcontext = new EducationEverestEntities();
-        if (dbcontext.Universities.Any(x => x.Name == id))
-        {
-
-            University univ = dbcontext.Universities.First(x => x.Name == id);
+        
+            //University univ = dbcontext.Universities.First(x => x.Name == id);
             if (dbcontext.Departments.Any())
             {
-                List<Department> dpts = dbcontext.Departments.ToList();
+                List<Department> dpts = dbcontext.Departments.Where(q=>q.Campus.Campus_Name == id).ToList();
                 string[] array = new string[dpts.Count];
                 var i = 0;
                 foreach (var z in dpts)
@@ -135,13 +133,6 @@ public partial class Choices : System.Web.UI.Page
                 return array;
             }
         }
-        else
-        {
-            string[] array = null;
-            return array;
-        }
-
-    }
 
 
     [System.Web.Services.WebMethod]
@@ -267,6 +258,7 @@ public partial class Choices : System.Web.UI.Page
         if (dbcontext.Universities.Any(x => x.Name == uni))
         {
             University univ = dbcontext.Universities.First(x => x.Name == uni);
+           
             if (dbcontext.Campuses.Any(x => x.Campus_Name == cmp && x.Uni_ID == univ.id))
             {
                 Campus cmps = dbcontext.Campuses.First(x => x.Campus_Name == cmp && x.Uni_ID == univ.id);
@@ -299,6 +291,36 @@ public partial class Choices : System.Web.UI.Page
                                     };
                                     dbcontext.MakeChoices.Add(choices);
                                     dbcontext.SaveChanges();
+                                    if (dbcontext.Applications.Any(q=>q.UserID == current_user && q.UnivID == univ.id))
+                                    {
+                                        if ((!univ.UniversityProfiles.FirstOrDefault().ApplicationFeeSame.Value) && (!dbcontext.Applications.Any(q => q.UserID == current_user && q.UnivID == univ.id && q.deptID == depart.id)))
+                                        {
+                                            Application app = new Application
+                                            {
+                                                UserID = current_user,
+                                                UnivID = univ.id,
+                                                SubmittedOn = System.DateTime.Now,
+                                                deptID = depart.id,
+                                                CurrentStatus = "0"
+                                            };
+                                            dbcontext.Applications.Add(app);
+                                            dbcontext.SaveChanges();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Application app = new Application
+                                        {
+                                            UserID = current_user,
+                                            UnivID = univ.id,
+                                            SubmittedOn = System.DateTime.Now,
+                                            CurrentStatus = "0"
+                                        };
+                                        dbcontext.Applications.Add(app);
+                                        dbcontext.SaveChanges();
+                                    }
+                                   
+                                    
 
 
 

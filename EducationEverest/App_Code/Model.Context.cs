@@ -25,7 +25,6 @@ public partial class EducationEverestEntities : DbContext
 
     public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
     public virtual DbSet<AdmissionDetail> AdmissionDetails { get; set; }
-    public virtual DbSet<Application> Applications { get; set; }
     public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
     public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
     public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -46,7 +45,6 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<UserProfile> UserProfiles { get; set; }
     public virtual DbSet<Document> Documents { get; set; }
     public virtual DbSet<TestResult_Document> TestResult_Document { get; set; }
-    public virtual DbSet<CampusProfile> CampusProfiles { get; set; }
     public virtual DbSet<DepartmentProfile> DepartmentProfiles { get; set; }
     public virtual DbSet<UniversityMedia> UniversityMedias { get; set; }
     public virtual DbSet<Category> Categories { get; set; }
@@ -54,4 +52,6 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<Programm> Programms { get; set; }
     public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
     public virtual DbSet<UniversityProfile> UniversityProfiles { get; set; }
+    public virtual DbSet<Application> Applications { get; set; }
+    public virtual DbSet<CampusProfile> CampusProfiles { get; set; }
 }
