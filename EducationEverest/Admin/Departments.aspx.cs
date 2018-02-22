@@ -87,8 +87,8 @@ public partial class Admin_Departments : System.Web.UI.Page
         {
             if(db.Programms.Any(a => a.Department_ID == department.id))
             {
-                bool status = (bool) db.Programms.First().Status;
-                int count = db.Programms.Select(a => a.Status).Distinct().Count();
+                bool status = (bool) db.Programms.Where(a => a.Department_ID == department.id).First().Status;
+                int count = db.Programms.Where(a => a.Department_ID == department.id).Select(a => a.Status).Distinct().Count();
                 if(status && count == 1)
                 {
                     department.Status = true;

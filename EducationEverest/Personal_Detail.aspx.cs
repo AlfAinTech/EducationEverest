@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using System.IO;
+using System.Drawing;
+using ImageProcessor;
 
 public partial class Personal_Detail : System.Web.UI.Page
 {
@@ -25,6 +25,12 @@ public partial class Personal_Detail : System.Web.UI.Page
 
            // DateTime s = DateTime.ParseExact(personal.DOB, "MM/dd/yyyy", null);
             nationality.Value = personal.Nationality;
+        }
+        if(db.Media.Any(a => a.User_ID == current_user))
+        {
+            Medium media = db.Media.Where(a => a.User_ID == current_user).First();
+            ibtn_FileUpload.ImageUrl = media.Path;
+                 
         }
     }
 
@@ -52,6 +58,41 @@ public partial class Personal_Detail : System.Web.UI.Page
             populate_personal_details();
             populate_contact_information();
         }
+        if (IsPostBack && FileUpload1.PostedFile != null)
+        {
+           
+            if (FileUpload1.PostedFile.FileName.Length > 0)
+            {
+                FileUpload1.SaveAs(Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName);
+                string imagePath = Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName;
+                byte[] photoBytes = File.ReadAllBytes(imagePath); // change imagePath with a valid image path
+
+                // Format is automatically detected though can be changed.
+                int quality = 70;
+                Size size = new Size(100, 100);
+                using (MemoryStream inStream = new MemoryStream(photoBytes))
+                {
+                    using (MemoryStream outStream = new MemoryStream())
+                    {
+                        // Initialize the ImageFactory using the overload to preserve EXIF metadata.
+                        using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+                        {
+                            // Load, resize, set the format and quality and save an image.
+                            imageFactory.Load(inStream)
+                                        .Resize(size)
+                                        .Quality(quality)
+                                        .Save(imagePath);
+                        }
+                        // Do something with the stream.
+                    }
+                }
+
+                
+                ibtn_FileUpload.ImageUrl = "~/Content/UsersMedia/" + FileUpload1.PostedFile.FileName;
+                ViewState["ImagePath"] = "~/Content/UsersMedia/" + FileUpload1.PostedFile.FileName;
+                ViewState["ImageName"] = FileUpload1.PostedFile.FileName;
+            }
+        }
     }
 
     protected void next_click(object sender, EventArgs e)
@@ -71,6 +112,8 @@ public partial class Personal_Detail : System.Web.UI.Page
             x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
             x.Nationality = nationality.Value;
 
+            // save the image
+            
             db.SaveChanges();
         }
         else
@@ -93,6 +136,34 @@ public partial class Personal_Detail : System.Web.UI.Page
             db.Personal_Details.Add(pds);
             db.SaveChanges();
 
+        }
+
+        if(db.Media.Any(a => a.User_ID == current_user))
+        {
+            Medium media = db.Media.Where(a => a.User_ID == current_user).First();
+            if(ViewState["ImagePath"] != null && ViewState["ImagePath"].ToString() != "")
+            {
+                media.Path = ViewState["ImagePath"].ToString();
+            }
+            
+            db.SaveChanges();
+        }
+        else
+        {
+
+            Medium newMedia = new Medium();
+            newMedia.User_ID = current_user;
+            if (ViewState["ImagePath"] != null && ViewState["ImagePath"].ToString() != "")
+            {
+                
+                newMedia.Path = ViewState["ImagePath"].ToString();
+            }
+            else
+            {
+                newMedia.Path = "~/Content/UsersMedia/download.png";
+            }
+            db.Media.Add(newMedia);
+            db.SaveChanges();
         }
 
         if (db.ContactInformations.Any(x => x.User_ID == current_user))
@@ -132,4 +203,29 @@ public partial class Personal_Detail : System.Web.UI.Page
 
     }
 
+
+    protected void btn_UplaodImage_Click(object sender, EventArgs e)
+    {
+        //save university logo 
+        string filePath = "";
+        if (FileUpload1.PostedFile != null && FileUpload1.PostedFile.ContentLength > 0)
+        {
+
+            string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+            string folder = Server.MapPath("~/Content/UsersMedia/");
+            filePath = Path.Combine(folder, fileName);
+            FileUpload1.PostedFile.SaveAs(filePath);
+            try
+            {
+                Console.WriteLine("File uploaded successfully!!");
+            }
+            catch
+            {
+                Console.WriteLine("File uploading failed!!");
+                filePath = null;
+            }
+        }
+
+        ibtn_FileUpload.ImageUrl = filePath;
+    }
 }

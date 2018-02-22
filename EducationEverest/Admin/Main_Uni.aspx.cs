@@ -16,8 +16,8 @@ public partial class Main_Uni : System.Web.UI.Page
         {
             if (db.Campuses.Any(a => a.Uni_ID == university.id))
             {
-                bool status = (bool)db.Campuses.First().Status;
-                int count = db.Campuses.Select(a => a.Status).Distinct().Count();
+                bool status = (bool)db.Campuses.Where(a => a.Uni_ID == university.id).First().Status;
+                int count = db.Campuses.Where(a => a.Uni_ID == university.id).Select(a => a.Status).Distinct().Count();
                 if (status && count == 1)
                 {
                     //university.Status = true;
