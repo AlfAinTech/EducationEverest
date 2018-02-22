@@ -62,6 +62,9 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
                 {
                     tb_Deadline.Text = universityProfile.LastDate.Value.ToString("yyyy-MM-dd");
                 }
+                tb_AdmissionDocs.Text = universityProfile.AdmisssionDocs;
+                tb_About.Text = universityProfile.About;
+                tb_Criteria.Text = universityProfile.Criteria;
 
             }
         }
@@ -139,6 +142,10 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             {
                 newUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
             }
+            newUniversityProfile.About = tb_About.Text;
+            newUniversityProfile.Criteria = tb_Criteria.Text;
+            newUniversityProfile.AdmisssionDocs = tb_AdmissionDocs.Text;
+
             db.UniversityProfiles.Add(newUniversityProfile);
             db.SaveChanges();
 
@@ -199,7 +206,9 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             {
                 existingUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
             }
-            
+            existingUniversityProfile.About = tb_About.Text;
+            existingUniversityProfile.Criteria = tb_Criteria.Text;
+            existingUniversityProfile.AdmisssionDocs = tb_AdmissionDocs.Text;
             db.SaveChanges();
 
             Response.Redirect("campuses.aspx?uid=" + UniversityId);

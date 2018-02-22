@@ -20,11 +20,11 @@ public partial class Main_Uni : System.Web.UI.Page
                 int count = db.Campuses.Where(a => a.Uni_ID == university.id).Select(a => a.Status).Distinct().Count();
                 if (status && count == 1)
                 {
-                    //university.Status = true;
+                    university.Status = true;
                 }
                 else
                 {
-                  //  university.Status = false;
+                    university.Status = false;
                 }
                 db.SaveChanges();
             }
