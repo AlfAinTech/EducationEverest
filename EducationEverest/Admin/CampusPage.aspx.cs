@@ -40,13 +40,7 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                 tb_campusContact2.Text = campusProfile.Contact2;
                 tb_campusContact3.Text = campusProfile.Contact3;
                 tb_Ratings.Text = campusProfile.AdminRatings;
-                cb_DifferentFee.Checked = false;
-                cb_sameFee.Checked = true;
-                //if(campusProfile.ApplicationFeeSame == false)
-                //{
-                //    cb_DifferentFee.Checked = true;
-                //    cb_sameFee.Checked = false;
-                //}
+                
                 cb_NoMc.Checked = true;
                 cb_yesMC.Checked = false;
                 if(campusProfile.MainCampus == true)
@@ -203,33 +197,7 @@ public partial class Admin_CampusPage : System.Web.UI.Page
 
     }
 
-    protected void cb_sameFee_CheckedChanged(object sender, EventArgs e)
-    {
-        if (cb_sameFee.Checked)
-        {
-            cb_DifferentFee.Checked = false;
-            div_applicationFee.Visible = true;
-        }
-        else
-        {
-            cb_DifferentFee.Checked = true;
-            div_applicationFee.Visible = false;
-        }
-    }
-
-    protected void cb_DifferentFee_CheckedChanged(object sender, EventArgs e)
-    {
-        if (cb_DifferentFee.Checked)
-        {
-            cb_sameFee.Checked = false;
-            div_applicationFee.Visible = false;
-        }
-        else
-        {
-            cb_sameFee.Checked = true;
-            div_applicationFee.Visible =true;
-        }
-    }
+    
 
     protected void lb_campuses_Click(object sender, EventArgs e)
     {
