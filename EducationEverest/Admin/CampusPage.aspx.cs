@@ -42,11 +42,11 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                 tb_Ratings.Text = campusProfile.AdminRatings;
                 cb_DifferentFee.Checked = false;
                 cb_sameFee.Checked = true;
-                if(campusProfile.ApplicationFeeSame == false)
-                {
-                    cb_DifferentFee.Checked = true;
-                    cb_sameFee.Checked = false;
-                }
+                //if(campusProfile.ApplicationFeeSame == false)
+                //{
+                //    cb_DifferentFee.Checked = true;
+                //    cb_sameFee.Checked = false;
+                //}
                 cb_NoMc.Checked = true;
                 cb_yesMC.Checked = false;
                 if(campusProfile.MainCampus == true)
@@ -54,7 +54,7 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                     cb_yesMC.Checked = true;
                     cb_NoMc.Checked = false;
                 }
-                tb_applicationFee.Text = campusProfile.ApplicationFee;
+                //tb_applicationFee.Text = campusProfile.ApplicationFee;
 
                 //Enable Departments button if admin has already some categories
 
@@ -106,12 +106,7 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                 newCampusProfile.Address = tb_campusAddress.Text;
                 newCampusProfile.Email = tb_campusEmail.Text;
                 newCampusProfile.AdminRatings = tb_Ratings.Text;
-                newCampusProfile.ApplicationFeeSame = false;
-                if (cb_sameFee.Checked)
-                {
-                    newCampusProfile.ApplicationFeeSame = true;
-                }
-                newCampusProfile.ApplicationFee = tb_applicationFee.Text;
+               
                 newCampusProfile.MainCampus = false;
                 if (cb_yesMC.Checked)
                 {
@@ -140,12 +135,7 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                 existingCampusProfile.Address = tb_campusAddress.Text;
                 existingCampusProfile.Email = tb_campusEmail.Text;
                 existingCampusProfile.AdminRatings = tb_Ratings.Text;
-                existingCampusProfile.ApplicationFeeSame = false;
-                if (cb_sameFee.Checked)
-                {
-                    existingCampusProfile.ApplicationFeeSame = true;
-                }
-                existingCampusProfile.ApplicationFee = tb_applicationFee.Text;
+                
                 existingCampusProfile.MainCampus = false;
                 if (cb_yesMC.Checked)
                 {
