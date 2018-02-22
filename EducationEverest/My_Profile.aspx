@@ -1,8 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="My_Profile.aspx.cs" Inherits="My_Profile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" EnableEventValidation="false" CodeFile="My_Profile.aspx.cs" Inherits="My_Profile" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="~/Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
      <title>My Profile</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -26,27 +27,36 @@
 
   </script>
 </head>
+    <form id="form" runat="server">
 <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#" class="NormalCharacterStyle2019" style="top: 6px;">Home </a></li>
-        <li><a href="Dashboard.aspx" class="dashboard_image" style="color: white; font-size : 18px; line-height : 22px;"><div style="margin-top: 5px">Dashboard</div></a></li>
-        <li style="color: transparent;">home</li>&nbsp;&nbsp;&nbsp;
+       <li><a href="https://educationeverest.org/" target="_blank" style="font-size: 20px;top: 6px;">Home </a></li>
+        <li><a href="Dashboard.aspx"><img src="images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
+        <li style="color: transparent;">home</li>
       </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">
+      <div class="navbar-form navbar-left">
+        <div class="form-group" style="margin-top:-40px">
+          <asp:TextBox ID="TextBox1" runat="server" style="height:32px"></asp:TextBox>
+        
+          <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
         </div>
-        <span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
-        <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>
-      </form>
+          <span><asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:imagebutton></span>
+          <span><asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" OnClick="btnFilter_Click" ></asp:imagebutton></span>
+
+        <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
+        <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
+
+      </div>
+
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
         <li class="dropdown" style="height: 60px;">
@@ -54,11 +64,14 @@
               <asp:Label ID="lblLoggedUser" runat="server" Text=""  style="font-size:20px;color:#0094ff;border-bottom:1px solid;border-color:white"></asp:Label>
           </span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
           <ul class="dropdown-menu myprofile_dropdown">
-            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle25">Profile</a></li>
+            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
              <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
-            <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>
+            <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
+            <li role="separator" class="profile_divider"></li>--%>
+            <%--<li><a href="Login.aspx"  class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>--%>
+              <li><asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
+                                        <i class="myprofile_dropdown_link NormalCharacterStyle24"></i>Logout
+                                    </asp:LinkButton></li>
           </ul>
         </li>
       </ul>
@@ -88,7 +101,7 @@
   
 <div class="container-fluid text-center">    
   <div class="row content" style="min-height: 100vh;height: 1000px">
-         <form id="form" runat="server">
+         
     <div class="col-sm-2 sidenav text-left profile_sidemenu">
 
       <div class="panel panel-default text-center ">

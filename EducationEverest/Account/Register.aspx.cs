@@ -25,59 +25,37 @@ public partial class Account_Register : Page
 
     {
         string userId;
-        
+
 
 
         if (CheckBox1.Checked == true)
         {
-
-            var manager = new UserManager();
-            var user = new ApplicationUser() { UserName = Email.Text };
-            IdentityResult result = manager.Create(user, password.Text);
-            if (result.Succeeded)
+            if (db.UserProfiles.Any(o => o.Email == Email.Text))  //check duplicate ID
+            {
+                ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' This Email ID is already registered, Please choose different Emaild ID ');", true);
+            }
+            else
             {
 
-                UserProfile up = new UserProfile();
+                var manager = new UserManager();
+                var user = new ApplicationUser() { UserName = Email.Text };
+                IdentityResult result = manager.Create(user, password.Text);
+                if (result.Succeeded)
+                {
+
+                    UserProfile up = new UserProfile();
 
 
-                up.AspNetUserID = user.Id;
-                userId = up.AspNetUserID;
-                
-                
-                //db.UserProfiles.Add(up);
-                //db.SaveChanges();
+                    up.AspNetUserID = user.Id;
+                    userId = up.AspNetUserID;
 
-                SendActivationEmail(userId);
+                    
+                    SendActivationEmail(userId);
 
-
-                //up.FirstName = fName.Text;
-                //up.LastName = lName.Text;
-                //up.Phone = phone.Text;
-                //up.City = city.Text;
-
-
-
-                //db.UserProfiles.Add(up);
-                //db.SaveChanges();
-
-
-                //string message = string.Empty;
-
-                //switch (userId)
-                //{
-                //    //case -1:
-                //    //    message = "Username already exists.\\nPlease choose a different username.";
-                //    //    break;
-                //    case -2:
-                //        message = "Supplied email address has already been used.";
-                //        break;
-                //    default:
-                //        message = "Registration successful. Activation email has been sent.";
-
-                //        break;
-                //}
-                //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('" + message + "');", true);
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' Email sent ');", true);
+                    
+                    ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' Email sent ');", true);
+                    Response.Redirect("~/Dashboard.aspx");
+                }
             }
         }
         else
@@ -130,7 +108,7 @@ public partial class Account_Register : Page
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "educationeverest"); // here ID and password changed 02-feb-18
+            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "EducationEverest"); // here ID and password changed 02-feb-18
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;

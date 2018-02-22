@@ -444,10 +444,10 @@ public partial class TestResult_Document
 {
     public int id { get; set; }
     public int documentID { get; set; }
-    public int UniTestID { get; set; }
+    public int UniID { get; set; }
 
     public virtual Document Document { get; set; }
-    public virtual University_Tests University_Tests { get; set; }
+    public virtual University University { get; set; }
 }
 
 public partial class University
@@ -459,10 +459,12 @@ public partial class University
         this.Campuses = new HashSet<Campus>();
         this.MakeChoices = new HashSet<MakeChoice>();
         this.Portfolios = new HashSet<Portfolio>();
-        this.University_Tests = new HashSet<University_Tests>();
         this.UniversityMedias = new HashSet<UniversityMedia>();
         this.UniversityProfiles = new HashSet<UniversityProfile>();
         this.Applications = new HashSet<Application>();
+        this.TestResult_Document = new HashSet<TestResult_Document>();
+        this.University_Tests = new HashSet<University_Tests>();
+        this.University_Tests1 = new HashSet<University_Tests>();
     }
 
     public int id { get; set; }
@@ -480,30 +482,27 @@ public partial class University
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Portfolio> Portfolios { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<University_Tests> University_Tests { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<UniversityMedia> UniversityMedias { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<UniversityProfile> UniversityProfiles { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Application> Applications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<TestResult_Document> TestResult_Document { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<University_Tests> University_Tests { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<University_Tests> University_Tests1 { get; set; }
 }
 
 public partial class University_Tests
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public University_Tests()
-    {
-        this.TestResult_Document = new HashSet<TestResult_Document>();
-    }
-
     public int id { get; set; }
     public int Uni_ID { get; set; }
     public string Test_Name { get; set; }
 
     public virtual University University { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<TestResult_Document> TestResult_Document { get; set; }
+    public virtual University University1 { get; set; }
 }
 
 public partial class UniversityMedia

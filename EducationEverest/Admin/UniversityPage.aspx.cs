@@ -45,11 +45,23 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
                 tb_uniContact3.Text = universityProfile.Contact3;
                 ddl_UniversityType.SelectedItem.Text = universityProfile.Type;
                 cb_AdmissionOpen.Checked = (bool)universityProfile.AdmissionOpen;
+                cb_DifferentFee.Checked = false;
+                cb_sameFee.Checked = true;
+                if (universityProfile.ApplicationFeeSame == false)
+                {
+                    cb_DifferentFee.Checked = true;
+                    cb_sameFee.Checked = false;
+                    div_applicationFee.Visible = false;
+                }
+                tb_applicationFee.Text = universityProfile.ApplicationFee;
                 if (cb_AdmissionOpen.Checked)
                 {
                     divDeadline.Visible = true;
                 }
-                tb_Deadline.Text = universityProfile.LastDate.Value.ToString("yyyy-MM-dd");
+                if (universityProfile.LastDate != null)
+                {
+                    tb_Deadline.Text = universityProfile.LastDate.Value.ToString("yyyy-MM-dd");
+                }
 
             }
         }
@@ -111,12 +123,22 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             newUniversityProfile.TestName = tb_TestName.Text;
             newUniversityProfile.Type = ddl_UniversityType.SelectedItem.Text;
             newUniversityProfile.FeeStructure = tb_FeeStructure.Text;
+            newUniversityProfile.ApplicationFeeSame = false;
+            if (cb_sameFee.Checked)
+            {
+                newUniversityProfile.ApplicationFeeSame = true;
+            }
+            newUniversityProfile.ApplicationFee = tb_applicationFee.Text;
             newUniversityProfile.AdmissionOpen = false;
+
             if (cb_AdmissionOpen.Checked)
             {
                 newUniversityProfile.AdmissionOpen = true;
             }
-            newUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
+            if (tb_Deadline.Text != "")
+            {
+                newUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
+            }
             db.UniversityProfiles.Add(newUniversityProfile);
             db.SaveChanges();
 
@@ -162,6 +184,12 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             existingUniversityProfile.TestName = tb_TestName.Text;
             existingUniversityProfile.Type = ddl_UniversityType.SelectedItem.Text;
             existingUniversityProfile.FeeStructure = tb_FeeStructure.Text;
+            existingUniversityProfile.ApplicationFeeSame = false;
+            if (cb_sameFee.Checked)
+            {
+                existingUniversityProfile.ApplicationFeeSame = true;
+            }
+            existingUniversityProfile.ApplicationFee = tb_applicationFee.Text;
             existingUniversityProfile.AdmissionOpen = false;
             if (cb_AdmissionOpen.Checked)
             {
@@ -178,6 +206,34 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
     {
         Response.Redirect("Main_Uni.aspx");
 
+    }
+
+    protected void cb_sameFee_CheckedChanged(object sender, EventArgs e)
+    {
+        if (cb_sameFee.Checked)
+        {
+            cb_DifferentFee.Checked = false;
+            div_applicationFee.Visible = true;
+        }
+        else
+        {
+            cb_DifferentFee.Checked = true;
+            div_applicationFee.Visible = false;
+        }
+    }
+
+    protected void cb_DifferentFee_CheckedChanged(object sender, EventArgs e)
+    {
+        if (cb_DifferentFee.Checked)
+        {
+            cb_sameFee.Checked = false;
+            div_applicationFee.Visible = false;
+        }
+        else
+        {
+            cb_sameFee.Checked = true;
+            div_applicationFee.Visible = true;
+        }
     }
 
     protected void cb_AdmissionOpen_CheckedChanged(object sender, EventArgs e)

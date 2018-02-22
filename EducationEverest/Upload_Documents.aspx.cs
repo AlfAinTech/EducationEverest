@@ -31,7 +31,7 @@ public partial class Upload_Documents : System.Web.UI.Page
         InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti").ToList();
         InterCertiList.DataBind();
         List<int> universities = db.MakeChoices.Select(q => q.Uni_ID).ToList();
-        TestResultDocList.DataSource = db.University_Tests.Where(q => universities.Contains(q.Uni_ID)).ToList();
+        TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         TestResultDocList.DataBind();
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
@@ -183,7 +183,7 @@ public partial class Upload_Documents : System.Web.UI.Page
         {
             FileUpload fp = (FileUpload)e.Item.FindControl("FileUploadTest");
             Button lb = (Button)e.Item.FindControl("uploadTest");
-            int idTest = int.Parse(lb.CommandArgument);
+            int iduni = int.Parse(lb.CommandArgument);
             string path = Server.MapPath("~/UserDocuments/TestResults/" + fp.PostedFile.FileName);
             FileUploadIntermediateCerti.PostedFile.SaveAs(path);
             Personal_Details pd = db.Personal_Details.Where(q => q.User_ID == current_user).FirstOrDefault();
@@ -202,7 +202,7 @@ public partial class Upload_Documents : System.Web.UI.Page
                 TestResult_Document dt = new TestResult_Document
                 {
                     documentID = d.id,
-                    UniTestID = idTest
+                    UniID = iduni
                 };
                 db.TestResult_Document.Add(dt);
                 db.SaveChanges();
@@ -214,16 +214,35 @@ public partial class Upload_Documents : System.Web.UI.Page
 
     protected void TestResultDocList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        if (e.Item.DataItem is University_Tests)
+        if (e.Item.DataItem is UniversityProfile)
         {
-            University_Tests dataItem = e.Item.DataItem as University_Tests;
-            Repeater ctrl =
-                  e.Item.FindControl("testRepeater") as Repeater;
-            if (ctrl != null)
+            UniversityProfile dataItem = e.Item.DataItem as UniversityProfile;
+            TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID).FirstOrDefault();
+            
+            if (td != null) {
+                e.Item.FindControl("documentDiv").Visible=true;
+            Label ctrlsize =
+                  e.Item.FindControl("documentSizeInKB") as Label;
+            Label documentName =
+                  e.Item.FindControl("documentName") as Label;
+            LinkButton deleteButton =
+                 e.Item.FindControl("delete") as LinkButton;
+                
+                if (ctrlsize != null)
             {
-                ctrl.DataSource = dataItem.TestResult_Document;
-                ctrl.DataBind();
-            } }
+                ctrlsize.Text = td.Document.documentSizeInKB.ToString() ;
+            }
+            if (documentName != null)
+            {
+                documentName.Text = td.Document.documentName.ToString();
+            }
+            if (deleteButton != null)
+            {
+                deleteButton.CommandArgument = td.documentID.ToString() ;
+            }
+               
+            }
+        }
     }
 
     protected void testRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)

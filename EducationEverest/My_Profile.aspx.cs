@@ -15,24 +15,18 @@ public partial class My_Profile : System.Web.UI.Page
     
     EducationEverestEntities db = new EducationEverestEntities();
     // public static string current_user = HttpContext.Current.User.Identity.GetUserId(); //to be used later
-    public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";
+    //public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";
+    string current_user = HttpContext.Current.User.Identity.GetUserId();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
 
-    //session used here to redirect to login page
-    //if (Session["username"] == null)
-    //{
 
-    //    Response.Redirect("Login.aspx");
-    //}
-    //else
-    //{
-    //}
+        if (current_user == null)
+        {
+            Response.Redirect("Login.aspx");
+        }
 
-    //string var = Session["username"].ToString();
-
-    UserProfile up = new UserProfile();
+        UserProfile up = new UserProfile();
 
         //code to show user information
 
@@ -52,7 +46,23 @@ public partial class My_Profile : System.Web.UI.Page
 
 
     }
- 
+    protected void logout_Click(object sender, EventArgs e)
+    {
+        Context.GetOwinContext().Authentication.SignOut();
+        Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+    }
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Search_Results.aspx");
+    }
+
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Search_Results.aspx?searchBox=" + TextBox1.Text);
+    }
+
+
     protected void SendEmail_Click(object sender, EventArgs e)
     {
         //string var2 = Session["username"].ToString();
@@ -75,7 +85,7 @@ public partial class My_Profile : System.Web.UI.Page
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "educationeverest"); // here ID and password changed 02-feb-18
+            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "EducationEverest"); // here ID and password changed 02-feb-18
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;
@@ -102,6 +112,8 @@ public partial class My_Profile : System.Web.UI.Page
         db.SaveChanges();
 
         ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' Your message is recorded successfully ');", true);
+        txtMessage.Text = "";
+        txtMessageEmail.Text = "";
     }
 
     protected void btnFileAdmission_Click(object sender, EventArgs e)

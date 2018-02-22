@@ -238,7 +238,7 @@
   </div>
     <br/><br/><br/><br/>
     <div style="margin-left: 650px">
-        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadStudentCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodStudentCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadStudentCNIc" OnClick="uploadStudentCNIc_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
@@ -282,7 +282,7 @@
   </div>
     <br/><br/><br/><br/>
     <div style="margin-left: 650px">
-        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadFatherCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadFatherCNIC"  OnClick="uploadFatherCNIC_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
@@ -328,7 +328,7 @@
   </div>
     <br/><br/><br/><br/>
     <div style="margin-left: 650px">
-        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadFatherIncomeCerti" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherIncomeCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadFatherIncomeCerti"  OnClick="uploadFatherIncomeCerti_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
@@ -388,7 +388,7 @@
   </div>
     <br/><br/><br/><br/>
     <div style="margin-left: 650px">
-        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadMatricCerti" type="file" runat="server" onclose="closing(this)" onchange="UpoadMatricCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="upoadMatricCerti"  OnClick="upoadMatricCerti_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
@@ -433,7 +433,7 @@
   </div>
     <br/><br/><br/><br/>
     <div style="margin-left: 650px">
-        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadIntermediateCerti" type="file" runat="server" onclose="closing(this)" onchange="UpoadIntermediateCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadIntermediateCerti"  OnClick="uploadIntermediateCerti_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
@@ -463,21 +463,20 @@
         <div class="panel-body" >
         <asp:Repeater runat="server" ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" OnItemCommand="TestResultDocList_ItemCommand">
             <ItemTemplate>
-                    <div class="upload_documents_names">&#9656;<%# Eval("Test_Name")  %>&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
-   <asp:Repeater ID="testRepeater" runat="server" OnItemDataBound="testRepeater_ItemDataBound" >
-       <ItemTemplate>
-           <div class="col-md-12">
+                    <div class="upload_documents_names">&#9656;<%# Eval("TestName")  %>&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+  
+           <div class="col-md-12" runat="server" id="documentDiv" visible="false">
               <div class="col-md-1">
                     <div class="upload_image_icon margin_top margin_left2"></div>
                </div>
             <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3"><%# Eval("document.documentName") %></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("document.documentSizeInKB") %> KB</span></div>
+                <div class="upload_documents_names margin_top3 margin_left3">
+                    <asp:Label ID="documentName" runat="server" ></asp:Label></div>
+                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><asp:Label ID="documentSizeInKB" runat="server" ></asp:Label> KB</span></div>
             </div>
-            <div class="col-md-1"><asp:LinkButton runat="server" ID="delete" CommandArgument='<%# Eval("document.id")  %>' OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
+            <div class="col-md-1"><asp:LinkButton runat="server" ID="delete"  OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
            </div>
-       </ItemTemplate>
-   </asp:Repeater>
+     
    <br/><br/><br/><br/>
     <div class="col-md-12" id="showProgressTest" runat="server" name='<%# "showProgress"+Container.ItemIndex %>' style="display:none">
       <div class="col-md-1">
@@ -493,10 +492,10 @@
   </div>
     <br/><br/><br/><br/>
     <div style="margin-left: 650px">
-        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<asp:FileUpload id="FileUploadTest" type="file" runat="server" onclose="closing(this)" onchange='uploadItemTest(this,1)' data-itemID='<%# Container.ItemIndex %>' title="Upload Image" class="upload" /></div>
-        <asp:Button ID="uploadTest"  CommandArgument='<%# Eval("id") %>'   CommandName="Add" itemID='<%# "uploadTest"+Container.ItemIndex %>' style="display:none" runat="server" Text="Button" />
+        <asp:Button ID="uploadTest"  CommandArgument='<%# Eval("UniversityID") %>'   CommandName="Add" itemID='<%# "uploadTest"+Container.ItemIndex %>' style="display:none" runat="server" Text="Button" />
     </div>
   <br/>
             </ItemTemplate>
