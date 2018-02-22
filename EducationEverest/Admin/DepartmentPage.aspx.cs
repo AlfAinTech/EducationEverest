@@ -109,11 +109,22 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
                 existingDepartment.Status = false;
 
                 db.SaveChanges();
-
-                DepartmentProfile existingDepartmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
-                existingDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
-                existingDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
-                existingDepartmentProfile.Criteria = tb_Criteria.Text;
+                if (db.DepartmentProfiles.Any(a => a.DepartmentID == DepartmentId))
+                {
+                    DepartmentProfile existingDepartmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
+                    existingDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
+                    existingDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
+                    existingDepartmentProfile.Criteria = tb_Criteria.Text;
+                }
+                else
+                {
+                    DepartmentProfile newDepartmentProfile = new DepartmentProfile();
+                    newDepartmentProfile.DepartmentID = DepartmentId;
+                    newDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
+                    newDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
+                    newDepartmentProfile.Criteria = tb_Criteria.Text;
+                    db.DepartmentProfiles.Add(newDepartmentProfile);
+                }
 
                 db.SaveChanges();
             }
