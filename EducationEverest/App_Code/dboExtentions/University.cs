@@ -14,8 +14,11 @@ public partial class University
         get
         {
             EducationEverestEntities db = new EducationEverestEntities();
-            DateTime date = db.UniversityProfiles.Where(q => q.UniversityID == this.id).FirstOrDefault().LastDate.Value;
-            return date.ToString("dd MMM yyyy", CultureInfo.InvariantCulture);
+            UniversityProfile up = db.UniversityProfiles.Where(q => q.UniversityID == this.id).FirstOrDefault();
+            if (up.LastDate != null)
+                return up.LastDate.Value.ToString("dd MMM yyyy", CultureInfo.InvariantCulture);
+            else
+                return "No last date";
 
         }
         set { }
