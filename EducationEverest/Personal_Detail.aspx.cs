@@ -58,9 +58,10 @@ public partial class Personal_Detail : System.Web.UI.Page
             populate_personal_details();
             populate_contact_information();
         }
-        if (IsPostBack && FileUpload1.PostedFile != null)
+        if (FileUpload1.PostedFile != null)
         {
-           
+         
+            
             if (FileUpload1.PostedFile.FileName.Length > 0)
             {
                 FileUpload1.SaveAs(Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName);
