@@ -455,13 +455,13 @@ public partial class University
     public University()
     {
         this.AdmissionDetails = new HashSet<AdmissionDetail>();
-        this.Applications = new HashSet<Application>();
         this.Campuses = new HashSet<Campus>();
         this.MakeChoices = new HashSet<MakeChoice>();
         this.Portfolios = new HashSet<Portfolio>();
         this.University_Tests = new HashSet<University_Tests>();
-        this.UniversityMedias = new HashSet<UniversityMedia>();
         this.UniversityProfiles = new HashSet<UniversityProfile>();
+        this.UniversityMedias = new HashSet<UniversityMedia>();
+        this.Applications = new HashSet<Application>();
     }
 
     public int id { get; set; }
@@ -473,8 +473,6 @@ public partial class University
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<AdmissionDetail> AdmissionDetails { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Application> Applications { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Campus> Campuses { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
@@ -483,9 +481,11 @@ public partial class University
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<University_Tests> University_Tests { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<UniversityProfile> UniversityProfiles { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<UniversityMedia> UniversityMedias { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<UniversityProfile> UniversityProfiles { get; set; }
+    public virtual ICollection<Application> Applications { get; set; }
 }
 
 public partial class University_Tests
@@ -524,6 +524,9 @@ public partial class UniversityProfile
     public Nullable<System.DateTime> LastDate { get; set; }
     public Nullable<bool> ApplicationFeeSame { get; set; }
     public string ApplicationFee { get; set; }
+    public string Criteria { get; set; }
+    public string About { get; set; }
+    public string AdmisssionDocs { get; set; }
 
     public virtual Medium Medium { get; set; }
     public virtual University University { get; set; }

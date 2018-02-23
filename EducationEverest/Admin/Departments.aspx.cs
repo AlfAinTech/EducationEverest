@@ -167,6 +167,12 @@ public partial class Admin_Departments : System.Web.UI.Page
                         newDepartment.Status = false;
                         db.Departments.Add(newDepartment);
                         db.SaveChanges();
+
+                        //create Department Profile
+                        DepartmentProfile newDepartmentProfile = new DepartmentProfile();
+                        newDepartmentProfile.DepartmentID = newDepartment.id;
+                        db.DepartmentProfiles.Add(newDepartmentProfile);
+                        db.SaveChanges();
                     }
                 }
             }

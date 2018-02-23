@@ -63,15 +63,15 @@
         <EntityTypeShape EntityType="EducationEverestModel.TestResult_Document" Width="1.5" PointX="8.25" PointY="31.125" />
         <EntityTypeShape EntityType="EducationEverestModel.University_Tests" Width="1.5" PointX="6" PointY="5.75" />
         <AssociationConnector Association="EducationEverestModel.FK_TestResult_Document_Document" />
-        <EntityTypeShape EntityType="EducationEverestModel.University" Width="1.5" PointX="2.75" PointY="31.125" />
+        <EntityTypeShape EntityType="EducationEverestModel.University" Width="1.5" PointX="2.75" PointY="31.25" />
         <AssociationConnector Association="EducationEverestModel.FK__Admission__Uni_I__628FA481" />
-        <AssociationConnector Association="EducationEverestModel.FK_Applications_Universities" />
         <AssociationConnector Association="EducationEverestModel.FK__Campuses__Uni_ID__5CD6CB2B" />
         <AssociationConnector Association="EducationEverestModel.FK__MakeChoic__Uni_I__72C60C4A" />
         <AssociationConnector Association="EducationEverestModel.FK__Portfolio__Uni_I__5441852A" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Uni_I__4D94879B" />
+        <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__41EDCAC5" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__4D5F7D71" />
-        <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__7D439ABD" />
+        <AssociationConnector Association="EducationEverestModel.FK_Applications_Universities" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

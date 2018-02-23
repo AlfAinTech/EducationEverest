@@ -102,23 +102,34 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
                 db.SaveChanges();
                 DepartmentId = newDepartment.id;
             }
-            
-        }
-        else
-        {
-            Department existingDepartment = new Department();
-            existingDepartment.Department_Name = tb_DepartmentName.Text;
-            existingDepartment.Status = false;
+            else
+            {
+                Department existingDepartment = new Department();
+                existingDepartment.Department_Name = tb_DepartmentName.Text;
+                existingDepartment.Status = false;
 
-            db.SaveChanges();
+                db.SaveChanges();
+                if (db.DepartmentProfiles.Any(a => a.DepartmentID == DepartmentId))
+                {
+                    DepartmentProfile existingDepartmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
+                    existingDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
+                    existingDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
+                    existingDepartmentProfile.Criteria = tb_Criteria.Text;
+                }
+                else
+                {
+                    DepartmentProfile newDepartmentProfile = new DepartmentProfile();
+                    newDepartmentProfile.DepartmentID = DepartmentId;
+                    newDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
+                    newDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
+                    newDepartmentProfile.Criteria = tb_Criteria.Text;
+                    db.DepartmentProfiles.Add(newDepartmentProfile);
+                }
 
-            DepartmentProfile existingDepartmentProfile = new DepartmentProfile();
-            existingDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
-            existingDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
-            existingDepartmentProfile.Criteria = tb_Criteria.Text;
-            
-            db.SaveChanges();
+                db.SaveChanges();
+            }
         }
+        
         Response.Redirect("Programs.aspx?did="+DepartmentId);
     }
 
