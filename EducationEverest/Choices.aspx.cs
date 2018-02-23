@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using System.Web.Script.Serialization;
+using System.Data.Entity.Infrastructure;
 
 public partial class Choices : System.Web.UI.Page
 {
@@ -25,8 +26,10 @@ public partial class Choices : System.Web.UI.Page
         DropDownList ddl1 = (DropDownList)DropDownList1;
         foreach (var z in uv)
         {
-
-            ddl1.Items.Add(z.Name);
+            ListItem l = new ListItem();
+            l.Text = z.Name;
+            l.Value = z.id.ToString();
+            ddl1.Items.Add(l);
 
         }
     }
@@ -74,11 +77,13 @@ public partial class Choices : System.Web.UI.Page
     [System.Web.Services.WebMethod]
     public static Array GetData(string id)
     {
+        int id_ = int.Parse(id);
         EducationEverestEntities dbcontext = new EducationEverestEntities();
-        if (dbcontext.Universities.Any(x => x.Name == id))
+        if (dbcontext.Universities.Any(x => x.id == id_))
         {
+          
 
-            University univ = dbcontext.Universities.First(x => x.Name == id);
+            University univ = dbcontext.Universities.First(x => x.id == id_);
             if (dbcontext.Campuses.Any(x => x.Uni_ID == univ.id))
             {
                 List<Campus> cmps = dbcontext.Campuses.Where(x => x.Uni_ID == univ.id).ToList();
@@ -87,7 +92,7 @@ public partial class Choices : System.Web.UI.Page
                 foreach (var z in cmps)
 
                 {
-                    array[i] = z.Campus_Name;
+                    array[i] = z.id + "," + z.Campus_Name;
                     i++;
                 }
                 return array;
@@ -111,17 +116,17 @@ public partial class Choices : System.Web.UI.Page
     public static Array GetDepartmentData(string id)
     {
         EducationEverestEntities dbcontext = new EducationEverestEntities();
-        
-            //University univ = dbcontext.Universities.First(x => x.Name == id);
-            if (dbcontext.Departments.Any())
+        int id_ = int.Parse(id);
+        //University univ = dbcontext.Universities.First(x => x.Name == id);
+        if (dbcontext.Departments.Any())
             {
-                List<Department> dpts = dbcontext.Departments.Where(q=>q.Campus.Campus_Name == id).ToList();
+                List<Department> dpts = dbcontext.Departments.Where(q=>q.Campus.id == id_).ToList();
                 string[] array = new string[dpts.Count];
                 var i = 0;
                 foreach (var z in dpts)
 
                 {
-                    array[i] = z.Department_Name;
+                    array[i] = z.id+","+z.Department_Name;
                     i++;
                 }
                 return array;
@@ -138,19 +143,21 @@ public partial class Choices : System.Web.UI.Page
     [System.Web.Services.WebMethod]
     public static Array GetCategoryData(string id, string uniId, string dptId)
     { EducationEverestEntities dbcontext = new EducationEverestEntities();
-
-        if (dbcontext.Universities.Any(x => x.Name == uniId))
+        int id_ = int.Parse(id);
+        int uniId_ = int.Parse(uniId);
+        int dptId_ = int.Parse(dptId);
+        if (dbcontext.Universities.Any(x => x.id == uniId_))
         {
+           
+            University univ = dbcontext.Universities.First(x => x.id == uniId_);
 
-            University univ = dbcontext.Universities.First(x => x.Name == uniId);
-
-            if (dbcontext.Departments.Any(x => x.Department_Name == dptId))
+            if (dbcontext.Departments.Any(x => x.id == dptId_))
             {
-                Department depart = dbcontext.Departments.First(x => x.Department_Name == dptId);
+                Department depart = dbcontext.Departments.First(x => x.id == dptId_);
 
-                if(dbcontext.Programms.Any(x=>  x.Department_ID == depart.id && x.Program_Name == id))
+                if(dbcontext.Programms.Any(x=>  x.Department_ID == depart.id && x.id == id_))
                 {
-                    Programm program = dbcontext.Programms.First(x =>  x.Department_ID == depart.id && x.Program_Name == id);
+                    Programm program = dbcontext.Programms.First(x =>  x.Department_ID == depart.id && x.id == id_);
 
                     if(dbcontext.ProgrammCategories.Any(x=> x.Programm_ID == program.id))
                     {
@@ -160,7 +167,7 @@ public partial class Choices : System.Web.UI.Page
                         foreach (var z in pgcat)
 
                         {
-                            array[i] = z.Category.Category_Name;
+                            array[i] = z.Category.id + "," + z.Category.Category_Name;
                             i++;
                         }
                         return array;
@@ -204,14 +211,16 @@ public partial class Choices : System.Web.UI.Page
     public static Array GetProgrammData(string id, string uniId)
     {
         EducationEverestEntities dbcontext = new EducationEverestEntities();
-        if (dbcontext.Universities.Any(x => x.Name == uniId))
+        int id_ = int.Parse(id);
+        int uniId_ = int.Parse(uniId);
+        if (dbcontext.Universities.Any(x => x.id == uniId_))
         {
 
-            University univ = dbcontext.Universities.First(x => x.Name == uniId);
-            if (dbcontext.Departments.Any(x =>  x.Department_Name == id))
+            University univ = dbcontext.Universities.First(x => x.id == uniId_);
+            if (dbcontext.Departments.Any(x =>  x.id == id_))
             {
 
-                Department dpt = dbcontext.Departments.First(x => x.Department_Name == id);
+                Department dpt = dbcontext.Departments.First(x => x.id == id_);
                 if (dbcontext.Programms.Any(x =>  x.Department_ID == dpt.id))
                 {
                     List<Programm> pgms = dbcontext.Programms.Where(x =>  x.Department_ID == dpt.id).ToList();
@@ -220,7 +229,7 @@ public partial class Choices : System.Web.UI.Page
                     foreach (var z in pgms)
 
                     {
-                        array[i] = z.Program_Name;
+                        array[i] = z.id + "," + z.Program_Name;
                         i++;
                     }
                     return array;
@@ -252,28 +261,34 @@ public partial class Choices : System.Web.UI.Page
     public static string SaveMainPageData(string uni, string cmp, string dpt, string ctg, string pgm)
 
     {
+        int uni_ = int.Parse(uni);
+        int cmp_ = int.Parse(cmp);
+        int dpt_ = int.Parse(dpt);
+        int ctg_ = int.Parse(ctg);
+        int pgm_ = int.Parse(pgm);
+
         //List<MakeChoice> choicesdata = new List<MakeChoice>();
         IEnumerable<MakeChoice> choicesdata = new List<MakeChoice>();
         EducationEverestEntities dbcontext = new EducationEverestEntities();
-        if (dbcontext.Universities.Any(x => x.Name == uni))
+        if (dbcontext.Universities.Any(x => x.id == uni_))
         {
-            University univ = dbcontext.Universities.First(x => x.Name == uni);
+            University univ = dbcontext.Universities.First(x => x.id == uni_);
            
-            if (dbcontext.Campuses.Any(x => x.Campus_Name == cmp && x.Uni_ID == univ.id))
+            if (dbcontext.Campuses.Any(x => x.id == cmp_ && x.Uni_ID == univ.id))
             {
-                Campus cmps = dbcontext.Campuses.First(x => x.Campus_Name == cmp && x.Uni_ID == univ.id);
+                Campus cmps = dbcontext.Campuses.First(x => x.id == cmp_ && x.Uni_ID == univ.id);
 
-                if(dbcontext.Departments.Any(x=> x.Department_Name == dpt ))
+                if(dbcontext.Departments.Any(x=> x.id == dpt_ ))
                 {
-                    Department depart = dbcontext.Departments.First(x => x.Department_Name == dpt );
+                    Department depart = dbcontext.Departments.First(x => x.id == dpt_ );
 
-                    if(dbcontext.Programms.Any(x=> x.Program_Name == pgm &&  x.Department_ID == depart.id))
+                    if(dbcontext.Programms.Any(x=> x.id == pgm_ &&  x.Department_ID == depart.id))
                     {
-                        Programm prgm = dbcontext.Programms.First(x => x.Program_Name == pgm &&  x.Department_ID == depart.id);
+                        Programm prgm = dbcontext.Programms.First(x => x.id == pgm_ &&  x.Department_ID == depart.id);
                         //if(dbcontext.ProgrammCategories.Any(x=> x.Uni_ID == univ.id && x.Department_ID == depart.id && x.Programm_ID == prgm.id && x.Category_ID == ctg))
-                        if(dbcontext.Categories.Any(x=> x.Category_Name == ctg))
+                        if(dbcontext.Categories.ToList().Any(x=> x.id == ctg_))
                         {
-                            Category ctgory = dbcontext.Categories.First(x => x.Category_Name == ctg );
+                            Category ctgory = dbcontext.Categories.First(x => x.id == ctg_ );
                             if(dbcontext.ProgrammCategories.Any(x=>  x.Category_ID == ctgory.id && x.Programm_ID == prgm.id))
                             {
                                 ProgrammCategory pgcat = dbcontext.ProgrammCategories.First(x =>  x.Category_ID == ctgory.id && x.Programm_ID == prgm.id);
@@ -290,7 +305,14 @@ public partial class Choices : System.Web.UI.Page
                                         Category_Id = pgcat.id
                                     };
                                     dbcontext.MakeChoices.Add(choices);
-                                    dbcontext.SaveChanges();
+                                    try
+                                    {
+                                        dbcontext.SaveChanges();
+                                    }
+                                    catch(DbUpdateException e)
+                                    {
+
+                                    }
                                     if (dbcontext.Applications.Any(q=>q.UserID == current_user && q.UnivID == univ.id))
                                     {
                                         if ((!univ.UniversityProfiles.FirstOrDefault().ApplicationFeeSame.Value) && (!dbcontext.Applications.Any(q => q.UserID == current_user && q.UnivID == univ.id && q.deptID == depart.id)))
@@ -309,6 +331,7 @@ public partial class Choices : System.Web.UI.Page
                                     }
                                     else
                                     {
+                                        if ((!univ.UniversityProfiles.FirstOrDefault().ApplicationFeeSame.Value)) { 
                                         Application app = new Application
                                         {
                                             UserID = current_user,
@@ -318,6 +341,7 @@ public partial class Choices : System.Web.UI.Page
                                         };
                                         dbcontext.Applications.Add(app);
                                         dbcontext.SaveChanges();
+                                        }
                                     }
                                    
                                     

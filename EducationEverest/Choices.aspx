@@ -41,7 +41,7 @@
 
              <asp:DropDownList ID="DropDownList2" Class="combobox col-md-12 select_option" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
 
 
@@ -62,7 +62,7 @@
          <div class="form">
              <asp:DropDownList ID="DropDownList3" Class="combobox col-md-12 select_option" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
 
 
@@ -76,7 +76,7 @@
      
              <asp:DropDownList ID="DropDownList5" Class="combobox col-md-12 select_option" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
 
 
@@ -89,7 +89,7 @@
          <div class="form">
              <asp:DropDownList ID="DropDownList4" Class="combobox col-md-12 select_option" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
              </asp:DropDownList>
 
@@ -132,7 +132,7 @@
          <div class="form">
              <asp:DropDownList ID="DropDownList6" class="combobox preference_select_campus" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
              </asp:DropDownList>
 
@@ -150,7 +150,7 @@
          <div class="form">
              <asp:DropDownList ID="DropDownList7" class="combobox preference_select_campus" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
              </asp:DropDownList>
 
@@ -172,7 +172,7 @@
          <div class="form">
              <asp:DropDownList ID="DropDownList8" class="combobox preference_select_campus" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
              </asp:DropDownList>
 
@@ -192,7 +192,7 @@
 
              <asp:DropDownList ID="DropDownList9" class="combobox preference_select_campus" runat="server">
                  <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
              </asp:DropDownList>
 
@@ -235,8 +235,9 @@
         <td><input value='${departmentName}' disabled="disabled" id='departmentName${id}' style="background-color:#e6e6e6;border:0px"/></td>
               <td><input value='${campusName}' disabled="disabled" id='campusName{id}' style="background-color:#e6e6e6;border:0px"/></td>
         <td><input value='${catagory}' disabled="disabled" id='catagory{id}' style="background-color:#e6e6e6;border:0px"/></td>
-              <td><a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>
-                  <a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>
+              <td>
+                  <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
+                  <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <a id='delete${id}'   onclick="return deletePreferences('${id}')"><span class="delete_icon"></span></a></td>
 
@@ -412,7 +413,9 @@
                 var ddlCustomers2 = $("[id*=DropDownList2]"); 
                 ddlCustomers2.empty().append('<option selected="selected" value="0">Select Campus</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddlCustomers2.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddlCustomers2.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
 
@@ -429,7 +432,7 @@
            )
            // GetCampusData(campusval.val());
             function GetCampusbasedDepartmentData(campusValue) {
-                window.alert(campusValue)
+                //window.alert(campusValue)
                 $.ajax({
                     type: "POST",
                     url: "Choices.aspx/GetDepartmentData",
@@ -446,7 +449,9 @@
                 var ddl3 = $("[id*=DropDownList3]");
                 ddl3.empty().append('<option selected="selected" value="0">Select Department</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddl3.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddl3.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
 
@@ -476,7 +481,9 @@
                 var ddl4 = $("[id*=DropDownList4]");
                 ddl4.empty().append('<option selected="selected" value="0">Select Category</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddl4.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddl4.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
 
@@ -503,7 +510,9 @@
                 var ddl5 = $("[id*=DropDownList5]");
                 ddl5.empty().append('<option selected="selected" value="0">Select Programm</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddl5.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddl5.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
 
@@ -564,7 +573,9 @@
                 var ddlCustomers6 = $("[id*=DropDownList6]");
                 ddlCustomers6.empty().append('<option selected="selected" value="0">Select Campus</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddlCustomers6.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddlCustomers6.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
 
@@ -587,7 +598,9 @@
                 var ddldepart7 = $("[id*=DropDownList7]");
                 ddldepart7.empty().append('<option selected="selected" value="0">Select Department</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddldepart7.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddldepart7.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
 
@@ -615,7 +628,9 @@
                 var ddl8 = $("[id*=DropDownList8]");
                 ddl8.empty().append('<option selected="selected" value="0">Select Programm</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddl8.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddl8.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
             
@@ -646,7 +661,9 @@
                 var ddl9 = $("[id*=DropDownList9]");
                 ddl9.empty().append('<option selected="selected" value="0">Select Category</option>');
                 for (var i = 0; i < r.d.length; i++) {
-                    ddl9.append('<option>' + r.d[i] + '</option>');
+                    var data = r.d[i];
+                    var dataList = data.split(",");
+                    ddl9.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
 

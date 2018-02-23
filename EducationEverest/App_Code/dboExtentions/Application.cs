@@ -31,7 +31,8 @@ public partial class Application
             }
             else
             {
-                return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
+                if(Department != null)
+                    return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
             }
             return 0;
         }
