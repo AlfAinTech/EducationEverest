@@ -72,7 +72,12 @@
 
 </div>
  <div class="col-md-2 pull-right">
-     <asp:ImageButton ImageUrl="~/images/fileUpload.png" runat="server" ID="ibtn_FileUpload" OnClientClick="browse()" />
+     <%--<asp:ImageButton runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" OnClientClick="browse()"  />--%>
+
+
+     
+    <asp:Image runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" style="cursor:pointer" onclick="browse()"/>
+ 
  <%--<a href="" onclick="browse()" class="upload_photo"> <div class="well text-center" style="width: 150px;height: 180px">
 <div class="upload_icon text-center"></div><br/><br/><br/><br/>
 <div class="upload_icon_text"> Upload</div>
