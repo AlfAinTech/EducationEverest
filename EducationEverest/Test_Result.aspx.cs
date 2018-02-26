@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using System.Web.UI.HtmlControls;
 
 public partial class Test_Result : System.Web.UI.Page
 {
@@ -35,7 +36,11 @@ public partial class Test_Result : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
+
         if (!IsPostBack)
         {
             panels();
@@ -120,6 +125,20 @@ public partial class Test_Result : System.Web.UI.Page
                 db.SaveChanges();
             }
         }
+
+        HtmlImage imgpd = Master.FindControl("imgTickTestResults") as HtmlImage;
+
+
+        if (imgpd != null)
+
+        {
+
+            imgpd.Visible = true;
+            Session["IMGTR"] = "imgtr";
+
+        }
+
+
 
         //button next click from Test Results to Document
         Response.Redirect("Upload_Documents.aspx");

@@ -790,6 +790,7 @@
 	position : absolute ;
 	width : 25px;
 	height : 25px;
+    
 }
 .caution_icon
 {
@@ -1644,7 +1645,7 @@ margin-right: -10em;
 }
 .results_cards
 {
-	height:110px;
+	height:140px;
 	width: 100%;
 }
 .rating_img
@@ -1731,6 +1732,7 @@ margin-right: -10em;
   border-radius : 2px;
   -moz-border-radius : 2px;
   -webkit-border-radius : 2px;
+ 
 }
 .video_icon_2_
 {

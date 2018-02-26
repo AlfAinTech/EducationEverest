@@ -295,8 +295,20 @@
 
 
  </form>
+<br/><br/>
+
+
+
+     <div class="NormalCharacterStyle7" style="margin-left:150px"> Already have an account?&nbsp; <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
+
+     </div>
+<br/>
+      
+ <%--<button type="button" class=" btn register_button_bg" ><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Sign in</span></a></button>--%>
 <br/><br/><br/>
-     
+
+
+
 <div class="NormalCharacterStyle7" style="margin-left: 280px;">OR</div>
 <br/>
 <div class="NormalCharacterStyle12" style="margin-left: 240px;">SignUp with</div>
