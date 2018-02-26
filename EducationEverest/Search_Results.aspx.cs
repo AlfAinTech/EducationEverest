@@ -216,9 +216,15 @@ public partial class Search_Results : System.Web.UI.Page
                 //coding for rating
                 CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-
-                Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-
+                if (urating.AdminRatings != null)
+                {
+                    Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
+                }
+                else
+                {
+                    //default rating
+                    Rating1.CurrentRating = 2;
+                }
 
                 //show univeristy logo here
                 //UniversityMedia um = new UniversityMedia();
