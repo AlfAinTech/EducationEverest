@@ -120,7 +120,7 @@
 <div class="col-md-12 text-left">
 <div class="col-md-12">
          <div class="form">
-             <asp:Label ID="Label1" name="University" class="col-md-12 preference_select_option"  runat="server" Text=""></asp:Label>
+             <asp:Label ID="Label1" name="University" class="combobox col-md-12 select_option"  runat="server" Text=""></asp:Label>
           <%--<input type="text" name="University" class="col-md-12 preference_select_option" placeholder="University of Engineering & Technology, Lahore">--%>
    
     </div>
