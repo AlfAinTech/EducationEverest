@@ -213,43 +213,45 @@
 <button type="button" id="button_modal" class=" btn add_button_1_ pull-right" ><span class="NormalCharacterStyle">ADD</span></button>
 
 <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
-          <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>
+          <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
 
-     <table class="css-serial" style="display:inline-block">
-                  <thead>
-    <tr>
-        <th>#</th>
-        <th>Degree Program</th>
-         <th>Campus</th>
-          <th>Catagory/Semester</th>
-           <th></th>
+     <table class="table-fixed text-left css-serial"  >
+                <tbody id="GridPreferences">
+    <tr class="col-md-12">
+         <td class="col-md-1"><span style="">#</span></td>
+             <td class="col-md-3"><b>Degree Program</b></td>
+             <td class="col-md-2"><b>Campus</b></td>
+             <td class="col-md-4"><b>Catagory/Semester</b></td>
+             <td class="col-md-2"><span style="color: transparent;"></span></td>
+              
+     
     </tr>
-                      </thead>
+          </tbody>            
                    
           <script id="preferences_template" type="text/x-jquery-tmpl">
               
              
                
-    <tr class="text-left">
-        <td></td>
-        <td><input value='${departmentName}' disabled="disabled" id='departmentName${id}' style="background-color:#e6e6e6;border:0px"/></td>
-              <td><input value='${campusName}' disabled="disabled" id='campusName{id}' style="background-color:#e6e6e6;border:0px"/></td>
-        <td><input value='${catagory}' disabled="disabled" id='catagory{id}' style="background-color:#e6e6e6;border:0px"/></td>
-              <td>
+    <tr class="col-md-12">
+        <td class="col-md-1"></td>
+        <td class="col-md-3">${departmentName}</td>
+              <td class="col-md-2">${campusName}</td>
+        <td class="col-md-4">${catagory}</td>
+              <td class="col-md-2">
                   <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
                   <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a id='delete${id}'   onclick="return deletePreferences('${id}')"><span class="delete_icon"></span></a></td>
+                 
+                  <a id='delete${id}'   onclick="return deletePreferences('${id}')"><img src="images/delete_icon.png"></a></td>
 
     </tr>
                 
           </script>
                
 
-              <tbody  id="GridPreferences" style="overflow-y:scroll">
-    </tbody>
+             <%-- <tbody  id="GridPreferences">
+    </tbody>--%>
              </table>           
-              </ContentTemplate></asp:UpdatePanel>
+              <%--</ContentTemplate></asp:UpdatePanel>--%>
           <%--<asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
               <%--<Columns>
 
@@ -320,12 +322,13 @@
       
 
 
-        <asp:Repeater ID="ChoicesList" runat="server"><ItemTemplate>
+        <asp:Repeater ID="ChoicesList" runat="server" OnItemDataBound="ChoicesList_ItemDataBound"><ItemTemplate>
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left">
           <div class="col-md-1">
-             <img src="images/image.png" ></div>
+              <asp:Image ID="logo" runat="server"  />
+             </div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="0"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("Appstatus") %></b></small></div>
@@ -737,7 +740,7 @@
             var data = response.d;
             data1 =  JSON.parse(data);
             console.log(data1);
-            $("#GridPreferences")[0].innerHTML = "";
+            $("#GridPreferences").find("tr:gt(0)").remove();
             $("#preferences_template").tmpl(data1).appendTo("#GridPreferences");
             // $("GridPreferences")
         }
