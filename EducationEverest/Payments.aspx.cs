@@ -14,6 +14,10 @@ public partial class Payments : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+            {
+                Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+            }
 
             current_user = HttpContext.Current.User.Identity.GetUserId();
             List<Application> applicationList =  db.Applications.Where(q => q.UserID == current_user).ToList();

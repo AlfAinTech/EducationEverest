@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Search_Results.aspx.cs"  EnableEventValidation="false" Inherits="Search_Results" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,16 +23,22 @@
        links.removeClass('active');
        $(this).addClass('active');
    });
-});
+    });
+
+    function clicked() {
+        alert("hello there");
+  
+    }
 
   </script>
     <style>
+        .linkbutton { display:none}
         .starrating {
-            width: 25px;
-            height:25px;
+            width: 20px;
+            height:20px;
             cursor: pointer;
             background-repeat: no-repeat;
-            display: block;
+            display:inline;
         }
         .filledstars{
                         background-image:url("images/filledstar.png");
@@ -114,7 +121,7 @@
   <div class="row" style="height: 100%;" >
     <div class="col-md-6 sidenav text-left">
 
-      <div class="NormalCharacterStyle16" style="margin-top: -20px">22 Results found related to “UET”</div>
+      <div class="NormalCharacterStyle16" style="margin-top: -20px"><asp:Label ID="lblcount" runat="server" Text="Label" Visible="false"></asp:Label> <asp:Label ID="lblShowSearchCount" runat="server" Text="Label" Visible="false" ></asp:Label> </div>
     <div class="line_3_" style="margin-top: 5px;"></div>
     <br/>
     <%--<div><button type="button" class="btn btn-warning">UET&nbsp;&nbsp;
@@ -134,25 +141,41 @@
         <br/>
 
 
-        <%--<asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>--%>
-        <asp:Repeater ID="rptSearch" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>
+        <asp:Repeater ID="rptSearch" runat="server" OnItemDataBound="rptSearch_ItemDataBound" OnItemCommand="rptSearch_ItemCommand">
            <ItemTemplate>
-        
+
+             
     
-        <div class="panel panel-default panel_shadow results_cards">
+        <div class="panel panel-default panel_shadow results_cards" >
+           
           <div class="container-fluid row">
           <div class="col-md-2">
+              <div class="centered text-center">
+
+         <%--<asp:GridView ID="GridView1" align="center" Height="40px" Width="40px" ShowHeader="false"   BorderStyle="none"   runat="server" AutoGenerateColumns="False">
+             <Columns>
+                 <asp:ImageField DataImageUrlField="Path">
+                      <ControlStyle Height="40px"  Width="40px" />
+                 </asp:ImageField>
+             </Columns>
+         </asp:GridView>--%>
+         <%--<p><img src="images/pic1.jpg" class="img-responsive img-circle" /></p>--%></div>
+
               <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: 0px;margin-top: 10px;">
             </div>
             <div class="col-md-10 text-left">
               <div class="NormalCharacterStyle_new1"><tr>
             <td>
                 <asp:Label ID="lblUniversity" runat="server" Text='<%# Eval("Name") %>' />
-                <%--Rating Started here--%>
+               
+           
+             <%--Rating Started here--%>
                   
-            <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline" UpdateMode="Always">
                 <ContentTemplate>
-                    <ajaxtoolkit:rating ID="Rating1" runat="server"
+                    
+                    <ajaxtoolkit:rating ID="Rating1" runat="server" 
                          StarCssClass="starrating"
                          EmptyStarCssClass="emptystars"
                          FilledStarCssClass="filledstars"
@@ -163,112 +186,78 @@
                     
                     <asp:Label ID="lblRating" runat="server"></asp:Label>
                 </ContentTemplate>
-            </asp:UpdatePanel>--%>
+            </asp:UpdatePanel>
               <%--Rating Ends here--%>
-            </td>
-            
+                 </td>
         </tr>
-                  <span class="rating_img"></span><span><img src="images/fav_icon.png" class="pull-right" style="margin-top: 5px;"></span>
+                  
+                  <%--<span class="rating_img"></span><span><img src="images/fav_icon.png" class="pull-right" style="margin-top: 5px;"></span>--%>
 
               </div>
-             
-                   <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> Grand Trunk Road, Lahore</div>
 
-              <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212"> 24th Dec 2017</span></div>
-              <br/>
-              <div class="NormalCharacterStyle214">Admissions Open</div>
-              <div class="NormalCharacterStyle213">21 Degree Programs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 Courses</div>
+                   <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> <asp:Label ID="lblUnivAddress" runat="server" Text="Label"></asp:Label>   <span style="font-size:16px">     <asp:LinkButton ID="lb_UniversityPanel" runat="server" Text="Details" CommandName="Select" ClientIDMode="Static" CommandArgument='<%# Eval("id") %>' style="float:right"></asp:LinkButton></span>
+ </div>
+
+              <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212">  <asp:Label ID="lblDeadLine" runat="server" Text="Label"></asp:Label></span></div>
+             <%-- <br/>--%>
+              <%--<div class="NormalCharacterStyle214"> <asp:Label ID="lbl_IsAdmissionOpen" runat="server" Text="Label"></asp:Label></div>--%>
+              <span class="NormalCharacterStyle216"> <asp:Label ID="lbl_IsAdmissionOpen" runat="server" Text="Label"></asp:Label></span>
+
+                <div class="NormalCharacterStyle213"><asp:Label ID="lblCountDegreePrograms" runat="server" Text="Label"></asp:Label>&nbsp;Degree Programs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblCountDepartments" runat="server" Text="Label"></asp:Label>&nbsp;Departments</div>
 			</div>
             </div></div>
+           </asp:PlaceHolder>
            </ItemTemplate>
         </asp:Repeater>
 
 
-                   <%--<div class="panel panel-default panel_shadow results_cards">
-          <div class="container-fluid row">
-          <div class="col-md-2">
-              <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: 0px;margin-top: 10px;">
-            </div>
-            <div class="col-md-10 text-left">
-              <div class="NormalCharacterStyle_new1">UET, Lahore Pakistan<span class="rating_img"></span><span><img src="images/fav_icon.png" class="pull-right" style="margin-top: 5px;"></span></div>
-              <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> Grand Trunk Road, Lahore</div>
-
-              <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212"> 24th Dec 2017</span></div>
-              <br/>
-              <div class="NormalCharacterStyle214">Admissions Open</div>
-              <div class="NormalCharacterStyle213">21 Degree Programs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 Courses</div>
-			</div>
-            </div></div>
-
-
-
-                   <div class="panel panel-default panel_shadow results_cards">
-          <div class="container-fluid row">
-          <div class="col-md-2">
-              <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: 0px;margin-top: 10px;">
-            </div>
-            <div class="col-md-10 text-left">
-              <div class="NormalCharacterStyle_new1">UET, Lahore Pakistan<span class="rating_img"></span><span><img src="images/fav_icon.png" class="pull-right" style="margin-top: 5px;"></span></div>
-              <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> Grand Trunk Road, Lahore</div>
-
-              <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212"> 24th Dec 2017</span></div>
-              <br/>
-              <div class="NormalCharacterStyle214">Admissions Open</div>
-              <div class="NormalCharacterStyle213">21 Degree Programs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 Courses</div>
-			</div>
-            </div></div>
-
-
-
-                   <div class="panel panel-default panel_shadow results_cards">
-          <div class="container-fluid row">
-          <div class="col-md-2">
-              <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: 0px;margin-top: 10px;">
-            </div>
-            <div class="col-md-10 text-left">
-              <div class="NormalCharacterStyle_new1">UET, Lahore Pakistan<span class="rating_img"></span><span><img src="images/fav_icon.png" class="pull-right" style="margin-top: 5px;"></span></div>
-              <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> Grand Trunk Road, Lahore</div>
-
-              <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212"> 24th Dec 2017</span></div>
-              <br/>
-              <div class="NormalCharacterStyle214">Admissions Open</div>
-              <div class="NormalCharacterStyle213">21 Degree Programs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 Courses</div>
-			</div>
-            </div></div>
-
-
-
-                   <div class="panel panel-default panel_shadow results_cards">
-          <div class="container-fluid row">
-          <div class="col-md-2">
-              <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: 0px;margin-top: 10px;">
-            </div>
-            <div class="col-md-10 text-left">
-              <div class="NormalCharacterStyle_new1">UET, Lahore Pakistan<span class="rating_img"></span><span><img src="images/fav_icon.png" class="pull-right" style="margin-top: 5px;"></span></div>
-              <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> Grand Trunk Road, Lahore</div>
-
-              <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212"> 24th Dec 2017</span></div>
-              <br/>
-              <div class="NormalCharacterStyle214">Admissions Open</div>
-              <div class="NormalCharacterStyle213">21 Degree Programs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 Courses</div>
-			</div>
-            </div></div>--%>
+                  
 
 
 
 
-        </div>
+       </div>
          <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" style="margin-top: -20px;height: 100%">
          <div class="">
           <div class="col-md-2">
               <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">
             </div>
             <div class="col-md-10 text-left" style="margin-top: 10px">
-              <div class="NormalCharacterStyle215">University of Engineering and Technology, Lahore Pakistan</div>
-              <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> Grand Trunk Road, Lahore</div>
-              <div><span><img src="images/rating.png"></span><span class="NormalCharacterStyle216 pull-right"> Admission Open</span></div>
+              <div class="NormalCharacterStyle215"><asp:Label ID="lblUniversityName2" runat="server" Text="Label"></asp:Label></div>
+              <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> <asp:Label ID="lblUnivAddress2" runat="server" Text="Label"></asp:Label></div>
+              <div>
+                  <span>
+                      <%--Rating Started here--%>
+                  
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server" RenderMode="Inline" UpdateMode="Always">
+                <ContentTemplate>
+                    
+                    <ajaxtoolkit:rating ID="Rating2" runat="server" 
+                         StarCssClass="starrating"
+                         EmptyStarCssClass="emptystars"
+                         FilledStarCssClass="filledstars"
+                         WaitingStarCssClass="waitingstars"
+                         
+                        
+                        ></ajaxToolkit:Rating> &nbsp;&nbsp;
+                    
+                    <asp:Label ID="lblRating2" runat="server"></asp:Label>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+              <%--Rating Ends here--%>
+
+
+                      <%--<img src="images/rating.png"></span><span class="NormalCharacterStyle216 pull-right">--%>
+                  <span class="NormalCharacterStyle216 pull-right"> <asp:Label ID="lbl_IsAdmissionOpen2" runat="server" Text="Label" > </asp:Label></span>
+
+                    </span>
+
+              </div>
               <br/>
-              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_">Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a></div>
+              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
+
+              </div>
 
             </div>
           </div><br/>
@@ -282,7 +271,7 @@
                
             <div class="panel_text">
                
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur.
+             <asp:Label ID="lblAbout" runat="server" Text="Label"></asp:Label>
             </div>
             </div>
             <div class="col-md-2">
@@ -295,8 +284,9 @@
             <div class="NormalCharacterStyle218">Criteria</div>
            
             <div class="panel_text">
-                <asp:Label ID="lblCriteria" runat="server" Text="Label"></asp:Label>
-              <img src="images/image9.png">
+               <asp:Label ID="lblCriteria" runat="server" Text="Label"></asp:Label>
+                <br /><br />
+             <div> <img src="images/image9.png"></div>
             </div>
           </div>  
 
@@ -321,12 +311,16 @@
                
             </div>
           </div>  
-<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_">Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br/><br/><br/><br/>  </div> 
+<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
+    <br/><br/><br/><br/>  </div> 
 
   </div>
     </div>
   </div> 
+
+
+
         </form>
         </body>
 </html>
-  

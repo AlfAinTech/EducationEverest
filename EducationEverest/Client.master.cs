@@ -14,6 +14,35 @@ public partial class Client : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         current_user = HttpContext.Current.User.Identity.GetUserId();
+
+        //if (Session["IMGPD"] != null)
+        //{
+        //    imgTickPersonalDetails.Visible = true;
+        //}
+        //if (Session["IMGC"] != null)
+        //{
+        //    imgTickChoices.Visible = true;
+        //}
+        //if (Session["IMGED"] != null)
+        //{
+        //    imgTickEducationDetails.Visible = true;
+        //}
+        //if (Session["IMGTR"] != null)
+        //{
+        //    imgTickTestResults.Visible = true;
+        //}
+        //if (Session["IMGUD"] != null)
+        //{
+        //    imgTickDocuments.Visible = true;
+        //}
+
+
+        //if (Request.QueryString["imgpd"] != null && Request.QueryString["imgpd"] != string.Empty)
+        //{
+        //    imgTickPersonalDetails.Visible = true;
+
+
+        //}
         //if( current_user==null)
         //{
         //    Response.Redirect("Login.aspx");

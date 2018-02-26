@@ -110,12 +110,14 @@
 <br/><br/>
       <asp:Button class=" btn registration_btn" runat="server" OnClick="LogIn" Text="Log In" /> 
  <%--<button type="button" class=" btn registration_btn"><span class="NormalCharacterStyle">Login</span></button>--%>
-<br/><br/><br/>
+<br/><br/>
       </form>
-<div class="NormalCharacterStyle7" style="margin-left: 15px;">Doesn’t Have Account?</div>
+<div class="NormalCharacterStyle7" style="margin-left: 150px;">Doesn’t Have Account? <button type="button" class=" btn register_button_bg"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Register</span></a></button>
+
+
+</div>
 <br/>
 
- <button type="button" class=" btn register_button_bg"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Register</span></a></button>
 <br/><br/><br/>
 
 <div class="NormalCharacterStyle7" style="margin-left: 280px;">OR</div>

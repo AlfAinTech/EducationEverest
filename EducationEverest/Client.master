@@ -69,7 +69,7 @@
 
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
+       <%-- <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>--%>
         <li class="dropdown" style="height: 60px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">
               <asp:Label ID="lblLoggedUser" runat="server" Text=""  style="font-size:20px;color:#0094ff;border-bottom:1px solid;border-color:white"></asp:Label>
@@ -112,12 +112,12 @@
     <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25">File Admission App<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></a></div></a>
     <div class="collapse" id="clps2">
       <br/>
-        <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail">Personal Detail</a></li>
-        <li class="menu_list"><a href="choices" class="NormalCharacterStyle24" id="makeChoices">Make Choices</a></li>
-        <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" >Educational Details</a></li>
-        <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24" id="testResult">Test Results</a></li>
-        <li class="menu_list"><a href="Upload_Documents" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a></li>
-        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments">Payments</a></li>
+        <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail">Personal Detail</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"  /></span></li>
+        <li class="menu_list"><a href="choices" class="NormalCharacterStyle24" id="makeChoices">Make Choices</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  /></span></li>
+        <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" >Educational Details</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickEducationDetails"  visible="false" style="float:right;height:20px;width:20px"  /></span></li>
+        <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24" id="testResult">Test Results</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  /></span></li>
+        <li class="menu_list"><a href="Upload_Documents" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  /></span></li>
+        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments">Payments</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  /></span></li>
 
 
 

@@ -19,7 +19,10 @@ public partial class My_Profile : System.Web.UI.Page
     string current_user = HttpContext.Current.User.Identity.GetUserId();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
 
         if (current_user == null)
         {
