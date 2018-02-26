@@ -29,7 +29,7 @@ public partial class Applications : System.Web.UI.Page
         int ApplicationID = 0;
         if (tb_ApplicationID.Text != "" && !String.IsNullOrWhiteSpace(tb_ApplicationID.Text) && Convert.ToInt32(tb_ApplicationID.Text) > 0)
         {
-            ApplicationID = Convert.ToInt32(tb_ApplicationID.Text);
+            ApplicationID = int.Parse(tb_ApplicationID.Text);
 
         }
         else
@@ -274,7 +274,7 @@ public partial class Applications : System.Web.UI.Page
         DropDownList ddl_status = sender as DropDownList;
         if (ddl_status.SelectedItem.Text != "Change Status")
         {
-            int ApplicationID = Convert.ToInt32(ddl_status.Attributes["data-applicationid"].ToString());
+            int ApplicationID = int.Parse(ddl_status.Attributes["data-applicationid"].ToString());
             EducationEverestEntities db = new EducationEverestEntities();
             Application dbApplication = db.Applications.Where(w => w.id == ApplicationID).First();
             dbApplication.CurrentStatus = ddl_status.SelectedItem.Value;

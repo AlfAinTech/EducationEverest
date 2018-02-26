@@ -55,9 +55,6 @@
         <AssociationConnector Association="EducationEverestModel.FK__ProgrammC__Progr__66603565" />
         <EntityTypeShape EntityType="EducationEverestModel.UniversityProfile" Width="1.5" PointX="7.5" PointY="15.25" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__LogoA__2180FB33" />
-        <EntityTypeShape EntityType="EducationEverestModel.Application" Width="1.5" PointX="10.5" PointY="12.875" />
-        <AssociationConnector Association="EducationEverestModel.FK__Applicati__UserI__5070F446" />
-        <AssociationConnector Association="EducationEverestModel.FK_Applications_Departments" />
         <EntityTypeShape EntityType="EducationEverestModel.CampusProfile" Width="1.5" PointX="8.25" PointY="1" />
         <AssociationConnector Association="EducationEverestModel.FK__CampusPro__Campu__123EB7A3" />
         <EntityTypeShape EntityType="EducationEverestModel.TestResult_Document" Width="1.5" PointX="8.25" PointY="31.125" />
@@ -71,6 +68,9 @@
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Uni_I__4D94879B" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__41EDCAC5" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__4D5F7D71" />
+        <EntityTypeShape EntityType="EducationEverestModel.Application" Width="1.5" PointX="10.5" PointY="20.5" />
+        <AssociationConnector Association="EducationEverestModel.FK__Applicati__UserI__5DCAEF64" />
+        <AssociationConnector Association="EducationEverestModel.FK_Applications_Departments" />
         <AssociationConnector Association="EducationEverestModel.FK_Applications_Universities" />
         </Diagram>
     </edmx:Diagrams>

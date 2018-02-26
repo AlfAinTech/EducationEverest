@@ -43,7 +43,10 @@ public partial class My_Profile : System.Web.UI.Page
        
         //show user first name
         lblLoggedUser.Text = logged.fn;
-
+        ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
+        ChoicesList.DataBind();
+        PaymentsList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
+        PaymentsList.DataBind();
 
     }
     protected void logout_Click(object sender, EventArgs e)

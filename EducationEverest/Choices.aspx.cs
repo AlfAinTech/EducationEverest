@@ -326,7 +326,11 @@ public partial class Choices : System.Web.UI.Page
                                                 CurrentStatus = "0"
                                             };
                                             dbcontext.Applications.Add(app);
-                                            dbcontext.SaveChanges();
+                                            try { dbcontext.SaveChanges(); }
+                                            catch(Exception e)
+                                            {
+                                               
+                                            }
                                         }
                                     }
                                     else
@@ -416,7 +420,7 @@ public partial class Choices : System.Web.UI.Page
     {
 
         //ddlvalue = DropDownList1.SelectedItem.Value;
-
+        Label1.Text = DropDownList1.SelectedItem.Text;
 
         // Session["ddlsessionvalue"] = DropDownList1.SelectedValue;
 
