@@ -29,9 +29,7 @@ input[type="text"]
 
 .header2
 {
-	border-top: 1px solid;
-	border-top-color: #CCCCCC;
-    box-shadow: 2px 3px 2px #888888;
+    box-shadow: 2px 3px 2px #D1D3D4;
     text-align-: left;
     height: 50px;
     width: 100%;
@@ -100,10 +98,15 @@ input[type="text"]
   padding: 10px;
   text-decoration: none;
 }
-.menu_list a{
+.menu_list span{
 	list-style: none;
   text-decoration: none;
   margin-left: 15px;
+}
+.list_items
+{
+	list-style: none;
+  text-decoration: none;
 }
 .menu_list:hover{
   background : #E6E6E6;
@@ -114,7 +117,7 @@ input[type="text"]
     list-style: none;
 
 }
-.menu_list a:hover{
+.menu_list span:hover{
   color : #2196F3;
   color : rgb(33, 150, 243);
 	list-style: none;
@@ -124,7 +127,7 @@ input[type="text"]
 		list-style: none;
   text-decoration: none;
 }
-.main_list:hover{
+.main_list span:hover{
   color : #2196F3;
   color : rgb(33, 150, 243);
     text-decoration: none;
@@ -171,9 +174,11 @@ input::placeholder {
 .side-menu
 {
 	color: #9ba1bb;
-	margin-top: 7px;
+	margin-top: 4px;
 	cursor: pointer;
 	text-decoration: none;
+	border-top: none;
+	width: 20%;
 	
 }
 .text-dropdown
@@ -211,26 +216,95 @@ a:hover,a:focus,a:active,a:visited{
 	list-style: none;
 	text-decoration: none;
 }
-table {
+.table-fixed {
     border-collapse: collapse;
-  color : #808080;
+  color : red;
   color : rgb(128, 128, 128);
+  width: 100%;
 }
-table td, table th {
+.table-fixed th{
     border: 1px solid #808080;
     border-color: rgb(128, 128, 128);
-    padding: 30px;
+    padding: 10px;
 }
-
-table tr:last-child td {
+.table-fixed td{
+    border: 1px solid #808080;
+    border-color: rgb(128, 128, 128);
+    padding: 10px;
+}
+.table-fixed tr:last-child td {
     border-bottom: 0;
     
 }
-table tr td:first-child,
-table tr th:first-child {
+.table-fixed th {
+     border-left: 0;
+     
+    
+}
+.table-fixed td {
+    border-bottom: 0;
+     border-left: 0;
+
+    
+}
+.table-fixed tr td:first-child,
+.table-fixed tr th:first-child {
     border-left: 0;
 }
-table tr td:last-child,
-table tr th:last-child {
+.table-fixed tr td:last-child,
+.table-fixed tr th:last-child {
     border-right: 0;
+}
+.table-fixed thead {
+  width: 100%;
+}
+.table-fixed tbody {
+  height: 180px;
+  overflow-y: auto;
+    overflow-x: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+}
+.panel-heading
+{
+	  background : #F2F2F2;
+  background : rgba(242, 242, 242, 1);
+	background-image: none !important;
+}
+.margin_left
+{
+	margin-left: 18px;
+}
+.margin_left2
+{
+	margin-left: -20px;
+}
+.margin_left3
+{
+	margin-left: -40px;
+}
+.margin_top
+{
+	margin-top: 10px;
+}
+.margin_top2
+{
+	margin-top: 15px;
+}
+.margin_top3
+{
+	margin-top: 40px;
+}
+.margin_bottom
+{
+	margin-bottom: 20px;
+}
+.margin_bottom2
+{
+	margin-bottom: 10px;
 }
