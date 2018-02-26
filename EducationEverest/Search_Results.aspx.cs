@@ -190,7 +190,15 @@ public partial class Search_Results : System.Web.UI.Page
 
                 Label lblDeadLine = e.Item.FindControl("lblDeadLine") as Label;
                 //lblDeadLine.Text = Convert.ToString(univprofile.deadline);
-                lblDeadLine.Text = univprofile.deadline.Value.ToString("dd-MMM-yyyy");
+                if (univprofile.deadline != null)
+                {
+                    lblDeadLine.Text = univprofile.deadline.Value.ToString("dd-MMM-yyyy");
+                }
+                else
+                {
+                    lblDeadLine.Text = "No Last Date";
+                }
+                
 
                 var campusid = db.Campuses.Where(a => a.Uni_ID == univ.id).Select(ci => new { cid = ci.id }).FirstOrDefault();
                 var departmentdata = db.Departments.Where(a => a.id == campusid.cid).Select(ci => new { departmentname = ci.Department_Name }).Count().ToString();
