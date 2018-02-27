@@ -108,7 +108,7 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
             }
             else
             {
-                Department existingDepartment = new Department();
+                Department existingDepartment = db.Departments.Where(a => a.id == DepartmentId).First();
                 existingDepartment.Department_Name = tb_DepartmentName.Text;
                 existingDepartment.Status = false;
 
