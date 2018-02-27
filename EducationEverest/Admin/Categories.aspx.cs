@@ -15,7 +15,11 @@ public partial class Admin_Categories : System.Web.UI.Page
         {
             ViewState["categories"] = 10;
         }
-        if (!Page.IsPostBack)
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated && (HttpContext.Current.User.IsInRole("Super Admin"))))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
+        else if (!Page.IsPostBack)
         {
             
         }
