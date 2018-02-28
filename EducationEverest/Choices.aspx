@@ -25,7 +25,7 @@
 <div class="col-md-12">
 <div class="form">
      
-             <asp:DropDownList ID="DropDownList1" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Class="combobox col-md-12 select_option" runat="server">
+             <asp:DropDownList ID="DropDownList1" runat="server"  Class="combobox col-md-12 select_option" >
                  <Items>
        <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
    </Items>
@@ -120,7 +120,7 @@
 <div class="col-md-12 text-left">
 <div class="col-md-12">
          <div class="form">
-             <asp:Label ID="Label1" name="University" class="combobox col-md-12 select_option"  runat="server" Text=""></asp:Label>
+             <asp:Label ID="Label1" name="University" class="combobox preference_select_campus selected_Label"  runat="server" Text=""></asp:Label>
           <%--<input type="text" name="University" class="col-md-12 preference_select_option" placeholder="University of Engineering & Technology, Lahore">--%>
    
     </div>
@@ -392,12 +392,12 @@
             // $('#exampleModalCenter').modal('show');
 
             var ddlCustomers1 = $("[id*=DropDownList1]");
-            //ddlCustomers1.on('change', function (e) {
-            //    GetData(e.target.value);
-            
-            //}
+            ddlCustomers1.on('change', function (e) {
+                GetData(e.target.value);
+
+            });
         //console.log(ddlCustomers1.val());
-        GetData(ddlCustomers1.val());
+       // GetData(ddlCustomers1.val());
             //)
             function GetData(id) {
                 $.ajax({
@@ -413,6 +413,11 @@
                 });
             }
             function OnSuccess(r) {
+                var ddl1 = $("[id*=DropDownList1] option:selected");
+                var Label = $("[id*=Label1]")[0];
+                console.log(Label);
+                Label.innerText = ddl1.text();
+                console.log(Label, Label.text, ddl1.text);
                 var ddlCustomers2 = $("[id*=DropDownList2]"); 
                 ddlCustomers2.empty().append('<option selected="selected" value="0">Select Campus</option>');
                 for (var i = 0; i < r.d.length; i++) {
@@ -554,10 +559,10 @@
 
 
             var ddlCustomersuni = $("[id*=DropDownList1]");
-            //ddlCustomersuni.on('change', function (e) {
-            //    GetModalCampusData(e.target.value);
-            //}
-            //)
+            ddlCustomersuni.on('change', function (e) {
+                GetModalCampusData(e.target.value);
+            }
+            )
             GetModalCampusData(ddlCustomersuni.val());
             function GetModalCampusData(id) {
                 $.ajax({

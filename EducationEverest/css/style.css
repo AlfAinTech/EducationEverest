@@ -308,3 +308,12 @@ a:hover,a:focus,a:active,a:visited{
 {
 	margin-bottom: 10px;
 }
+.selected_Label
+{
+    font-family: Raleway Medium;
+    font-size: 18px;
+    line-height: 22px;
+    color: #B3B3B3;
+    color: rgb(179, 179, 179);
+}
+}
