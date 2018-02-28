@@ -53,20 +53,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <%--<div class="col-md-3">
                                         <div class="form-group">
                                             <label class="col-xs-3 control-label">UserID</label>
                                             <div class="col-xs-5">
                                                 <asp:TextBox runat="server" CssClass="form-control" MaxLength="10" ID="tb_UserID" placeholder="User ID"></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>--%>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label class="col-xs-3 control-label">Region</label>
-                                            <div class="col-xs-5">
+                                            <div class="col-xs-12">
+                                            <label class="col-xs-3 control-label">University</label>
+                                            <%--<div class="col-xs-5">
                                                 <asp:TextBox runat="server" CssClass="form-control" ID="tb_Region" placeholder="Region"></asp:TextBox>
-                                            </div>
+                                            </div>--%>
+                                                <asp:DropDownList runat="server" ID="ddl_University" CssClass="form-control">
+
+                                                </asp:DropDownList>
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -85,19 +90,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row" style="margin-top: 25px;">
                                     <div class="col-md-3">
                                         <label for="meeting">Start Date : </label>
                                         <asp:TextBox runat="server" CssClass="form-control" ID="tb_startDate" TextMode="Date" placeholder="Please select startdate"></asp:TextBox>
                                     </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 25px;">
+                                    
                                     <div class="col-md-3">
                                         <label for="meeting">End Date : </label>
                                         <asp:TextBox runat="server" CssClass="form-control" ID="tb_EndDate" TextMode="Date" placeholder="Please select enddate"></asp:TextBox>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         
                                     </div>
                                     <div class="col-md-3">
@@ -127,7 +133,7 @@
                                     </asp:Panel>
                                     <asp:Panel ID="panel3" runat="server" Visible="false">
                                         <li>
-                                            <asp:LinkButton runat="server" ID="btn3" CssClass="tag" CommandArgument="3" OnClick="delete_filter">Region</asp:LinkButton></li>
+                                            <asp:LinkButton runat="server" ID="btn3" CssClass="tag" CommandArgument="3" OnClick="delete_filter">University</asp:LinkButton></li>
                                     </asp:Panel>
                                     <asp:Panel ID="panel4" runat="server" Visible="false">
                                         <li>
@@ -175,7 +181,8 @@
                             </div>
 
                             <div class="col-md-3" style="float: left;">
-                                <asp:LinkButton ID="export_excel" OnClick="export_excel_Click" runat="server"> <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</asp:LinkButton>
+                                
+                                    <%--asp:LinkButton ID="export_excel" OnClick="export_excel_Click" runat="server"> <i class="fa fa-file-excel-o" aria-hidden="true"></i> Export to Excel</asp:LinkButton>--%>
                             </div>
                             <div class="col-md-3" style="float: right;">
                                 No. of Records
@@ -195,9 +202,9 @@
 
                                 <asp:GridView ID="dataTable" style="table-layout:fixed;" OnRowDataBound="dataTable_RowDataBound" OnPageIndexChanging="dataTable_PageIndexChanging" OnRowDeleting="dataTable_RowDeleting" OnRowCommand="dataTable_RowCommand" AutoGenerateColumns="false" AllowPaging="true" PageSize="5" ClientIDMode="Static" CssClass="table table-bordered" runat="server">
                                     <Columns>
-                                        <asp:BoundField DataField="id" HeaderText="ApplicationID" />
-                                        <asp:BoundField DataField="UserID" HeaderText="UserID" />
-                                        <asp:BoundField DataField="Region" HeaderText="Region" />
+                                        <asp:BoundField DataField="UserID" HeaderText="ApplicationID" />
+                                        <%--<asp:BoundField DataField="UserID" HeaderText="UserID" />--%>
+                                        <asp:BoundField DataField="University.Name" HeaderText="University" />
                                         <asp:BoundField DataField="SubmittedOn" HeaderText="Submitted On" />
                                         <asp:TemplateField HeaderText="Current Status">
                                             <ItemTemplate>
@@ -210,38 +217,38 @@
                                                 </asp:DropDownList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Actions">
+                                        <%--<asp:TemplateField HeaderText="Actions">
                                             <ItemTemplate>
                                                 <div class="template_field">
-                                                    <%--<div class="dropdown grid-ddw" style="float: left;">
-                                                        <a id='<%#Eval("id")%>' class="btn btn-dark" style="margin-right: 5px;" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-files-o" aria-hidden="true"></i>
+                                                    <div class="dropdown grid-ddw" style="float: left;">
+                                                        <a id='<%#eval("id")%>' class="btn btn-dark" style="margin-right: 5px;" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-files-o" aria-hidden="true"></i>
                                                             <span class="caret"></span>
                                                         </a>
-                                                        <div class="dropdown-menu" aria-labelledby='<%#Eval("id")%>'>
-                                                            <h5>Uploaded Files</h5>
+                                                        <div class="dropdown-menu" aria-labelledby='<%#eval("id")%>'>
+                                                            <h5>uploaded files</h5>
                                                             <div class="col-md-12">
                                                                 <div class="row">
-                                                                    <asp:Repeater ID="rptr_files" runat="server">
-                                                                        <ItemTemplate>
+                                                                    <asp:repeater id="rptr_files" runat="server">
+                                                                        <itemtemplate>
                                                                             <div class="col-md-3" style="font-size: 11px; padding: 15px;">
-                                                                                <asp:HiddenField ID="file_path" runat="server" Value='<%#Eval("SharedFilePath")%>' />
-                                                                                <asp:HiddenField ID="file_value" runat="server" Value='<%#Eval("FileName")%>' />
-                                                                                <a onclick="window.open('<%#Eval("SharedFilePath")%>', 'mywin','left=20,top=20,width=800,height=600,toolbar=1,resizable=0');" data-fileid='<%#Eval("OneDriveID")%>'>
-                                                                                    <asp:Image ID="file_thumb" Width="100%" ImageUrl="~/Content/img/google_docs.png" runat="server" />
-                                                                                    <%#Eval("FileName")%>
+                                                                                <asp:hiddenfield id="file_path" runat="server" value='<%#eval("sharedfilepath")%>' />
+                                                                                <asp:hiddenfield id="file_value" runat="server" value='<%#eval("filename")%>' />
+                                                                                <a onclick="window.open('<%#eval("sharedfilepath")%>', 'mywin','left=20,top=20,width=800,height=600,toolbar=1,resizable=0');" data-fileid='<%#eval("onedriveid")%>'>
+                                                                                    <asp:image id="file_thumb" width="100%" imageurl="~/content/img/google_docs.png" runat="server" />
+                                                                                    <%#eval("filename")%>
                                                                                 </a>
                                                                             </div>
-                                                                        </ItemTemplate>
-                                                                    </asp:Repeater>
+                                                                        </itemtemplate>
+                                                                    </asp:repeater>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>--%>
+                                                    </div>
                                                     <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" data-fileid='<%#Eval("id")%>' OnClick="LinkButton1_Click" runat="server"><i class="fa fa-download" aria-hidden="true"></i></asp:LinkButton>
                                                     <asp:LinkButton ID="Delete" CssClass="btn btn-danger" OnClientClick="return confirm('Do you really want to delete?');" Text="Delete" CommandName="Delete" CommandArgument='<%#Eval("id")%>' runat="server"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
                                                 </div>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                     </Columns>
                                     <EmptyDataTemplate>
                                         <h4>Nothing found to display</h4>
@@ -258,7 +265,7 @@
                     <%--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>--%>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="export_excel" />
+                    <%--<asp:PostBackTrigger ControlID="export_excel" />--%>
                 </Triggers>
             </asp:UpdatePanel>
         </asp:Panel>

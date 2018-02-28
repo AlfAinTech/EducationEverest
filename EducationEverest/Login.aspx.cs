@@ -29,8 +29,15 @@ public partial class Login : System.Web.UI.Page
                 IdentityHelper.SignIn(manager, user, false);
                 if (Request.QueryString["ReturnUrl"] != null)
                 {
-                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                }
+                    if (HttpContext.Current.User.IsInRole("Super Admin"))
+                    {
+                        IdentityHelper.RedirectToReturnUrl("~/Admin/Applications.aspx", Response);
+                    }
+                    else
+                    {
+                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    }
+                } 
                 else
                 {
                     IdentityHelper.RedirectToReturnUrl("~/Dashboard.aspx", Response);
