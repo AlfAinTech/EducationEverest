@@ -121,6 +121,12 @@ public partial class Personal_Detail : System.Web.UI.Page
             // save the image
             
             db.SaveChanges();
+            //student_name.Value = string.Empty;
+            //father_name.Value = "";
+            //student_cnic.Value = "";
+            //father_cnic.Value = "";
+            //dob.Value = "";
+            //nationality.Value = "";
             
         }
         else
