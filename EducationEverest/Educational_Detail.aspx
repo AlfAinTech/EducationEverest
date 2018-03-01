@@ -1,7 +1,50 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Educational_Detail.aspx.cs" Inherits="Educational_Detail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <header>
+        <script language="javascript" type="text/javascript">
+        function OnMatricMarksChange()
+        {
+            var total = $("[id*=total_marks_matric]")[0];
+            var obtained = $("[id*=obtained_marks_matric]")[0];
+            var percentage = $("[id*=percentage_matric]")[0];
+            var totalValue = 0;
+            var obtainedValue = 0;
+            var percentageValue = 0;
+            if(total != null || total != undefined || total.value != "")
+            {
+                totalValue = parseFloat(total.value);
+            }
+            if (obtained != null || obtained != undefined || obtained.value != "") {
+                obtainedValue = parseFloat(obtained.value);
+            }
+            console.log(obtainedValue, totalValue)
+            percentageValue = (obtainedValue / totalValue) * 100;
+            console.log(percentageValue);
+            percentage.value = percentageValue.toFixed(2).toString();
 
+        }
+        function OnintermediateMarksChange() {
+            var total = $("[id*=total_marks_intermediate]")[0];
+            var obtained = $("[id*=obtained_marks_intermediate]")[0];
+            var percentage = $("[id*=percentage_intermediate]")[0];
+            var totalValue = 0;
+            var obtainedValue = 0;
+            var percentageValue = 0;
+            if (total != null || total != undefined || total.value != "") {
+                totalValue = parseFloat(total.value);
+            }
+            if (obtained != null || obtained != undefined || obtained.value != "") {
+                obtainedValue = parseFloat(obtained.value);
+            }
+            console.log(obtainedValue, totalValue)
+            percentageValue = (obtainedValue / totalValue) * 100;
+            console.log(percentageValue);
+            percentage.value = percentageValue.toFixed(2).toString();
+
+        }
+            </script>
+    </header>
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Educational Details</h3>
       <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur.</p>
@@ -76,14 +119,14 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="total_marks_matric" type="text" name="marks" placeholder="Total Marks" runat="server" />
+     <input class="inputs" id="total_marks_matric" onchange="OnMatricMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="obtained_marks_matric" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
+     <input class="inputs" id="obtained_marks_matric" onchange="OnMatricMarksChange()" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
     </div>
 </div>
 <br/><br/><br/><br/>
@@ -183,14 +226,14 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="total_marks_intermediate" type="text" name="marks" placeholder="Total Marks" runat="server" />
+     <input class="inputs" id="total_marks_intermediate" onchange="OnintermediateMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="obtained_marks_intermediate" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
+     <input class="inputs" id="obtained_marks_intermediate" onchange="OnintermediateMarksChange()" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
     </div>
 </div>
 <br/><br/><br/><br/>

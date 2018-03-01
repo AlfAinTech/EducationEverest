@@ -266,12 +266,14 @@
     <div class="tab-content">
       <div class="tab-pane fade in active" id="apptab">
 
-    <asp:Repeater ID="ChoicesList" runat="server"><ItemTemplate>
+    <asp:Repeater ID="ChoicesList" runat="server" OnItemDataBound="ChoicesList_ItemDataBound"><ItemTemplate>
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left">
           <div class="col-md-1">
-             <img src="images/image.png" ></div>
+            <asp:Image ID="logo" runat="server"  />
+
+          </div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="0"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("Appstatus") %></b></small></div>
@@ -319,12 +321,14 @@
 
 <br/>
 
-<asp:Repeater ID="PaymentsList" runat="server" ><ItemTemplate>
+<asp:Repeater ID="PaymentsList" runat="server" OnItemDataBound="ChoicesList_ItemDataBound" ><ItemTemplate>
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left">
           <div class="col-md-1">
-             <img src="images/image.png" ></div>
+             <asp:Image ID="logo" runat="server"  />
+
+          </div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="0"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("Appstatus") %></b></small></div>
@@ -337,7 +341,7 @@
         </div>
         </div><br/>
         <div class="divider" style="width:900px"></div><br/>
-        <a href="" class="pull-right NormalCharacterStyle18" style="margin-right: 30px;"><b>VIEW</b></a>
+        <a href="" class="pull-right NormalCharac terStyle18" style="margin-right: 30px;"><b>VIEW</b></a>
       </div>
 
       <div id="collapse3" class="panel-collapse collapse">
