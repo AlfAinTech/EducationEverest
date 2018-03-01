@@ -17,19 +17,10 @@ public partial class Test_Result : System.Web.UI.Page
 
     public void panels()
     {
-        List<MakeChoice> mk = db.MakeChoices.Where(x => x.User_ID == current_user).ToList();
+       
+         List<int> Univ =   db.MakeChoices.Where(a=>a.User_ID == current_user).Select(a => a.Uni_ID).ToList();
 
-        List<University> q = mk.Select(m => m.University).Distinct().ToList();
-
-        List<University_Tests> uvtest = new List<University_Tests>();
-
-        List<University_Tests> ut = new List<University_Tests>();
-        foreach (var h in q)
-        {
-            ut = h.University_Tests.ToList();
-            Console.Write(ut);
-        }
-        Repeater1.DataSource = ut;
+        Repeater1.DataSource = db.UniversityProfiles.Where(q => Univ.Contains(q.UniversityID)).ToList();
         Repeater1.DataBind();
     }
 

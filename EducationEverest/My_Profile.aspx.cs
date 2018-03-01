@@ -126,4 +126,19 @@ public partial class My_Profile : System.Web.UI.Page
     {
         Response.Redirect("Personal_Detail.aspx");
     }
+
+    protected void ChoicesList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        
+        if (e.Item.DataItem is Application)
+        {
+            Application dataItem = e.Item.DataItem as Application;
+            UniversityMedia um = db.UniversityMedias.Where(q => q.UniversityId == dataItem.UnivID).FirstOrDefault();
+            if (um != null)
+            {
+                Image im = (Image)e.Item.FindControl("logo");
+                im.ImageUrl = um.Path;
+            }
+        }
+    }
 }

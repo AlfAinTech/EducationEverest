@@ -54,7 +54,7 @@ public partial class Personal_Detail : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!(HttpContext.Current.User.Identity.IsAuthenticated ))
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }

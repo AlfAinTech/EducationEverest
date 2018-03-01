@@ -223,7 +223,15 @@ public partial class Search_Results : System.Web.UI.Page
 
                 Label lblDeadLine = e.Item.FindControl("lblDeadLine") as Label;
                 //lblDeadLine.Text = Convert.ToString(univprofile.deadline);
-                lblDeadLine.Text = univprofile.deadline.Value.ToString("dd-MMM-yyyy");
+                if (univprofile.deadline != null)
+                {
+                    lblDeadLine.Text = univprofile.deadline.Value.ToString("dd-MMM-yyyy");
+                }
+                else
+                {
+                    lblDeadLine.Text = "No Last Date";
+                }
+                
 
                 var campusid = db.Campuses.Where(a => a.Uni_ID == univ.id).Select(ci => new { cid = ci.id }).FirstOrDefault();
                 var departmentdata = db.Departments.Where(a => a.id == campusid.cid).Select(ci => new { departmentname = ci.Department_Name }).Count().ToString();
@@ -241,9 +249,15 @@ public partial class Search_Results : System.Web.UI.Page
                 //coding for rating
                 CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-
-                Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-
+                if (urating.AdminRatings != null)
+                {
+                    Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
+                }
+                else
+                {
+                    //default rating
+                    Rating1.CurrentRating = 2;
+                }
 
                 //show univeristy logo here
                 UniversityMedia um = new UniversityMedia();

@@ -10,14 +10,14 @@
         <asp:Repeater ID="Repeater1" runat="server">
 <ItemTemplate>
       <div class="panel panel-default panel_shadow">
-     <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+     <a id="menu_toggle" href='<%# "#collapse"+Container.ItemIndex %>' data-toggle="collapse" data-parent="#accordion">
       <div class="panel-heading" style="height: 60px">
         <h4 class="panel-title">
-         <div class="NormalCharacterStyle10 margin_top"><asp:Label ID="Label12" runat="server" Text='<%#Eval("Test_Name")%>'></asp:Label><div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
+         <div class="NormalCharacterStyle10 margin_top"><asp:Label ID="Label12" runat="server" Text='<%#Eval("TestName")%>'></asp:Label><div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
         </h4>
 
               </div></a>
-      <div id="collapse2" class="panel-collapse panel-heading collapse">
+      <div id='<%# "collapse"+Container.ItemIndex %>' class="panel-collapse panel-heading collapse">
           <div class="panel_divider"></div>
         <div class="panel-body" >
     <br/>

@@ -260,7 +260,10 @@
 
               </div>
               <br/>
-              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a></div>
+              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
+
+              </div>
 
             </div>
           </div><br/>
@@ -314,7 +317,9 @@
                
             </div>
           </div>  
-<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br/><br/><br/><br/>  </div> 
+<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
+    <br/><br/><br/><br/>  </div> 
 
   </div>
     </div>
