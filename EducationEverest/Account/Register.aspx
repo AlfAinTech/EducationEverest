@@ -263,7 +263,7 @@
 <br/><br/><br/><br/>
 <div class="col-md-12">
     <div class="form">
-        <asp:TextBox ID="phone" runat="server" class="student_reg_inputs"  placeholder="Phone" ></asp:TextBox>
+        <asp:TextBox ID="phone" MaxLength="15" runat="server" class="student_reg_inputs"  placeholder="Phone" ></asp:TextBox>
         
     </div>
     <br />
@@ -278,6 +278,8 @@
     </div>
     <br />
             <asp:RequiredFieldValidator ID="CityRequired" runat="server" ErrorMessage="City is Required" ControlToValidate="city" ForeColor="Red"></asp:RequiredFieldValidator>
+    <br />  <asp:RegularExpressionValidator ID="reCity" runat="server" ControlToValidate="city" 
+    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in City field"  ForeColor="Red"/>
 
 </div>
 

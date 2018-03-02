@@ -123,6 +123,7 @@
 
       <div class="NormalCharacterStyle16" style="margin-top: -20px"><asp:Label ID="lblcount" runat="server" Text="Label" Visible="false"></asp:Label> <asp:Label ID="lblShowSearchCount" runat="server" Text="Label" Visible="false" ></asp:Label> </div>
     <div class="line_3_" style="margin-top: 5px;"></div>
+        <asp:Label ID="lblNoData" runat="server" Text="No Data to load" Visible="false"></asp:Label>
     <br/>
     <%--<div><button type="button" class="btn btn-warning">UET&nbsp;&nbsp;
           <span class="glyphicon glyphicon-remove"></span> 
