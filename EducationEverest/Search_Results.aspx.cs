@@ -158,6 +158,15 @@ public partial class Search_Results : System.Web.UI.Page
                                                                                           /*   }*/                                                        //coding for rating
                         }
                     }
+                    if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
+                    {
+                        string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId ==uniid).First().Path;
+                        if (logoPath2 != null)
+                        {
+                            //Image imgpd2 = e.Item.FindControl("Image2") as Image;
+                            Image2.ImageUrl = logoPath2;
+                        }
+                    }
                 }
             }
 
@@ -277,12 +286,17 @@ public partial class Search_Results : System.Web.UI.Page
             //if (db.UniversityProfiles.Any(x => x.UniversityID == univ.id))
             //{
                 var univprofile = db.UniversityProfiles.Where(x => x.UniversityID == univ.id).Select(ad => new { Univaddress = ad.Address, deadline = ad.LastDate, admissionopen = ad.AdmissionOpen }).FirstOrDefault();
+            if (univprofile != null)
+            {
                 if (univprofile.Univaddress != null)
                 {
                     Label lblUnivAddress = e.Item.FindControl("lblUnivAddress") as Label;
                     lblUnivAddress.Text = univprofile.Univaddress;
                 }
+
                 else
+
+
                 {
                     Label lblUnivAddress = e.Item.FindControl("lblUnivAddress") as Label;
                     lblUnivAddress.Text = "Address Not Available";
@@ -320,54 +334,56 @@ public partial class Search_Results : System.Web.UI.Page
                 {
                     lblDeadLine.Text = "No Last Date";
                 }
-
+            }
                 if (db.Campuses.Any(x => x.Uni_ID == univ.id))
                 {
                     var campusid = db.Campuses.Where(a => a.Uni_ID == univ.id).Select(ci => new { cid = ci.id }).FirstOrDefault();
 
-                    if (db.Departments.Any(x => x.id == campusid.cid)){
-                        var departmentdata = db.Departments.Where(a => a.id == campusid.cid).Select(ci => new { departmentname = ci.Department_Name }).Count().ToString();
+                    if (db.Departments.Any(x => x.CampusID == campusid.cid)){
+                        var departmentdata = db.Departments.Where(a => a.CampusID == campusid.cid).Select(ci => new { departmentname = ci.Department_Name,deptid=ci.id }).Count().ToString();
 
-                        if (db.Programms.Any(x => x.id == x.Department_ID)){
-                            var programdata = db.Programms.Where(a => a.id == a.Department_ID).Select(ci => new { programname = ci.Program_Name }).Count().ToString();
+                    var selectdept = db.Departments.Where(a => a.CampusID == campusid.cid).Select(ci => new { cid = ci.id }).FirstOrDefault();
+                    if (db.Programms.Any(x => x.Department_ID==selectdept.cid))
+                    {
+                        var programdata = db.Programms.Where(a => a.Department_ID == selectdept.cid).Select(ci => new { programname = ci.Program_Name }).Count().ToString();
 
-                            if (departmentdata != null)
-                            {
-                                Label lblCountDepartments = e.Item.FindControl("lblCountDepartments") as Label;
-                                lblCountDepartments.Text = departmentdata;
-                            }
-                            else
-                            {
-                                Label lblCountDepartments = e.Item.FindControl("lblCountDepartments") as Label;
-                                lblCountDepartments.Text = Convert.ToString(0);
-                            }
+                        if (departmentdata != null)
+                        {
+                            Label lblCountDepartments = e.Item.FindControl("lblCountDepartments") as Label;
+                            lblCountDepartments.Text = departmentdata;
+                        }
+                        else
+                        {
+                            Label lblCountDepartments = e.Item.FindControl("lblCountDepartments") as Label;
+                            lblCountDepartments.Text = Convert.ToString(0);
+                        }
 
-                            if (programdata != null)
-                            {
-                                Label lblCountDegreePrograms = e.Item.FindControl("lblCountDegreePrograms") as Label;
-                                lblCountDegreePrograms.Text = programdata;
+                        if (programdata != null)
+                        {
+                            Label lblCountDegreePrograms = e.Item.FindControl("lblCountDegreePrograms") as Label;
+                            lblCountDegreePrograms.Text = programdata;
 
-                            }
-                            else
-                            {
-                                Label lblCountDegreePrograms = e.Item.FindControl("lblCountDegreePrograms") as Label;
-                                lblCountDegreePrograms.Text = Convert.ToString(0);
-                            }
+                        }
+                        else
+                        {
+                            Label lblCountDegreePrograms = e.Item.FindControl("lblCountDegreePrograms") as Label;
+                            lblCountDegreePrograms.Text = Convert.ToString(0);
+                        }
+                    }
+                        //coding for rating
 
-                            //coding for rating
+                        CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-                            CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
-
-                            if (urating.AdminRatings != null)
-                            {
-                                Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-                            }
-                            else
-                            {
-                                //default rating
-                                Rating1.CurrentRating = 2;
-                            }
-
+                        if (urating.AdminRatings != null)
+                        {
+                            Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
+                        }
+                        else
+                        {
+                            //default rating
+                            Rating1.CurrentRating = 2;
+                        }
+                    
                             //show univeristy logo here
                             UniversityMedia um = new UniversityMedia();
                             if (db.UniversityMedias.Any(x => x.UniversityId == univ.id))
@@ -407,7 +423,7 @@ public partial class Search_Results : System.Web.UI.Page
 
             //}
         }
-    }
+    
 
 
 
@@ -441,15 +457,26 @@ public partial class Search_Results : System.Web.UI.Page
                 lbl_IsAdmissionOpen2.Text = "<font color='red'>Admission Closed</font>";
             }
             //code for rating
-            var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
-            CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
+            if (db.Campuses.Any(x => x.Uni_ID == universityid))
+            {
+                var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
+                CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
+                if (urating != null)
+                {
+                    Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
+                }
 
-            Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-
-
-
-
+            }
+            if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
+            {
+                string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
+                if (logoPath2 != null)
+                {
+                    //Image imgpd2 = e.Item.FindControl("Image2") as Image;
+                    Image2.ImageUrl = logoPath2;
+                }
+            }
             //var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
             //CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 

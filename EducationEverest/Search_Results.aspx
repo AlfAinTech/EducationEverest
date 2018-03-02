@@ -227,7 +227,8 @@
          <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" style="margin-top: -20px;height: 100%">
          <div class="">
           <div class="col-md-2">
-              <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">
+              <%--<img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">--%>
+              <asp:Image ID="Image2" runat="server" />
             </div>
             <div class="col-md-10 text-left" style="margin-top: 10px">
               <div class="NormalCharacterStyle215"><asp:Label ID="lblUniversityName2" runat="server" Text="Label"></asp:Label></div>
