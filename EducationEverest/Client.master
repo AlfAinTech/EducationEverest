@@ -20,6 +20,7 @@
     <script type="text/javascript" src="Content/js/myScript.js"></script>
     <%--<link rel="Stylesheet" type="text/css" href="Content/css/uploadify.css" />--%>
     <link rel="Stylesheet" type="text/css" href="Content/css/MyStyle.css" />
+    <link href="css/style.css" rel="stylesheet" />
     <%--<script type="text/javascript" src="Content/js/jquery.uploadify.js"></script>--%>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
      <script src='<%= ResolveUrl("~/Content/js/jquery.quicksearch.js") %>'></script>

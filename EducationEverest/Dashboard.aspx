@@ -224,7 +224,7 @@
       <div class="panel-heading card_bg">
         <div class="row text-left">
           <div class="col-md-1">
-             <img src="images/image.png" ></div>
+             <asp:Image ID="logo" runat="server"  /></div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class="rejected_text pull-right"></span><b>Pending</b></small></div>

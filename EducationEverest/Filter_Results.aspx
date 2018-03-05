@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Search_Results.aspx.cs"  EnableEventValidation="false" Inherits="Search_Results" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Filter_Results.aspx.cs" Inherits="Filter_Results" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <!DOCTYPE html>
@@ -105,7 +106,113 @@
 
 
 <%--Filter Starts here--%>
-        
+        <div class="col-md-12 filter_results_border" style="background: white">
+  
+                        <div class="filter_results_callout bottom text-left">
+          <div class="col-md-12">
+<br/>
+            <div class="NormalCharacterStyle12">Filter Universities</div>
+            <br/>
+            <div class="filter_divider" style="width: 1290px"></div>
+
+            <br/>
+
+            <div class="row col-md-12">
+    <div class="col-md-2">
+
+         <div class="form">
+
+
+
+            
+                                                <asp:DropDownList ID="ddlLocation" CssClass="form-control" runat="server">
+                                                    <asp:ListItem Text="Select location"></asp:ListItem>
+                                                    <asp:ListItem Text="Lahore" Value="Received"></asp:ListItem>
+                                                    <asp:ListItem Text="Karachi" Value="Accepted"></asp:ListItem>
+                                                    <asp:ListItem Text="Islamabad" Value="Rejected"></asp:ListItem>
+                                                    
+                                                </asp:DropDownList>
+
+
+     <%--<select class="combobox form-control filter_results_option">
+          <option selected="selected">Location</option>
+
+  <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True" >
+       <asp:ListItem Text="Select location" style="display:none"></asp:ListItem>
+      
+        </asp:DropDownList>
+</select>--%>
+    </div></div>
+ <%--<div class="col-md-2">
+         <div class="form">
+     <select class="combobox form-control filter_results_option">
+          <option selected="selected">Degree/Courses</option>
+  <asp:DropDownList ID="ddlProgram" runat="server" AutoPostBack="True" >
+      <asp:ListItem Text="Select degree" style="display:none"></asp:ListItem>
+        </asp:DropDownList>
+</select>
+
+</div></div>--%>
+ <div class="col-md-2">
+         <div class="form">
+     <select class="combobox form-control filter_results_option">
+         <option selected="selected">University Type</option>
+  <asp:DropDownList ID="ddlUniversityType" runat="server" AutoPostBack="True" >
+      <asp:ListItem Text="Select university" style="display:none"></asp:ListItem>
+        </asp:DropDownList>
+</select>
+
+</div></div>
+<div class="col-md-2">
+
+         <div class="form">
+     <select class="combobox form-control filter_results_option">
+          <option selected="selected">Admission Status</option>
+  <asp:DropDownList ID="ddlAdmissionStatus" runat="server" AutoPostBack="True" >
+      <asp:ListItem Text="Select admission" style="display:none"></asp:ListItem>
+        </asp:DropDownList>
+</select>
+    </div></div>
+</div>
+
+<br/><br/>
+            <div class="filter_divider" style="margin-top: 10px;width: 1290px;"></div>
+
+            <div class="col-md-12" style="margin-top: 20px;">
+              <div class="col-md-2">
+                <div class="NormalCharacterStyle18">Fee Range</div>
+              </div>
+              <div class="col-md-2">
+                <div class="NormalCharacterStyle18">HEC Ranking</div>
+              </div>
+
+            </div>
+
+            <div class="col-md-12" style="margin-top: 5px;">
+              <div class="col-md-2">
+                <div><img src="images/range.png">
+  <p>25,000 - 80,000 <span id="demo"></span></p>
+</div>
+              </div>
+              <div class="col-md-2">
+                 <div class="form">
+     <select class="combobox form-control filter_results_option">
+  <option selected="selected">Ranking Status</option>
+  <asp:DropDownList ID="ddlHECRanking" runat="server" AutoPostBack="True" >
+      <asp:ListItem Text="select ranking" style="display:none"></asp:ListItem>
+        </asp:DropDownList>
+</select>
+
+</div>
+              </div>
+            </div>
+
+<br/>
+
+</div>
+
+        </div>
+ </div>
 
 
 <%--Filter Ends here--%>
@@ -123,7 +230,6 @@
 
       <div class="NormalCharacterStyle16" style="margin-top: -20px"><asp:Label ID="lblcount" runat="server" Text="Label" Visible="false"></asp:Label> <asp:Label ID="lblShowSearchCount" runat="server" Text="Label" Visible="false" ></asp:Label> </div>
     <div class="line_3_" style="margin-top: 5px;"></div>
-        <asp:Label ID="lblNoData" runat="server" Text="No Data to load" Visible="false"></asp:Label>
     <br/>
     <%--<div><button type="button" class="btn btn-warning">UET&nbsp;&nbsp;
           <span class="glyphicon glyphicon-remove"></span> 
@@ -133,9 +239,39 @@
           <span class="glyphicon glyphicon-remove"></span> 
         </button></div>--%>
 
-        <%--panels start here--%>
+         <%--panels start here--%>
 
-        
+        <div class="row">
+                            <div class="col-md-10" style="padding: 0; padding-top: 5px;">
+                                <ul class="tags">
+                                    <asp:Panel ID="panel1" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton ID="btn1" CssClass="tag" data-role="tagsinput" runat="server" CommandArgument="1" OnClick="delete_filter">Location</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel2" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton ID="btn2" runat="server" CssClass="tag" CommandArgument="2" OnClick="delete_filter">Degree/Course</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel3" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn3" CssClass="tag" CommandArgument="3" OnClick="delete_filter">University Type</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel4" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn4" CssClass="tag" CommandArgument="4" OnClick="delete_filter">Admission Status</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel5" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn5" CssClass="tag" CommandArgument="5" OnClick="delete_filter">Ranking Status</asp:LinkButton></li>
+                                    </asp:Panel>
+                                   
+
+                                </ul>
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Button Text="Reset" CssClass="btn btn-dark form-control" Visible="false" ID="btn_reset" runat="server" OnClick="btn_reset_Click" />
+                            </div>
+                        </div>
 
         <%--panels end here--%>
 
@@ -227,8 +363,7 @@
          <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" style="margin-top: -20px;height: 100%">
          <div class="">
           <div class="col-md-2">
-              <%--<img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">--%>
-              <asp:Image ID="Image2" runat="server" />
+              <img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">
             </div>
             <div class="col-md-10 text-left" style="margin-top: 10px">
               <div class="NormalCharacterStyle215"><asp:Label ID="lblUniversityName2" runat="server" Text="Label"></asp:Label></div>
@@ -262,10 +397,7 @@
 
               </div>
               <br/>
-              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
-
-              </div>
+              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a></div>
 
             </div>
           </div><br/>
@@ -319,9 +451,7 @@
                
             </div>
           </div>  
-<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
-    <br/><br/><br/><br/>  </div> 
+<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br/><br/><br/><br/>  </div> 
 
   </div>
     </div>

@@ -25,7 +25,7 @@
 <div class="col-md-12">
 <div class="form">
      
-             <asp:DropDownList ID="DropDownList1" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" Class="combobox col-md-12 select_option" runat="server">
+             <asp:DropDownList ID="DropDownList1" runat="server"  Class="combobox col-md-12 select_option" >
                  <Items>
        <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
    </Items>
@@ -120,7 +120,7 @@
 <div class="col-md-12 text-left">
 <div class="col-md-12">
          <div class="form">
-             <asp:Label ID="Label1" name="University" class="combobox col-md-12 select_option"  runat="server" Text=""></asp:Label>
+             <asp:Label ID="Label1" name="University" class="combobox preference_select_campus selected_Label"  runat="server" Text=""></asp:Label>
           <%--<input type="text" name="University" class="col-md-12 preference_select_option" placeholder="University of Engineering & Technology, Lahore">--%>
    
     </div>
@@ -213,43 +213,45 @@
 <button type="button" id="button_modal" class=" btn add_button_1_ pull-right" ><span class="NormalCharacterStyle">ADD</span></button>
 
 <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
-          <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>
+          <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
 
-     <table class="css-serial" style="display:inline-block">
-                  <thead>
-    <tr>
-        <th>#</th>
-        <th>Degree Program</th>
-         <th>Campus</th>
-          <th>Catagory/Semester</th>
-           <th></th>
+     <table class="table-fixed text-left css-serial"  >
+                <tbody id="GridPreferences">
+    <tr class="col-md-12">
+         <td class="col-md-1"><span style="">#</span></td>
+             <td class="col-md-3"><b>Degree Program</b></td>
+             <td class="col-md-2"><b>Campus</b></td>
+             <td class="col-md-4"><b>Catagory/Semester</b></td>
+             <td class="col-md-2"><span style="color: transparent;"></span></td>
+              
+     
     </tr>
-                      </thead>
+          </tbody>            
                    
           <script id="preferences_template" type="text/x-jquery-tmpl">
               
              
                
-    <tr class="text-left">
-        <td></td>
-        <td><input value='${departmentName}' disabled="disabled" id='departmentName${id}' style="background-color:#e6e6e6;border:0px"/></td>
-              <td><input value='${campusName}' disabled="disabled" id='campusName{id}' style="background-color:#e6e6e6;border:0px"/></td>
-        <td><input value='${catagory}' disabled="disabled" id='catagory{id}' style="background-color:#e6e6e6;border:0px"/></td>
-              <td>
+    <tr class="col-md-12">
+        <td class="col-md-1"></td>
+        <td class="col-md-3">${departmentName}</td>
+              <td class="col-md-2">${campusName}</td>
+        <td class="col-md-4">${catagory}</td>
+              <td class="col-md-2">
                   <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
                   <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <a id='delete${id}'   onclick="return deletePreferences('${id}')"><span class="delete_icon"></span></a></td>
+                 
+                  <a id='delete${id}'   onclick="return deletePreferences('${id}')"><img src="images/delete_icon.png"></a></td>
 
     </tr>
                 
           </script>
                
 
-              <tbody  id="GridPreferences" style="overflow-y:scroll">
-    </tbody>
+             <%-- <tbody  id="GridPreferences">
+    </tbody>--%>
              </table>           
-              </ContentTemplate></asp:UpdatePanel>
+              <%--</ContentTemplate></asp:UpdatePanel>--%>
           <%--<asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
               <%--<Columns>
 
@@ -320,12 +322,13 @@
       
 
 
-        <asp:Repeater ID="ChoicesList" runat="server"><ItemTemplate>
+        <asp:Repeater ID="ChoicesList" runat="server" OnItemDataBound="ChoicesList_ItemDataBound"><ItemTemplate>
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left">
           <div class="col-md-1">
-             <img src="images/image.png" ></div>
+              <asp:Image ID="logo" runat="server"  />
+             </div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="0"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("Appstatus") %></b></small></div>
@@ -389,12 +392,12 @@
             // $('#exampleModalCenter').modal('show');
 
             var ddlCustomers1 = $("[id*=DropDownList1]");
-            //ddlCustomers1.on('change', function (e) {
-            //    GetData(e.target.value);
-            
-            //}
+            ddlCustomers1.on('change', function (e) {
+                GetData(e.target.value);
+
+            });
         //console.log(ddlCustomers1.val());
-        GetData(ddlCustomers1.val());
+       // GetData(ddlCustomers1.val());
             //)
             function GetData(id) {
                 $.ajax({
@@ -410,6 +413,11 @@
                 });
             }
             function OnSuccess(r) {
+                var ddl1 = $("[id*=DropDownList1] option:selected");
+                var Label = $("[id*=Label1]")[0];
+                console.log(Label);
+                Label.innerText = ddl1.text();
+                console.log(Label, Label.text, ddl1.text);
                 var ddlCustomers2 = $("[id*=DropDownList2]"); 
                 ddlCustomers2.empty().append('<option selected="selected" value="0">Select Campus</option>');
                 for (var i = 0; i < r.d.length; i++) {
@@ -551,10 +559,10 @@
 
 
             var ddlCustomersuni = $("[id*=DropDownList1]");
-            //ddlCustomersuni.on('change', function (e) {
-            //    GetModalCampusData(e.target.value);
-            //}
-            //)
+            ddlCustomersuni.on('change', function (e) {
+                GetModalCampusData(e.target.value);
+            }
+            )
             GetModalCampusData(ddlCustomersuni.val());
             function GetModalCampusData(id) {
                 $.ajax({
@@ -737,7 +745,7 @@
             var data = response.d;
             data1 =  JSON.parse(data);
             console.log(data1);
-            $("#GridPreferences")[0].innerHTML = "";
+            $("#GridPreferences").find("tr:gt(0)").remove();
             $("#preferences_template").tmpl(data1).appendTo("#GridPreferences");
             // $("GridPreferences")
         }
