@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class Upload_Documents : System.Web.UI.Page
@@ -12,6 +13,11 @@ public partial class Upload_Documents : System.Web.UI.Page
     string current_user = HttpContext.Current.User.Identity.GetUserId();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
+
         if (!Page.IsPostBack)
         { bindData();
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
@@ -252,6 +258,17 @@ public partial class Upload_Documents : System.Web.UI.Page
 
     protected void SubmitToNext_Click(object sender, EventArgs e)
     {
+        HtmlImage imgpd = Master.FindControl("imgTickDocuments") as HtmlImage;
+        if (imgpd != null)
+
+        {
+
+            imgpd.Visible = true;
+            Session["IMGUD"] = "imgud";
+
+        }
+
+
         Response.Redirect("~/Payments.aspx");
     }
 }

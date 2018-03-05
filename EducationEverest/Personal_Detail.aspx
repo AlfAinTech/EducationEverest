@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Personal_Detail.aspx.cs" Inherits="Personal_Detail" %>
-
+<%@ MasterType virtualpath="~/Client.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <script type="text/javascript">
@@ -72,7 +72,12 @@
 
 </div>
  <div class="col-md-2 pull-right">
-     <asp:ImageButton ImageUrl="~/images/fileUpload.png" runat="server" ID="ibtn_FileUpload" OnClientClick="browse()" />
+     <%--<asp:ImageButton runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" OnClientClick="browse()"  />--%>
+
+
+     
+    <asp:Image runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" style="cursor:pointer" onclick="browse()"/>
+ 
  <%--<a href="" onclick="browse()" class="upload_photo"> <div class="well text-center" style="width: 150px;height: 180px">
 <div class="upload_icon text-center"></div><br/><br/><br/><br/>
 <div class="upload_icon_text"> Upload</div>
@@ -94,7 +99,7 @@
       <a id="menu_toggle" href="#contactinfo" data-toggle="collapse" data-parent="#accordion">
       <div class="panel-heading" style="height: 60px">
         <h4 class="panel-title">
-         <div class="NormalCharacterStyle2 margin_top">Contact Information<div class="icon-arrow-right pull-right"><span class="check_icon"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
+         <div class="NormalCharacterStyle2 margin_top">Contact Information<div class="icon-arrow-right pull-right"><span class="check_icon" style="visibility:hidden"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
         </h4>
 
               </div></a>

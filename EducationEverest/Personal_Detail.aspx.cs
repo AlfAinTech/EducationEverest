@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Drawing;
 using ImageProcessor;
+using System.Web.UI.HtmlControls;
 
 public partial class Personal_Detail : System.Web.UI.Page
 {
@@ -53,14 +54,19 @@ public partial class Personal_Detail : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated ))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
         if (!IsPostBack)
         {
             populate_personal_details();
             populate_contact_information();
         }
-        if (IsPostBack && FileUpload1.PostedFile != null)
+        if (FileUpload1.PostedFile != null)
         {
-           
+         
+            
             if (FileUpload1.PostedFile.FileName.Length > 0)
             {
                 FileUpload1.SaveAs(Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName);
@@ -115,12 +121,13 @@ public partial class Personal_Detail : System.Web.UI.Page
             // save the image
             
             db.SaveChanges();
+            
         }
         else
         {
             Personal_Details pds = new Personal_Details
             {
-                
+
                 Name = student_name.Value,
                 Father_Name = father_name.Value,
                 CNIC = student_cnic.Value,
@@ -178,6 +185,19 @@ public partial class Personal_Detail : System.Web.UI.Page
             x.Zip = zip.Value;
             db.SaveChanges();
 
+            HtmlImage imgpd = Master.FindControl("imgTickPersonalDetails") as HtmlImage;
+
+
+            if (imgpd != null)
+
+            {
+
+                imgpd.Visible = true;
+                Session["IMGPD"] = "imgpd";
+                //Response.Redirect("Choices.aspx?imgpd=" + imgpd);
+            }
+
+
         }
         else
         {
@@ -199,8 +219,9 @@ public partial class Personal_Detail : System.Web.UI.Page
 
 
         //button next click from Personal Details to Choice
+       
         Response.Redirect("Choices.aspx");
-
+        
     }
 
 

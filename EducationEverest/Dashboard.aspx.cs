@@ -18,6 +18,11 @@ public partial class Dashboard : System.Web.UI.Page
     {
         if(!Page.IsPostBack)
         {
+            if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+            {
+                Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+            }
+
             string UserID = HttpContext.Current.User.Identity.GetUserId();
             BindData(UserID);
         }

@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using System.Web.Script.Serialization;
 using System.Data.Entity.Infrastructure;
+using System.Web.UI.HtmlControls;
 
 public partial class Choices : System.Web.UI.Page
 {
@@ -61,6 +62,10 @@ public partial class Choices : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
         if (!IsPostBack)
         {
             populate_uni();
@@ -326,7 +331,11 @@ public partial class Choices : System.Web.UI.Page
                                                 CurrentStatus = "0"
                                             };
                                             dbcontext.Applications.Add(app);
-                                            dbcontext.SaveChanges();
+                                            try { dbcontext.SaveChanges(); }
+                                            catch(Exception e)
+                                            {
+                                               
+                                            }
                                         }
                                     }
                                     else
@@ -416,7 +425,7 @@ public partial class Choices : System.Web.UI.Page
     {
 
         //ddlvalue = DropDownList1.SelectedItem.Value;
-
+        Label1.Text = DropDownList1.SelectedItem.Text;
 
         // Session["ddlsessionvalue"] = DropDownList1.SelectedValue;
 
@@ -425,6 +434,18 @@ public partial class Choices : System.Web.UI.Page
     //button next click from make choice to educational details
     protected void next_click(object sender, EventArgs e)
     {
+        //HtmlImage imgc = Master.FindControl("imgTickChoices") as HtmlImage;
+
+
+        //if (imgc != null)
+
+        //{
+
+        //    imgc.Visible = true;
+        //    Session["IMGC"] = "imgc";
+            
+        //}
+
 
         Response.Redirect("Educational_Detail.aspx");
     }

@@ -216,28 +216,59 @@ a:hover,a:focus,a:active,a:visited{
 	list-style: none;
 	text-decoration: none;
 }
-table {
+.table-fixed {
     border-collapse: collapse;
-  color : #808080;
+  color : red;
   color : rgb(128, 128, 128);
+  width: 100%;
 }
-table td, table th {
+.table-fixed th{
     border: 1px solid #808080;
     border-color: rgb(128, 128, 128);
-    padding: 30px;
+    padding: 10px;
 }
-
-table tr:last-child td {
+.table-fixed td{
+    border: 1px solid #808080;
+    border-color: rgb(128, 128, 128);
+    padding: 10px;
+}
+.table-fixed tr:last-child td {
     border-bottom: 0;
     
 }
-table tr td:first-child,
-table tr th:first-child {
+.table-fixed th {
+     border-left: 0;
+     
+    
+}
+.table-fixed td {
+    border-bottom: 0;
+     border-left: 0;
+
+    
+}
+.table-fixed tr td:first-child,
+.table-fixed tr th:first-child {
     border-left: 0;
 }
-table tr td:last-child,
-table tr th:last-child {
+.table-fixed tr td:last-child,
+.table-fixed tr th:last-child {
     border-right: 0;
+}
+.table-fixed thead {
+  width: 100%;
+}
+.table-fixed tbody {
+  height: 180px;
+  overflow-y: auto;
+    overflow-x: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
 }
 .panel-heading
 {

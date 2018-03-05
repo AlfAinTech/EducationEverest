@@ -19,7 +19,10 @@ public partial class My_Profile : System.Web.UI.Page
     string current_user = HttpContext.Current.User.Identity.GetUserId();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
 
         if (current_user == null)
         {
@@ -43,7 +46,10 @@ public partial class My_Profile : System.Web.UI.Page
        
         //show user first name
         lblLoggedUser.Text = logged.fn;
-
+        ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
+        ChoicesList.DataBind();
+        PaymentsList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
+        PaymentsList.DataBind();
 
     }
     protected void logout_Click(object sender, EventArgs e)
