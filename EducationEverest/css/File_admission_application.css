@@ -1116,8 +1116,8 @@ div.callout {
 }
 
 .filter_results_details_callout.right::before {
-	left: -20px;
-	top: 15%;
+	/*left: -20px;
+	top: 15%;*/
 	border-right: 10px solid white;
 }
 

@@ -172,12 +172,12 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" maxlength="5" id="percentage_matric" type="text" name="percentage" placeholder="Percentage" runat="server" />
-            <br />  <asp:RequiredFieldValidator ID="rvPercetageMatric" runat="server" ErrorMessage="Percentage Marks required" ValidationGroup="vgEducationalDetails" ControlToValidate="percentage_matric" ForeColor="Red" ></asp:RequiredFieldValidator>
+     <input class="inputs" maxlength="5" id="percentage_matric" type="text" name="percentage" placeholder="Percentage" runat="server" readonly="true" />
+            <br />  <asp:RequiredFieldValidator ID="rvPercetageMatric" runat="server" ErrorMessage="Percentage will be calculated automatically" ValidationGroup="vgEducationalDetails" ControlToValidate="percentage_matric" ForeColor="Red" ></asp:RequiredFieldValidator>
 <br /><asp:RegularExpressionValidator ID="rePercentageMatric" ControlToValidate="percentage_matric" ValidationGroup="vgEducationalDetails"
                  
-     runat="server" ValidationExpression="\d+" ForeColor="Red"
-                        ErrorMessage="Please enter only numbers">
+     runat="server" ValidationExpression="^[1-9]\d*(\.\d+)?$" ForeColor="Red"
+                        ErrorMessage="numbers/decimals">
                     </asp:RegularExpressionValidator>
 
     </div>
@@ -310,11 +310,11 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" maxlength="5" id="percentage_intermediate" type="text" name="percentage" placeholder="Percentage" runat="server" />
-                    <br />  <asp:RequiredFieldValidator ID="rvPercentageIntermediate" runat="server" ErrorMessage="Percentage Marks required" ValidationGroup="vgEducationalDetails" ControlToValidate="percentage_intermediate" ForeColor="Red" ></asp:RequiredFieldValidator>
+     <input class="inputs" maxlength="5" id="percentage_intermediate" type="text" name="percentage" placeholder="Percentage" runat="server" readonly="true" />
+                    <br />  <asp:RequiredFieldValidator ID="rvPercentageIntermediate" runat="server" ErrorMessage="Percentage will be calculated automatically" ValidationGroup="vgEducationalDetails" ControlToValidate="percentage_intermediate" ForeColor="Red" ></asp:RequiredFieldValidator>
 <br /><asp:RegularExpressionValidator ID="rePercentageIntermediate" ControlToValidate="obtained_marks_intermediate" ValidationGroup="vgEducationalDetails"
-                    runat="server" ValidationExpression="\d+" ForeColor="Red"
-                        ErrorMessage="Please enter only numbers ">
+                    runat="server" ValidationExpression="^[1-9]\d*(\.\d+)?$" ForeColor="Red"
+                        ErrorMessage="numbers/decimals ">
                     </asp:RegularExpressionValidator>
 
     </div>

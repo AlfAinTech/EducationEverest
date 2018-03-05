@@ -370,8 +370,9 @@ public partial class Search_Results : System.Web.UI.Page
                             lblCountDegreePrograms.Text = Convert.ToString(0);
                         }
                     }
-                        //coding for rating
-
+                    //coding for rating
+                    if (db.CampusProfiles.Any(x => x.CampusID == campusid.cid))
+                    {
                         CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
                         if (urating.AdminRatings != null)
@@ -383,7 +384,7 @@ public partial class Search_Results : System.Web.UI.Page
                             //default rating
                             Rating1.CurrentRating = 2;
                         }
-                    
+                    }
                             //show univeristy logo here
                             UniversityMedia um = new UniversityMedia();
                             if (db.UniversityMedias.Any(x => x.UniversityId == univ.id))

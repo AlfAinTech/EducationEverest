@@ -3030,6 +3030,22 @@ select[multiple].input-lg {
   -ms-user-select: none;
   user-select: none;
 }
+.btn-dark {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.btn-dark:hover {
+  color: rgba(0, 0, 0, 0.075);
+  background-color: #777777;
+  border-color: #1d2124;
+}
+
+.btn-dark:focus, .btn-dark.focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.075);
+}
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
