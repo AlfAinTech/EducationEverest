@@ -14,7 +14,11 @@ public partial class Admin_Programs : System.Web.UI.Page
         {
             ViewState["Programs"] = 10;
         }
-        if (!Page.IsPostBack)
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated && (HttpContext.Current.User.IsInRole("Super Admin"))))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
+        else if (!Page.IsPostBack)
         {
             populateProgramsData();
         }

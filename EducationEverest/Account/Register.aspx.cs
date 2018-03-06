@@ -54,7 +54,7 @@ public partial class Account_Register : Page
 
                     
                     ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' Email sent ');", true);
-                    Response.Redirect("~/Dashboard.aspx");
+                    Response.Redirect("~/Login.aspx");
                 }
             }
         }

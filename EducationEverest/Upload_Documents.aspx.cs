@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class Upload_Documents : System.Web.UI.Page
@@ -12,6 +13,11 @@ public partial class Upload_Documents : System.Web.UI.Page
     string current_user = HttpContext.Current.User.Identity.GetUserId();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
+
         if (!Page.IsPostBack)
         { bindData();
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
@@ -33,6 +39,8 @@ public partial class Upload_Documents : System.Web.UI.Page
         List<int> universities = db.MakeChoices.Select(q => q.Uni_ID).ToList();
         TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         TestResultDocList.DataBind();
+        AOLevelCertiList.DataSource = db.Documents.Where(q => q.documentType == "AOLevelCerti").ToList();
+        AOLevelCertiList.DataBind();
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
     }
@@ -92,7 +100,11 @@ public partial class Upload_Documents : System.Web.UI.Page
                 documentSizeInKB = FileUploadStudentCNIC.PostedFile.ContentLength / 1000,
             };
             db.Documents.Add(d);
-            db.SaveChanges();
+            try { db.SaveChanges(); }
+            catch (Exception ex)
+            {
+
+            }
         }
         bindData();
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
@@ -252,6 +264,38 @@ public partial class Upload_Documents : System.Web.UI.Page
 
     protected void SubmitToNext_Click(object sender, EventArgs e)
     {
+        HtmlImage imgpd = Master.FindControl("imgTickDocuments") as HtmlImage;
+        if (imgpd != null)
+
+        {
+
+            imgpd.Visible = true;
+            Session["IMGUD"] = "imgud";
+
+        }
+
+
         Response.Redirect("~/Payments.aspx");
+    }
+
+    protected void AOLevelCerti_Click(object sender, EventArgs e)
+    {
+        string path = Server.MapPath("~/UserDocuments/EducationalDocuments/" + FileUploadAOLevelCerti.PostedFile.FileName);
+        FileUploadAOLevelCerti.PostedFile.SaveAs(path);
+        Personal_Details pd = db.Personal_Details.Where(q => q.User_ID == current_user).FirstOrDefault();
+        if (pd != null)
+        {
+            Document d = new Document
+            {
+                documentName = FileUploadAOLevelCerti.PostedFile.FileName,
+                documentType = "AOLevelCerti",
+                userDetailID = pd.id,
+                documentURL = path,
+                documentSizeInKB = FileUploadAOLevelCerti.PostedFile.ContentLength / 1000,
+            };
+            db.Documents.Add(d);
+            db.SaveChanges();
+        }
+        bindData(); ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenEducationPanel();", true);
     }
 }

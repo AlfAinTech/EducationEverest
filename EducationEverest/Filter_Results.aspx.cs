@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-
-public partial class Search_Results : System.Web.UI.Page
+public partial class Filter_Results : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
     public void show()
@@ -16,8 +13,31 @@ public partial class Search_Results : System.Web.UI.Page
 
 
 
-        var q = from University in db.Universities
-                select University;
+
+
+
+        //var q = from University in db.Universities
+        //        select University;
+        //rptSearch.DataSource = q.ToList();
+        //rptSearch.DataBind();
+        if (db.UniversityProfiles.Any())
+        {
+            List<UniversityProfile> universities = db.UniversityProfiles.ToList();
+            rptSearch.DataSource = universities;
+            rptSearch.DataBind();
+        }
+
+        //var q = db.Universities.Select(ad => new { UN= ad.Name}).ToList();
+        //Label uname = rptSearch.FindControl("lblUniversity") as Label;
+
+
+        //rptSearch.DataSource = q.ToList();
+        //rptSearch.DataBind();
+
+        //Label lblUniversity =rptSearch.FindControl("lblUnivAddress") as Label;
+        //lblUniversity.Text = lblUniversity.
+
+
 
         //var q1 = from u in db.Universities
         //         join um in db.UniversityMedias on u.id equals um.UniversityId
@@ -34,9 +54,7 @@ public partial class Search_Results : System.Web.UI.Page
 
 
 
-        rptSearch.DataSource = q.ToList();
-        rptSearch.DataBind();
-        
+
         //return;
         //on pageload show default values for first university on right side
         University uv = new University();
@@ -152,7 +170,7 @@ public partial class Search_Results : System.Web.UI.Page
                         //{
                         CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-                        if (urating != null && urating.AdminRatings != "")
+                        if (urating != null)
                         {
                             Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
                                                                                           /*   }*/                                                        //coding for rating
@@ -160,7 +178,7 @@ public partial class Search_Results : System.Web.UI.Page
                     }
                     if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                     {
-                        string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId ==uniid).First().Path;
+                        string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == uniid).First().Path;
                         if (logoPath2 != null)
                         {
                             //Image imgpd2 = e.Item.FindControl("Image2") as Image;
@@ -175,8 +193,8 @@ public partial class Search_Results : System.Web.UI.Page
         {
             lblNoData.Visible = true;
         }
-    } 
-    
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!(HttpContext.Current.User.Identity.IsAuthenticated))
@@ -197,10 +215,232 @@ public partial class Search_Results : System.Web.UI.Page
             // btn_reset.Visible = false;
             EducationEverestEntities db = new EducationEverestEntities();
 
+
+
+            //load  data in location dropdown list
+
+
+            List<UniversityProfile> uv = db.UniversityProfiles.ToList();
+            DropDownList ddlcity = (DropDownList)ddlLocation;
+            foreach (var z in uv)
+            {
+                ListItem l = new ListItem();
+                l.Text = z.Address;
+                l.Value = z.id.ToString();
+                ddlcity.Items.Add(l);
+
+            }
+
+
+            //List<UniversityProfile> uv = db.UniversityProfiles.ToList();
+            DropDownList ddlutype = (DropDownList)ddlUniversityType;
+            foreach (var z in uv)
+            {
+                ListItem l = new ListItem();
+                l.Text = z.Type;
+                l.Value = z.id.ToString();
+                ddlutype.Items.Add(l);
+
+            }
+
+
+            DropDownList ddladminstatus = (DropDownList)ddlAdmissionStatus;
+            foreach (var z in uv)
+            {
+                ListItem l = new ListItem();
+                l.Text =Convert.ToString( z.AdmissionOpen);
+                 if (l.Text == "True")
+                            {
+
+                    l.Text = "Admission Open";
+                            }
+                            else
+                            {
+
+                    l.Text = "Admission Closed";
+                            }
+                        
+                l.Value = z.id.ToString();
+                ddladminstatus.Items.Add(l);
+
+            }
+
+
+
+
+            DropDownList ddlranking = (DropDownList)ddlHECRanking;
+            foreach (var z in uv)
+            {
+                ListItem l = new ListItem();
+                l.Text = z.HecRanking;
+                l.Value = z.id.ToString();
+                ddlranking.Items.Add(l);
+
+            }
+
+
+
+
+
+
         }
 
     }
 
+
+   
+
+    public void BindData()
+    {
+
+        string locationStatus = ddlLocation.SelectedItem.Text;
+        if (locationStatus == "City")
+        {
+            locationStatus = "";
+        }
+
+
+        //string program = ddlProgram.SelectedItem.Text;
+        //if (program == "select degree")
+        //{
+        //    program = "";
+        //}
+
+        string universityStatus = ddlUniversityType.SelectedItem.Text;
+        if (universityStatus == "University Type")
+        {
+            universityStatus = "";
+        }
+
+        string admissionStatus = ddlAdmissionStatus.SelectedItem.Text;
+        if (admissionStatus == "Admission Status")
+        {
+            admissionStatus = "";
+        }
+
+        string rankingStatus = ddlHECRanking.SelectedItem.Text;
+        if (rankingStatus == "HEC Ranking")
+        {
+            rankingStatus = "";
+        }
+
+
+        setFilters();
+        FillData(locationStatus, /*program,*/ universityStatus, admissionStatus, rankingStatus);
+    }
+
+
+
+
+    protected void FillData(string locationStatus, /*string program,*/ string universityStatus, string admissionStatus, string rankingStatus)
+    {
+        EducationEverestEntities db = new EducationEverestEntities();
+        //if (db.UniversityProfiles.Any())
+        //{
+
+        //var AllFilters = db.UniversityProfiles.ToList();
+        //var defaultdata = db.UniversityProfiles.Select(x => new { x.Address, x.Type, x.AdmissionOpen, x.HecRanking }).ToList();
+
+
+        //if (locationStatus != null)
+        //{
+         
+                 
+        //}
+
+
+
+        //List<University> universities = db.Universities.Where(x => x.Name.Contains(a)).ToList();
+
+        //rptSearch.DataSource = universities;
+
+        //rptSearch.DataBind();
+        List<UniversityProfile> Filters = db.UniversityProfiles.Where(x => x.Address.Contains(locationStatus) && x.Type.Contains(universityStatus) && x.AdmissionOpen.ToString().Contains(admissionStatus) && x.HecRanking.Contains(rankingStatus)/*&& x.program.Contains(program)*/).ToList();
+        //var Filters = db.UniversityProfiles.Where(x => x.Address.Contains(locationStatus) /*&& x.program.Contains(program)*/ && x.Type.Contains(universityStatus) && x.AdmissionOpen.ToString().Contains(admissionStatus) && x.HecRanking.Contains(rankingStatus)).ToList();
+
+       // Filters[0].University.Name;
+
+
+
+       rptSearch.DataSource = Filters;
+
+       rptSearch.DataBind();
+        if (Filters ==null)
+        {
+            lblNoDatainFilter.Visible = true;
+        }
+
+
+        //}
+
+        //else
+        //{
+        //    rptSearch.DataSource = null;
+        //    rptSearch.DataBind();
+        //}
+    
+    }
+
+
+
+    protected void setFilters()
+    {
+
+        btn_reset.Visible = false;
+
+        if (ddlLocation.SelectedIndex > 0)
+        {
+            panel1.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel1.Visible = false;
+        }
+        //if (ddlProgram.SelectedIndex > 0)
+        //{
+        //    panel2.Visible = true;
+        //    btn_reset.Visible = true;
+        //}
+        //else
+        //{
+        //    panel2.Visible = false;
+        //}
+        if (ddlUniversityType.SelectedIndex > 0)
+        {
+            panel3.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel3.Visible = false;
+        }
+        if (ddlAdmissionStatus.SelectedIndex > 0)
+        {
+            panel4.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel4.Visible = false;
+        }
+
+        if (ddlHECRanking.SelectedIndex > 0)
+        {
+            panel5.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel5.Visible = false;
+        }
+    }
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        BindData();
+    }
+
+  
 
     //basic search
 
@@ -218,11 +458,22 @@ public partial class Search_Results : System.Web.UI.Page
         else
         {
 
-            List<University> universities = db.Universities.Where(x => x.Name.Contains(a)).ToList();
+
+            //List<University> universities = db.Universities.Where(x => x.Name.Contains(a)).ToList();
+
+            //rptSearch.DataSource = universities;
+
+            //rptSearch.DataBind();
+
+
+
+            List<UniversityProfile> universities = db.UniversityProfiles.Where(x => x.University.Name.Contains(a)).ToList();
 
             rptSearch.DataSource = universities;
 
             rptSearch.DataBind();
+
+
 
 
             //show search count code
@@ -244,7 +495,51 @@ public partial class Search_Results : System.Web.UI.Page
         }
 
     }
+    protected void delete_filter(object sender, EventArgs e)
+    {
+        LinkButton lk = (LinkButton)sender;
+        string id = "panel" + lk.CommandArgument;
+        // ContentPlaceHolder cont = (ContentPlaceHolder)this.Master.FindControl("ContentPlaceHolder1");
+        // Panel myPanel = (Panel)cont.FindControl(id);
+        Panel myPanel = new Panel();
 
+        myPanel.Visible = false;
+        if (id == "panel1")
+        {
+            ddlLocation.SelectedIndex = 0;
+        }
+        //if (id == "panel2")
+        //{
+        //    ddlProgram.SelectedIndex = 0;
+        //}
+        if (id == "panel3")
+        {
+            ddlUniversityType.SelectedIndex = 0;
+        }
+        if (id == "panel4")
+        {
+            ddlAdmissionStatus.SelectedIndex = 0;
+        }
+        if (id == "panel5")
+        {
+            ddlHECRanking.SelectedIndex = 0;
+        }
+
+
+        BindData();
+
+    }
+    protected void btn_reset_Click(object sender, EventArgs e)
+    {
+
+        ddlLocation.SelectedIndex = 0;
+        //ddlProgram.SelectedIndex = 0;
+        ddlUniversityType.SelectedIndex = 0;
+        ddlAdmissionStatus.SelectedIndex = 0;
+        ddlHECRanking.SelectedIndex = 0;
+
+        BindData();
+    }
     protected void rptSearch_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         //data in repeater on page load
@@ -269,23 +564,27 @@ public partial class Search_Results : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             //get the University object that is bound to the current row.
-            University u = new University();
+            //University u = new University();
 
-            University univ = (University)e.Item.DataItem;
+            UniversityProfile univ = (UniversityProfile)e.Item.DataItem;
             //rptSearch.Items.Count();
 
             if (e.Item.ItemIndex == 0)
 
             {
-                var id = univ.id;
+                var id = univ.UniversityID;
                 ViewState["id"] = id;
             }
-
-
-           // UniversityProfile up = new UniversityProfile();
+            var parentuniversityid = univ.UniversityID;
+            //Label lblUniversity = e.Item.FindControl("lblUniversity") as Label;
+            //lblUniversity.Text = univ.Name;
+            
+            // UniversityProfile up = new UniversityProfile();
             //if (db.UniversityProfiles.Any(x => x.UniversityID == univ.id))
             //{
-                var univprofile = db.UniversityProfiles.Where(x => x.UniversityID == univ.id).Select(ad => new { Univaddress = ad.Address, deadline = ad.LastDate, admissionopen = ad.AdmissionOpen }).FirstOrDefault();
+
+
+            var univprofile = db.UniversityProfiles.Where(x => x.UniversityID == parentuniversityid).Select(ad => new { Univaddress = ad.Address, deadline = ad.LastDate, admissionopen = ad.AdmissionOpen }).FirstOrDefault();
             if (univprofile != null)
             {
                 if (univprofile.Univaddress != null)
@@ -335,15 +634,16 @@ public partial class Search_Results : System.Web.UI.Page
                     lblDeadLine.Text = "No Last Date";
                 }
             }
-                if (db.Campuses.Any(x => x.Uni_ID == univ.id))
-                {
-                    var campusid = db.Campuses.Where(a => a.Uni_ID == univ.id).Select(ci => new { cid = ci.id }).FirstOrDefault();
+            if (db.Campuses.Any(x => x.Uni_ID == parentuniversityid))
+            {
+                var campusid = db.Campuses.Where(a => a.Uni_ID == parentuniversityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
 
-                    if (db.Departments.Any(x => x.CampusID == campusid.cid)){
-                        var departmentdata = db.Departments.Where(a => a.CampusID == campusid.cid).Select(ci => new { departmentname = ci.Department_Name,deptid=ci.id }).Count().ToString();
+                if (db.Departments.Any(x => x.CampusID == campusid.cid))
+                {
+                    var departmentdata = db.Departments.Where(a => a.CampusID == campusid.cid).Select(ci => new { departmentname = ci.Department_Name, deptid = ci.id }).Count().ToString();
 
                     var selectdept = db.Departments.Where(a => a.CampusID == campusid.cid).Select(ci => new { cid = ci.id }).FirstOrDefault();
-                    if (db.Programms.Any(x => x.Department_ID==selectdept.cid))
+                    if (db.Programms.Any(x => x.Department_ID == selectdept.cid))
                     {
                         var programdata = db.Programms.Where(a => a.Department_ID == selectdept.cid).Select(ci => new { programname = ci.Program_Name }).Count().ToString();
 
@@ -375,7 +675,7 @@ public partial class Search_Results : System.Web.UI.Page
                     {
                         CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-                        if (urating.AdminRatings != null && urating.AdminRatings != "")
+                        if (urating.AdminRatings != null)
                         {
                             Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
                         }
@@ -385,50 +685,52 @@ public partial class Search_Results : System.Web.UI.Page
                             Rating1.CurrentRating = 2;
                         }
                     }
-                            //show univeristy logo here
-                            UniversityMedia um = new UniversityMedia();
-                            if (db.UniversityMedias.Any(x => x.UniversityId == univ.id))
-                            {
-                                string logoPath = db.UniversityMedias.Where(m => m.UniversityId == univ.id).First().Path;
-                                if (logoPath != null)
-                                {
-                                    Image imgpd = e.Item.FindControl("Image1") as Image;
-                                    imgpd.ImageUrl = logoPath;
-                                }
-                            }
-                            //Image Image1 = e.Item.FindControl("Path") as Image;
-                            //Image1.ImageUrl = logoPath;
-                            //rptSearch.DataSource = logo.ToList();
-                            //rptSearch.DataBind();
-
-                            //bind repeater here
-
-
-
-
-
-
-
-                            //end of data on page load in repeater
-
-
-
+                    //show univeristy logo here
+                    UniversityMedia um = new UniversityMedia();
+                    if (db.UniversityMedias.Any(x => x.UniversityId == parentuniversityid))
+                    {
+                        string logoPath = db.UniversityMedias.Where(m => m.UniversityId == parentuniversityid).First().Path;
+                        if (logoPath != null)
+                        {
+                            Image imgpd = e.Item.FindControl("Image1") as Image;
+                            imgpd.ImageUrl = logoPath;
                         }
                     }
+                    //Image Image1 = e.Item.FindControl("Path") as Image;
+                    //Image1.ImageUrl = logoPath;
+                    //rptSearch.DataSource = logo.ToList();
+                    //rptSearch.DataBind();
+
+                    //bind repeater here
+
+
+
+
+
+
+
+                    //end of data on page load in repeater
+
+
 
                 }
+            }
 
-
-
-
-
-            //}
         }
-    
 
 
 
-    protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
+
+
+        //}
+    }
+
+
+
+
+
+
+protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         //on click open university details
         int universityid;
@@ -438,26 +740,84 @@ public partial class Search_Results : System.Web.UI.Page
             lblUniversity2.Text = UnivName;
             lblUniversityName2.Text = UnivName;
             UniversityProfile up = new UniversityProfile();
-            var uniprofile = db.UniversityProfiles.Where(ad => ad.UniversityID == universityid).Select(ad => new { admissiondocuments = ad.AdmisssionDocs, criteria = ad.Criteria, feestructre = ad.FeeStructure,about=ad.About,address=ad.Address,admissionstatus=ad.AdmissionOpen }).FirstOrDefault();
-            
-            lblCriteria.Text = uniprofile.criteria;
-            lblFeeStructure.Text = uniprofile.feestructre;
-            lblAbout.Text = uniprofile.about;
-            lblAdmissionDocuments.Text = uniprofile.admissiondocuments;
-            lblUnivAddress2.Text = uniprofile.address;
-            lbl_IsAdmissionOpen2.Text= Convert.ToString(uniprofile.admissionstatus);
 
-            if (lbl_IsAdmissionOpen2.Text == "True")
+           
+            var uniprofile = db.UniversityProfiles.Where(ad => ad.UniversityID == universityid).Select(ad => new { admissiondocuments = ad.AdmisssionDocs, criteria = ad.Criteria, feestructre = ad.FeeStructure, about = ad.About, address = ad.Address, admissionstatus = ad.AdmissionOpen }).FirstOrDefault();
+            if (uniprofile != null)
             {
+                if (lblCriteria.Text != null)
+                {
+                    lblCriteria.Text = uniprofile.criteria;
+                }
+                else
+                {
+                    lblCriteria.Text = "Criteria not given";
+                }
+                if (lblFeeStructure.Text != null)
+                {
+                    lblFeeStructure.Text = uniprofile.feestructre;
+                }
+                else
+                {
+                    lblFeeStructure.Text = "Fee structure is not given";
+                }
+                if (lblAbout.Text != null)
+                {
 
-                lbl_IsAdmissionOpen2.Text = "<font color='green'>Admission Open</font>";
-            }
-            else
-            {
 
-                lbl_IsAdmissionOpen2.Text = "<font color='red'>Admission Closed</font>";
-            }
+                    lblAbout.Text = uniprofile.about;
+                }
+                else
+                {
+                    lblAbout.Text = "";
+                }
+                if (lblAdmissionDocuments.Text != null)
+                {
+
+
+                    lblAdmissionDocuments.Text = uniprofile.admissiondocuments;
+                }
+                else
+                {
+                    lblAdmissionDocuments.Text = "Admission documents not mentioned";
+                }
+                if (lblUnivAddress2.Text != null)
+                {
+                    lblUnivAddress2.Text = uniprofile.address;
+                }
+                else
+                {
+                    lblUnivAddress2.Text = "Address not given";
+                }
+
+
+                lbl_IsAdmissionOpen2.Text = Convert.ToString(uniprofile.admissionstatus);
+                if (lbl_IsAdmissionOpen2.Text != null)
+                {
+
+                    if (lbl_IsAdmissionOpen2.Text == "True")
+                    {
+
+                        lbl_IsAdmissionOpen2.Text = "<font color='green'>Admission Open</font>";
+                    }
+                    else
+                    {
+
+                        lbl_IsAdmissionOpen2.Text = "<font color='red'>Admission Closed</font>";
+                    }
+                }
+                else
+                {
+                    lbl_IsAdmissionOpen2.Text = "Admission status not mentioned";
+                }
+            }//uniprofile ends here
+
+
+
+
+
             //code for rating
+
             if (db.Campuses.Any(x => x.Uni_ID == universityid))
             {
                 var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
@@ -503,6 +863,3 @@ public partial class Search_Results : System.Web.UI.Page
         //}
     }
 }
-
-
- 

@@ -263,7 +263,7 @@
 <br/><br/><br/><br/>
 <div class="col-md-12">
     <div class="form">
-        <asp:TextBox ID="phone" runat="server" class="student_reg_inputs"  placeholder="Phone" ></asp:TextBox>
+        <asp:TextBox ID="phone" MaxLength="15" runat="server" class="student_reg_inputs"  placeholder="Phone" ></asp:TextBox>
         
     </div>
     <br />
@@ -278,6 +278,8 @@
     </div>
     <br />
             <asp:RequiredFieldValidator ID="CityRequired" runat="server" ErrorMessage="City is Required" ControlToValidate="city" ForeColor="Red"></asp:RequiredFieldValidator>
+    <br />  <asp:RegularExpressionValidator ID="reCity" runat="server" ControlToValidate="city" 
+    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in City field"  ForeColor="Red"/>
 
 </div>
 
@@ -295,8 +297,20 @@
 
 
  </form>
+<br/><br/>
+
+
+
+     <div class="NormalCharacterStyle7" style="margin-left:150px"> Already have an account?&nbsp; <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
+
+     </div>
+<br/>
+      
+ <%--<button type="button" class=" btn register_button_bg" ><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Sign in</span></a></button>--%>
 <br/><br/><br/>
-     
+
+
+
 <div class="NormalCharacterStyle7" style="margin-left: 280px;">OR</div>
 <br/>
 <div class="NormalCharacterStyle12" style="margin-left: 240px;">SignUp with</div>

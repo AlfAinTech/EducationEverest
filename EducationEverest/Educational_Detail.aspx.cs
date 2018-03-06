@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using System.Web.UI.HtmlControls;
 
 public partial class Educational_Detail : System.Web.UI.Page
 {
@@ -44,6 +45,11 @@ public partial class Educational_Detail : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
+
         if (!IsPostBack)
         {
             populate_matric_data();
@@ -66,6 +72,9 @@ public partial class Educational_Detail : System.Web.UI.Page
             z.Percentage = percentage_matric.Value;
             z.Division = division_matric.Value;
             db.SaveChanges();
+
+
+           
         }
         else
         {
@@ -112,6 +121,21 @@ public partial class Educational_Detail : System.Web.UI.Page
             db.Intermediate_Education.Add(inter_edu);
             db.SaveChanges();
         }
+
+
+
+        HtmlImage imgpd = Master.FindControl("imgTickEducationDetails") as HtmlImage;
+
+
+        if (imgpd != null)
+
+        {
+
+            imgpd.Visible = true;
+            Session["IMGED"] = "imged";
+
+        }
+
 
         //button next click from Educational Details to Test Result
         Response.Redirect("Test_Result.aspx");

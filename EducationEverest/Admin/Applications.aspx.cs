@@ -9,27 +9,41 @@ public partial class Applications : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (!IsPostBack)
         {
+            populateUniversities();
             btn_reset.Visible = false;
             EducationEverestEntities db = new EducationEverestEntities();
-            //if (!(HttpContext.Current.User.Identity.IsAuthenticated && (HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Manager"))))
-            //{
-            //    Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
-            //}
-            //else
-            //{
-            //    BindData();
-            //}
-            BindData();
+            if (!(HttpContext.Current.User.Identity.IsAuthenticated && (HttpContext.Current.User.IsInRole("Super Admin"))))
+            {
+                Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+            }
+            else
+            {
+                BindData();
+            }
+            //BindData();
         }
+        
+    }
+
+    protected void populateUniversities()
+    {
+        EducationEverestEntities db = new EducationEverestEntities();
+        List<University> universities = db.Universities.ToList();
+        ddl_University.DataSource = universities;
+        ddl_University.DataTextField = "Name";
+        ddl_University.DataValueField = "id";
+        ddl_University.DataBind();
+        ddl_University.Items.Insert(0,new ListItem("Select University", "0"));
     }
     public void BindData()
     {
         int ApplicationID = 0;
         if (tb_ApplicationID.Text != "" && !String.IsNullOrWhiteSpace(tb_ApplicationID.Text) && Convert.ToInt32(tb_ApplicationID.Text) > 0)
         {
-            ApplicationID = Convert.ToInt32(tb_ApplicationID.Text);
+            ApplicationID = int.Parse(tb_ApplicationID.Text);
 
         }
         else
@@ -37,16 +51,19 @@ public partial class Applications : System.Web.UI.Page
             tb_ApplicationID.Text = "";
         }
 
-        string UserID = tb_UserID.Text;
-        UserID = UserID.Trim();
-        string Region = tb_Region.Text;
-        Region = Region.Trim();
+        //string UserID = tb_UserID.Text;
+        //UserID = UserID.Trim();
+        //string Region = tb_Region.Text;
+        //Region = Region.Trim();
 
         string CurrentStatus = ddl_current_status.SelectedItem.Text;
         if (CurrentStatus == "Select Status")
         {
             CurrentStatus = "";
         }
+
+        int University = Convert.ToInt32(ddl_University.SelectedValue);        
+
         
         DateTime startDate = new DateTime();
         if (tb_startDate.Text != "" && !String.IsNullOrWhiteSpace(tb_startDate.Text))
@@ -68,27 +85,40 @@ public partial class Applications : System.Web.UI.Page
             endDate = DateTime.MaxValue;
         }
         setFilters();
-        FillData(ApplicationID,UserID, Region, CurrentStatus,startDate, endDate);
+        FillData(ApplicationID, University, CurrentStatus,startDate, endDate);
     }
 
 
-    protected void FillData(int ApplicationID, string UserID, string Region, string CurrentStatus, DateTime startDate, DateTime endDate)
+    protected void FillData(int ApplicationID, int university, string CurrentStatus, DateTime startDate, DateTime endDate)
     {
         EducationEverestEntities db = new EducationEverestEntities();
         if (db.Applications.Any())
         {
-            if (ApplicationID != 0)
+            if (ApplicationID != 0 && university !=0 )
             {
-                var applications = db.Applications.Where(x => x.id == ApplicationID && x.UserID.Contains(UserID) && x.Region.Contains(Region) && x.CurrentStatus.Contains(CurrentStatus) &&  x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                var applications = db.Applications.Where(x => x.id == ApplicationID && x.UnivID == university  && x.CurrentStatus.Contains(CurrentStatus) &&  x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
                 dataTable.DataSource = applications;
                 dataTable.DataBind();
             }
-            else 
+            if(ApplicationID != 0 && university == 0)
             {
-                var applications = db.Applications.Where(x => x.UserID.Contains(UserID) && x.Region.Contains(Region) && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                var applications = db.Applications.Where(x => x.id == ApplicationID && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
                 dataTable.DataSource = applications;
                 dataTable.DataBind();
             }
+            if(ApplicationID==0 && university != 0)
+            {
+                var applications = db.Applications.Where(x =>  x.UnivID == university  && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                dataTable.DataSource = applications;
+                dataTable.DataBind();
+            }
+            if(ApplicationID==0 && university == 0)
+            {
+                var applications = db.Applications.Where(x =>  x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                dataTable.DataSource = applications;
+                dataTable.DataBind();
+            }
+            
         }
         else
         {
@@ -112,16 +142,16 @@ public partial class Applications : System.Web.UI.Page
 
             panel1.Visible = false;
         }
-        if (tb_UserID.Text != "")
-        {
-            panel2.Visible = true;
-            btn_reset.Visible = true;
-        }
-        else
-        {
-            panel2.Visible = false;
-        }
-        if (tb_Region.Text != "")
+        //if (tb_UserID.Text != "")
+        //{
+        //    panel2.Visible = true;
+        //    btn_reset.Visible = true;
+        //}
+        //else
+        //{
+        //    panel2.Visible = false;
+        //}
+        if (ddl_University.SelectedIndex>0)
         {
             panel3.Visible = true;
             btn_reset.Visible = true;
@@ -211,13 +241,13 @@ public partial class Applications : System.Web.UI.Page
         {
             tb_ApplicationID.Text = "";
         }
-        if (id == "panel2")
-        {
-            tb_UserID.Text = "";
-        }
+        //if (id == "panel2")
+        //{
+        //    tb_UserID.Text = "";
+        //}
         if (id == "panel3")
         {
-            tb_Region.Text = "";
+            ddl_University.SelectedIndex = 0;
         }
         if (id == "panel4")
         {
@@ -240,9 +270,9 @@ public partial class Applications : System.Web.UI.Page
        
         tb_ApplicationID.Text = "";
         tb_EndDate.Text = "";
-        tb_UserID.Text = "";
+        //tb_UserID.Text = "";
         tb_startDate.Text = "";
-        tb_Region.Text = "";
+        ddl_University.SelectedIndex = 0;
         ddl_current_status.SelectedIndex = 0;
         BindData();
     }
@@ -274,7 +304,7 @@ public partial class Applications : System.Web.UI.Page
         DropDownList ddl_status = sender as DropDownList;
         if (ddl_status.SelectedItem.Text != "Change Status")
         {
-            int ApplicationID = Convert.ToInt32(ddl_status.Attributes["data-applicationid"].ToString());
+            int ApplicationID = int.Parse(ddl_status.Attributes["data-applicationid"].ToString());
             EducationEverestEntities db = new EducationEverestEntities();
             Application dbApplication = db.Applications.Where(w => w.id == ApplicationID).First();
             dbApplication.CurrentStatus = ddl_status.SelectedItem.Value;

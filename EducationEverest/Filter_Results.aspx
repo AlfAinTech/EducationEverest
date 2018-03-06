@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Search_Results.aspx.cs"  EnableEventValidation="false" Inherits="Search_Results" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Filter_Results.aspx.cs" Inherits="Filter_Results" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <!DOCTYPE html>
@@ -12,10 +13,15 @@
     <link rel="stylesheet" href="css/bootstrap-theme.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/File_admission_application.css">
-  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link href="Content/Site.css" rel="stylesheet" />
+    
+
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/myScript.js"></script>
+     <script src="Content/vendor/jquery/jquery.min.js"></script>
+   
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script type="text/javascript">
     $(function() {
@@ -79,7 +85,7 @@
           <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
         </div>
           <span><asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:imagebutton></span>
-          <span><asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" ></asp:imagebutton></span>
+          <span><asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" OnClick="btnFilter_Click" ></asp:imagebutton></span>
 
          <%--<asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search"  />--%>
           <%--<asp:Button ID="btnFilter" runat="server" OnClick="btnFilter_Click" Text="Filter"  />--%>
@@ -105,7 +111,130 @@
 
 
 <%--Filter Starts here--%>
-        
+        <div class="col-md-12 filter_results_border" style="background: white">
+  
+                        <div class="filter_results_callout bottom text-left">
+          <div class="col-md-12">
+<br/>
+            <div class="NormalCharacterStyle12">Filter Universities</div>
+            <br/>
+            <div class="filter_divider" style="width: 1290px"></div>
+
+            <br/>
+
+            <div class="row col-md-12">
+    <div class="col-md-2">
+
+         <div class="form">
+
+
+             <asp:DropDownList ID="ddlLocation" runat="server"  Class="form-control"  style="background-color:#e6e2e2" >
+                 <Items>
+       <asp:ListItem Text="City" Enabled="true" Selected="true" Value="1" />
+   </Items>
+
+
+             </asp:DropDownList>
+            
+                                                <%--<asp:DropDownList ID="ddlLocation" CssClass="form-control" runat="server">
+                                                    <asp:ListItem Text="Select location"></asp:ListItem>
+                                                    <asp:ListItem Text="Lahore" Value="Received"></asp:ListItem>
+                                                    <asp:ListItem Text="Karachi" Value="Accepted"></asp:ListItem>
+                                                    <asp:ListItem Text="Islamabad" Value="Rejected"></asp:ListItem>
+                                                    
+                                                </asp:DropDownList>--%>
+
+
+     <%--<select class="combobox form-control filter_results_option">
+          <option selected="selected">Location</option>
+
+  <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True" >
+       <asp:ListItem Text="Select location" style="display:none"></asp:ListItem>
+      
+        </asp:DropDownList>
+</select>--%>
+    </div></div>
+ <%--<div class="col-md-2">
+         <div class="form">
+     <select class="combobox form-control filter_results_option">
+          <option selected="selected">Degree/Courses</option>
+  <asp:DropDownList ID="ddlProgram" runat="server" AutoPostBack="True" >
+      <asp:ListItem Text="Select degree" style="display:none"></asp:ListItem>
+        </asp:DropDownList>
+</select>
+
+</div></div>--%>
+ <div class="col-md-2">
+         <div class="form" >
+             <asp:DropDownList ID="ddlUniversityType" runat="server"  CssClass="form-control" style="background-color:#e6e2e2">
+                 <Items>
+       <asp:ListItem Text="University Type" Enabled="true" Selected="true" Value="1" />
+   </Items>
+
+
+             </asp:DropDownList>
+    <%-- <select class="combobox form-control filter_results_option">
+         <option selected="selected">University Type</option>
+  <asp:DropDownList ID="ddlUniversityType" runat="server" AutoPostBack="True" >
+      <asp:ListItem Text="Select university" style="display:none"></asp:ListItem>
+        </asp:DropDownList>
+</select>--%>
+
+</div></div>
+<div class="col-md-2">
+
+         <div class="form">
+             <div class="form">
+             <asp:DropDownList ID="ddlAdmissionStatus" runat="server"  Class="form-control"  style="background-color:#e6e2e2">
+                 <Items>
+       <asp:ListItem Text="Admission Status" Enabled="true" Selected="true" Value="1" />
+   </Items>
+             </asp:DropDownList>
+     <%--<select class="combobox form-control filter_results_option">
+          <option selected="selected">Admission Status</option>
+  <asp:DropDownList ID="ddlAdmissionStatus" runat="server" AutoPostBack="True" >
+      <asp:ListItem Text="Select admission" style="display:none"></asp:ListItem>
+        </asp:DropDownList>
+</select>--%>
+    </div></div>
+</div>
+ <div class="col-md-2">
+                 <div class="form">
+                     <asp:DropDownList ID="ddlHECRanking" runat="server"  Class="form-control"  style="background-color:#e6e2e2" >
+                 <Items>
+       <asp:ListItem Text="HEC Ranking" Enabled="true" Selected="true" Value="1" />
+   </Items>
+</asp:DropDownList>
+</div>
+</div>
+<br/><br/>
+            <div class="filter_divider" style="margin-top: 10px;width: 1290px;"></div>
+
+            <div class="col-md-12" style="margin-top: 20px;">
+              <div class="col-md-2">
+                <%--<div class="NormalCharacterStyle18">Fee Range</div>
+              </div>--%>
+              <%--<div class="col-md-2">
+                <div class="NormalCharacterStyle18">HEC Ranking</div>
+              </div>--%>
+               
+            </div>
+
+           <%-- <div class="col-md-12" style="margin-top: 5px;">
+              <div class="col-md-2">
+                <div><img src="images/range.png">
+  <p>25,000 - 80,000 <span id="demo"></span></p>
+</div>
+              </div>
+              
+            </div>--%>
+
+<br/>
+
+</div>
+
+        </div>
+ </div>
 
 
 <%--Filter Ends here--%>
@@ -123,8 +252,8 @@
 
       <div class="NormalCharacterStyle16" style="margin-top: -20px"><asp:Label ID="lblcount" runat="server" Text="Label" Visible="false"></asp:Label> <asp:Label ID="lblShowSearchCount" runat="server" Text="Label" Visible="false" ></asp:Label> </div>
     <div class="line_3_" style="margin-top: 5px;"></div>
-        <asp:Label ID="lblNoData" runat="server" Text="No Data to load" Visible="false"></asp:Label>
-    <br/>
+    <asp:Label ID="lblNoData" runat="server" Text="No Data to load" Visible="false"></asp:Label>
+        <br/>
     <%--<div><button type="button" class="btn btn-warning">UET&nbsp;&nbsp;
           <span class="glyphicon glyphicon-remove"></span> 
         </button>&nbsp;<button type="button" class="btn btn-success">Engineering&nbsp;&nbsp;
@@ -133,14 +262,44 @@
           <span class="glyphicon glyphicon-remove"></span> 
         </button></div>--%>
 
-        <%--panels start here--%>
+         <%--panels start here--%>
 
-        
+        <div class="row">
+                            <div class="col-md-10" style="padding: 0; padding-top: 5px;">
+                                <ul class="tags">
+                                    <asp:Panel ID="panel1" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton ID="btn1" CssClass="tag" data-role="tagsinput" runat="server" CommandArgument="1" OnClick="delete_filter">Location</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel2" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton ID="btn2" runat="server" CssClass="tag" CommandArgument="2" OnClick="delete_filter">Degree/Course</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel3" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn3" CssClass="tag" CommandArgument="3" OnClick="delete_filter">University Type</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel4" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn4" CssClass="tag" CommandArgument="4" OnClick="delete_filter">Admission Status</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel5" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn5" CssClass="tag" CommandArgument="5" OnClick="delete_filter">Ranking Status</asp:LinkButton></li>
+                                    </asp:Panel>
+                                   
+
+                                </ul>
+                            </div>
+                            <div class="col-md-2" style="margin-left:-20px">
+                                <asp:Button Text="Reset Filters" CssClass="btn btn-dark" Visible="false" ID="btn_reset" runat="server" OnClick="btn_reset_Click"   />
+                            </div>
+                        </div>
 
         <%--panels end here--%>
 
         <br/>
-
+        <asp:Label ID="lblNoDatainFilter" runat="server" Text="No Match Found" Visible="false"></asp:Label>
 
         <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>
         <asp:Repeater ID="rptSearch" runat="server" OnItemDataBound="rptSearch_ItemDataBound" OnItemCommand="rptSearch_ItemCommand">
@@ -173,7 +332,7 @@
             <div class="col-md-10 text-left">
               <div class="NormalCharacterStyle_new1"><tr>
             <td>
-                <asp:Label ID="lblUniversity" runat="server" Text='<%# Eval("Name") %>' />
+                <asp:Label ID="lblUniversity" runat="server" Text='<%# Eval("University.Name") %>' />
                 <%--<asp:Label ID="lblUniversity" runat="server" Text="Label"></asp:Label>--%>
                
            
@@ -202,7 +361,7 @@
 
               </div>
 
-                   <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> <asp:Label ID="lblUnivAddress" runat="server" Text="Label"></asp:Label>   <span style="font-size:16px">     <asp:LinkButton ID="lb_UniversityPanel" runat="server" Text="Details" CommandName="Select" ClientIDMode="Static" CommandArgument='<%# Eval("id") %>' style="float:right"></asp:LinkButton></span>
+                   <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> <asp:Label ID="lblUnivAddress" runat="server" Text="Label"></asp:Label>   <span style="font-size:16px">     <asp:LinkButton ID="lb_UniversityPanel" runat="server" Text="Details" CommandName="Select" ClientIDMode="Static" CommandArgument='<%# Eval("University.id") %>' style="float:right"></asp:LinkButton></span>
  </div>
 
               <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212">  <asp:Label ID="lblDeadLine" runat="server" Text="Label"></asp:Label></span></div>
@@ -224,11 +383,11 @@
 
 
        </div>
-         <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" style="margin-top: -20px;height: 100%">
+         <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" style="height: 100%">
          <div class="">
           <div class="col-md-2">
+               <asp:Image ID="Image2" runat="server" />
               <%--<img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">--%>
-              <asp:Image ID="Image2" runat="server" />
             </div>
             <div class="col-md-10 text-left" style="margin-top: 10px">
               <div class="NormalCharacterStyle215"><asp:Label ID="lblUniversityName2" runat="server" Text="Label"></asp:Label></div>
@@ -262,10 +421,7 @@
 
               </div>
               <br/>
-              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                  <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
-
-              </div>
+              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a></div>
 
             </div>
           </div><br/>
@@ -319,9 +475,7 @@
                
             </div>
           </div>  
-<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <%--<a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
-    <br/><br/><br/><br/>  </div> 
+<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br/><br/><br/><br/>  </div> 
 
   </div>
     </div>
