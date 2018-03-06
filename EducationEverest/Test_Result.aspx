@@ -150,6 +150,13 @@
   </div>
 </div>
 <script type="text/javascript">
+    function OpenCurrentPage() {
+        $("#testResult").removeClass("NormalCharacterStyle24")
+        $("#testResult").addClass("NormalCharacterStyle22");
+        $("#fileAdmission").addClass("NormalCharacterStyle18");
+        document.getElementById("fileAdmission").click();
+    }
+
   $('#menu_toggle').on('click', function () {
     var iSelector = $(this).find('i:first');
     if (iSelector.hasClass('glyphicon-chevron-down')) {

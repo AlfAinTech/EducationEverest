@@ -17,7 +17,7 @@
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="Content/js/myScript.js"></script>
+    <%--<script type="text/javascript" src="Content/js/myScript.js"></script>--%>
     <%--<link rel="Stylesheet" type="text/css" href="Content/css/uploadify.css" />--%>
     <link rel="Stylesheet" type="text/css" href="Content/css/MyStyle.css" />
     <link href="css/style.css" rel="stylesheet" />
@@ -35,6 +35,7 @@
 
   </script>
 </head>
+
 
 <body>
     
@@ -104,20 +105,20 @@
     <div class="col-sm-2 sidenav text-left side-menu">
 
       <div class="dropdown" style="margin-bottom: 10px;">
-    <a data-toggle="collapse" data-target="#clps1" id="applicationDashbord" class="main_list NormalCharacterStyle25" href="Dashboard.aspx">My Applications<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps1"></a></div></a>
+    <a data-toggle="collapse" data-target="#clps1" id="applicationDashbord" class="main_list NormalCharacterStyle25" href="Dashboard.aspx">My Applications<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps1"></span></div></a>
  
 </div>
 
       <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25">File Admission App<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></a></div></a>
+    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25">File Admission App<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></a>
     <div class="collapse" id="clps2">
       <br/>
-        <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail">Personal Detail</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"  /></span></li>
-        <li class="menu_list"><a href="choices" class="NormalCharacterStyle24" id="makeChoices">Make Choices</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  /></span></li>
+        <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail">Personal Detail</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></li>
+        <li class="menu_list"><a href="choices" class="NormalCharacterStyle24" id="makeChoices">Make Choices</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  style="float:right;height:20px;width:20px"  /></span></li>
         <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" >Educational Details</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickEducationDetails"  visible="false" style="float:right;height:20px;width:20px"  /></span></li>
-        <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24" id="testResult">Test Results</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  /></span></li>
-        <li class="menu_list"><a href="Upload_Documents" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  /></span></li>
-        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments">Payments</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  /></span></li>
+        <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24" id="testResult">Test Results</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  style="float:right;height:20px;width:20px"  /></span></li>
+        <li class="menu_list"><a href="Upload_Documents" id="Upload_Documents" class="NormalCharacterStyle24">Documents</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  style="float:right;height:20px;width:20px"  /></span></li>
+        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments">Payments</a>&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  style="float:right;height:20px;width:20px"  /></span></li>
 
 
 
@@ -135,7 +136,7 @@
 </div>
 
       <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" data-target="#clps3" class="main_list NormalCharacterStyle25" href="Payments.aspx">My Payments<div class="icon-arrow-right pull-right"><a class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></a></div></a>
+    <a data-toggle="collapse" data-target="#clps3" class="main_list NormalCharacterStyle25" href="Payments.aspx">My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div></a>
  
 </div>
 

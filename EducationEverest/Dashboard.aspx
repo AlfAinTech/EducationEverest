@@ -291,7 +291,12 @@
         iSelector.removeClass('glyphicon-chevron-down')
         iSelector.addClass('glyphicon-chevron-down')
     }
-});
+  });
+  function OpenCurrentPage() {
+    
+      $("#applicationDashbord").addClass("NormalCharacterStyle18");
+      document.getElementById("applicationDashbord").click();
+  }
 </script>
 
 

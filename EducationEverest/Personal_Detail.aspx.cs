@@ -6,6 +6,7 @@ using System.IO;
 using System.Drawing;
 using ImageProcessor;
 using System.Web.UI.HtmlControls;
+using System.Web.UI;
 
 public partial class Personal_Detail : System.Web.UI.Page
 {
@@ -99,6 +100,7 @@ public partial class Personal_Detail : System.Web.UI.Page
                 ViewState["ImageName"] = FileUpload1.PostedFile.FileName;
             }
         }
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }
 
     protected void next_click(object sender, EventArgs e)

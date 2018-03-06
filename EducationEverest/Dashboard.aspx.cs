@@ -26,7 +26,7 @@ public partial class Dashboard : System.Web.UI.Page
             string UserID = HttpContext.Current.User.Identity.GetUserId();
             BindData(UserID);
         }
-        
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
     }
 

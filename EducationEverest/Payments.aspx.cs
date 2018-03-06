@@ -24,7 +24,26 @@ public partial class Payments : System.Web.UI.Page
             ChoicesList.DataSource  = applicationList;
             ChoicesList.DataBind();
             totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+           
+        }
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+
+    }
+
+
+
+    protected void SubmitTrackingID_Click(object sender, EventArgs e)
+    {
+        List<Application> apps = db.Applications.Where(q => q.UserID == current_user).ToList();
+        foreach(Application app in apps)
+        { 
+        Payment p = new Payment()
+        {
+            TrackingID = TrackingID.Value.ToString(),
+            AppID =app.id,
+        };
+            db.Payments.Add(p);
+            db.SaveChanges();
         }
     }
 }

@@ -31,10 +31,10 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Region" Type="varchar" MaxLength="1" />
+          <Property Name="Region" Type="nvarchar" MaxLength="128" />
           <Property Name="SubmittedOn" Type="datetime" />
-          <Property Name="CurrentStatus" Type="varchar" MaxLength="1" />
-          <Property Name="UnivID" Type="int" Nullable="false" />
+          <Property Name="CurrentStatus" Type="nvarchar" MaxLength="128" />
+          <Property Name="UnivID" Type="int" />
           <Property Name="deptID" Type="int" />
         </EntityType>
         <EntityType Name="AspNetRoles">
@@ -221,6 +221,14 @@
           <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Path" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrackingID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AppID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Personal_Details">
           <Key>
             <PropertyRef Name="id" />
@@ -265,6 +273,16 @@
           <Property Name="Department_ID" Type="int" Nullable="false" />
           <Property Name="Program_Name" Type="nvarchar" MaxLength="128" />
           <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Test_Results">
           <Key>
@@ -370,7 +388,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Applicati__UserI__5DCAEF64">
+        <Association Name="FK__Applicati__UserI__5FB337D6">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
           <ReferentialConstraint>
@@ -683,7 +701,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Applications_Universities">
-          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
+          <End Role="Universities" Type="Self.Universities" Multiplicity="0..1" />
           <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Universities">
@@ -774,6 +792,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_Applications">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="AppID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TestResult_Document_Document">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
           <End Role="TestResult_Document" Type="Self.TestResult_Document" Multiplicity="*" />
@@ -822,10 +852,12 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySet Name="MakeChoices" EntityType="Self.MakeChoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Matriculation_Education" EntityType="Self.Matriculation_Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Media" EntityType="Self.Media" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personal_Details" EntityType="Self.Personal_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Portfolios" EntityType="Self.Portfolios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgrammCategories" EntityType="Self.ProgrammCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Programms" EntityType="Self.Programms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test_Results" EntityType="Self.Test_Results" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestResult_Document" EntityType="Self.TestResult_Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Universities" EntityType="Self.Universities" Schema="dbo" store:Type="Tables" />
@@ -838,7 +870,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="Universities" EntitySet="Universities" />
             <End Role="AdmissionDetails" EntitySet="AdmissionDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__Applicati__UserI__5DCAEF64" Association="Self.FK__Applicati__UserI__5DCAEF64">
+          <AssociationSet Name="FK__Applicati__UserI__5FB337D6" Association="Self.FK__Applicati__UserI__5FB337D6">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Applications" EntitySet="Applications" />
           </AssociationSet>
@@ -970,6 +1002,10 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="Personal_Details" EntitySet="Personal_Details" />
             <End Role="Document" EntitySet="Document" />
           </AssociationSet>
+          <AssociationSet Name="FK_Payment_Applications" Association="Self.FK_Payment_Applications">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
           <AssociationSet Name="FK_TestResult_Document_Document" Association="Self.FK_TestResult_Document_Document">
             <End Role="Document" EntitySet="Document" />
             <End Role="TestResult_Document" EntitySet="TestResult_Document" />
@@ -1061,7 +1097,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <NavigationProperty Name="Contact_Us" Relationship="Self.FK_Contact_Us_Contact_Us" FromRole="AspNetUsers" ToRole="Contact_Us" />
           <NavigationProperty Name="UserProfiles" Relationship="Self.FK_UserProfile_AspNetUsers" FromRole="AspNetUsers" ToRole="UserProfile" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-          <NavigationProperty Name="Applications" Relationship="EducationEverestModel.FK__Applicati__UserI__5DCAEF64" FromRole="AspNetUser" ToRole="Application" />
+          <NavigationProperty Name="Applications" Relationship="EducationEverestModel.FK__Applicati__UserI__5FB337D6" FromRole="AspNetUser" ToRole="Application" />
         </EntityType>
         <EntityType Name="Campus">
           <Key>
@@ -1542,8 +1578,9 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="University" EntitySet="Universities" />
             <End Role="UniversityMedia" EntitySet="UniversityMedias" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="EducationEverestModel.sysdiagram" />
           <EntitySet Name="Applications" EntityType="EducationEverestModel.Application" />
-          <AssociationSet Name="FK__Applicati__UserI__5DCAEF64" Association="EducationEverestModel.FK__Applicati__UserI__5DCAEF64">
+          <AssociationSet Name="FK__Applicati__UserI__5FB337D6" Association="EducationEverestModel.FK__Applicati__UserI__5FB337D6">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Application" EntitySet="Applications" />
           </AssociationSet>
@@ -1554,6 +1591,11 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <AssociationSet Name="FK_Applications_Universities" Association="EducationEverestModel.FK_Applications_Universities">
             <End Role="University" EntitySet="Universities" />
             <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <EntitySet Name="Payments" EntityType="EducationEverestModel.Payment" />
+          <AssociationSet Name="FK_Payment_Applications" Association="EducationEverestModel.FK_Payment_Applications">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Document">
@@ -1954,22 +1996,33 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Application">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Region" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SubmittedOn" Type="DateTime" Precision="3" />
-          <Property Name="CurrentStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="UnivID" Type="Int32" Nullable="false" />
+          <Property Name="CurrentStatus" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UnivID" Type="Int32" />
           <Property Name="deptID" Type="Int32" />
-          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Applicati__UserI__5DCAEF64" FromRole="Application" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__Applicati__UserI__5FB337D6" FromRole="Application" ToRole="AspNetUser" />
           <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK_Applications_Departments" FromRole="Application" ToRole="Department" />
           <NavigationProperty Name="University" Relationship="EducationEverestModel.FK_Applications_Universities" FromRole="Application" ToRole="University" />
+          <NavigationProperty Name="Payments" Relationship="EducationEverestModel.FK_Payment_Applications" FromRole="Application" ToRole="Payment" />
         </EntityType>
-        <Association Name="FK__Applicati__UserI__5DCAEF64">
+        <Association Name="FK__Applicati__UserI__5FB337D6">
           <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="EducationEverestModel.Application" Role="Application" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1994,7 +2047,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Applications_Universities">
-          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
+          <End Type="EducationEverestModel.University" Role="University" Multiplicity="0..1" />
           <End Type="EducationEverestModel.Application" Role="Application" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="University">
@@ -2002,6 +2055,27 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Principal>
             <Dependent Role="Application">
               <PropertyRef Name="UnivID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrackingID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AppID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="EducationEverestModel.FK_Payment_Applications" FromRole="Payment" ToRole="Application" />
+        </EntityType>
+        <Association Name="FK_Payment_Applications">
+          <End Type="EducationEverestModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="EducationEverestModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="AppID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2379,6 +2453,17 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EducationEverestModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="EducationEverestModel.Application">
               <MappingFragment StoreEntitySet="Applications">
@@ -2392,7 +2477,16 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="EducationEverestModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="TrackingID" ColumnName="TrackingID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -2407,7 +2501,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

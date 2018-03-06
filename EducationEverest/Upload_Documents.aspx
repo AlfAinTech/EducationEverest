@@ -164,29 +164,7 @@
                  }
                       
              }
-             function UpoadAOLevelCerti() {
-                 var ProgressPanel = "showProgressAOLevelCerti";
-                 var Progressbardiv = "progressAOLevelCerti";
-                 var UploadControl = '<%=FileUploadAOLevelCerti.ClientID %>';
-                 var FileNameLabel = "AOLevelCertiName";
-                 var FileSizeLabel = "AOLevelCertiSize";
-                 var CorectFileType = ValidateFile(UploadControl);
-                 if (CorectFileType)
-                 {
-                    var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
-                     if (flag) {
-                        
-                         var btnID= '<%=uploadAOLevelCerti.ClientID %>';          
-                         document.getElementById('<%=uploadAOLevelCerti.ClientID %>').click();
-                         document.getElementById(Progressbardiv).style.display = "block";
-                     }
-                 }
-                 else {
-
-                     window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
-                 }
-                      
-             }
+            
              
              function  uploadItemTest(object,index)
              {
@@ -449,7 +427,7 @@
                   <div class="panel_divider"></div>
         <div class="panel-body" >
    <asp:UpdatePanel ID="UpdatePanel4" runat="server"><ContentTemplate>
-    <div class="upload_documents_names">&#9656;Matriculation Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+    <div class="upload_documents_names">&#9656;Matriculation/O-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
    <asp:Repeater ID="MatricCertiList" runat="server">
        <ItemTemplate>
            <div class="col-md-12">
@@ -494,7 +472,7 @@
 
 <br/>
             <asp:UpdatePanel ID="UpdatePanel5" runat="server"><ContentTemplate>
-    <div class="upload_documents_names">&#9656;Intermediate Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+    <div class="upload_documents_names">&#9656;Intermediate/A-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
    <asp:Repeater ID="InterCertiList" runat="server">
        <ItemTemplate>
            <div class="col-md-12">
@@ -538,47 +516,7 @@
 </asp:postbacktrigger>
 </triggers></asp:UpdatePanel>
     <div class="panel_divider2"></div>
-             <asp:UpdatePanel ID="UpdatePanel6" runat="server"><ContentTemplate>
-    <div class="upload_documents_names">&#9656;A/O Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
-   <asp:Repeater ID="AOLevelCertiList" runat="server">
-       <ItemTemplate>
-           <div class="col-md-12">
-              <div class="col-md-1">
-                    <div class="upload_image_icon margin_top margin_left2"></div>
-               </div>
-            <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3"><%# Eval("documentName") %></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
-            </div>
-            <div class="col-md-1"><asp:LinkButton runat="server" ID="deleteAOLevelCerti" CommandArgument='<%# Eval("id")  %>' OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
-           </div>
-       </ItemTemplate>
-   </asp:Repeater>
-   <br/><br/><br/><br/>
-    <div class="col-md-12" id="showProgressAOLevelCerti" style="display:none">
-      <div class="col-md-1">
-            <div class="upload_image_icon margin_top margin_left2"></div>
-     </div> 
-    <div class="col-md-5">
-        <div class="upload_documents_progress_text margin_top3 margin_left3"><asp:Label runat="server" ClientIDMode="Static" id="AOLevelCertiName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="AOLevelCertiSize" class="upload_documents_filesize_text"></asp:Label></div>
-        <div class="progress margin_left3">
-          <div class="progress-bar progress-bar-info" id="progressAOLevelCerti" role="progressbar" style="width:0%;height: 5px;">
-          </div>
-        </div>
-    </div>
-  </div>
-    <br/><br/><br/><br/>
-    <div style="margin-left: 650px">
-        <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
-        <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
-        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadAOLevelCerti" type="file" runat="server" onclose="closing(this)" onchange="UpoadAOLevelCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
-        <asp:Button ID="uploadAOLevelCerti"  OnClick="AOLevelCerti_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
-    </div>
-  <br/>
-</ContentTemplate><triggers>
-<asp:postbacktrigger controlid="uploadAOLevelCerti">
-</asp:postbacktrigger>
-</triggers></asp:UpdatePanel>
+     
 
         </div>
       </div>

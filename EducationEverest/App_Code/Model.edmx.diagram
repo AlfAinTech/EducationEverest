@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a2ff0828acf84fb781b5da2501ad5ff3" Name="Diagram1">
+      <Diagram DiagramId="a2ff0828acf84fb781b5da2501ad5ff3" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="EducationEverestModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationEverestModel.AdmissionDetail" Width="1.5" PointX="6" PointY="51.375" IsExpanded="true" />
         <EntityTypeShape EntityType="EducationEverestModel.AspNetRole" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
@@ -68,10 +68,13 @@
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Uni_I__4D94879B" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__41EDCAC5" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__4D5F7D71" />
+        <EntityTypeShape EntityType="EducationEverestModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="EducationEverestModel.Application" Width="1.5" PointX="10.5" PointY="20.5" />
-        <AssociationConnector Association="EducationEverestModel.FK__Applicati__UserI__5DCAEF64" />
+        <AssociationConnector Association="EducationEverestModel.FK__Applicati__UserI__5FB337D6" />
         <AssociationConnector Association="EducationEverestModel.FK_Applications_Departments" />
         <AssociationConnector Association="EducationEverestModel.FK_Applications_Universities" />
+        <EntityTypeShape EntityType="EducationEverestModel.Payment" Width="1.5" PointX="0.75" PointY="9.75" />
+        <AssociationConnector Association="EducationEverestModel.FK_Payment_Applications" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

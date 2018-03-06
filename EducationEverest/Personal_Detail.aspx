@@ -13,6 +13,12 @@
             alert("hello there");
             
         }
+        function OpenCurrentPage() {
+            $("#prsonalDetail").removeClass("NormalCharacterStyle24")
+            $("#prsonalDetail").addClass("NormalCharacterStyle22");
+            $("#fileAdmission").addClass("NormalCharacterStyle18");
+            document.getElementById("fileAdmission").click();
+        }
     </script>
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Personal Details</h3>

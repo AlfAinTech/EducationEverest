@@ -14,7 +14,7 @@ public partial class Client : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         current_user = HttpContext.Current.User.Identity.GetUserId();
-
+        CompletionCheck();
         //if (Session["IMGPD"] != null)
         //{
         //    imgTickPersonalDetails.Visible = true;
@@ -61,6 +61,34 @@ public partial class Client : System.Web.UI.MasterPage
         Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
     }
 
+    protected void CompletionCheck()
+    {
+        if (db.Personal_Details.Any(q => q.User_ID == current_user))
+        {
+            imgTickPersonalDetails.Visible = true;
+        }
+        if (db.MakeChoices.Any(q => q.User_ID == current_user))
+        {
+            imgTickChoices.Visible = true;
+        }
+        if (db.Matriculation_Education.Any(q => q.User_ID == current_user) && db.Intermediate_Education.Any(q => q.User_ID == current_user))
+        {
+            imgTickEducationDetails.Visible = true;
+        }
+        if(db.Test_Results.Where(q=>q.User_ID == current_user).Count() == db.MakeChoices.Where(q=>q.User_ID==current_user).GroupBy(q=>q.Uni_ID).Count())
+        {
+            imgTickTestResults.Visible = true;
+        }
+        if(db.Documents.Any(q=>q.Personal_Details.User_ID == current_user))
+        {
+            imgTickDocuments.Visible = true;
+        }
+        List<int> appids = db.Applications.Where(q => q.UserID == current_user).Select(q => q.id).ToList();
+        if(db.Payments.Where(q=>appids.Contains(q.AppID)).Count() == appids.Count())
+        {
+            imgTickPayments.Visible = true;
+        }
+    }
 
     protected void btnFilter_Click(object sender, EventArgs e)
     {

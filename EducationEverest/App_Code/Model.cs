@@ -23,17 +23,25 @@ public partial class AdmissionDetail
 
 public partial class Application
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Application()
+    {
+        this.Payments = new HashSet<Payment>();
+    }
+
     public int id { get; set; }
     public string UserID { get; set; }
     public string Region { get; set; }
     public Nullable<System.DateTime> SubmittedOn { get; set; }
     public string CurrentStatus { get; set; }
-    public int UnivID { get; set; }
+    public Nullable<int> UnivID { get; set; }
     public Nullable<int> deptID { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
     public virtual Department Department { get; set; }
     public virtual University University { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Payment> Payments { get; set; }
 }
 
 public partial class AspNetRole
@@ -347,6 +355,15 @@ public partial class Medium
     public virtual ICollection<UniversityProfile> UniversityProfiles { get; set; }
 }
 
+public partial class Payment
+{
+    public int id { get; set; }
+    public string TrackingID { get; set; }
+    public int AppID { get; set; }
+
+    public virtual Application Application { get; set; }
+}
+
 public partial class Personal_Details
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -422,6 +439,15 @@ public partial class ProgrammCategory
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     public virtual Programm Programm { get; set; }
+}
+
+public partial class sysdiagram
+{
+    public string name { get; set; }
+    public int principal_id { get; set; }
+    public int diagram_id { get; set; }
+    public Nullable<int> version { get; set; }
+    public byte[] definition { get; set; }
 }
 
 public partial class Test_Results

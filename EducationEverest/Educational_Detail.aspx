@@ -43,6 +43,12 @@
             percentage.value = percentageValue.toFixed(2).toString();
 
         }
+        function OpenCurrentPage() {
+            $("#educationalDocument").removeClass("NormalCharacterStyle24")
+            $("#educationalDocument").addClass("NormalCharacterStyle22");
+            $("#fileAdmission").addClass("NormalCharacterStyle18");
+            document.getElementById("fileAdmission").click();
+        }
             </script>
     </header>
     <div class="col-sm-9 text-left"> 
@@ -53,7 +59,7 @@
       <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
       <div class="panel-heading" style="height: 60px">
         <h4 class="panel-title">
-         <div class="NormalCharacterStyle10 margin_top">Matriculation<div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
+         <div class="NormalCharacterStyle10 margin_top">Matriculation/ O-Level<div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
         </h4>
 
               </div></a>
@@ -158,7 +164,7 @@
       <a id="menu_toggle" href="#interpanel" data-toggle="collapse" data-parent="#accordion">
       <div class="panel-heading" style="height: 60px">
         <h4 class="panel-title">
-         <div class="NormalCharacterStyle2 margin_top">Intermediate<div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
+         <div class="NormalCharacterStyle2 margin_top">Intermediate/A-Level<div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
         </h4>
 
               </div></a>

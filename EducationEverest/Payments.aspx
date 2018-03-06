@@ -123,11 +123,20 @@ payment information.</div>
 					
 </div>
 
-				</div>
+	</div>
 
 						</div>
 
+<div class="col-md-12" style="margin-top:13px;">
+    <div class="NormalCharacterStyle16" style="text-align:left"><b>Add Tracking ID to Confirm Payment</b><br/></div>
+    <div class="col-md-12">
+     <input class="inputs" id="TrackingID"  type="text" name="TrackingID" placeholder="Tracking Id" runat="server" />
+     <asp:LinkButton  ID="SubmitTrackingID" OnClick="SubmitTrackingID_Click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
+    </div>
+</div>
+<br/><br/><br/><br/>
+			
 					</div>
 
 		</div>
@@ -137,6 +146,12 @@ payment information.</div>
 </div></div>
 
 <script type="text/javascript">
+    function OpenCurrentPage() {
+        $("#Payments").removeClass("NormalCharacterStyle24")
+        $("#Payments").addClass("NormalCharacterStyle22");
+        $("#fileAdmission").addClass("NormalCharacterStyle18");
+        document.getElementById("fileAdmission").click();
+    }
   $('#menu_toggle').on('click', function () {
     var iSelector = $(this).find('i:first');
     if (iSelector.hasClass('glyphicon-chevron-down')) {
