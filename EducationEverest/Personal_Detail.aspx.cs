@@ -55,10 +55,10 @@ public partial class Personal_Detail : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (!(HttpContext.Current.User.Identity.IsAuthenticated ))
-        //{
-        //    Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
-        //}
+        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        {
+            Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+        }
         if (!IsPostBack)
         {
             populate_personal_details();
@@ -123,6 +123,12 @@ public partial class Personal_Detail : System.Web.UI.Page
             // save the image
             
             db.SaveChanges();
+            //student_name.Value = string.Empty;
+            //father_name.Value = "";
+            //student_cnic.Value = "";
+            //father_cnic.Value = "";
+            //dob.Value = "";
+            //nationality.Value = "";
             
         }
         else

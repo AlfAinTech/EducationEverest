@@ -83,6 +83,7 @@
        <asp:ListItem Text="BISE LAHORE" Value="BISE LAHORE" />
    </Items>
              </asp:DropDownList>
+                 <br />  <asp:RequiredFieldValidator ID="rvPInstituteMatric" runat="server" ErrorMessage="Please select Matric Institute" ValidationGroup="vgEducationalDetails" ControlToValidate="DropDownList1" ForeColor="Red" ></asp:RequiredFieldValidator>
 
      <%--<select class="combobox col-md-12 select_option">
   <option selected="selected">Select Board</option>
@@ -94,7 +95,9 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="rollno_matric" type="text" name="roll_number" placeholder="Roll Number" runat="server" />
+     <input class="inputs" maxlength="30" id="rollno_matric" type="text" name="roll_number" placeholder="Roll Number" runat="server" />
+ <br />  <asp:RequiredFieldValidator ID="rvRollNo" runat="server" ErrorMessage="Roll Number is required" ValidationGroup="vgEducationalDetails" ControlToValidate="rollno_matric" ForeColor="Red" ></asp:RequiredFieldValidator>
+
     </div>
 </div>
 
@@ -111,7 +114,10 @@
                   <Items>
        <asp:ListItem Text="2014" Value="2014" />
    </Items>
+
              </asp:DropDownList>
+             <br />  <asp:RequiredFieldValidator ID="rvSelectYear" runat="server" ErrorMessage="Please select Passing year" ValidationGroup="vgEducationalDetails" ControlToValidate="DropDownList2" ForeColor="Red" ></asp:RequiredFieldValidator>
+
      <%--<select class="combobox select_campus">
   <option selected="selected">Year of Passing</option>
   <option value="PA">Pennsylvania</option>
@@ -125,27 +131,70 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="total_marks_matric" onchange="OnMatricMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />
+
+     <input class="inputs" maxlength="5" id="total_marks_matric" onchange="OnMatricMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />
+<br />  <asp:RequiredFieldValidator ID="rvTotalMarksMatric" runat="server" ErrorMessage="Total Marks required" ValidationGroup="vgEducationalDetails" ControlToValidate="total_marks_matric" ForeColor="Red" ></asp:RequiredFieldValidator>
+<br /><asp:RegularExpressionValidator ID="reTotalMarksMatric" ControlToValidate="total_marks_matric" ValidationGroup="vgEducationalDetails"
+                    runat="server" ValidationExpression="\d+" ForeColor="Red"
+                        ErrorMessage="Please enter only numbers">
+                    </asp:RegularExpressionValidator>
+<%--<br /><asp:RegularExpressionValidator id="reTotalMarksMatric"
+                   ControlToValidate="total_marks_matric" ValidationGroup="vgEducationalDetails"
+                   ValidationExpression="\d+"
+                   Display="Static" ForeColor="Red"
+                   EnableClientScript="true"
+                   ErrorMessage="Only numeric fields"
+                   runat="server"/>--%>
+
+
+     
+
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="obtained_marks_matric" onchange="OnMatricMarksChange()" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
+             <input class="inputs" maxlength="5" id="obtained_marks_matric" onchange="OnMatricMarksChange()" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
+
+    <br />  <asp:RequiredFieldValidator ID="rvObtainedMarksMatric" runat="server" ErrorMessage="Obtained Marks required" ValidationGroup="vgEducationalDetails" ControlToValidate="obtained_marks_matric" ForeColor="Red" ></asp:RequiredFieldValidator>
+<br /><asp:RegularExpressionValidator ID="reObtainedMarksMatric" ControlToValidate="obtained_marks_matric" ValidationGroup="vgEducationalDetails"
+                    runat="server" ValidationExpression="\d+" ForeColor="Red"
+                        ErrorMessage="Please enter only numbers">
+                    </asp:RegularExpressionValidator>
+        <%--<asp:RegularExpressionValidator id="reObtainedMarksMatric"
+                   ControlToValidate="obtained_marks_matric" ValidationGroup="vgEducationalDetails"
+                   ValidationExpression="\d+"
+                   Display="Static" ForeColor="Red"
+                   EnableClientScript="true"
+                   ErrorMessage="Only numeric fields"
+                   runat="server"/>--%>
+
+
+
+
     </div>
 </div>
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="percentage_matric" type="text" name="percentage" placeholder="Percentage" runat="server" />
+     <input class="inputs" maxlength="5" id="percentage_matric" type="text" name="percentage" placeholder="Percentage" runat="server" readonly="true" />
+            <br />  <asp:RequiredFieldValidator ID="rvPercetageMatric" runat="server" ErrorMessage="Percentage will be calculated automatically" ValidationGroup="vgEducationalDetails" ControlToValidate="percentage_matric" ForeColor="Red" ></asp:RequiredFieldValidator>
+<br /><asp:RegularExpressionValidator ID="rePercentageMatric" ControlToValidate="percentage_matric" ValidationGroup="vgEducationalDetails"
+                 
+     runat="server" ValidationExpression="^[1-9]\d*(\.\d+)?$" ForeColor="Red"
+                        ErrorMessage="numbers/decimals">
+                    </asp:RegularExpressionValidator>
+
     </div>
 </div>
-
+  <%-- runat="server" ValidationExpression="^[1-9]\d*(\.\d+)?$" ForeColor="Red"--%>
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="division_matric" type="text" name="Division" placeholder="Division" runat="server" />
+     <input class="inputs" maxlength="6" id="division_matric" type="text" name="Division" placeholder="Division" runat="server" />
+     <br />  <asp:RequiredFieldValidator ID="rvDivisioMatric" runat="server" ErrorMessage="Division required" ValidationGroup="vgEducationalDetails" ControlToValidate="division_matric" ForeColor="Red" ></asp:RequiredFieldValidator>
+
     </div>
 </div>
 <br/><br/><br/>
@@ -188,6 +237,8 @@
        <asp:ListItem Text="BISE LAHORE" Value="BISE LAHORE" />
    </Items>
              </asp:DropDownList>
+    <br />  <asp:RequiredFieldValidator ID="rvSelectPInstituteInterm" runat="server" ErrorMessage="Please select Intermediate Institute" ValidationGroup="vgEducationalDetails" ControlToValidate="DropDownList3" ForeColor="Red" ></asp:RequiredFieldValidator>
+
      <%--<select class="combobox col-md-12 select_option">
   <option selected="selected">Select Board (example:BISE Lahore)</option>
   <option value="PA">Pennsylvania</option>
@@ -201,7 +252,9 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="rollno_intermediate" type="text" name="roll_number" placeholder="Roll Number" runat="server" />
+     <input class="inputs" maxlength="30" id="rollno_intermediate" type="text" name="roll_number" placeholder="Roll Number" runat="server" />
+         <br />  <asp:RequiredFieldValidator ID="rvRollnoIntermediate" runat="server" ErrorMessage="Roll Number is required" ValidationGroup="vgEducationalDetails" ControlToValidate="rollno_intermediate" ForeColor="Red" ></asp:RequiredFieldValidator>
+
     </div>
 </div>
 
@@ -219,6 +272,8 @@
        <asp:ListItem Text="2014" Value="2014" />
    </Items>
              </asp:DropDownList>
+ <br />  <asp:RequiredFieldValidator ID="rvSelectyearInter" runat="server" ErrorMessage="Please select Passing Year" ValidationGroup="vgEducationalDetails" ControlToValidate="DropDownList4" ForeColor="Red" ></asp:RequiredFieldValidator>
+
      <%--<select class="combobox select_campus">
   <option selected="selected">Year of Passing</option>
   <option value="PA">Pennsylvania</option>
@@ -232,27 +287,51 @@
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="total_marks_intermediate" onchange="OnintermediateMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />
+
+     <input class="inputs" maxlength="5" id="total_marks_intermediate" onchange="OnintermediateMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />
+        <br />  <asp:RequiredFieldValidator ID="rvTotalMarksIntermediate" runat="server" ErrorMessage="Total Marks required" ValidationGroup="vgEducationalDetails" ControlToValidate="total_marks_intermediate" ForeColor="Red" ></asp:RequiredFieldValidator>
+<br /><asp:RegularExpressionValidator ID="reTotalMarksIntermediate" ControlToValidate="total_marks_intermediate" ValidationGroup="vgEducationalDetails"
+                    runat="server" ValidationExpression="\d+" ForeColor="Red"
+                        ErrorMessage="Please enter only numbers">
+                    </asp:RegularExpressionValidator>
+
+
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="obtained_marks_intermediate" onchange="OnintermediateMarksChange()" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
+
+     <input class="inputs" maxlength="5" id="obtained_marks_intermediate" onchange="OnintermediateMarksChange()" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
+        <br />  <asp:RequiredFieldValidator ID="rvObtainedMarksIntermediate" runat="server" ErrorMessage="Obtained Marks required" ValidationGroup="vgEducationalDetails" ControlToValidate="obtained_marks_intermediate" ForeColor="Red" ></asp:RequiredFieldValidator>
+<br /><asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="obtained_marks_intermediate" ValidationGroup="vgEducationalDetails"
+                    runat="server" ValidationExpression="\d+" ForeColor="Red"
+                        ErrorMessage="Please enter only numbers">
+                    </asp:RegularExpressionValidator>
+
+
     </div>
 </div>
 <br/><br/><br/><br/>
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="percentage_intermediate" type="text" name="percentage" placeholder="Percentage" runat="server" />
+     <input class="inputs" maxlength="5" id="percentage_intermediate" type="text" name="percentage" placeholder="Percentage" runat="server" readonly="true" />
+                    <br />  <asp:RequiredFieldValidator ID="rvPercentageIntermediate" runat="server" ErrorMessage="Percentage will be calculated automatically" ValidationGroup="vgEducationalDetails" ControlToValidate="percentage_intermediate" ForeColor="Red" ></asp:RequiredFieldValidator>
+<br /><asp:RegularExpressionValidator ID="rePercentageIntermediate" ControlToValidate="obtained_marks_intermediate" ValidationGroup="vgEducationalDetails"
+                    runat="server" ValidationExpression="^[1-9]\d*(\.\d+)?$" ForeColor="Red"
+                        ErrorMessage="numbers/decimals ">
+                    </asp:RegularExpressionValidator>
+
     </div>
 </div>
 
 
 <div class="col-md-6">
     <div class="form">
-     <input class="inputs" id="division_intermediate" type="text" name="Division" placeholder="Division" runat="server" />
+     <input class="inputs" maxlength="6" id="division_intermediate" type="text" name="Division" placeholder="Division" runat="server" />
+             <br />  <asp:RequiredFieldValidator ID="reDivisionIntermediate" runat="server" ErrorMessage="Division required" ValidationGroup="vgEducationalDetails" ControlToValidate="division_intermediate" ForeColor="Red" ></asp:RequiredFieldValidator>
+
     </div>
 </div>
 <br/><br/><br/>
@@ -269,7 +348,7 @@
    <br/>
 
    
-         <button type="button" onserverclick="button_click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
+         <button type="button" onserverclick="button_click" class=" btn button_bg" validationgroup="vgEducationalDetails" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
 
          <br/><br/><br/><br/><br/><br/>
   </div>
