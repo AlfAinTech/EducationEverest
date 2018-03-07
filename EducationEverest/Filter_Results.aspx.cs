@@ -4,10 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 public partial class Filter_Results : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
+  
+    public static string current_user = HttpContext.Current.User.Identity.GetUserId();
     public void show()
     {
 
@@ -201,6 +204,25 @@ public partial class Filter_Results : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
+
+
+
+
+        current_user = HttpContext.Current.User.Identity.GetUserId();
+        UserProfile up = new UserProfile();
+
+        //code to show user information
+        var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em = q.Email, fn = q.FirstName, ln = q.LastName, c = q.City, p = q.Phone }).FirstOrDefault();
+        //show user first name
+        if (logged != null)
+            lblLoggedUser.Text = logged.fn;
+
+
+
+
+
+
+
         if (!IsPostBack)
         {
 
@@ -288,7 +310,11 @@ public partial class Filter_Results : System.Web.UI.Page
     }
 
 
-   
+    protected void logout_Click(object sender, EventArgs e)
+    {
+        Context.GetOwinContext().Authentication.SignOut();
+        Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+    }
 
     public void BindData()
     {
@@ -317,6 +343,15 @@ public partial class Filter_Results : System.Web.UI.Page
         {
             admissionStatus = "";
         }
+        if(admissionStatus== "Admission Open")
+        {
+            admissionStatus = "True";
+
+        }
+        if(admissionStatus== "Admission Closed")
+        {
+            admissionStatus = "False";
+        }
 
         string rankingStatus = ddlHECRanking.SelectedItem.Text;
         if (rankingStatus == "HEC Ranking")
@@ -334,7 +369,16 @@ public partial class Filter_Results : System.Web.UI.Page
 
     protected void FillData(string locationStatus, /*string program,*/ string universityStatus, string admissionStatus, string rankingStatus)
     {
+
+
         EducationEverestEntities db = new EducationEverestEntities();
+
+        //if(admissionStatus== "Admission Open")
+        //{
+        //    admissionStatus == "True";
+
+        //}
+
         //if (db.UniversityProfiles.Any())
         //{
 
@@ -365,9 +409,13 @@ public partial class Filter_Results : System.Web.UI.Page
        rptSearch.DataSource = Filters;
 
        rptSearch.DataBind();
-        if (Filters ==null)
+        if (Filters.Count==0)
         {
             lblNoDatainFilter.Visible = true;
+        }
+        else
+        {
+            lblNoDatainFilter.Visible = false;
         }
 
 

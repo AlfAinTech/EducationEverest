@@ -502,6 +502,10 @@ public partial class Search_Results : System.Web.UI.Page
         //    var id = univ.id;
         //}
     }
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Filter_Results.aspx");
+    }
 }
 
 

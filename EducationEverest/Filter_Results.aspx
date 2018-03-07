@@ -31,10 +31,10 @@
    });
     });
 
-    function clicked() {
-        alert("hello there");
+    //function clicked() {
+    //    alert("hello there");
   
-    }
+    //}
 
   </script>
     <style>
@@ -62,6 +62,8 @@
         
     </style>
 </head>
+    <body style="background : #F2F2F2;
+  background : rgba(242, 242, 242, 1);">
     <form id="form1" runat="server">
 <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -93,19 +95,24 @@
         <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>--%>
         <%--<span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
       </div>
-     <%-- <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
+       <ul class="nav navbar-nav navbar-right">
+       <%-- <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>--%>
         <li class="dropdown" style="height: 60px;">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">Faizan</span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">
+              <asp:Label ID="lblLoggedUser" runat="server" Text=""  style="font-size:20px;color:#0094ff;border-bottom:1px solid;border-color:white"></asp:Label>
+          </span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
           <ul class="dropdown-menu myprofile_dropdown">
-            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle25">Profile</a></li>
+            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
              <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
-            <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>
+            <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
+            <li role="separator" class="profile_divider"></li>--%>
+            <%--<li><a href="Login.aspx"  class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>--%>
+              <li><asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
+                                        <i class="myprofile_dropdown_link NormalCharacterStyle24"></i>Logout
+                                    </asp:LinkButton></li>
           </ul>
         </li>
-      </ul>--%>
+      </ul>
     </div><!-- /.navbar-collapse -->
 </div>
 
@@ -241,8 +248,7 @@
 
 
 
-<body style="background : #F2F2F2;
-  background : rgba(242, 242, 242, 1);">
+
 
 <br/>
     

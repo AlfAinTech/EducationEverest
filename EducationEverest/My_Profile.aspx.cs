@@ -59,7 +59,7 @@ public partial class My_Profile : System.Web.UI.Page
     }
     protected void btnFilter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Search_Results.aspx");
+        Response.Redirect("Filter_Results.aspx");
     }
 
 
