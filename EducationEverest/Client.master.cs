@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
-
+  
 public partial class Client : System.Web.UI.MasterPage
 {
     EducationEverestEntities db = new EducationEverestEntities();

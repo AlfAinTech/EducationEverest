@@ -69,7 +69,7 @@
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__41EDCAC5" />
         <AssociationConnector Association="EducationEverestModel.FK__Universit__Unive__4D5F7D71" />
         <EntityTypeShape EntityType="EducationEverestModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="EducationEverestModel.Application" Width="1.5" PointX="10.5" PointY="20.5" />
+        <EntityTypeShape EntityType="EducationEverestModel.Application" Width="1.5" PointX="10.5" PointY="20.625" />
         <AssociationConnector Association="EducationEverestModel.FK__Applicati__UserI__5FB337D6" />
         <AssociationConnector Association="EducationEverestModel.FK_Applications_Departments" />
         <AssociationConnector Association="EducationEverestModel.FK_Applications_Universities" />

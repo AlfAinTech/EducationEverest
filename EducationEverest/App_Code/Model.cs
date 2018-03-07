@@ -36,6 +36,7 @@ public partial class Application
     public string CurrentStatus { get; set; }
     public Nullable<int> UnivID { get; set; }
     public Nullable<int> deptID { get; set; }
+    public System.Guid appID { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
     public virtual Department Department { get; set; }

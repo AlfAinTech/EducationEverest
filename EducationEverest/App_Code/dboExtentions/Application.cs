@@ -38,29 +38,5 @@ public partial class Application
         }
         set { }
     }
-    public string Appstatus
-    {
-        get
-        {
-            EducationEverestEntities db = new EducationEverestEntities();
-
-            if(CurrentStatus == "0")
-            {
-                return "Pending";
-            }
-            else
-            {
-                if(CurrentStatus == "1")
-                {
-                    return "Progress";
-                }
-                else
-                {
-                    return "Confirmed";
-                }
-            }
-
-        }
-        set { }
-    }
+    
 }

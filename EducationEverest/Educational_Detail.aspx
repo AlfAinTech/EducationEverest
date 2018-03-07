@@ -21,7 +21,7 @@
             console.log(obtainedValue, totalValue)
             percentageValue = (obtainedValue / totalValue) * 100;
             console.log(percentageValue);
-            percentage.value = percentageValue.toFixed(2).toString();
+            percentage.value = percentageValue.toFixed(0).toString();
 
         }
         function OnintermediateMarksChange() {
@@ -40,7 +40,7 @@
             console.log(obtainedValue, totalValue)
             percentageValue = (obtainedValue / totalValue) * 100;
             console.log(percentageValue);
-            percentage.value = percentageValue.toFixed(2).toString();
+            percentage.value = percentageValue.toFixed(0).toString();
 
         }
         function OpenCurrentPage() {

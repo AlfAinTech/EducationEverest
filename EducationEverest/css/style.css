@@ -14,8 +14,8 @@ input[type="text"]
  font-family : Raleway Medium;
   font-size : 18px;
   line-height : 22px;
-  color : #B3B3B3;
-  color : rgb(179, 179, 179);
+  color : #000000;
+  color : #000000;
 }
 .text-pink
 {
@@ -167,8 +167,8 @@ input::placeholder {
   font-family : Raleway Medium;
   font-size : 18px;
   line-height : 22px;
-  color : #B3B3B3;
-  color : rgb(179, 179, 179);
+  color : #000000;
+  color : #000000;
   }
 
 .side-menu

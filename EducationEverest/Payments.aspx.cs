@@ -46,4 +46,9 @@ public partial class Payments : System.Web.UI.Page
             db.SaveChanges();
         }
     }
+
+    protected void continue_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Choices.aspx");
+    }
 }

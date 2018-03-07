@@ -36,6 +36,7 @@
           <Property Name="CurrentStatus" Type="nvarchar" MaxLength="128" />
           <Property Name="UnivID" Type="int" />
           <Property Name="deptID" Type="int" />
+          <Property Name="appID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -2021,6 +2022,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK_Applications_Departments" FromRole="Application" ToRole="Department" />
           <NavigationProperty Name="University" Relationship="EducationEverestModel.FK_Applications_Universities" FromRole="Application" ToRole="University" />
           <NavigationProperty Name="Payments" Relationship="EducationEverestModel.FK_Payment_Applications" FromRole="Application" ToRole="Payment" />
+          <Property Name="appID" Type="Guid" Nullable="false" />
         </EntityType>
         <Association Name="FK__Applicati__UserI__5FB337D6">
           <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -2467,6 +2469,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySetMapping Name="Applications">
             <EntityTypeMapping TypeName="EducationEverestModel.Application">
               <MappingFragment StoreEntitySet="Applications">
+                <ScalarProperty Name="appID" ColumnName="appID" />
                 <ScalarProperty Name="deptID" ColumnName="deptID" />
                 <ScalarProperty Name="UnivID" ColumnName="UnivID" />
                 <ScalarProperty Name="CurrentStatus" ColumnName="CurrentStatus" />
