@@ -209,7 +209,7 @@
                                         <asp:BoundField DataField="SubmittedOn" HeaderText="Submitted On" />
                                         <asp:TemplateField HeaderText="Current Status">
                                             <ItemTemplate>
-                                                <asp:DropDownList ID="ddl_current_status" data-applicationid='<%# Eval("id")%>' AutoPostBack="true" OnSelectedIndexChanged="ddl_current_status_SelectedIndexChanged" CssClass="form-control" runat="server">
+                                                <asp:DropDownList ID="ddl_current_status" data-applicationid='<%# Eval("id")%>' data-candidateId='<%# Eval("UserID")%>' AutoPostBack="true" OnSelectedIndexChanged="ddl_current_status_SelectedIndexChanged" CssClass="form-control" runat="server">
                                                     <asp:ListItem Text="Received" Value="Received"></asp:ListItem>
                                                     <asp:ListItem Text="Accepted" Value="Accepted"></asp:ListItem>
                                                     <asp:ListItem Text="In Progress" Value="In Progress"></asp:ListItem>

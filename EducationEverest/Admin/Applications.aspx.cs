@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -313,14 +315,44 @@ public partial class Applications : System.Web.UI.Page
         DropDownList ddl_status = sender as DropDownList;
         if (ddl_status.SelectedItem.Text != "Change Status")
         {
-            int ApplicationID = int.Parse(ddl_status.Attributes["data-applicationid"].ToString());
-            EducationEverestEntities db = new EducationEverestEntities();
-            Application dbApplication = db.Applications.Where(w => w.id == ApplicationID).First();
-            dbApplication.CurrentStatus = ddl_status.SelectedItem.Value;
-            //dbApplication.ResolvedBy = HttpContext.Current.User.Identity.Name;
-            //dbApplication.ResolvedOn = DateTime.Now;
-            db.SaveChanges();
-            BindData();
+            try
+            {
+                int ApplicationID = int.Parse(ddl_status.Attributes["data-applicationid"].ToString());
+                string CandidateId = ddl_status.Attributes["data-candidateId"].ToString();
+                string previousStatus = "";
+                EducationEverestEntities db = new EducationEverestEntities();
+                Application dbApplication = db.Applications.Where(w => w.id == ApplicationID).First();
+                previousStatus = dbApplication.CurrentStatus;
+                dbApplication.CurrentStatus = ddl_status.SelectedItem.Value;
+                //dbApplication.ResolvedBy = HttpContext.Current.User.Identity.Name;
+                //dbApplication.ResolvedOn = DateTime.Now;
+                db.SaveChanges();
+                BindData();
+                AspNetUser candidate = db.AspNetUsers.Where(a => a.Id == CandidateId).First();
+                
+                using (MailMessage mm = new MailMessage(EEUtil.FromEmail, candidate.UserName))  //here ID changed 02-feb-18
+                {
+                    mm.Subject = "Application Status Change";
+                    string body = "Hello " + candidate.UserName.Trim() + ",";
+                    body += "<br /><br />Status of your application consisting of ApplicationID = "+dbApplication.appID+" has been changed from " + previousStatus + " to "+dbApplication.CurrentStatus+".";
+                    
+                    mm.Body = body;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Email sent to candidate successfully');", true);
+            }
+            catch
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Something went wrong, Please try again or contact your support team.');", true);
+            }
         }
 
 
