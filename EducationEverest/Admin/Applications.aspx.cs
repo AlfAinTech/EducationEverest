@@ -40,16 +40,25 @@ public partial class Applications : System.Web.UI.Page
     }
     public void BindData()
     {
-        int ApplicationID = 0;
-        if (tb_ApplicationID.Text != "" && !String.IsNullOrWhiteSpace(tb_ApplicationID.Text) && Convert.ToInt32(tb_ApplicationID.Text) > 0)
+        Guid ApplicationID = Guid.Empty;
+        tb_ApplicationID.Text.Replace(" ",string.Empty);
+        if (tb_ApplicationID.Text != "" && !String.IsNullOrWhiteSpace(tb_ApplicationID.Text) && tb_ApplicationID.Text.Length == 36)
         {
-            ApplicationID = int.Parse(tb_ApplicationID.Text);
+             ApplicationID = Guid.Parse(tb_ApplicationID.Text);
 
         }
         else
         {
+            ApplicationID = Guid.Empty;
             tb_ApplicationID.Text = "";
         }
+
+        string CandidateID = "";
+        if(tb_CandidateId.Text != "" && !String.IsNullOrWhiteSpace(tb_CandidateId.Text))
+        {
+            CandidateID = tb_CandidateId.Text;
+        }
+
 
         //string UserID = tb_UserID.Text;
         //UserID = UserID.Trim();
@@ -85,36 +94,36 @@ public partial class Applications : System.Web.UI.Page
             endDate = DateTime.MaxValue;
         }
         setFilters();
-        FillData(ApplicationID, University, CurrentStatus,startDate, endDate);
+        FillData(ApplicationID,CandidateID, University, CurrentStatus,startDate, endDate);
     }
 
 
-    protected void FillData(int ApplicationID, int university, string CurrentStatus, DateTime startDate, DateTime endDate)
+    protected void FillData(Guid ApplicationID,string CandidateId, int university, string CurrentStatus, DateTime startDate, DateTime endDate)
     {
         EducationEverestEntities db = new EducationEverestEntities();
         if (db.Applications.Any())
         {
-            if (ApplicationID != 0 && university !=0 )
+            if (ApplicationID != Guid.Empty && university !=0 )
             {
-                var applications = db.Applications.Where(x => x.id == ApplicationID && x.UnivID == university  && x.CurrentStatus.Contains(CurrentStatus) &&  x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                var applications = db.Applications.Where(x => x.appID.Equals(ApplicationID) && x.UserID.Contains(CandidateId) && x.UnivID == university  && x.CurrentStatus.Contains(CurrentStatus) &&  x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
                 dataTable.DataSource = applications;
                 dataTable.DataBind();
             }
-            if(ApplicationID != 0 && university == 0)
+            if(ApplicationID != Guid.Empty && university == 0)
             {
-                var applications = db.Applications.Where(x => x.id == ApplicationID && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                var applications = db.Applications.Where(x => x.appID.Equals(ApplicationID)  && x.UserID.Contains(CandidateId) && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
                 dataTable.DataSource = applications;
                 dataTable.DataBind();
             }
-            if(ApplicationID==0 && university != 0)
+            if(ApplicationID == Guid.Empty && university != 0)
             {
-                var applications = db.Applications.Where(x =>  x.UnivID == university  && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                var applications = db.Applications.Where(x =>  x.UnivID == university   && x.UserID.Contains(CandidateId) && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
                 dataTable.DataSource = applications;
                 dataTable.DataBind();
             }
-            if(ApplicationID==0 && university == 0)
+            if(ApplicationID == Guid.Empty && university == 0)
             {
-                var applications = db.Applications.Where(x =>  x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
+                var applications = db.Applications.Where(x =>  x.CurrentStatus.Contains(CurrentStatus) && x.UserID.Contains(CandidateId) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
                 dataTable.DataSource = applications;
                 dataTable.DataBind();
             }
@@ -142,15 +151,15 @@ public partial class Applications : System.Web.UI.Page
 
             panel1.Visible = false;
         }
-        //if (tb_UserID.Text != "")
-        //{
-        //    panel2.Visible = true;
-        //    btn_reset.Visible = true;
-        //}
-        //else
-        //{
-        //    panel2.Visible = false;
-        //}
+        if (tb_CandidateId.Text != "")
+        {
+            panel2.Visible = true;
+            btn_reset.Visible = true;
+        }
+        else
+        {
+            panel2.Visible = false;
+        }
         if (ddl_University.SelectedIndex>0)
         {
             panel3.Visible = true;
@@ -241,10 +250,10 @@ public partial class Applications : System.Web.UI.Page
         {
             tb_ApplicationID.Text = "";
         }
-        //if (id == "panel2")
-        //{
-        //    tb_UserID.Text = "";
-        //}
+        if (id == "panel2")
+        {
+            tb_CandidateId.Text = "";
+        }
         if (id == "panel3")
         {
             ddl_University.SelectedIndex = 0;
@@ -270,7 +279,7 @@ public partial class Applications : System.Web.UI.Page
        
         tb_ApplicationID.Text = "";
         tb_EndDate.Text = "";
-        //tb_UserID.Text = "";
+        tb_CandidateId.Text = "";
         tb_startDate.Text = "";
         ddl_University.SelectedIndex = 0;
         ddl_current_status.SelectedIndex = 0;
