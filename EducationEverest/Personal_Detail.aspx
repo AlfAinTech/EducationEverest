@@ -17,6 +17,12 @@
             alert("hello there");
             
         }
+        function OpenCurrentPage() {
+            $("#prsonalDetail").removeClass("NormalCharacterStyle24")
+            $("#prsonalDetail").addClass("NormalCharacterStyle22");
+            $("#fileAdmission").addClass("NormalCharacterStyle18");
+            document.getElementById("fileAdmission").click();
+        }
         $('#student_cnic').keydown(function () {
 
             //allow  backspace, tab, ctrl+A, escape, carriage return
