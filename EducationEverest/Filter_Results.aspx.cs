@@ -241,64 +241,118 @@ public partial class Filter_Results : System.Web.UI.Page
 
             //load  data in location dropdown list
 
+            //List<UniversityProfile> uv = db.UniversityProfiles.Select(x=> x.id, x=, m.Type, m.AdmissionOpen, m.HecRanking }).Distinct().ToList();
 
-            List<UniversityProfile> uv = db.UniversityProfiles.ToList();
-            DropDownList ddlcity = (DropDownList)ddlLocation;
-            foreach (var z in uv)
-            {
-                ListItem l = new ListItem();
-                l.Text = z.Address;
-                l.Value = z.id.ToString();
-                ddlcity.Items.Add(l);
+            // var uv = db.UniversityProfiles.Select(x => new {x.id, x.Address,x.Type,x.AdmissionOpen,x.HecRanking }).ToList().Distinct();
+            //List<UniversityProfile> uv = (from obj in db.UniversityProfiles
+            //                             select obj).Distinct().ToList();
+            //var uv = db.TestAddresses.Select(m => m.Name).Distinct();
+            // var uv=  db.UniversityProfiles.Select(m => new {m.id , m.Address,m.Type,m.AdmissionOpen,m.HecRanking }).Distinct();
 
-            }
 
 
             //List<UniversityProfile> uv = db.UniversityProfiles.ToList();
-            DropDownList ddlutype = (DropDownList)ddlUniversityType;
-            foreach (var z in uv)
-            {
-                ListItem l = new ListItem();
-                l.Text = z.Type;
-                l.Value = z.id.ToString();
-                ddlutype.Items.Add(l);
+            //DropDownList ddlcity = (DropDownList)ddlLocation;
+            //foreach (var z in uv)
+            //{
+            //    ListItem l = new ListItem();
+            //    l.Text = z.Address;
+            //    l.Value = z.id.ToString();
+            //    ddlcity.Items.Add(l);
 
-            }
+            //}
+
+
+            List<UniversityProfile> uv = db.UniversityProfiles.ToList();
+            DropDownList ddlutype = (DropDownList)ddlUniversityType;
+            ddlutype.DataSource = uv.Select(a => a.Type).Distinct().ToList();
+
+            ddlutype.DataBind();
+            // string cid = (string.(ddlutype.SelectedValue));
+            ddlutype.Items.Insert(0, new ListItem("University Type", ""));
+            ddlutype.SelectedIndex = 0;
+            //foreach (var z in uv)
+            //{
+            //    ListItem l = new ListItem();
+            //    l.Text = z.Type;
+            //    l.Value = z.id.ToString();
+            //    ddlutype.Items.Add(l);
+
+
+            //}
 
 
             DropDownList ddladminstatus = (DropDownList)ddlAdmissionStatus;
-            foreach (var z in uv)
+            //ddladminstatus.DataSource = uv.Select(a => new { atatus = a.AdmissionOpen }).Distinct().ToList();
+            var statuses = uv.Select(a => a.AdmissionOpen).Distinct().ToList();
+            ddladminstatus.DataSource = statuses;
+            ddladminstatus.DataBind();
+            // string cid = (string.(ddlutype.SelectedValue));
+            ddladminstatus.Items.Insert(0, new ListItem("Admission Status", ""));
+            ddladminstatus.SelectedIndex = 0;
+            int index = 1;
+            foreach(var status in statuses)
             {
-                ListItem l = new ListItem();
-                l.Text =Convert.ToString( z.AdmissionOpen);
-                 if (l.Text == "True")
-                            {
 
-                    l.Text = "Admission Open";
-                            }
-                            else
-                            {
-
-                    l.Text = "Admission Closed";
-                            }
-                        
-                l.Value = z.id.ToString();
-                ddladminstatus.Items.Add(l);
-
+                if(ddladminstatus.Items[index].Text == "True")
+                {
+                    ddladminstatus.Items[index].Text = "Admission Open";
+                }
+                if(ddladminstatus.Items[index].Text== "False")
+                {
+                    ddladminstatus.Items[index].Text = "Admission Closed";
+                }
+                index++;
             }
+            //if (ddladminstatus.Text=="True")
+            //{
+            //    ddladminstatus.Text = "Admission Open";
+            //}
+            //if(ddladminstatus.Text=="False")
+            //{
+            //    ddladminstatus.Text = "Admission Closed";
+            //}
+            
+            
+            //foreach (var z in uv)
+            //{
+            //    ListItem l = new ListItem();
+            //    l.Text =Convert.ToString( z.AdmissionOpen);
+            //     if (l.Text == "True")
+            //                {
+
+            //        l.Text = "Admission Open";
+            //                }
+            //                else
+            //                {
+
+            //        l.Text = "Admission Closed";
+            //                }
+
+            //    l.Value = z.id.ToString();
+            //    ddladminstatus.Items.Add(l);
+
+            //}
 
 
 
 
             DropDownList ddlranking = (DropDownList)ddlHECRanking;
-            foreach (var z in uv)
-            {
-                ListItem l = new ListItem();
-                l.Text = z.HecRanking;
-                l.Value = z.id.ToString();
-                ddlranking.Items.Add(l);
+            ddlranking.DataSource = uv.Select(a => a.HecRanking).Distinct().ToList();
 
-            }
+            ddlranking.DataBind();
+            // string cid = (string.(ddlutype.SelectedValue));
+            ddlranking.Items.Insert(0, new ListItem("HEC Ranking", ""));
+            ddlranking.SelectedIndex = 0;
+
+            //foreach (var z in uv)
+            //{
+            //    ListItem l = new ListItem();
+            //    l.Text = z.HecRanking;
+            //    l.Value = z.id.ToString();
+            //    ddlranking.Items.Add(l);
+
+            //}
 
 
 

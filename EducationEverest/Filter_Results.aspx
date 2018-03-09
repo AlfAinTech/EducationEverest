@@ -14,9 +14,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/File_admission_application.css">
     <link href="Content/Site.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     
-
-
+     <link rel="Stylesheet" type="text/css" href="Content/css/MyStyle.css" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/myScript.js"></script>
@@ -62,14 +64,14 @@
         
     </style>
 </head>
-    <body style="background : #F2F2F2;
+    <body style="background : #F2F2F2; padding-top:0px;
   background : rgba(242, 242, 242, 1);">
     <form id="form1" runat="server">
 <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" href="Dashboard.aspx"><img src="images/Logo_1_.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -135,21 +137,28 @@
          <div class="form">
 
 
-             <asp:DropDownList ID="ddlLocation" runat="server"  Class="form-control"  style="background-color:#e6e2e2" >
+             <%--<asp:DropDownList ID="ddlLocation" runat="server"  Class="form-control"  style="background-color:#e6e2e2" >
                  <Items>
        <asp:ListItem Text="City" Enabled="true" Selected="true" Value="1" />
    </Items>
 
 
-             </asp:DropDownList>
+             </asp:DropDownList>--%>
             
-                                                <%--<asp:DropDownList ID="ddlLocation" CssClass="form-control" runat="server">
-                                                    <asp:ListItem Text="Select location"></asp:ListItem>
-                                                    <asp:ListItem Text="Lahore" Value="Received"></asp:ListItem>
-                                                    <asp:ListItem Text="Karachi" Value="Accepted"></asp:ListItem>
-                                                    <asp:ListItem Text="Islamabad" Value="Rejected"></asp:ListItem>
+                                                <asp:DropDownList ID="ddlLocation" CssClass="form-control" runat="server" style="background-color:#e6e2e2">
+                                                    <asp:ListItem Text="City"></asp:ListItem>
+                                                    <asp:ListItem Text="Lahore" ></asp:ListItem>
+                                                    <asp:ListItem Text="Karachi" ></asp:ListItem>
+                                                    <asp:ListItem Text="Islamabad" ></asp:ListItem>
+                                                    <asp:ListItem Text="Peshawar" ></asp:ListItem>
+                                                    <asp:ListItem Text="Sialkot" ></asp:ListItem>
+                                                    <asp:ListItem Text="Quetta" ></asp:ListItem>
+                                                    <asp:ListItem Text="Faisalabad" ></asp:ListItem>
+                                                    <asp:ListItem Text="Gujranwala" ></asp:ListItem>
+                                                    <asp:ListItem Text="Multan" ></asp:ListItem>
+                                                     <asp:ListItem Text="Sahiwal" ></asp:ListItem>
                                                     
-                                                </asp:DropDownList>--%>
+                                                </asp:DropDownList>
 
 
      <%--<select class="combobox form-control filter_results_option">
@@ -194,7 +203,7 @@
              <div class="form">
              <asp:DropDownList ID="ddlAdmissionStatus" runat="server"  Class="form-control"  style="background-color:#e6e2e2">
                  <Items>
-       <asp:ListItem Text="Admission Status" Enabled="true" Selected="true" Value="1" />
+       <asp:ListItem Text="Admission Status" Enabled="true" Selected="true"  />
    </Items>
              </asp:DropDownList>
      <%--<select class="combobox form-control filter_results_option">

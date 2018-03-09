@@ -33,7 +33,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
-      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>
+      <a class="navbar-brand" href="Dashboard.aspx"><img src="images/Logo_1_.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
