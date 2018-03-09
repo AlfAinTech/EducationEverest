@@ -25,14 +25,31 @@ public partial class Application
         get {
             EducationEverestEntities db = new EducationEverestEntities();
            UniversityProfile up = db.UniversityProfiles.Where(q => q.UniversityID == UnivID).FirstOrDefault();
-            if(up.ApplicationFeeSame.Value)
+            if(up.ApplicationFeeSame != null && up.ApplicationFeeSame.Value)
             {
-                return int.Parse(up.ApplicationFee);
+                if (up.ApplicationFee != null)
+                {
+                    return int.Parse(up.ApplicationFee);
+                }
+                else
+                {
+                    return 0;
+                }
             }
             else
             {
                 if(Department != null)
-                    return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
+                {
+                    if (Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != null)
+                    {
+                        return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                    
             }
             return 0;
         }
