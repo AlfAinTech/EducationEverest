@@ -25,42 +25,51 @@ public partial class Application
         get {
             EducationEverestEntities db = new EducationEverestEntities();
            UniversityProfile up = db.UniversityProfiles.Where(q => q.UniversityID == UnivID).FirstOrDefault();
-            if(up.ApplicationFeeSame.Value)
+            if(up.ApplicationFeeSame != null && up.ApplicationFeeSame.Value)
             {
-                return int.Parse(up.ApplicationFee);
+                if (up.ApplicationFee != null)
+                {
+                    return int.Parse(up.ApplicationFee);
+                }
+                else
+                {
+                    return 0;
+                }
             }
             else
             {
                 if(Department != null)
-                    return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
+                {
+                    if (Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != null)
+                    {
+                        return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                    
             }
             return 0;
         }
         set { }
     }
-    public string Appstatus
+
+    public string TrackingID
     {
         get
         {
             EducationEverestEntities db = new EducationEverestEntities();
-
-            if(CurrentStatus == "0")
-            {
-                return "Pending";
-            }
+            
+            Payment payment = db.Payments.Where(q => q.AppID == this.id).FirstOrDefault();
+            if (payment != null && payment.TrackingID != null)
+                return payment.TrackingID;
             else
-            {
-                if(CurrentStatus == "1")
-                {
-                    return "Progress";
-                }
-                else
-                {
-                    return "Confirmed";
-                }
-            }
+                return "No paymnet";
 
         }
         set { }
     }
+
 }

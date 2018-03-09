@@ -49,18 +49,18 @@
                                         <div class="form-group">
                                             <label class="col-xs-3 control-label">ApplicationID</label>
                                             <div class="col-xs-5">
-                                                <asp:TextBox runat="server" CssClass="form-control" ID="tb_ApplicationID" TextMode="Number" placeholder="Please enter Application ID"></asp:TextBox>
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="tb_ApplicationID"  placeholder="Please enter Application ID"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
-                                    <%--<div class="col-md-3">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <label class="col-xs-3 control-label">UserID</label>
+                                            <label class="col-xs-3 control-label">CandidateID</label>
                                             <div class="col-xs-5">
-                                                <asp:TextBox runat="server" CssClass="form-control" MaxLength="10" ID="tb_UserID" placeholder="User ID"></asp:TextBox>
+                                                <asp:TextBox runat="server" CssClass="form-control"  ID="tb_CandidateId" placeholder="Candidate ID"></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>--%>
+                                    </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <div class="col-xs-12">
@@ -90,20 +90,28 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                </div>
+
+                                <div class="row" style="margin-top: 25px;">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="col-xs-3 control-label">TrackingID</label>
+                                            <div class="col-xs-5">
+                                                <asp:TextBox runat="server" CssClass="form-control"  ID="tb_TrackingID" placeholder="Tracking Id"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-3">
                                         <label for="meeting">Start Date : </label>
                                         <asp:TextBox runat="server" CssClass="form-control" ID="tb_startDate" TextMode="Date" placeholder="Please select startdate"></asp:TextBox>
                                     </div>
-                                </div>
-
-                                <div class="row" style="margin-top: 25px;">
-                                    
                                     <div class="col-md-3">
                                         <label for="meeting">End Date : </label>
                                         <asp:TextBox runat="server" CssClass="form-control" ID="tb_EndDate" TextMode="Date" placeholder="Please select enddate"></asp:TextBox>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         
                                     </div>
                                     <div class="col-md-3">
@@ -129,8 +137,9 @@
                                     </asp:Panel>
                                     <asp:Panel ID="panel2" runat="server" Visible="false">
                                         <li>
-                                            <asp:LinkButton ID="btn2" runat="server" CssClass="tag" CommandArgument="2" OnClick="delete_filter">User ID</asp:LinkButton></li>
+                                            <asp:LinkButton ID="btn2" runat="server" CssClass="tag" CommandArgument="2" OnClick="delete_filter">Candidate ID</asp:LinkButton></li>
                                     </asp:Panel>
+
                                     <asp:Panel ID="panel3" runat="server" Visible="false">
                                         <li>
                                             <asp:LinkButton runat="server" ID="btn3" CssClass="tag" CommandArgument="3" OnClick="delete_filter">University</asp:LinkButton></li>
@@ -146,6 +155,10 @@
                                     <asp:Panel ID="panel6" runat="server" Visible="false">
                                         <li>
                                             <asp:LinkButton runat="server" ID="btn6" CssClass="tag" CommandArgument="6" OnClick="delete_filter">Current Status</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel7" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn7" CssClass="tag" CommandArgument="7" OnClick="delete_filter">Tracking Id</asp:LinkButton></li>
                                     </asp:Panel>
 
                                 </ul>
@@ -202,19 +215,26 @@
 
                                 <asp:GridView ID="dataTable" style="table-layout:fixed;" OnRowDataBound="dataTable_RowDataBound" OnPageIndexChanging="dataTable_PageIndexChanging" OnRowDeleting="dataTable_RowDeleting" OnRowCommand="dataTable_RowCommand" AutoGenerateColumns="false" AllowPaging="true" PageSize="5" ClientIDMode="Static" CssClass="table table-bordered" runat="server">
                                     <Columns>
-                                        <asp:BoundField DataField="UserID" HeaderText="ApplicationID" />
-                                        <%--<asp:BoundField DataField="UserID" HeaderText="UserID" />--%>
+                                        <asp:BoundField DataField="appID" HeaderText="ApplicationID" />
+                                        <asp:BoundField DataField="UserID" HeaderText="CandidateID" />
                                         <asp:BoundField DataField="University.Name" HeaderText="University" />
+                                        <asp:BoundField DataField="TrackingID" HeaderText="TrackingId" />
                                         <asp:BoundField DataField="SubmittedOn" HeaderText="Submitted On" />
                                         <asp:TemplateField HeaderText="Current Status">
                                             <ItemTemplate>
-                                                <asp:DropDownList ID="ddl_current_status" data-applicationid='<%# Eval("id")%>' AutoPostBack="true" OnSelectedIndexChanged="ddl_current_status_SelectedIndexChanged" CssClass="form-control" runat="server">
+                                                <asp:DropDownList ID="ddl_current_status" data-applicationid='<%# Eval("id")%>' data-candidateId='<%# Eval("UserID")%>' AutoPostBack="true" OnSelectedIndexChanged="ddl_current_status_SelectedIndexChanged" CssClass="form-control" runat="server">
                                                     <asp:ListItem Text="Received" Value="Received"></asp:ListItem>
                                                     <asp:ListItem Text="Accepted" Value="Accepted"></asp:ListItem>
                                                     <asp:ListItem Text="In Progress" Value="In Progress"></asp:ListItem>
                                                     <asp:ListItem Text="Dispatched" Value="Dispatched"></asp:ListItem>
                                                     <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
                                                 </asp:DropDownList>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText ="Confirm Payment">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" data-fileid='<%#Eval("id")%>' data-candidateId='<%# Eval("UserID")%>' OnClick="LinkButton1_Click1" runat="server" Text="Confirm"></asp:LinkButton>
+                                                <asp:Label ID="Label1" runat="server" Visible="false" Text="Confirmed"> </asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <%--<asp:TemplateField HeaderText="Actions">

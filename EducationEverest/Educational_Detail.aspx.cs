@@ -55,7 +55,7 @@ public partial class Educational_Detail : System.Web.UI.Page
             populate_matric_data();
             populate_intermediate_data();
         }
-
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }
 
     protected void button_click(object sender, EventArgs e)

@@ -12,7 +12,7 @@ using System.Net.Mail;
 
 public partial class My_Profile : System.Web.UI.Page
 {
-    
+
     EducationEverestEntities db = new EducationEverestEntities();
     // public static string current_user = HttpContext.Current.User.Identity.GetUserId(); //to be used later
     //public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";
@@ -33,7 +33,7 @@ public partial class My_Profile : System.Web.UI.Page
 
         //code to show user information
 
-      var logged=  db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em =q.Email, fn = q.FirstName, ln = q.LastName, c =q.City, p=q.Phone }).FirstOrDefault();
+        var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em = q.Email, fn = q.FirstName, ln = q.LastName, c = q.City, p = q.Phone }).FirstOrDefault();
         email.Text = logged.em;
         email2.Text = logged.em;
 
@@ -43,7 +43,7 @@ public partial class My_Profile : System.Web.UI.Page
         city2.Text = logged.c;
         contact.Text = logged.p;
 
-       
+
         //show user first name
         lblLoggedUser.Text = logged.fn;
         ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
@@ -59,7 +59,7 @@ public partial class My_Profile : System.Web.UI.Page
     }
     protected void btnFilter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Filter_Results.aspx");
+        Response.Redirect("Search_Results.aspx");
     }
 
 
@@ -77,15 +77,15 @@ public partial class My_Profile : System.Web.UI.Page
         {
             UserProfile up = new UserProfile();
 
-            var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new {  fn = q.FirstName, ln = q.LastName, eml=q.Email }).FirstOrDefault();
+            var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { fn = q.FirstName, ln = q.LastName, eml = q.Email }).FirstOrDefault();
 
 
-            mm.Subject = "Education Everest Invitation from"+" "+logged.eml;
+            mm.Subject = "Education Everest Invitation from" + " " + logged.eml;
             string body = "Hello " + txtEmailSend.Text.Trim() + ",";
             body += "<br /><br />I would like to invite you to visit Education Everest";
             body += "<br /><a href = '" + "http://localhost:65465/My_Profile.aspx" + "'>Click here to visit Education Everest.</a>";
             body += "<br /><br />Thanks & regards";
-            body += "<br /><br />"+logged.fn+" "+logged.ln;
+            body += "<br /><br />" + logged.fn + " " + logged.ln;
             mm.Body = body;
             mm.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
@@ -105,7 +105,7 @@ public partial class My_Profile : System.Web.UI.Page
 
     protected void btnMessage_Click(object sender, EventArgs e)
     {
-       // string var1 = Session["username"].ToString();
+        // string var1 = Session["username"].ToString();
         UserProfile up = new UserProfile();
 
         var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { userid = q.AspNetUserID }).FirstOrDefault();
@@ -143,7 +143,7 @@ public partial class My_Profile : System.Web.UI.Page
     }
     protected void ChoicesList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        
+
         if (e.Item.DataItem is Application)
         {
             Application dataItem = e.Item.DataItem as Application;
@@ -159,7 +159,7 @@ public partial class My_Profile : System.Web.UI.Page
             if (pd != null)
             {
                 Label Name = (Label)e.Item.FindControl("Name");
-                Name.Text = pd.Name==null?"":pd.Name;
+                Name.Text = pd.Name == null ? "" : pd.Name;
                 Label FatherName = (Label)e.Item.FindControl("FatherName");
                 FatherName.Text = pd.Father_Name == null ? "" : pd.Father_Name;
                 Label StudentCNIC = (Label)e.Item.FindControl("StudentCNIC");
@@ -169,11 +169,18 @@ public partial class My_Profile : System.Web.UI.Page
                 Label DOB = (Label)e.Item.FindControl("DOB");
                 DOB.Text = pd.DateOfBirth;
                 Label Nationality = (Label)e.Item.FindControl("Nationality");
-                Nationality.Text = pd.Nationality==null?"":pd.Nationality;
+                Nationality.Text = pd.Nationality == null ? "" : pd.Nationality;
+                Medium media = dataItem.AspNetUser.Media.FirstOrDefault();
+                if(media != null)
+                {
+                    Image image = (Image)e.Item.FindControl("user_Image");
+                    image.ImageUrl = media.Path;
+
+                }
             }
             ContactInformation ci = dataItem.AspNetUser.ContactInformations.FirstOrDefault();
-            if(ci != null)
-            {  
+            if (ci != null)
+            {
                 Label CurrentAddress = (Label)e.Item.FindControl("CurrentAddress");
                 CurrentAddress.Text = ci.Current_Address == null ? "" : ci.Current_Address;
                 Label ParmanentAddress = (Label)e.Item.FindControl("ParmanentAddress");
@@ -197,10 +204,10 @@ public partial class My_Profile : System.Web.UI.Page
             PreferencesList.DataBind();
             //Educational Detail
             Matriculation_Education me = db.Matriculation_Education.Where(q => q.User_ID == current_user).FirstOrDefault();
-            if(me != null)
+            if (me != null)
             {
                 Label MetricBoard = (Label)e.Item.FindControl("MetricBoard");
-                MetricBoard.Text = me.Board== null ? "" :me.Board;
+                MetricBoard.Text = me.Board == null ? "" : me.Board;
                 Label MetricRollNo = (Label)e.Item.FindControl("MetricRollNo");
                 MetricRollNo.Text = me.Rollno == null ? "" : me.Rollno;
                 Label MetricYear = (Label)e.Item.FindControl("MetricYear");
@@ -256,7 +263,7 @@ public partial class My_Profile : System.Web.UI.Page
 
             List<int> universities = new List<int>();
             if (dataItem.deptID != null)
-                universities = db.MakeChoices.Where(q=>q.User_ID == current_user && q.Uni_ID == dataItem.UnivID && q.Department_Id == dataItem.deptID).Select(q => q.Uni_ID ).ToList();
+                universities = db.MakeChoices.Where(q => q.User_ID == current_user && q.Uni_ID == dataItem.UnivID && q.Department_Id == dataItem.deptID).Select(q => q.Uni_ID).ToList();
             else
                 universities = db.MakeChoices.Where(q => q.User_ID == current_user && q.Uni_ID == dataItem.UnivID).Select(q => q.Uni_ID).ToList();
 
@@ -273,12 +280,12 @@ public partial class My_Profile : System.Web.UI.Page
 
             if (td != null)
             {
-               
+
                 Label ctrlsize =
                       e.Item.FindControl("documentSizeInKB") as Label;
                 Label documentName =
                       e.Item.FindControl("documentName") as Label;
-               
+
 
                 if (ctrlsize != null)
                 {

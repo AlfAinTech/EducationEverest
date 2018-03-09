@@ -328,7 +328,8 @@ public partial class Choices : System.Web.UI.Page
                                                 UnivID = univ.id,
                                                 SubmittedOn = System.DateTime.Now,
                                                 deptID = depart.id,
-                                                CurrentStatus = "0"
+                                                CurrentStatus = "pending",
+                                                appID = Guid.NewGuid()
                                             };
                                             dbcontext.Applications.Add(app);
                                             try { dbcontext.SaveChanges(); }
@@ -339,18 +340,18 @@ public partial class Choices : System.Web.UI.Page
                                         }
                                     }
                                     else
-                                    {
-                                        if ((!univ.UniversityProfiles.FirstOrDefault().ApplicationFeeSame.Value)) { 
+                                    { 
                                         Application app = new Application
                                         {
                                             UserID = current_user,
                                             UnivID = univ.id,
                                             SubmittedOn = System.DateTime.Now,
-                                            CurrentStatus = "0"
+                                            CurrentStatus = "pending",
+                                            appID = Guid.NewGuid()
                                         };
                                         dbcontext.Applications.Add(app);
                                         dbcontext.SaveChanges();
-                                        }
+                                        
                                     }
                                    
                                     

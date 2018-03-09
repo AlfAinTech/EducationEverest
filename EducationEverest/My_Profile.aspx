@@ -24,7 +24,6 @@
        $(this).addClass('active');
    });
 });
-
   </script>
 </head>
     <body>
@@ -242,7 +241,6 @@
                   <a href="https://plus.google.com/share?url=http%3A//www.bbc.com/urdu/science-42912340"><img src="images/google.png" style="width: 30px;height: 30px"></a>       
               <%--<a href=""><img src="images/google.png" style="width: 30px;height: 30px"></a> &nbsp;--%>
                           <%--<a href="https://ctt.ec/82Mle"><img src="http://clicktotweet.com/img/tweet-graphic-4.png" alt="Tweet: I would like you to visit https://ctt.ec/82Mle+ " /></a>--%>
-
         </div>
         </div>
                 <div class="col-md-1"></div>
@@ -251,8 +249,6 @@
   </div>
   </div>
             
-
-
     </div>
             
 <br/>
@@ -261,12 +257,9 @@
 <span class="col-md-6"><a  class="link myprofile_tabs myprofile_tabs_padding1 active" data-toggle="tab" data-target="#apptab">My Applications</a></span>
 <span class="col-md-6"><a  class="link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
 </div>
-
 <br/><br/><br/><br/>
-
     <div class="tab-content">
       <div class="tab-pane fade in active" id="apptab">
-
     <asp:Repeater ID="ChoicesList" runat="server" OnItemDataBound="ChoicesList_ItemDataBound">
         <ItemTemplate>
     <div class="panel panel-default ">
@@ -274,7 +267,6 @@
         <div class="row text-left">
           <div class="col-md-1">
             <asp:Image ID="logo" runat="server"  />
-
           </div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
@@ -324,7 +316,8 @@
             </div>
             <div class="col-md-4">
                <div class="Profile_sidemenu_Name3" style="color: transparent;">Personal Details</div>
-              <img src="images/profile_pic2.png" class="pull-right" width="120" height="130px">
+                <asp:Image runat="server" ID="user_Image" />
+              
               
             </div>
           </div>
@@ -349,7 +342,6 @@
              
               <div ><asp:Label ID="PostalCode" runat="server" Text="Label"></asp:Label></div>
             </div>
-
           </div>
         </div>
       </div>
@@ -379,7 +371,6 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-3 ">
                               <div class="Profile_sidemenu_Name4"> <%# Eval("Campus.Campus_Name") %></div>
-
                             </div>
             <div class="col-md-3 ">
               <div class="Profile_sidemenu_Name4">Catagory  <%# Eval("ProgrammCategory.Category.Category_Name") %></div>
@@ -388,7 +379,6 @@
               </ItemTemplate>
                 </asp:Repeater>
             </div>
-
         </div>
       </div>
     </div>
@@ -451,9 +441,7 @@
               <div ><asp:Label ID="InterPercentage" runat="server" ></asp:Label></div>
               <div ><asp:Label ID="InterGrades" runat="server" ></asp:Label></div>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
@@ -494,7 +482,6 @@
           </div>
           <br/><br/><br/>
            </ItemTemplate></asp:Repeater>
-
         </div>
       </div>
     </div>
@@ -511,7 +498,6 @@
         
           
           <div class="col-md-12 text-left" style="margin-top: -10px">
-
             <div class="NormalCharacterStyle101 margin_left2">&#9656;B Form/CNIC of Student&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
               <asp:Repeater ID="studentCNICList" runat="server"><ItemTemplate>
               <div class="col-md-12">
@@ -525,7 +511,6 @@
                   </div>
                     <br/>
                   </ItemTemplate></asp:Repeater>
-
             <br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="profile_divider2" ></div><br/>
               
@@ -542,8 +527,6 @@
                   </div>
                     <br/>
                   </ItemTemplate></asp:Repeater>
-
-
             <br/><br/><br/><br/><br/><br/><br/><br/>
                  <div class="profile_divider2" ></div><br/>
               <div class="NormalCharacterStyle101 margin_left2" >&#9656;Father/Guardian Income Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
@@ -559,8 +542,6 @@
                       </div>
                         <br/>
                       </ItemTemplate></asp:Repeater>
-
-
             <br/><br/><br/><br/><br/><br/><br/><br/>
              <div class="profile_divider2" ></div><br/>
             <div class="NormalCharacterStyle101 margin_left2" >&#9656;Matriculation/ O-Leve Certificate/Result Cards&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
@@ -576,10 +557,8 @@
                       </div>
                         <br/>
                       </ItemTemplate></asp:Repeater>
-
               <br/><br/><br/><br/><br/>
               <div class="profile_divider2" ></div><br/>
-
               <div class="NormalCharacterStyle101 margin_left2" >&#9656;Intermediate/ A-Level Certificate/Result Cards&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                <asp:Repeater ID="InterCertiList" runat="server"><ItemTemplate>
                   <div class="col-md-12">
@@ -593,10 +572,8 @@
                       </div>
                         <br/>
                       </ItemTemplate></asp:Repeater>
-
               <br/><br/><br/><br/><br/>
               <div class="profile_divider2" ></div><br/>
-
               <asp:Repeater ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" runat="server"><ItemTemplate>
                   <div class="NormalCharacterStyle101 margin_left2" >&#9656;<%# Eval("TestName")  %> Certificate/Result Cards&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                <div class="col-md-12">
@@ -620,9 +597,7 @@
           
           <asp:Button ID="btnFileAdmission" runat="server" Text="File Admission Application" class="btn button_bg NormalCharacterStyle " OnClick="btnFileAdmission_Click" />
 <%-- <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">File Admission Application</span></button>--%>
-
 </div>
-
       <div class="tab-pane fade in text-left""  id="paytab">
 
       <h3 class="NormalCharacterStyle12" style="margin-top: -20px">My Banks & Credit Cards</h3>
@@ -691,6 +666,3 @@
   </form>  
 </body>
 </html>
-
-
-

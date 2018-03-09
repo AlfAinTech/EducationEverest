@@ -2,10 +2,10 @@
 <%@ MasterType virtualpath="~/Client.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
+   <%-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+   
     <script src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/myScript.js"></script>
+    <script type="text/javascript" src="/js/myScript.js"></script>--%>
     <script type="text/javascript">
         function browse(e) {
             
@@ -16,6 +16,12 @@
         function UploadFile() {
             alert("hello there");
             
+        }
+        function OpenCurrentPage() {
+            $("#prsonalDetail").removeClass("NormalCharacterStyle24")
+            $("#prsonalDetail").addClass("NormalCharacterStyle22");
+            $("#fileAdmission").addClass("NormalCharacterStyle18");
+            document.getElementById("fileAdmission").click();
         }
         $('#student_cnic').keydown(function () {
 

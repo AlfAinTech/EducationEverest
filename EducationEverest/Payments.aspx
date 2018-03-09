@@ -30,12 +30,12 @@
              <img src="images/image.png" ></div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
-                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="0"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("Appstatus") %></b></small></div>
+                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="pending"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
         </h4>
         <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>
-        <h4 class="blue_text margin_left">Application ID: <%# Eval("AspNetUser.id") %></h4>
+        <h4 class="blue_text margin_left">Application ID: <%# Eval("appID") %></h4>
         <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text"><%# Eval("ApplicationDate") %></span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text"><%# Eval("university.deadLine") %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text"><%# Eval("Appstatus") %></span><small class="NormalCharacterStyle102 pull-right"><b>PKR <%# Eval("Fees") %></b></small>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text"><%# Eval("university.deadLine") %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text"><%# Eval("CurrentStatus") %></span><small class="NormalCharacterStyle102 pull-right"><b>PKR <%# Eval("Fees") %></b></small>
       </div>
         </div>
         </div><br/>
@@ -53,7 +53,13 @@
     </div>
 
  
-   
+            <asp:LinkButton runat="server" ID="continue" OnClick="continue_Click" class=" btn" style="float:left;background: rgba(33, 150, 243, 1);
+    opacity: 0.88;width: 350px;
+    color: white;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;" ><span class="NormalCharacterStyle">Continue</span></asp:LinkButton>
+
          <button type="button" class=" btn button_bg" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">Make Payment</span></button>
 
             <div class="modal fade" id="exampleModalCenter" >
@@ -123,11 +129,20 @@ payment information.</div>
 					
 </div>
 
-				</div>
+	</div>
 
 						</div>
 
+<div class="col-md-12" style="margin-top:13px;">
+    <div class="NormalCharacterStyle16" style="text-align:left"><b>Add Tracking ID to Confirm Payment</b><br/></div>
+    <div class="col-md-12">
+     <input class="inputs" id="TrackingID"  type="text" name="TrackingID" placeholder="Tracking Id" runat="server" />
+     <asp:LinkButton  ID="SubmitTrackingID" OnClick="SubmitTrackingID_Click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
+    </div>
+</div>
+<br/><br/><br/><br/>
+			
 					</div>
 
 		</div>
@@ -137,6 +152,12 @@ payment information.</div>
 </div></div>
 
 <script type="text/javascript">
+    function OpenCurrentPage() {
+        $("#Payments").removeClass("NormalCharacterStyle24")
+        $("#Payments").addClass("NormalCharacterStyle22");
+        $("#fileAdmission").addClass("NormalCharacterStyle18");
+        document.getElementById("fileAdmission").click();
+    }
   $('#menu_toggle').on('click', function () {
     var iSelector = $(this).find('i:first');
     if (iSelector.hasClass('glyphicon-chevron-down')) {
