@@ -57,7 +57,7 @@
                                         <div class="form-group">
                                             <label class="col-xs-3 control-label">CandidateID</label>
                                             <div class="col-xs-5">
-                                                <asp:TextBox runat="server" CssClass="form-control" MaxLength="10" ID="tb_CandidateId" placeholder="Candidate ID"></asp:TextBox>
+                                                <asp:TextBox runat="server" CssClass="form-control"  ID="tb_CandidateId" placeholder="Candidate ID"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -94,6 +94,14 @@
                                 </div>
 
                                 <div class="row" style="margin-top: 25px;">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="col-xs-3 control-label">TrackingID</label>
+                                            <div class="col-xs-5">
+                                                <asp:TextBox runat="server" CssClass="form-control"  ID="tb_TrackingID" placeholder="Tracking Id"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-3">
                                         <label for="meeting">Start Date : </label>
                                         <asp:TextBox runat="server" CssClass="form-control" ID="tb_startDate" TextMode="Date" placeholder="Please select startdate"></asp:TextBox>
@@ -147,6 +155,10 @@
                                     <asp:Panel ID="panel6" runat="server" Visible="false">
                                         <li>
                                             <asp:LinkButton runat="server" ID="btn6" CssClass="tag" CommandArgument="6" OnClick="delete_filter">Current Status</asp:LinkButton></li>
+                                    </asp:Panel>
+                                    <asp:Panel ID="panel7" runat="server" Visible="false">
+                                        <li>
+                                            <asp:LinkButton runat="server" ID="btn7" CssClass="tag" CommandArgument="7" OnClick="delete_filter">Tracking Id</asp:LinkButton></li>
                                     </asp:Panel>
 
                                 </ul>
@@ -206,6 +218,7 @@
                                         <asp:BoundField DataField="appID" HeaderText="ApplicationID" />
                                         <asp:BoundField DataField="UserID" HeaderText="CandidateID" />
                                         <asp:BoundField DataField="University.Name" HeaderText="University" />
+                                        <asp:BoundField DataField="TrackingID" HeaderText="TrackingId" />
                                         <asp:BoundField DataField="SubmittedOn" HeaderText="Submitted On" />
                                         <asp:TemplateField HeaderText="Current Status">
                                             <ItemTemplate>
@@ -216,6 +229,12 @@
                                                     <asp:ListItem Text="Dispatched" Value="Dispatched"></asp:ListItem>
                                                     <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
                                                 </asp:DropDownList>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText ="Confirm Payment">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" data-fileid='<%#Eval("id")%>' data-candidateId='<%# Eval("UserID")%>' OnClick="LinkButton1_Click1" runat="server" Text="Confirm"></asp:LinkButton>
+                                                <asp:Label ID="Label1" runat="server" Visible="false" Text="Confirmed"> </asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <%--<asp:TemplateField HeaderText="Actions">

@@ -38,6 +38,7 @@ public partial class Payments : System.Web.UI.Page
             {
                 TrackingID = TrackingID.Value.ToString(),
                 AppID = app.id,
+                ConfirmPayment = false
             };
             db.Payments.Add(p);
             db.SaveChanges();

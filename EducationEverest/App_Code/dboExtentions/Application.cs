@@ -55,5 +55,21 @@ public partial class Application
         }
         set { }
     }
-    
+
+    public string TrackingID
+    {
+        get
+        {
+            EducationEverestEntities db = new EducationEverestEntities();
+            
+            Payment payment = db.Payments.Where(q => q.AppID == this.id).FirstOrDefault();
+            if (payment.TrackingID != null)
+                return payment.TrackingID;
+            else
+                return "No paymnet";
+
+        }
+        set { }
+    }
+
 }
