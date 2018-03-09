@@ -173,7 +173,7 @@ public partial class Filter_Results : System.Web.UI.Page
                         //{
                         CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-                        if (urating != null)
+                        if (urating != null && urating.AdminRatings !=  "")
                         {
                             Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
                                                                                           /*   }*/                                                        //coding for rating
@@ -777,7 +777,7 @@ public partial class Filter_Results : System.Web.UI.Page
                     {
                         CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-                        if (urating.AdminRatings != null)
+                        if (urating.AdminRatings != null && urating.AdminRatings != "")
                         {
                             Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
                         }
