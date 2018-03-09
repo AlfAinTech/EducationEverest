@@ -339,8 +339,7 @@ public partial class Choices : System.Web.UI.Page
                                         }
                                     }
                                     else
-                                    {
-                                        if ((!univ.UniversityProfiles.FirstOrDefault().ApplicationFeeSame.Value)) { 
+                                    { 
                                         Application app = new Application
                                         {
                                             UserID = current_user,
@@ -350,7 +349,7 @@ public partial class Choices : System.Web.UI.Page
                                         };
                                         dbcontext.Applications.Add(app);
                                         dbcontext.SaveChanges();
-                                        }
+                                        
                                     }
                                    
                                     
