@@ -170,6 +170,13 @@ public partial class My_Profile : System.Web.UI.Page
                 DOB.Text = pd.DateOfBirth;
                 Label Nationality = (Label)e.Item.FindControl("Nationality");
                 Nationality.Text = pd.Nationality == null ? "" : pd.Nationality;
+                Medium media = dataItem.AspNetUser.Media.FirstOrDefault();
+                if(media != null)
+                {
+                    Image image = (Image)e.Item.FindControl("user_Image");
+                    image.ImageUrl = media.Path;
+
+                }
             }
             ContactInformation ci = dataItem.AspNetUser.ContactInformations.FirstOrDefault();
             if (ci != null)

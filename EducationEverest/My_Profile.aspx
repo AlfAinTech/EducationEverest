@@ -316,7 +316,8 @@
             </div>
             <div class="col-md-4">
                <div class="Profile_sidemenu_Name3" style="color: transparent;">Personal Details</div>
-              <img src="images/profile_pic2.png" class="pull-right" width="120" height="130px">
+                <asp:Image runat="server" ID="user_Image" />
+              
               
             </div>
           </div>
