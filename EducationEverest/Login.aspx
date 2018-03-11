@@ -33,7 +33,7 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <%--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#" class="NormalCharacterStyle2019" style="top: 6px;">Home </a></li>
         <li><a href="#" class="dashboard_image" style="color: white; font-size : 18px; line-height : 22px;"><div style="margin-top: 5px">Dashboard</div></a></li>
@@ -59,17 +59,18 @@
           </ul>
         </li>
       </ul>--%>
-    </div><!-- /.navbar-collapse -->
+   <%-- </div>--%>
+    <!-- /.navbar-collapse -->
 </div>
 <body>
 
 
     <form id="form" runat="server">
-<div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
+<%--<div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
   
     <div style="margin-top: 12px">Dashboard > Login</div>
 
-</div>
+</div>--%>
 <br/>
   
 <div class="container-fluid text-left">   

@@ -32,7 +32,8 @@ public partial class Account_Register : Page
         {
             if (db.UserProfiles.Any(o => o.Email == Email.Text))  //check duplicate ID
             {
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' This Email ID is already registered, Please choose different Emaild ID ');", true);
+                lblDuplicateID.Visible = true;
+                //ClientScript.RegisterStartupScript(GetType(), "alert", "alert(' This Email ID is already registered, Please choose different Emaild ID ');", true);
             }
             else
             {

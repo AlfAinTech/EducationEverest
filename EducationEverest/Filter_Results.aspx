@@ -436,7 +436,7 @@
 
               </div>
               <br/>
-              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a></div>
+              <div><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Personal_Detail.aspx" style="color:white;"   >Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a></div>
 
             </div>
           </div><br/>
@@ -444,7 +444,7 @@
           <div class="line_3_" style="margin-top: 135px;"></div>
           <br/>
           <div class="col-md-12" >
-            <div class="col-md-7">
+            <div class="col-md-7" >
             <div class="NormalCharacterStyle218">About
                 <asp:Label ID="lblUniversity2" runat="server" Text="Label"></asp:Label></div>
                
@@ -455,11 +455,11 @@
             </div>
             <div class="col-md-2">
             <span class="video_icon_2_"></span>
-</div>
+            </div>
           </div>  
 
 
-          <div class="col-md-12" style="margin-top: 30px;">
+          <div class="col-md-12" style="margin-top: 40px;">
             <div class="NormalCharacterStyle218">Criteria</div>
            
             <div class="panel_text">
@@ -490,7 +490,7 @@
                
             </div>
           </div>  
-<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Dashboard.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br/><br/><br/><br/>  </div> 
+<div class="pull-right" style="margin-top: 50px;"><span> <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Personal_Detail.aspx" style="color:white;"   >Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br/><br/><br/><br/>  </div> 
 
   </div>
     </div>

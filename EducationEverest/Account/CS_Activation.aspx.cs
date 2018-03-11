@@ -29,11 +29,11 @@ protected void Page_Load(object sender, EventArgs e)
                     con.Close();
                     if (rowsAffected == 1)
                     {
-                        ltMessage.Text = "Activation successful.";
+                        ltMessage.Text = " Your Account is Activated Successfully";
                     }
                     else
                     {
-                        ltMessage.Text = "Invalid Activation code.";
+                        ltMessage.Text = "Account already activated or invalid link";
                     }
                 }
             }

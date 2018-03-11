@@ -173,7 +173,7 @@ public partial class Filter_Results : System.Web.UI.Page
                         //{
                         CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-                        if (urating != null && urating.AdminRatings !=  "")
+                        if (urating.AdminRatings != null && urating.AdminRatings !=  "")
                         {
                             Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
                                                                                           /*   }*/                                                        //coding for rating
@@ -817,6 +817,18 @@ public partial class Filter_Results : System.Web.UI.Page
 
                 }
             }
+            else
+            {
+                Label lblCountDepartments = e.Item.FindControl("lblCountDepartments") as Label;
+                lblCountDepartments.Text = Convert.ToString(0);
+
+                Label lblCountDegreePrograms = e.Item.FindControl("lblCountDegreePrograms") as Label;
+                lblCountDegreePrograms.Text = Convert.ToString(0);
+
+                Rating1.CurrentRating = 3;
+
+            }
+
 
         }
 

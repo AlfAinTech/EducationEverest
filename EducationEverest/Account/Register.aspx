@@ -33,15 +33,26 @@
          }
      </style>
 </head>
-<div class="navbar-inverse" style="border-radius: 0px;">
+    <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      
+      <a class="navbar-brand" href="#"><img src="/images/Logo_1_.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+
+
+
+
+
+<%--<div class="navbar-inverse" style="border-radius: 0px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       
       <a class="navbar-brand" href="#"><img src="/images/Logo_1_.png"></a>
-    </div>
+    </div>--%>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <%--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#" style="font-size: 20px;top: 6px;">Home </a></li>
         <li><a href="#"><img src="/images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
@@ -51,7 +62,7 @@
           <input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">
         </div>
         <span><a href=""><img src="/images/search_button.png" style="margin-top: 4px;"></a></span>
-        <span><a href=""><img src="/images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>
+        <span><a href=""><img src="/images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
      <%-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><img src="/images/header_notification_icon_1_.png"></a></li>
         <li class="dropdown">
@@ -65,7 +76,8 @@
           </ul>
         </li>
       </ul>--%>
-    </div><!-- /.navbar-collapse -->
+    <%--</div>--%>
+    <!-- /.navbar-collapse -->
 </div>
 <body>
 
@@ -193,11 +205,11 @@
 
 
 
-<div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
+<%--<div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
   
     <div style="margin-top: 15px">Dashboard &gt; Registration</div>
 
-</div>
+</div>--%>
 <br/>
   
 <div class="container-fluid text-left">   
@@ -207,25 +219,35 @@
   <div class="col-md-8" style="margin-left: 320px; height: 1135px;">
   <div class="text-left NormalCharacterStyle12" style="margin-top: 50px;margin-left: 15px">Create Account</div>
 
-  <br/><br/>
+  <br/>
  <form id="form" runat="server">
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     <asp:Label ID="lblDuplicateID" runat="server" Font-Bold="True" ForeColor="Red" Text="This Email ID is already registered, Please choose different ID" Visible="False"></asp:Label>
+     <br/>
 <div class="col-md-4">
    
-        <asp:TextBox ID="fName" runat="server" class="student_reg_inputs" placeholder="First Name" style="width: 213px; top: 2px; left: 15px;"></asp:TextBox>
+        <asp:TextBox ID="fName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="First Name" style="width: 212px; top: 2px; left: 15px;"></asp:TextBox>
+        <br />     <asp:RequiredFieldValidator ID="fNameRequired" runat="server" ErrorMessage="First Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>
+
 </div>
    
 
 
 <div class="col-md-4">
    
-        <asp:TextBox ID="lName" runat="server" class="student_reg_inputs"   placeholder="Last Name" style="width: 212px; top: 2px; left: 15px;"></asp:TextBox>
+        <asp:TextBox ID="lName" MaxLength="20" runat="server" class="student_reg_inputs"   placeholder="Last Name" style="width: 212px; top: 2px; left: 15px;"></asp:TextBox>
+      <br />   <asp:RequiredFieldValidator ID="lNameRequired" runat="server" ErrorMessage="Last Name is required" ControlToValidate="lName" ForeColor="Red" ></asp:RequiredFieldValidator>
+
    
 </div>
-     <br />
-     <br />
-     &nbsp;&nbsp;&nbsp;    <asp:RequiredFieldValidator ID="fNameRequired" runat="server" ErrorMessage="First Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+     
+     <br /> <br />  <asp:RegularExpressionValidator ID="reFName" runat="server" ControlToValidate="fName" 
+    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as First Name "  ForeColor="Red"/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <asp:RegularExpressionValidator ID="reLName" runat="server" ControlToValidate="lName" 
+    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as Last Name "  ForeColor="Red"/>
 
-     <asp:RequiredFieldValidator ID="lNameRequired" runat="server" ErrorMessage="Last Name is required" ControlToValidate="lName" ForeColor="Red" ></asp:RequiredFieldValidator>
+
 
 <br/><br/>
 <div class="col-md-12">
@@ -245,7 +267,7 @@
     </div>
     <br />
             <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ErrorMessage="Password is Required" ControlToValidate="password" ForeColor="Red"></asp:RequiredFieldValidator>
-        <asp:regularexpressionvalidator display="Dynamic" id="RegularExpressionValidator1"  errormessage="Password must be minimum 6 characters long  at least  one upper case and one special character " forecolor="Red" validationexpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" controltovalidate="password" runat="server"></asp:regularexpressionvalidator>
+       <br /> <asp:regularexpressionvalidator display="Dynamic" id="RegularExpressionValidator1"  errormessage="Password must be minimum 6 characters long  at least  one upper case and one special character " forecolor="Red" validationexpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" controltovalidate="password" runat="server"></asp:regularexpressionvalidator>
 
 </div>
 
@@ -285,12 +307,13 @@
 
 <br/><br/><br/><br/>
      
-<asp:CheckBox ID="CheckBox1" runat="server" class="check_box"/><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>
-     
+<%--<asp:CheckBox ID="CheckBox1" runat="server"  class="check_box" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>--%>
+ <asp:CheckBox ID="CheckBox1" runat="server"  style="height:100px; width:100px" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>
+    
 
 
 <br/><br/>
-     <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="You must agree our terms and conditions" Visible="False"></asp:Label>
+     <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="You must agree to terms and conditions" Visible="False"></asp:Label>
      <br/><br/>
 
       <asp:Button ID="Button1" runat="server" Text="Register" class=" btn registration_btn NormalCharacterStyle"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
