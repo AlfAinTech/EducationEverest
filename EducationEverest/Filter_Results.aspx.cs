@@ -265,7 +265,8 @@ public partial class Filter_Results : System.Web.UI.Page
 
             List<UniversityProfile> uv = db.UniversityProfiles.ToList();
             DropDownList ddlutype = (DropDownList)ddlUniversityType;
-            ddlutype.DataSource = uv.Select(a => a.Type).Distinct().ToList();
+            ddlutype.DataSource = uv.Where(a => a.Type != null && a.Type !="").Select(a => a.Type).Distinct().ToList();
+            
 
             ddlutype.DataBind();
             // string cid = (string.(ddlutype.SelectedValue));
