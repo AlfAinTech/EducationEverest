@@ -71,8 +71,6 @@ public partial class Choices : System.Web.UI.Page
             populate_uni();
             
              current_user = HttpContext.Current.User.Identity.GetUserId();
-            ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
-            ChoicesList.DataBind();
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
         }
     }
@@ -456,21 +454,7 @@ public partial class Choices : System.Web.UI.Page
 
     }
 
-
-
-    protected void ChoicesList_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        if (e.Item.DataItem is Application)
-        {
-            Application dataItem = e.Item.DataItem as Application;
-            UniversityMedia um = db.UniversityMedias.Where(q => q.UniversityId == dataItem.UnivID).FirstOrDefault();
-            if (um != null)
-            {
-                Image im = (Image)e.Item.FindControl("logo");
-                im.ImageUrl = um.Path;
-            }
-        }
-        }
+    
 }
 
 

@@ -52,7 +52,7 @@ public partial class Test_Result : System.Web.UI.Page
             DropDownList passing_year = item.FindControl("year_of_passing") as DropDownList;
             TextBox total_marks = item.FindControl("total_marks") as TextBox;
             TextBox obtained_marks = item.FindControl("obtained_marks") as TextBox;
-            TextBox percentage = item.FindControl("percentage") as TextBox;
+            HtmlInputText percentage = item.FindControl("percentage") as HtmlInputText;
             TextBox division = item.FindControl("division") as TextBox;
 
             if (db.Test_Results.Any(x => x.User_ID == current_user && x.Test_Name == label.Text))
@@ -63,7 +63,8 @@ public partial class Test_Result : System.Web.UI.Page
                 passing_year.Text = p.Passing_Year;
                 total_marks.Text = p.Total_Marks;
                 obtained_marks.Text = p.Obtained_Marks;
-                percentage.Text = p.Percentage;
+                
+                percentage.Value = p.Percentage;
                 division.Text = p.Division;
             }
         }
@@ -81,7 +82,7 @@ public partial class Test_Result : System.Web.UI.Page
             DropDownList passing_year = item.FindControl("year_of_passing") as DropDownList;
             TextBox total_marks = item.FindControl("total_marks") as TextBox;
             TextBox obtained_marks = item.FindControl("obtained_marks") as TextBox;
-            TextBox percentage = item.FindControl("percentage") as TextBox;
+            HtmlInputText percentage = item.FindControl("percentage") as HtmlInputText;
             TextBox division = item.FindControl("division") as TextBox;
 
             if (db.Test_Results.Any(x => x.User_ID == current_user && x.Test_Name == label.Text))
@@ -92,7 +93,7 @@ public partial class Test_Result : System.Web.UI.Page
                 p.Passing_Year = passing_year.SelectedValue;
                 p.Total_Marks = total_marks.Text;
                 p.Obtained_Marks = obtained_marks.Text;
-                p.Percentage = percentage.Text;
+                p.Percentage = percentage.Value;
                 p.Division = division.Text;
 
                 db.SaveChanges();
@@ -109,7 +110,7 @@ public partial class Test_Result : System.Web.UI.Page
                     Passing_Year = passing_year.Text,
                     Total_Marks = total_marks.Text,
                     Obtained_Marks = obtained_marks.Text,
-                    Percentage = percentage.Text,
+                    Percentage = percentage.Value,
                     Division = division.Text
                 };
 
@@ -138,6 +139,9 @@ public partial class Test_Result : System.Web.UI.Page
 
     }
 
-   
 
+
+
+
+    
 }

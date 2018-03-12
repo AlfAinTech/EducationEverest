@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="Choices.aspx.cs" Inherits="Choices" %>
 
+<%@ Register Src="~/UserControls/ApplicationRecords.ascx" TagPrefix="uc1" TagName="ApplicationRecords" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <div class="col-sm-9 text-left"> 
@@ -317,38 +320,9 @@
 </div>
 
      <div class="NormalCharacterStyle12"><h4>Your Choices</h4></div>
-
+        <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
     
-      
-
-
-        <asp:Repeater ID="ChoicesList" runat="server" OnItemDataBound="ChoicesList_ItemDataBound"><ItemTemplate>
-    <div class="panel panel-default ">
-      <div class="panel-heading card_bg">
-        <div class="row text-left">
-          <div class="col-md-1">
-              <asp:Image ID="logo" runat="server"  />
-             </div>
-             <div class="col-md-11">
-        <h4 class="panel-title margin_top">
-                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="pending"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
-        </h4>
-        <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>
-        <h4 class="blue_text margin_left">Application ID: <%# Eval("appID") %></h4>
-        <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text"><%# Eval("ApplicationDate") %></span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text"><%# Eval("university.deadLine") %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text"><%# Eval("CurrentStatus") %></span>
-      </div>
-        </div>
-        </div><br/>
-        <div class="divider"></div><br/>
-        <a href="" class="pull-right NormalCharacterStyle18" style="margin-right: 30px;"><b>VIEW</b></a>
-      </div>
-
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">Some Text</div>
-      </div>
-    </div>
-</ItemTemplate></asp:Repeater>
+   
 <br/>
 
         

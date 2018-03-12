@@ -24,29 +24,57 @@ public partial class Payments : System.Web.UI.Page
             ChoicesList.DataSource = applicationList;
             ChoicesList.DataBind();
             totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
-
+           
         }
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+
     }
+
+
 
     protected void SubmitTrackingID_Click(object sender, EventArgs e)
     {
+        
         List<Application> apps = db.Applications.Where(q => q.UserID == current_user).ToList();
+       
+        
         foreach (Application app in apps)
+        { 
+            if(!db.Payments.Any(q=>q.ApplicationID == app.id)) { 
+        Payment p = new Payment()
         {
-            Payment p = new Payment()
-            {
-                TrackingID = TrackingID.Value.ToString(),
-                AppID = app.id,
-                ConfirmPayment = false
-            };
-            db.Payments.Add(p);
+            TrackingID = TrackingID.Value.ToString(),
+            ApplicationID = app.id,
+        };
+                app.CurrentStatus = "In Progress";
+                db.Payments.Add(p);
             db.SaveChanges();
+            }
         }
+        
     }
 
     protected void continue_Click(object sender, EventArgs e)
     {
         Response.Redirect("~/Choices.aspx");
     }
-}
+
+    protected void SinglePayment_Click(object sender, EventArgs e)
+    {
+        if (paymentAppID.Value != "")
+        {
+            Application app = db.Applications.Where(q => q.id.ToString() == paymentAppID.Value).FirstOrDefault();
+            if (!db.Payments.Any(q => q.ApplicationID == app.id))
+            {
+                Payment p = new Payment()
+                {
+                    TrackingID = SingleTrackingId.Value.ToString(),
+                    ApplicationID = app.id,
+                };
+                app.CurrentStatus = "In Progress";
+                db.Payments.Add(p);
+                db.SaveChanges();
+            }
+        }
+        }
+    }
