@@ -27,7 +27,7 @@ public partial class Application
            UniversityProfile up = db.UniversityProfiles.Where(q => q.UniversityID == UnivID).FirstOrDefault();
             if(up.ApplicationFeeSame != null && up.ApplicationFeeSame.Value)
             {
-                if (up.ApplicationFee != null)
+                if (up.ApplicationFee != null && up.ApplicationFee != "")
                 {
                     return int.Parse(up.ApplicationFee);
                 }
@@ -40,7 +40,7 @@ public partial class Application
             {
                 if(Department != null)
                 {
-                    if (Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != null)
+                    if (Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != null && Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != "")
                     {
                         return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
                     }
