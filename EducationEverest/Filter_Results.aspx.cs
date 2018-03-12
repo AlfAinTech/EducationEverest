@@ -265,7 +265,8 @@ public partial class Filter_Results : System.Web.UI.Page
 
             List<UniversityProfile> uv = db.UniversityProfiles.ToList();
             DropDownList ddlutype = (DropDownList)ddlUniversityType;
-            ddlutype.DataSource = uv.Select(a => a.Type).Distinct().ToList();
+            ddlutype.DataSource = uv.Where(a => a.Type != null && a.Type !="").Select(a => a.Type).Distinct().ToList();
+            
 
             ddlutype.DataBind();
             // string cid = (string.(ddlutype.SelectedValue));
@@ -284,7 +285,7 @@ public partial class Filter_Results : System.Web.UI.Page
 
             DropDownList ddladminstatus = (DropDownList)ddlAdmissionStatus;
             //ddladminstatus.DataSource = uv.Select(a => new { atatus = a.AdmissionOpen }).Distinct().ToList();
-            var statuses = uv.Select(a => a.AdmissionOpen).Distinct().ToList();
+            var statuses = uv.Where(a => a.AdmissionOpen != null).Select(a => a.AdmissionOpen).Distinct().ToList();
             ddladminstatus.DataSource = statuses;
             ddladminstatus.DataBind();
             // string cid = (string.(ddlutype.SelectedValue));
@@ -338,7 +339,7 @@ public partial class Filter_Results : System.Web.UI.Page
 
 
             DropDownList ddlranking = (DropDownList)ddlHECRanking;
-            ddlranking.DataSource = uv.Select(a => a.HecRanking).Distinct().ToList();
+            ddlranking.DataSource = uv.Where(a => a.HecRanking != null && a.HecRanking != "").Select(a => a.HecRanking).Distinct().ToList();
 
             ddlranking.DataBind();
             // string cid = (string.(ddlutype.SelectedValue));

@@ -87,7 +87,7 @@
     <div class="form">
 
      <%--<input class="inputs" type="text" name="marks" placeholder="Total Marks" >--%>
-        <asp:TextBox ID="total_marks" MaxLength="5" class="inputs" Placeholder="Total Marks" runat="server"></asp:TextBox>
+        <asp:TextBox ID="total_marks" MaxLength="5"  class="inputs" onchange="OnMarksChange(this)" Placeholder="Total Marks"  runat="server"></asp:TextBox>
         <br />  <asp:RequiredFieldValidator ID="rvTotalMarks" runat="server" ErrorMessage="Total Marks required" ValidationGroup="vgTestResults" ControlToValidate="total_marks" ForeColor="Red" ></asp:RequiredFieldValidator>
 <br /><asp:RegularExpressionValidator ID="reTotalMarks" ControlToValidate="total_marks" ValidationGroup="vgTestResults"
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
@@ -102,7 +102,7 @@
 
 <div class="col-md-6">
     <div class="form">
-        <asp:TextBox ID="obtained_marks" MaxLength="5" class="inputs" Placeholder="Obtained Marks" runat="server"></asp:TextBox>
+        <asp:TextBox ID="obtained_marks" MaxLength="5" class="inputs" onchange="OnMarksChange(this)"  Placeholder="Obtained Marks"  runat="server"></asp:TextBox>
             <br />  <asp:RequiredFieldValidator ID="rvObtainedMarks" runat="server" ErrorMessage="Obtained Marks required" ValidationGroup="vgTestResults" ControlToValidate="obtained_marks" ForeColor="Red" ></asp:RequiredFieldValidator>
 <br /><asp:RegularExpressionValidator ID="reObtainedMarks" ControlToValidate="obtained_marks" ValidationGroup="vgTestResults"
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
@@ -117,7 +117,8 @@
     <div class="form">
 
      <%--<input class="inputs" type="text" name="percentage" placeholder="Percentage" >--%>
-         <asp:TextBox ID="percentage" class="inputs" Placeholder="Percentage" runat="server" ReadOnly="true"></asp:TextBox>
+         <%--<asp:TextBox ID="percentage" class="inputs" Placeholder="Percentage" runat="server"  ReadOnly="true"></asp:TextBox>--%>
+        <input class="inputs" maxlength="5" id="percentage" type="text" name="percentage" placeholder="Percentage" runat="server" readonly="true" />
 <br />  <asp:RequiredFieldValidator ID="rvPercetage" runat="server" ErrorMessage="Percentage will be calculated automatically" ValidationGroup="vgTestResults" ControlToValidate="percentage" ForeColor="Red" ></asp:RequiredFieldValidator>
 <br /><asp:RegularExpressionValidator ID="rePercentage" ControlToValidate="percentage" ValidationGroup="vgTestResults"
                  
@@ -146,14 +147,14 @@
 <br/><br/>
 
 </div>
- <div class="col-md-2 pull-right">
+<%-- <div class="col-md-2 pull-right">
      
  <div class="small_divider" ></div>
  <div class="text-center" style="margin-top: 50px;margin-left: 50px;">
 <div class=" NormalCharacterStyle4">77%</div>
 <div class="NormalCharacterStyle3">Your Aggregate</div>
 </div>
-    </div>
+    </div>--%>
 </div>
 
 
@@ -175,6 +176,29 @@
   </div>
 </div>
 <script type="text/javascript">
+    
+    function OnMarksChange(textbox) {
+        //var total = $("[id*=total_marks]")[0];
+        //var obtained = $("[id*=obtained_marks]")[0];
+        //var percentage = $("[id*=percentage]")[0];
+        var total = $(textbox).parent().parent().parent().find('input[type="text"]')[1];
+        var obtained = $(textbox).parent().parent().parent().find('input[type="text"]')[2];
+        var percentage = $(textbox).parent().parent().parent().find('input[type="text"]')[3];
+        var totalValue = 0;
+        var obtainedValue = 0;
+        var percentageValue = 0;
+        if (total != null || total != undefined || total.value != "") {
+            totalValue = parseFloat(total.value);
+        }
+        if (obtained != null || obtained != undefined || obtained.value != "") {
+            obtainedValue = parseFloat(obtained.value);
+        }
+        console.log(obtainedValue, totalValue)
+        percentageValue = (obtainedValue / totalValue) * 100;
+        console.log(percentageValue);
+        percentage.value = percentageValue.toFixed(0).toString();
+        
+    }
     function OpenCurrentPage() {
         $("#testResult").removeClass("NormalCharacterStyle24")
         $("#testResult").addClass("NormalCharacterStyle22");
