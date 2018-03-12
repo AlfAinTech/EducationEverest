@@ -33,7 +33,6 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<Contact_Us> Contact_Us { get; set; }
     public virtual DbSet<ContactInformation> ContactInformations { get; set; }
     public virtual DbSet<Intermediate_Education> Intermediate_Education { get; set; }
-    public virtual DbSet<MakeChoice> MakeChoices { get; set; }
     public virtual DbSet<Matriculation_Education> Matriculation_Education { get; set; }
     public virtual DbSet<Medium> Media { get; set; }
     public virtual DbSet<Personal_Details> Personal_Details { get; set; }
@@ -50,8 +49,10 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<ProgrammCategory> ProgrammCategories { get; set; }
     public virtual DbSet<UniversityProfile> UniversityProfiles { get; set; }
     public virtual DbSet<CampusProfile> CampusProfiles { get; set; }
-    public virtual DbSet<TestResult_Document> TestResult_Document { get; set; }
     public virtual DbSet<University_Tests> University_Tests { get; set; }
     public virtual DbSet<University> Universities { get; set; }
+    public virtual DbSet<TestResult_Document> TestResult_Document { get; set; }
+    public virtual DbSet<MakeChoice> MakeChoices { get; set; }
     public virtual DbSet<Application> Applications { get; set; }
+    public virtual DbSet<Payment> Payments { get; set; }
 }

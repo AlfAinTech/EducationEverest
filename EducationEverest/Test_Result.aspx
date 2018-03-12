@@ -181,6 +181,7 @@
         $("#fileAdmission").addClass("NormalCharacterStyle18");
         document.getElementById("fileAdmission").click();
     }
+
   $('#menu_toggle').on('click', function () {
     var iSelector = $(this).find('i:first');
     if (iSelector.hasClass('glyphicon-chevron-down')) {

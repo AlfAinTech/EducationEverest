@@ -84,15 +84,15 @@ public partial class Client : System.Web.UI.MasterPage
             imgTickDocuments.Visible = true;
         }
         List<int> appids = db.Applications.Where(q => q.UserID == current_user).Select(q => q.id).ToList();
-        if(db.Payments.Where(q=>appids.Contains(q.AppID)).Count() == appids.Count())
+        if(db.Payments.Where(q=>appids.Contains(q.ApplicationID)).Count() == appids.Count())
         {
             imgTickPayments.Visible = true;
-        }
+        } 
     }
 
     protected void btnFilter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Filter_Results.aspx");
+        Response.Redirect("Search_Results.aspx");
     }
 
 

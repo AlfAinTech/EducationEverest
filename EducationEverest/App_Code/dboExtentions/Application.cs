@@ -62,7 +62,7 @@ public partial class Application
         {
             EducationEverestEntities db = new EducationEverestEntities();
             
-            Payment payment = db.Payments.Where(q => q.AppID == this.id).FirstOrDefault();
+            Payment payment = db.Payments.Where(q => q.ApplicationID == this.id).FirstOrDefault();
             if (payment != null && payment.TrackingID != null)
                 return payment.TrackingID;
             else

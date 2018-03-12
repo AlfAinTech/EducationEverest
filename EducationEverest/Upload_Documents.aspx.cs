@@ -39,7 +39,6 @@ public partial class Upload_Documents : System.Web.UI.Page
         List<int> universities = db.MakeChoices.Select(q => q.Uni_ID).ToList();
         TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         TestResultDocList.DataBind();
-       
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
     }
@@ -277,5 +276,5 @@ public partial class Upload_Documents : System.Web.UI.Page
         Response.Redirect("~/Payments.aspx");
     }
 
-    
+  
 }
