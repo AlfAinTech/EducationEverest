@@ -27,7 +27,7 @@ public partial class Application
            UniversityProfile up = db.UniversityProfiles.Where(q => q.UniversityID == UnivID).FirstOrDefault();
             if(up.ApplicationFeeSame != null && up.ApplicationFeeSame.Value)
             {
-                if (up.ApplicationFee != null)
+                if (up.ApplicationFee != null && up.ApplicationFee != "")
                 {
                     return int.Parse(up.ApplicationFee);
                 }
@@ -40,7 +40,7 @@ public partial class Application
             {
                 if(Department != null)
                 {
-                    if (Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != null)
+                    if (Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != null && Department.DepartmentProfiles.FirstOrDefault().ApplicationFee != "")
                     {
                         return int.Parse(Department.DepartmentProfiles.FirstOrDefault().ApplicationFee);
                     }
@@ -62,7 +62,7 @@ public partial class Application
         {
             EducationEverestEntities db = new EducationEverestEntities();
             
-            Payment payment = db.Payments.Where(q => q.AppID == this.id).FirstOrDefault();
+            Payment payment = db.Payments.Where(q => q.ApplicationID == this.id).FirstOrDefault();
             if (payment != null && payment.TrackingID != null)
                 return payment.TrackingID;
             else

@@ -22,51 +22,49 @@ public partial class Dashboard : System.Web.UI.Page
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
             }
+            else
+            {
+                if (Request.QueryString["ReturnUrl"] != null)
+                {
+                    if (HttpContext.Current.User.IsInRole("Super Admin"))
+                    {
+                        Response.Redirect("~/Admin/Applications.aspx");
+                    }
+                    else
+                    {
+                        if (!Request.QueryString["ReturnUrl"].Contains("Admin"))
+                        {
+                            Response.Redirect(Request.QueryString["ReturnUrl"]);
+                        }
+                        else
+                        {
+                            Response.Redirect("~/Dashboard.aspx");
+                        }
+                            
+                    }
+
+                }
+                else
+                {
+                    if (HttpContext.Current.User.IsInRole("Super Admin"))
+                    {
+                        Response.Redirect("~/Admin/Applications.aspx");
+                    }
+                }
+            }
 
             string UserID = HttpContext.Current.User.Identity.GetUserId();
-            BindData(UserID);
+           
         }
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
     }
 
-    public void BindData(string UserID)
-    {
-        ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID).ToList();
-        ApplicationsList.DataBind();
-    }
+   
     protected void btnFileAdmission_Click(object sender, EventArgs e)
     {
         Response.Redirect("Personal_Detail.aspx");
     }
 
-    protected void ApplicationsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        Repeater rptDemo = sender as Repeater; // Get the Repeater control object.
-
-        // If the Repeater contains no data.
-        if (rptDemo.Items.Count < 1)
-        {
-            if (e.Item.ItemType == ListItemType.Footer)
-            {
-                // Show the Error Label (if no data is present).
-                 e.Item.FindControl("EmptyDiv").Visible = true;
-              
-            }
-        }
-        else
-        {
-
-            if (e.Item.DataItem is Application)
-            {
-                Application dataItem = e.Item.DataItem as Application;
-                UniversityMedia um = db.UniversityMedias.Where(q => q.UniversityId == dataItem.UnivID).FirstOrDefault();
-                if (um != null)
-                {
-                    Image im = (Image)e.Item.FindControl("logo");
-                    im.ImageUrl = um.Path;
-                }
-            }
-        }
-    }
+   
 }

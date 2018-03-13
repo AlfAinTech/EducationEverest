@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Dashboard.aspx.cs" Inherits="Dashboard" %>
 
+<%@ Register Src="~/UserControls/ApplicationRecords.ascx" TagPrefix="uc1" TagName="ApplicationRecords" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <%--<!DOCTYPE html>
 <html lang="en">
@@ -218,44 +221,8 @@
 <br/>--%>
     <div class="col-sm-9 text-center"> 
       <h3 class="NormalCharacterStyle12 text-left">My Applications</h3>
-      
-        <asp:Repeater ID="ApplicationsList" runat="server" OnItemDataBound="ApplicationsList_ItemDataBound"><ItemTemplate>
-    <div class="panel panel-default ">
-      <div class="panel-heading card_bg">
-        <div class="row text-left">
-          <div class="col-md-1">
-             <asp:Image ID="logo" runat="server"  /></div>
-             <div class="col-md-11">
-        <h4 class="panel-title margin_top">
-                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="pending"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
-        </h4>
-        <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>
-        <h4 class="blue_text margin_left">Application ID: <%# Eval("appID") %></h4>
-        <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text">16<sup>th</sup> Dec 2017</span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text"><%# Eval("university.deadLine") %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text">><%# Eval("CurrentStatus") %></span>
-      </div>
-        </div>
-        </div><br/>
-        <div class="divider"></div><br/>
-        <a href="" class="pull-right NormalCharacterStyle18" style="margin-right: 30px;"><b>VIEW</b></a>
-      </div>
-
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">Some Text</div>
-      </div>
-    </div>
-</ItemTemplate>
-           
-            <FooterTemplate>
-                 <div class="col-md-12" runat="server" visible="false" id="EmptyDiv">
-                  <img src="images/Dashboard.png" style="margin-top: 120px;">
-
-                     <br/><br/>
-                    <div class="NormalCharacterStyle111">You have no admission application yet.</div>
-                </div>
-                 <br/>
-            </FooterTemplate>
-        </asp:Repeater>
+        <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
+        
     
         <asp:Button ID="btnFileAdmission" class=" btn File_Admission_btn NormalCharacterStyle" runat="server" Text="File Admission Application" OnClick="btnFileAdmission_Click"  />
 <%--         <button type="button" class=" btn File_Admission_btn"><span class="NormalCharacterStyle">File Admission Application</span></button>--%>
