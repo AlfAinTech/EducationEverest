@@ -19,6 +19,7 @@ using System.IO;
 public partial class Account_Register : Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
+   // public static string emailtextbox { get; set; }
 
 
     protected void CreateUser_Click(object sender, EventArgs e)
@@ -118,13 +119,26 @@ public partial class Account_Register : Page
     }
 
     //Label1.Visible = true;
-   // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Confirmation Link has been sent to your Emaild ID')", true);
+    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Confirmation Link has been sent to your Emaild ID')", true);
 
-                //IdentityHelper.SignIn(manager, user, isPersistent: false);
-                //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            
-            
-        
+    //IdentityHelper.SignIn(manager, user, isPersistent: false);
+    //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+
+    [System.Web.Services.WebMethod]
+   
+    public static void incompleteregistration()
+    {
+  
+       
+        //if (Request.QueryString["emailRegistration"] != null && Request.QueryString["emailRegistration"] != string.Empty)
+        //{
+
+
+        //}
+
+    }
+
+   
       }
 
     

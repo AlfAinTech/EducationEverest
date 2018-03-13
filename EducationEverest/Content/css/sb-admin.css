@@ -325,6 +325,8 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 .card-login {
   max-width: 25rem; }
+.card-login2 {
+  max-width: 40rem; }
 
 .card-register {
   max-width: 40rem; }
