@@ -67,7 +67,7 @@ public partial class Personal_Detail : System.Web.UI.Page
         {
          
             
-            if (FileUpload1.PostedFile.FileName.Length > 0)
+            if (FileUpload1.PostedFile.FileName.Length > 0 && (FileUpload1.PostedFile.ContentType == "image/png"|| FileUpload1.PostedFile.ContentType == "image/jpg") )
             {
                 FileUpload1.SaveAs(Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName);
                 string imagePath = Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName;
@@ -147,8 +147,11 @@ public partial class Personal_Detail : System.Web.UI.Page
                 User_ID = current_user
 
             };
+            try { 
             db.Personal_Details.Add(pds);
             db.SaveChanges();
+            }
+            catch (Exception ex) { }
 
         }
 

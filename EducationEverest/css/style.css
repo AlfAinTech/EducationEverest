@@ -9,7 +9,7 @@ html, body
 }
 
 
-input[type="text"]
+input[type="text"],input[type="date"]
 {
  font-family : Raleway Medium;
   font-size : 18px;

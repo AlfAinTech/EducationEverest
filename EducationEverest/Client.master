@@ -94,8 +94,9 @@
 
 
 <div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
-  
-    <div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>
+   <asp:ContentPlaceHolder ID="StatusBas" runat="server">
+            </asp:ContentPlaceHolder>
+    <%--<div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>--%>
 
 </div>
 <br/>
