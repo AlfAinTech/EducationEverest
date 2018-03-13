@@ -102,7 +102,7 @@ public partial class Account_Register : Page
             mm.Subject = "Account Activation";
             string body = "Hello " + Email.Text.Trim() + ",";
             body += "<br /><br />Please click the following link to activate your account";
-            body += "<br /><a href = '" + "http://localhost:65465/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
+            body += "<br /><a href = '" + "http://"+Request.Url.Authority+"/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
             body += "<br /><br />Thanks";
             mm.Body = body;
             mm.IsBodyHtml = true;
