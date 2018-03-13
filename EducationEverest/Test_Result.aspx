@@ -110,6 +110,7 @@
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
                         ErrorMessage="Please enter only numbers">
                     </asp:RegularExpressionValidator>
+      <br />  <asp:CompareValidator runat="server"  ValidationGroup="vgTestResults" id="cvobtainedmarks" controltovalidate="obtained_marks" controltocompare="total_marks" operator="LessThanEqual" type="Integer" errormessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
 
      <%--<input class="inputs" type="text" name="obtained_marks" placeholder="Obtained Marks" >--%>
     </div>

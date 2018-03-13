@@ -164,6 +164,8 @@
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
                         ErrorMessage="Please enter only numbers">
                     </asp:RegularExpressionValidator>
+      <br />  <asp:CompareValidator runat="server" id="cvMatric" ValidationGroup="vgEducationalDetails" controltovalidate="obtained_marks_matric" controltocompare="total_marks_matric" operator="LessThanEqual" type="Integer" errormessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
+
         <%--<asp:RegularExpressionValidator id="reObtainedMarksMatric"
                    ControlToValidate="obtained_marks_matric" ValidationGroup="vgEducationalDetails"
                    ValidationExpression="\d+"
@@ -311,6 +313,7 @@
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
                         ErrorMessage="Please enter only numbers">
                     </asp:RegularExpressionValidator>
+      <br />  <asp:CompareValidator runat="server"  ValidationGroup="vgEducationalDetails" id="cvIntermediate" controltovalidate="obtained_marks_intermediate" controltocompare="total_marks_intermediate" operator="LessThanEqual" type="Integer" errormessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
 
 
     </div>

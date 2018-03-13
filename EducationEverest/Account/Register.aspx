@@ -23,8 +23,65 @@
        links.removeClass('active');
        $(this).addClass('active');
    });
-});
+    });
 
+
+
+
+
+      window.onbeforeunload = closingCode;
+    function closingCode() {
+        alert("closing");
+        var email = Email.Text;
+       // Response.Redirect("Register.aspx?emailRegistration=" + Email.Text);
+        if (email != null) {
+            $.ajax({
+                type: "POST",
+                url: "Register.aspx/incompleteregistration",
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (result) {
+
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+
+            });
+        }
+       
+        }
+        
+
+
+
+    
+    //window.onbeforeunload = function () {
+    //    return "Bye now!";
+    //}
+
+
+     
+    ////Maps an event to the window closing event
+    //window.onbeforeunload = function (e) {
+    //    alert("The Window is closing!");
+    //};
+
+
+
+    //$(window).on("beforeunload", function () {
+    //    return confirm("Do you really want to close?");
+    //})
+   
+
+
+
+    //window.onbeforeunload = check;
+    //function check() {
+    //    return "Are you sure you want to exit this page?";
+    //    //or put whatever function you need to call when a user closes the web //browser.
+    //}
   </script>
      <style type="text/css">
          #form {
