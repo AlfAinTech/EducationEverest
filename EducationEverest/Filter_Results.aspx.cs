@@ -165,6 +165,10 @@ public partial class Filter_Results : System.Web.UI.Page
                                                                                           /*   }*/                                                        //coding for rating
                         }
                     }
+                    else
+                    {
+                        Rating2.CurrentRating = 3;
+                    }
                     if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                     {
                         string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == uniid).First().Path;
@@ -173,6 +177,10 @@ public partial class Filter_Results : System.Web.UI.Page
                             
                             Image2.ImageUrl = logoPath2;
                         }
+                    }
+                    else
+                    {
+                        Image2.ImageUrl = "";
                     }
                 }
                 //
@@ -479,6 +487,10 @@ public partial class Filter_Results : System.Web.UI.Page
                                                                                       /*   }*/                                                        //coding for rating
                     }
                 }
+                else
+                {
+                    Rating2.CurrentRating = 3;
+                }
                 if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                 {
                     string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == uniid).First().Path;
@@ -487,6 +499,10 @@ public partial class Filter_Results : System.Web.UI.Page
 
                         Image2.ImageUrl = logoPath2;
                     }
+                }
+                else
+                {
+                    Image2.ImageUrl = "";
                 }
             }
 
@@ -571,6 +587,7 @@ public partial class Filter_Results : System.Web.UI.Page
             show();
             lblShowSearchCount.Visible = false;
             lblcount.Visible = false;
+            Response.Redirect("Search_Results.aspx");
         }
         else
         {
@@ -606,6 +623,139 @@ public partial class Filter_Results : System.Web.UI.Page
                     var showcount = "Result(s) found related to " + TextBox1.Text;
                     lblShowSearchCount.Text = showcount;
                     lblShowSearchCount.Visible = true;
+                    if (ViewState["id"] != null)
+                    {
+                        int uniid = Convert.ToInt32(ViewState["id"]);
+                        //if (db.Universities.Any(x => x.id == uniid))
+                        //{
+                        var UnivNamedefault = db.Universities.Where(u => u.id == uniid).Select(u => u.Name).FirstOrDefault();
+                        if (lblUniversityName2 != null)
+                        {
+                            lblUniversityName2.Text = UnivNamedefault;
+                        }
+                        else
+                        {
+                            lblUniversityName2.Text = "No Institute Name to Show";
+                        }
+                        //}
+                        UniversityProfile up = new UniversityProfile();
+                        if (db.UniversityProfiles.Any(x => x.UniversityID == uniid))
+                        {
+                            var uniprofiledefault = db.UniversityProfiles.Where(ad => ad.UniversityID == uniid).Select(ad => new { address = ad.Address, admissionstatus = ad.AdmissionOpen }).FirstOrDefault();
+
+                            if (lblUnivAddress2.Text != null)
+                            {
+                                lblUnivAddress2.Text = uniprofiledefault.address;
+                            }
+                            else
+                            {
+                                lblUnivAddress2.Text = "Institute Address is Not Available";
+                            }
+                            if (lbl_IsAdmissionOpen2 != null)
+                            {
+                                lbl_IsAdmissionOpen2.Text = Convert.ToString(uniprofiledefault.admissionstatus);
+
+                                if (lbl_IsAdmissionOpen2.Text == "True")
+                                {
+
+                                    lbl_IsAdmissionOpen2.Text = "<font color='green'>Admission Open</font>";
+                                }
+                                else
+                                {
+
+                                    lbl_IsAdmissionOpen2.Text = "<font color='red'>Admission Closed</font>";
+                                }
+                            }
+                            else
+                            {
+                                lbl_IsAdmissionOpen2.Text = "Admission Status is not Available";
+                            }
+
+                        }
+
+                        var UnivNamedefault2 = db.Universities.Where(u => u.id == uniid).Select(u => u.Name).FirstOrDefault();
+                        if (lblUnivAddress2.Text != null)
+                        {
+                            lblUniversity2.Text = UnivNamedefault2;
+                        }
+                        else
+                        {
+                            lblUnivAddress2.Text = "Institute Address not Available";
+                        }
+
+                        if (db.UniversityProfiles.Any(x => x.UniversityID == uniid))
+                        {
+
+                            var uniprofiledefault2 = db.UniversityProfiles.Where(ad => ad.UniversityID == uniid).Select(ad => new { admissiondocuments = ad.AdmisssionDocs, criteria = ad.Criteria, feestructre = ad.FeeStructure, about = ad.About }).FirstOrDefault();
+                            if (lblCriteria.Text != null)
+                            {
+                                lblCriteria.Text = uniprofiledefault2.criteria;
+                            }
+                            else
+                            {
+                                lblCriteria.Text = "Criteria Not Available";
+                            }
+                            if (lblFeeStructure.Text != null)
+                            {
+                                lblFeeStructure.Text = uniprofiledefault2.feestructre;
+                            }
+                            else
+                            {
+                                lblFeeStructure.Text = "Fee Structure Not Available";
+                            }
+                            if (lblAbout.Text != null)
+                            {
+                                lblAbout.Text = uniprofiledefault2.about;
+                            }
+                            else
+                            {
+                                lblAbout.Text = "";
+                            }
+                            if (lblAdmissionDocuments.Text != null)
+                            {
+                                lblAdmissionDocuments.Text = uniprofiledefault2.admissiondocuments;
+                            }
+                            else
+                            {
+                                lblAdmissionDocuments.Text = "Admission Documents Not Available";
+                            }
+                        }
+                        //default values end here
+                        //}
+
+                        if (db.Campuses.Any(x => x.Uni_ID == uniid))
+                        {
+                            var campusid = db.Campuses.Where(b => b.Uni_ID == uniid).Select(ci => new { cid = ci.id }).FirstOrDefault();
+
+                            //if (db.CampusProfiles.Any(x => x.CampusID == campusid.cid))
+                            //{
+                            CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
+
+                            if (urating != null && urating.AdminRatings != "")
+                            {
+                                Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
+                                                                                              /*   }*/                                                        //coding for rating
+                            }
+                        }
+                        else
+                        {
+                            Rating2.CurrentRating = 3;
+                        }
+                        if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
+                        {
+                            string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == uniid).First().Path;
+                            if (logoPath2 != null)
+                            {
+                                //Image imgpd2 = e.Item.FindControl("Image2") as Image;
+                                Image2.ImageUrl = logoPath2;
+                            }
+
+                        }
+                        else
+                        {
+                            Image2.ImageUrl = "";
+                        }
+                    }
                 }
 
             }
@@ -793,11 +943,11 @@ public partial class Filter_Results : System.Web.UI.Page
                         {
                             Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
                         }
-                        else
-                        {
-                            //default rating
-                            Rating1.CurrentRating = 2;
-                        }
+                       
+                    }
+                    else
+                    {
+                        Rating2.CurrentRating = 3;
                     }
                     //show univeristy logo here
                     UniversityMedia um = new UniversityMedia();
@@ -810,11 +960,15 @@ public partial class Filter_Results : System.Web.UI.Page
                             imgpd.ImageUrl = logoPath;
                         }
                     }
-                    
+                    else
+                    {
+                        Image2.ImageUrl = "";
+                    }
+
 
                     //bind repeater here
 
-                
+
                     //end of data on page load in repeater
 
                 }
@@ -942,6 +1096,10 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
                 }
 
             }
+            else
+            {
+                Rating2.CurrentRating = 3;
+            }
             if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
             {
                 string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
@@ -951,7 +1109,11 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
                     Image2.ImageUrl = logoPath2;
                 }
             }
-           
+            else
+            {
+                Image2.ImageUrl = "";
+            }
+
         }
 
 
