@@ -26,7 +26,7 @@ public partial class Upload_Documents : System.Web.UI.Page
 
     public void bindData()
     {
-        studentCNICList.DataSource = db.Documents.Where(q=>q.documentType == "StudentCNIC").ToList();
+        studentCNICList.DataSource = db.Documents.Where(q=>q.documentType == "StudentCNIC" ).ToList();
         studentCNICList.DataBind();
         FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC").ToList();
         FatherCNICList.DataBind();
@@ -36,7 +36,7 @@ public partial class Upload_Documents : System.Web.UI.Page
         MatricCertiList.DataBind();
         InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti").ToList();
         InterCertiList.DataBind();
-        List<int> universities = db.MakeChoices.Select(q => q.Uni_ID).ToList();
+        List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
         TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         TestResultDocList.DataBind();
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
@@ -53,7 +53,7 @@ public partial class Upload_Documents : System.Web.UI.Page
             {
                 documentName = FileUploadStudentCNIC.PostedFile.FileName,
                 documentType = "StudentCNIC",
-                userDetailID = pd.id,
+                userID = current_user,
                 documentURL = path,
                 documentSizeInKB = FileUploadStudentCNIC.PostedFile.ContentLength / 1000,
             };
@@ -93,7 +93,7 @@ public partial class Upload_Documents : System.Web.UI.Page
             {
                 documentName = FileUploadFatherCNIC.PostedFile.FileName,
                 documentType = "FatherCNIC",
-                userDetailID = pd.id,
+                userID = current_user,
                 documentURL = path,
                 documentSizeInKB = FileUploadStudentCNIC.PostedFile.ContentLength / 1000,
             };
@@ -127,7 +127,7 @@ public partial class Upload_Documents : System.Web.UI.Page
             {
                 documentName = FileUploadFatherIncomeCerti.PostedFile.FileName,
                 documentType = "FatherIncomeCerti",
-                userDetailID = pd.id,
+                userID = current_user,
                 documentURL = path,
                 documentSizeInKB = FileUploadFatherIncomeCerti.PostedFile.ContentLength / 1000,
             };
@@ -149,7 +149,7 @@ public partial class Upload_Documents : System.Web.UI.Page
             {
                 documentName = FileUploadMatricCerti.PostedFile.FileName,
                 documentType = "MatricCerti",
-                userDetailID = pd.id,
+                userID = current_user,
                 documentURL = path,
                 documentSizeInKB = FileUploadMatricCerti.PostedFile.ContentLength / 1000,
             };
@@ -164,20 +164,17 @@ public partial class Upload_Documents : System.Web.UI.Page
     {
         string path = Server.MapPath("~/UserDocuments/EducationalDocuments/" + FileUploadIntermediateCerti.PostedFile.FileName);
         FileUploadIntermediateCerti.PostedFile.SaveAs(path);
-        Personal_Details pd = db.Personal_Details.Where(q => q.User_ID == current_user).FirstOrDefault();
-        if (pd != null)
-        {
             Document d = new Document
             {
                 documentName = FileUploadIntermediateCerti.PostedFile.FileName,
                 documentType = "IntermediateCerti",
-                userDetailID = pd.id,
+                userID = current_user,
                 documentURL = path,
                 documentSizeInKB = FileUploadIntermediateCerti.PostedFile.ContentLength / 1000,
             };
             db.Documents.Add(d);
             db.SaveChanges();
-        }
+        
         bindData(); ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenEducationPanel();", true);
     }
     
@@ -196,14 +193,12 @@ public partial class Upload_Documents : System.Web.UI.Page
             int iduni = int.Parse(lb.CommandArgument);
             string path = Server.MapPath("~/UserDocuments/TestResults/" + fp.PostedFile.FileName);
             FileUploadIntermediateCerti.PostedFile.SaveAs(path);
-            Personal_Details pd = db.Personal_Details.Where(q => q.User_ID == current_user).FirstOrDefault();
-            if (pd != null)
-            {
+           
                 Document d = new Document
                 {
                     documentName = fp.PostedFile.FileName,
                     documentType = "Test",
-                    userDetailID = pd.id,
+                    userID = current_user,
                     documentURL = path,
                     documentSizeInKB = fp.PostedFile.ContentLength / 1000,
                 };
@@ -216,7 +211,7 @@ public partial class Upload_Documents : System.Web.UI.Page
                 };
                 db.TestResult_Document.Add(dt);
                 db.SaveChanges();
-            }
+           
             bindData();
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenTestPanel();", true);
         }

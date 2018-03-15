@@ -71,13 +71,14 @@ public partial class AspNetUser
         this.Intermediate_Education = new HashSet<Intermediate_Education>();
         this.Matriculation_Education = new HashSet<Matriculation_Education>();
         this.Media = new HashSet<Medium>();
-        this.Personal_Details = new HashSet<Personal_Details>();
         this.Test_Results = new HashSet<Test_Results>();
         this.Contact_Us = new HashSet<Contact_Us>();
         this.UserProfiles = new HashSet<UserProfile>();
         this.AspNetRoles = new HashSet<AspNetRole>();
         this.MakeChoices = new HashSet<MakeChoice>();
         this.Applications = new HashSet<Application>();
+        this.Documents = new HashSet<Document>();
+        this.Personal_Details = new HashSet<Personal_Details>();
     }
 
     public string Id { get; set; }
@@ -106,8 +107,6 @@ public partial class AspNetUser
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Medium> Media { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Personal_Details> Personal_Details { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Test_Results> Test_Results { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Contact_Us> Contact_Us { get; set; }
@@ -119,6 +118,10 @@ public partial class AspNetUser
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Application> Applications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Document> Documents { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Personal_Details> Personal_Details { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -282,11 +285,11 @@ public partial class Document
     public int id { get; set; }
     public string documentName { get; set; }
     public string documentURL { get; set; }
-    public int userDetailID { get; set; }
+    public string userID { get; set; }
     public string documentType { get; set; }
     public int documentSizeInKB { get; set; }
 
-    public virtual Personal_Details Personal_Details { get; set; }
+    public virtual AspNetUser AspNetUser { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<TestResult_Document> TestResult_Document { get; set; }
 }
@@ -368,12 +371,6 @@ public partial class Payment
 
 public partial class Personal_Details
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Personal_Details()
-    {
-        this.Documents = new HashSet<Document>();
-    }
-
     public int id { get; set; }
     public string User_ID { get; set; }
     public string Name { get; set; }
@@ -385,8 +382,6 @@ public partial class Personal_Details
     public string Application_ID { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<Document> Documents { get; set; }
 }
 
 public partial class Portfolio
