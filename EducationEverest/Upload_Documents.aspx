@@ -44,6 +44,21 @@
                  }
                      return isValidFile;
              }
+             function ValidateSize(UploadControl) {
+                 var file = document.getElementById(UploadControl);
+                 var path = file.value;
+                 var isValidFile = true;
+                 input = document.getElementById(UploadControl);
+                 file = input.files[0];
+                 size = file.size / 1000000
+                 if (size > 4)
+                 {
+                     isValidFile = false;
+                     window.alert("File size exceeds allowed limit");
+                 }
+                 return isValidFile;
+                 
+             }
 
         
 
@@ -54,6 +69,8 @@
                  var UploadControl = '<%=FileUploadStudentCNIC.ClientID %>';
                  var FileNameLabel = "studentCNICName";
                  var FileSizeLabel = "studentCNICSize";
+                 var FileSizeValidation = ValidateSize(UploadControl);
+                 if(FileSizeValidation){
                  var CorectFileType = ValidateFile(UploadControl);
                  console.log(CorectFileType);
                  if (CorectFileType)
@@ -71,6 +88,7 @@
 
                      window.alert("Invalid File. Please upload a File with" + " extension:\n\n"+validFilesTypes.join(", ")); 
                  }
+                 }
              }
              
              function UplaodFatherCNic() {
@@ -79,22 +97,23 @@
                  var UploadControl = '<%=FileUploadFatherCNIC.ClientID %>';
                  var FileNameLabel = "fatherCNICName";
                  var FileSizeLabel = "fatherCNICSize";
-                 var CorectFileType = ValidateFile(UploadControl);
-                 if (CorectFileType)
-                 {
-                 var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
-                     if (flag) {
-                        
-                         var btnID= '<%=uploadFatherCNIC.ClientID %>';          
-                         document.getElementById('<%=uploadFatherCNIC.ClientID %>').click();
-                         document.getElementById(Progressbardiv).style.display = "block";
+                 var FileSizeValidation = ValidateSize(UploadControl);
+                 if (FileSizeValidation) {
+                     var CorectFileType = ValidateFile(UploadControl);
+                     if (CorectFileType) {
+                         var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
+                         if (flag) {
+
+                             var btnID = '<%=uploadFatherCNIC.ClientID %>';
+                             document.getElementById('<%=uploadFatherCNIC.ClientID %>').click();
+                             document.getElementById(Progressbardiv).style.display = "block";
+                         }
+                     }
+                     else {
+
+                         window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
                      }
                  }
-                 else {
-
-                     window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
-                 }
-                      
              }
              
              function UplaodFatherIncomeCerti() {
@@ -103,22 +122,23 @@
                  var UploadControl = '<%=FileUploadFatherIncomeCerti.ClientID %>';
                  var FileNameLabel = "FatherIncomeCertiName";
                  var FileSizeLabel = "FatherIncomeCertiSize";
-                 var CorectFileType = ValidateFile(UploadControl);
-                 if (CorectFileType)
-                 {
-                    var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
-                     if (flag) {
-                         
-                         var btnID= '<%=uploadFatherIncomeCerti.ClientID %>';          
-                         document.getElementById('<%=uploadFatherIncomeCerti.ClientID %>').click();
-                         document.getElementById(Progressbardiv).style.display = "block";
+                 var FileSizeValidation = ValidateSize(UploadControl);
+                 if (FileSizeValidation) {
+                     var CorectFileType = ValidateFile(UploadControl);
+                     if (CorectFileType) {
+                         var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
+                         if (flag) {
+
+                             var btnID = '<%=uploadFatherIncomeCerti.ClientID %>';
+                             document.getElementById('<%=uploadFatherIncomeCerti.ClientID %>').click();
+                             document.getElementById(Progressbardiv).style.display = "block";
+                         }
+                     }
+                     else {
+
+                         window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
                      }
                  }
-                 else {
-
-                     window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
-                 }
-                      
              }
              
              function UpoadMatricCerti() {
@@ -127,22 +147,24 @@
                  var UploadControl = '<%=FileUploadMatricCerti.ClientID %>';
                  var FileNameLabel = "MatricCertiName";
                  var FileSizeLabel = "MatricCertiSize";
-                 var CorectFileType = ValidateFile(UploadControl);
-                 if (CorectFileType)
-                 {
-                    var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
-                     if (flag) {
-                         
-                         var btnID= '<%=upoadMatricCerti.ClientID %>';          
-                         document.getElementById('<%=upoadMatricCerti.ClientID %>').click();
-                         document.getElementById(Progressbardiv).style.display = "block";
-                     }
-                 }
-                 else {
+                 var FileSizeValidation = ValidateSize(UploadControl);
+                 if (FileSizeValidation) {
+                     var CorectFileType = ValidateFile(UploadControl);
+                     if (CorectFileType) {
+                         var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
+                         if (flag) {
 
-                     window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
+                             var btnID = '<%=upoadMatricCerti.ClientID %>';
+                             document.getElementById('<%=upoadMatricCerti.ClientID %>').click();
+                             document.getElementById(Progressbardiv).style.display = "block";
+                         }
+                     }
+                     else {
+
+                         window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
+                     }
+
                  }
-                      
              }
              function UpoadIntermediateCerti() {
                  var ProgressPanel = "showProgressIntermediateCerti";
@@ -150,22 +172,23 @@
                  var UploadControl = '<%=FileUploadIntermediateCerti.ClientID %>';
                  var FileNameLabel = "IntermediateCertiName";
                  var FileSizeLabel = "IntermediateCertiSize";
-                 var CorectFileType = ValidateFile(UploadControl);
-                 if (CorectFileType)
-                 {
-                 var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
-                     if (flag) {
-                        
-                         var btnID= '<%=uploadIntermediateCerti.ClientID %>';          
-                         document.getElementById('<%=uploadIntermediateCerti.ClientID %>').click();
-                         document.getElementById(Progressbardiv).style.display = "block";
+                 var FileSizeValidation = ValidateSize(UploadControl);
+                 if (FileSizeValidation) {
+                     var CorectFileType = ValidateFile(UploadControl);
+                     if (CorectFileType) {
+                         var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
+                         if (flag) {
+
+                             var btnID = '<%=uploadIntermediateCerti.ClientID %>';
+                             document.getElementById('<%=uploadIntermediateCerti.ClientID %>').click();
+                             document.getElementById(Progressbardiv).style.display = "block";
+                         }
+                     }
+                     else {
+
+                         window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
                      }
                  }
-                 else {
-
-                     window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
-                 }
-                      
              }
             
              
@@ -180,23 +203,24 @@
                  var UploadControl = object.id;
                  var FileNameLabel = document.getElementsByName("Name" + id)[0].id;
                  var FileSizeLabel = document.getElementsByName("Size" + id)[0].id;
-                 var CorectFileType = ValidateFile(UploadControl);
-                 if (CorectFileType)
-                 {
-                 var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
-                     if (flag) {
-                         
-                         var val = "uploadTest"+id;
-                         var btnID = $("[itemID='"+val+"']")[0].id;
-                         document.getElementById(btnID).click();
-                         document.getElementById(Progressbardiv).style.display = "block";
+                 var FileSizeValidation = ValidateSize(UploadControl);
+                 if (FileSizeValidation) {
+                     var CorectFileType = ValidateFile(UploadControl);
+                     if (CorectFileType) {
+                         var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
+                         if (flag) {
+
+                             var val = "uploadTest" + id;
+                             var btnID = $("[itemID='" + val + "']")[0].id;
+                             document.getElementById(btnID).click();
+                             document.getElementById(Progressbardiv).style.display = "block";
+                         }
+                     }
+                     else {
+
+                         window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
                      }
                  }
-                 else {
-
-                     window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
-                 }
-                      
 
              }
         var size = 2;
@@ -313,7 +337,7 @@
     <div style="margin-left: 650px">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
-        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadStudentCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodStudentCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
+        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Document<input id="FileUploadStudentCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodStudentCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadStudentCNIc" OnClick="uploadStudentCNIc_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
     </div>
   <br/>
@@ -357,7 +381,7 @@
     <div style="margin-left: 650px">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
-        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadFatherCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
+        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Document<input id="FileUploadFatherCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadFatherCNIC"  OnClick="uploadFatherCNIC_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
     </div>
   <br/>
@@ -403,7 +427,7 @@
     <div style="margin-left: 650px">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
-        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadFatherIncomeCerti" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherIncomeCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
+        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Document<input id="FileUploadFatherIncomeCerti" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherIncomeCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadFatherIncomeCerti"  OnClick="uploadFatherIncomeCerti_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
     </div>
   <br/>
@@ -463,7 +487,7 @@
     <div style="margin-left: 650px">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
-        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadMatricCerti" type="file" runat="server" onclose="closing(this)" onchange="UpoadMatricCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
+        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Document<input id="FileUploadMatricCerti" type="file" runat="server" onclose="closing(this)" onchange="UpoadMatricCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
         <asp:Button ID="upoadMatricCerti"  OnClick="upoadMatricCerti_Click" ClientIDMode="Static" style="display:none" runat="server" Text="Button" />
     </div>
   <br/>
@@ -508,7 +532,7 @@
     <div style="margin-left: 650px">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
-        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image
+        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Document
             <input id="FileUploadIntermediateCerti" type="file" runat="server" onclose="closing(this)" onchange="UpoadIntermediateCerti()" name="Upload Image" title="Upload Image" class="upload" />
 
         </div>
@@ -572,7 +596,7 @@
     <div style="margin-left: 650px">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
-        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<asp:FileUpload id="FileUploadTest" type="file" runat="server" onclose="closing(this)" onchange='uploadItemTest(this,1)' data-itemID='<%# Container.ItemIndex %>' title="Upload Image" class="upload" /></div>
+        <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Document<asp:FileUpload id="FileUploadTest" type="file" runat="server" onclose="closing(this)" onchange='uploadItemTest(this,1)' data-itemID='<%# Container.ItemIndex %>' title="Upload Image" class="upload" /></div>
         <asp:Button ID="uploadTest"  CommandArgument='<%# Eval("UniversityID") %>'   CommandName="Add" itemID='<%# "uploadTest"+Container.ItemIndex %>' style="display:none" runat="server" Text="Button" />
     </div>
   <br/>

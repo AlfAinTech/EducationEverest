@@ -166,9 +166,9 @@ payment information.</div>
      	<br/>
      	<div class="pop_divider"></div>
      	<br/>
-     	<div class="popup_text">Your Invoice Total</div>
+     	<div class="popup_text">Your Invoice</div>
      	<br/>
-     	<div class="popup_text2">PKR <asp:Label ID="InvoicePayment" runat="server" ></asp:Label></div>
+     	<div class="popup_text2"><asp:Label ID="InvoicePayment" runat="server" ></asp:Label> PKR</div>
      	<br/>
 		<div class="NormalCharacterStyle25">Select your method from below</div>
 		<br/>
@@ -252,9 +252,10 @@ payment information.</div>
 <script type="text/javascript">
     function AddPayment(appid, price)
     {
-        console.log(appid);
+        console.log(appid, price);
         $("[id*=paymentAppID]").val(appid);
-        $("[id*=InvoicePayment]").text = price;
+        $("[id*=InvoicePayment]")[0].innerHTML = "";
+        $("[id*=InvoicePayment]")[0].innerHTML= price;
         
     }
     function OpenCurrentPage() {
