@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Educational_Detail.aspx.cs" Inherits="Educational_Detail" %>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" Runat="Server">
+    <div style="margin-top: 15px">Dashboard > File Admission Application > Educational Details</div>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <header>
         <script language="javascript" type="text/javascript">
@@ -160,6 +162,8 @@
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
                         ErrorMessage="Please enter only numbers">
                     </asp:RegularExpressionValidator>
+      <br />  <asp:CompareValidator runat="server" id="cvMatric" ValidationGroup="vgEducationalDetails" controltovalidate="obtained_marks_matric" controltocompare="total_marks_matric" operator="LessThanEqual" type="Integer" errormessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
+
         <%--<asp:RegularExpressionValidator id="reObtainedMarksMatric"
                    ControlToValidate="obtained_marks_matric" ValidationGroup="vgEducationalDetails"
                    ValidationExpression="\d+"
@@ -306,6 +310,7 @@
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
                         ErrorMessage="Please enter only numbers">
                     </asp:RegularExpressionValidator>
+      <br />  <asp:CompareValidator runat="server"  ValidationGroup="vgEducationalDetails" id="cvIntermediate" controltovalidate="obtained_marks_intermediate" controltocompare="total_marks_intermediate" operator="LessThanEqual" type="Integer" errormessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
 
 
     </div>

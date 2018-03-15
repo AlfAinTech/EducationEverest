@@ -1,4 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Client.master" CodeFile="Upload_Documents.aspx.cs" Inherits="Upload_Documents" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" Runat="Server">
+    <div style="margin-top: 15px">Dashboard > File Admission Application > Documents</div>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <header>
          <script language="javascript" type="text/javascript">

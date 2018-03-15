@@ -11,7 +11,7 @@ public partial class Client : System.Web.UI.MasterPage
     EducationEverestEntities db = new EducationEverestEntities();
      public static string current_user = HttpContext.Current.User.Identity.GetUserId(); 
     // public static string current_user = "b7f8e747-9167-4340-8c23-b914eda6d11f";
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e) 
     {
         current_user = HttpContext.Current.User.Identity.GetUserId();
         CompletionCheck();
@@ -79,7 +79,7 @@ public partial class Client : System.Web.UI.MasterPage
         {
             imgTickTestResults.Visible = true;
         }
-        if(db.Documents.Any(q=>q.Personal_Details.User_ID == current_user))
+        if(db.Documents.Any(q=>q.userID == current_user))
         {
             imgTickDocuments.Visible = true;
         }
@@ -92,7 +92,7 @@ public partial class Client : System.Web.UI.MasterPage
 
     protected void btnFilter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Search_Results.aspx");
+        Response.Redirect("Filter_Results.aspx");
     }
 
 

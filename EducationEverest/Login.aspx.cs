@@ -1,11 +1,14 @@
-﻿using System;
+﻿using EducationEverest;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using EducationEverest;
-using Microsoft.AspNet.Identity;
+
+
 
 
 public partial class Login : System.Web.UI.Page
@@ -20,34 +23,31 @@ public partial class Login : System.Web.UI.Page
     {
         if (IsValid)
         {
+            
             // Validate the user password
             var manager = new UserManager();
             ApplicationUser user = manager.Find(Email.Text, Password.Text);
             if (user != null)
             {
-               
+                
                 IdentityHelper.SignIn(manager, user, false);
                 if (Request.QueryString["ReturnUrl"] != null)
                 {
-                    if (HttpContext.Current.User.IsInRole("Super Admin"))
-                    {
-                        IdentityHelper.RedirectToReturnUrl("~/Admin/Applications.aspx", Response);
-                    }
-                    else
-                    {
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                    }
-                } 
+                    IdentityHelper.RedirectToReturnUrl("~/Dashboard.aspx?ReturnUrl=" + Request.QueryString["ReturnUrl"], Response);
+                }
                 else
                 {
                     IdentityHelper.RedirectToReturnUrl("~/Dashboard.aspx", Response);
                 }
+                    
+                
             }
             else
             {
                 FailureText.Text = "Invalid username or password.";
                 ErrorMessage.Visible = true;
             }
+            
         }
     }
 }

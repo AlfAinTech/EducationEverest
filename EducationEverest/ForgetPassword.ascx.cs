@@ -26,7 +26,7 @@ public partial class ForgetPassword : System.Web.UI.UserControl
         {
             string Body = System.IO.File.ReadAllText(Server.MapPath("~/PasswordRecovery.html"));
            // Body = Body.Replace("{DynamicContent}", "https://www.cargoreadiness.com/ResetPassword?verificationID=" + currentuser_id + "");
-            Body = Body.Replace("{DynamicContent}", "http://localhost:65465/Account/Manage.aspx?id=" + currentuser_id + "");
+            Body = Body.Replace("{DynamicContent}", "http://localhost:65465/ResetPassword.aspx?idPasswordReset=" + currentuser_id + "");
             EducationEverestEntities db = new EducationEverestEntities();
             AspNetUser dup = db.AspNetUsers.Where(q => q.Id == currentuser_id).First();
             MailMessage mailMessage = new MailMessage();

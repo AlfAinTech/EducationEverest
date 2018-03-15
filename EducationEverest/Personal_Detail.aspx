@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Personal_Detail.aspx.cs" Inherits="Personal_Detail" %>
 <%@ MasterType virtualpath="~/Client.master" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="StatusBas" Runat="Server">
+    <div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
    <%-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
    
@@ -37,7 +40,7 @@
 
             if (length == 5 || length == 13)
                 $(this).val($(this).val() + '-');
-            alert("Hello! I am an alert box!");
+            //alert("Hello! I am an alert box!");
         });
     </script>
     <div class="col-sm-9 text-left"> 
@@ -136,8 +139,9 @@
 <div class="upload_icon_text"> Upload</div>
 <div class="upload_icon_text">Passport Size Photograph</div>
   </div></a>--%>
-     <asp:FileUpload ID="FileUpload1" style="display:none;" ClientIDMode="Static"   runat="server" onchange="this.form.submit()" />
-     <asp:Button ID="btn_UplaodImage" style="display:none;" OnClick="btn_UplaodImage_Click" runat="server"  />
+     <asp:FileUpload ID="FileUpload1" accept="image/*" style="display:none;" ClientIDMode="Static"   runat="server" onchange="this.form.submit()" />
+     <asp:RegularExpressionValidator ValidationGroup="validateFile" ID="RegularExpressionValidator1" ControlToValidate="FileUpload1" ForeColor="Red" ValidationExpression="^.*\.(jpg|png|JPG|gif|GIF|jpeg)$" runat="server" ErrorMessage="Select a Valid File"></asp:RegularExpressionValidator>
+     <asp:Button ID="btn_UplaodImage" ValidationGroup="validateFile"  style="display:none;" OnClick="btn_UplaodImage_Click" runat="server"  />
 
     </div>
 

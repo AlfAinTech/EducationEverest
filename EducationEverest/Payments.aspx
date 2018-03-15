@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Payments.aspx.cs" Inherits="Payments" %>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" Runat="Server">
+    <div style="margin-top: 15px">Dashboard > File Admission Application > Payments</div>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <asp:HiddenField ID="paymentAppID" runat="server" />
@@ -15,12 +17,13 @@
         <div class="panel-body" >
             
 
-        <asp:Repeater ID="ChoicesList" runat="server" ><ItemTemplate>
+        <asp:Repeater ID="ChoicesList" runat="server"  OnItemDataBound="ChoicesList_ItemDataBound" ><ItemTemplate>
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left">
           <div class="col-md-1">
-             <img src="images/image.png" ></div>
+               <asp:Image ID="logo" runat="server"  />
+             <%--<img src="images/image.png" >--%></div>
              <div class="col-md-11">
         <h4 class="panel-title margin_top">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus").ToString()=="pending"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
@@ -175,7 +178,7 @@ payment information.</div>
 					<div class="jazz_cash_logo"></div><br/><br/><br/><br/><br/>
 					<div class="payment_methods_text">Jazz Cash</div>
 				</div></div></a>
-
+             
 
 
 				  <div class="tab-content">

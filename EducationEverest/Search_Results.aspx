@@ -224,7 +224,7 @@
 
 
        </div>
-         <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" style="margin-top: -20px;height: 100%">
+         <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" id="dvUnivDetailsShow" runat="server" style="margin-top: -20px;height: 100%">
          <div class="">
           <div class="col-md-2">
               <%--<img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">--%>
@@ -273,7 +273,7 @@
           <div class="line_3_" style="margin-top: 135px;"></div>
           <br/>
           <div class="col-md-12" >
-            <div class="col-md-7">
+            <div class="col-md-7" >
             <div class="NormalCharacterStyle218">About
                 <asp:Label ID="lblUniversity2" runat="server" Text="Label"></asp:Label></div>
                
