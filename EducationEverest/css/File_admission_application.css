@@ -35,14 +35,15 @@
 	background-repeat : no-repeat;
   background-color: transparent;
   border-top: none;border-left: none;border-right: none;
-  border-bottom: 1px Solid #2196F3;;
-  height : 22px;
+  border-bottom: 1px Solid #2196F3;
+  height : 19px;
+  padding-left: 0 !important;
 }
 .select_campus{
 	background-repeat : no-repeat;
   background-color: transparent;
   border-top: none;border-left: none;border-right: none;
-  border-bottom: 1px Solid #2196F3;;
+  border-bottom: 1px Solid #2196F3;
   height : 22px;
   width: 330px;
 }
@@ -257,7 +258,7 @@
 }
 .NormalCharacterStyle101
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 16px;
   line-height : 22px;
   color : #FF9800;
@@ -408,7 +409,7 @@
 }
 .NormalCharacterStyle4
 {
-	font-family : Franklin Gothic Demi;
+	font-family : 'Libre Franklin', sans-serif;
 	font-size : 49px;
 	line-height : 68.24px;
 	color : #999999;
@@ -653,12 +654,12 @@
 .inputs
 {
 	background-repeat : no-repeat;
-	position : absolute ;
-	background-color: transparent;
+	/*position : absolute ;*/
+    background-color: transparent;
 	border-top: none;border-left: none;border-right: none;
 	border-bottom: 1px Solid #2196F3;;
-	width : 328px;
-	height : 22px;
+	width : 100%;
+	height : 25px;
 }
 .button_bg_1_
 {
@@ -687,7 +688,7 @@
 }
 .NormalCharacterStyle111
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
   font-size : 21px;
   line-height : 22px;
   color : #B3B3B3;
@@ -807,8 +808,8 @@
 }
 .blue_text
 {
-  font-family : Raleway Medium;
-  font-size : 21px;
+  font-family : Raleway;
+  font-weight:600;
   color : #0071BC;
   color : rgb(0, 113, 188);
 }
@@ -903,18 +904,22 @@
 }
 .upload_documents_names
 {
-	font-family : Gotham Rounded;
+	font-family : Raleway;
 	font-size : 17px;
 	color : #666666;
 	color : rgb(102, 102, 102);
 }
 .upload_documents_info
 {
-	font-family : Myriad Pro;
+	font-family : Raleway;
 	font-size : 14px;
 	line-height : 22px;
 	color : #B3B3B3;
 	color : rgb(179, 179, 179);
+}
+.bottomborder{
+  padding-bottom: 3%;
+  border-bottom: 1px solid rgba(204, 204, 204, 1) !important;
 }
 .panel_divider
 {
@@ -928,15 +933,15 @@
 }
 .upload_documents_complete_text
 {
-	font-family : Gotham Rounded;
-	font-size : 9px;
+	font-family : Raleway;
+	font-size : 0.9em;
 	color : #8CC63F;
 	color : rgb(140, 198, 63);
 }
 .upload_documents_filesize_text
 {
-	font-family : Gotham Rounded;
-	font-size : 9px;
+	font-family : Raleway;
+	font-size : 0.8em;
 	color : #CCCCCC;
 	color : rgb(204, 204, 204);
 }
@@ -957,7 +962,7 @@ a:hover{
 }
 .upload_documents_progress_text
 {
-	font-family : Gotham Rounded;
+	font-family : Raleway;
 	font-size : 17px;
 	color : #29ABE2;
 	color : rgb(41, 171, 226);
@@ -983,7 +988,8 @@ a:hover{
 }
 .popup_text
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 20px;
   line-height : 22px;
   color : #B3B3B3;
@@ -1176,7 +1182,8 @@ div.callout {
 }
 .payment_methods_text
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 18px;
   line-height : 22px;
   color : #CCCCCC;
@@ -1205,7 +1212,7 @@ div.callout {
 
 	}
 .myprofile_tabs{
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 24px;
   line-height : 22px;
   color : #999999;
@@ -1245,8 +1252,7 @@ margin-right: -10em;
   border-color : rgba(204, 204, 204, 1);
   border-width : 1px;
    position : relative ;
-  width : 100%
-  height : 264px;
+  width : 100%;
   border-radius : 2px;
   -moz-border-radius : 2px;
   -webkit-border-radius : 2px;  
@@ -1264,49 +1270,53 @@ margin-right: -10em;
 
 .Profile_sidemenu_Name1
 {
-  font-family : Myriad Pro;
+  font-family : Raleway;
   font-size : 15px;
+  text-transform: capitalize;
   color : #333333;
   color : rgb(51, 51, 51);
 }
 .Profile_sidemenu_Name2
 {
-  font-family : Myriad Pro;
+  font-family : Raleway;
   font-size : 15px;
   color : #2196F3;
   color : rgb(33, 150, 243);
 }
 .Profile_sidemenu_Name3
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 15px;
   color : #FF9800;
   color : rgb(255, 152, 0);
 }
 .Profile_sidemenu_Name4
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 15px;
   color : #999999;
   color : rgb(153, 153, 153);
 }
 .Profile_modal_heading
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 20px;
   color : #FF9800;
   color : rgb(255, 152, 0);
 }
 .profile_email_text
 {
-  font-family : Raleway Light;
-  font-size : 11px;
+  font-family : Karma;
+  font-size : 12px;
   color : #666666;
   color : rgb(102, 102, 102);
 }
 .profile_user_text
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 11px;
   color : #333333;
   color : rgb(51, 51, 51);
@@ -1316,10 +1326,10 @@ margin-right: -10em;
   background-image : url('../images/profile_pic.png');
   /*To create image referenced in CSS, use 'Export Selected CSS' command.*/
   background-repeat : no-repeat;
-  position : absolute;
+  position : absolute ;
   display: block;
-  left : 34%;
-  top : 97px;
+  left : 36%;
+  top : 70px;
   width : 119px;
   height : 119px;
 }
@@ -1371,10 +1381,12 @@ margin-right: -10em;
 }
 .profile_panel_text
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 12px;
   color : #999999;
   color : rgb(153, 153, 153);
+  padding-bottom: 6%;
+  border-bottom: 2px solid  rgb(153, 153, 153);
 }
 .profile_panel_divider
 {
@@ -1388,7 +1400,8 @@ margin-right: -10em;
 }
 .profile_panel_text2
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 25px;
   color : #999999;
   color : rgb(153, 153, 153);
@@ -1428,8 +1441,7 @@ margin-right: -10em;
 }
 
 .panel-body {
-	background : #F2F2F2;
-  background : rgba(242, 242, 242, 1);
+	background : #F5F5F5;
 }
 .File_Admission_btn
 {
@@ -1496,7 +1508,8 @@ margin-right: -10em;
 }
 .NormalCharacterStyle102
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 32px;
   line-height : 22px;
   color : #333333;
@@ -1524,7 +1537,7 @@ margin-right: -10em;
 }
 .NormalCharacterStyle112
 {
-  font-family : Myriad Pro;
+  font-family : 'Maven Pro';
   font-size : 18px;
   line-height : 22px;
   color : #B3B3B3;
@@ -1579,7 +1592,8 @@ margin-right: -10em;
 }
 .filter_select_option
 {
-	  font-family : Raleway Medium;
+    font-family : Raleway;
+  font-weight: 500;
   font-size : 18px;
   line-height : 22px;
   color : #B3B3B3;
@@ -1588,8 +1602,8 @@ margin-right: -10em;
 }
 .filter_results_option
 {
-	  font-family : Raleway Medium;
-  font-size : 18px;
+	font-family : Raleway;
+  font-weight: 500;
   line-height : 22px;
   color : #B3B3B3;
   color : rgb(179, 179, 179);
@@ -1605,7 +1619,7 @@ margin-right: -10em;
 }
 .NormalCharacterStyle111
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 21px;
   line-height : 22px;
   color : #CCCCCC;
@@ -1659,42 +1673,43 @@ margin-right: -10em;
 }
 .NormalCharacterStyle211
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 10px;
   color : #999999;
   color : rgb(153, 153, 153);
 }
 .NormalCharacterStyle212
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 12px;
   color : #FF0043;
   color : rgb(255, 0, 67);
 }
 .NormalCharacterStyle213
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 12px;
   color : #666666;
   color : rgb(102, 102, 102);
 }
 .NormalCharacterStyle214
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 12px;
   color : #8CC63F;
   color : rgb(140, 198, 63);
 }
 .NormalCharacterStyle215
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 18px;
   color : #333333;
   color : rgb(51, 51, 51);
 }
 .NormalCharacterStyle216
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 18px;
   line-height : 22px;
   color : #8CC63F;
@@ -1702,14 +1717,15 @@ margin-right: -10em;
 }
 .NormalCharacterStyle217
 {
-  font-family : Raleway Regular;
+  font-family : Raleway;
   font-size : 12px;
   color : #2196F3;
   color : rgb(33, 150, 243);
 }
 .NormalCharacterStyle218
 {
-  font-family : Raleway Medium;
+  font-family : Raleway;
+  font-weight: 500;
   font-size : 18px;
   color : #FF9800;
   color : rgb(255, 152, 0);
