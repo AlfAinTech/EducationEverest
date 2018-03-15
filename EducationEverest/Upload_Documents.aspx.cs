@@ -13,7 +13,7 @@ public partial class Upload_Documents : System.Web.UI.Page
     string current_user = HttpContext.Current.User.Identity.GetUserId();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+        if (!((HttpContext.Current.User.Identity.IsAuthenticated) || (HttpContext.Current.User.IsInRole("Super Admin"))))
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
