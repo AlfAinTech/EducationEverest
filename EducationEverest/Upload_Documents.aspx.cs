@@ -26,15 +26,15 @@ public partial class Upload_Documents : System.Web.UI.Page
 
     public void bindData()
     {
-        studentCNICList.DataSource = db.Documents.Where(q=>q.documentType == "StudentCNIC" ).ToList();
+        studentCNICList.DataSource = db.Documents.Where(q=>q.documentType == "StudentCNIC" && q.userID == current_user).ToList();
         studentCNICList.DataBind();
-        FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC").ToList();
+        FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC" && q.userID == current_user).ToList();
         FatherCNICList.DataBind();
-        FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti").ToList();
+        FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti" && q.userID == current_user).ToList();
         FatherIncomeCertiList.DataBind();
-        MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti").ToList();
+        MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti" && q.userID == current_user).ToList();
         MatricCertiList.DataBind();
-        InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti").ToList();
+        InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti" && q.userID == current_user).ToList();
         InterCertiList.DataBind();
         List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
         TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
