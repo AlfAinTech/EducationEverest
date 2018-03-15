@@ -53,7 +53,6 @@
     </header>
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Educational Details</h3>
-      <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur.</p>
 
       <div class="panel panel-default panel_shadow">
       <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
@@ -64,12 +63,11 @@
 
               </div></a>
       <div id="collapse2" class="panel-collapse panel-heading collapse">
-        <div class="panel_divider"></div>
         <div class="panel-body" >
     <br/>
 
 <div class="col-md-12">
-<div class="col-md-10 text-left">
+<div class="col-md-12 text-left">
 <div class="col-md-12">
          <div class="form">
              <asp:DropDownList ID="DropDownList1" Class="combobox col-md-12 select_option" runat="server">
@@ -218,12 +216,11 @@
 
               </div></a>
       <div id="interpanel" class="panel-collapse panel-heading collapse">
-        <div class="panel_divider"></div>
         <div class="panel-body" >
     <br/>
 
 <div class="col-md-12">
-<div class="col-md-10 text-left">
+<div class="col-md-12 text-left">
 <div class="col-md-12">
          <div class="form">
              <asp:DropDownList ID="DropDownList3" Class="combobox col-md-12 select_option" runat="server">

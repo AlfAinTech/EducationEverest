@@ -18,7 +18,6 @@
       </div>
         </div>
         </div><br/>
-        <div class="divider"></div><br/>
         <a data-toggle="collapse" data-parent="#accordion" href='<%# "#details"+Container.ItemIndex %>' class="pull-right NormalCharacterStyle18 margin_top" style="margin-right: 30px;"><b>VIEW</b></a>
       </div>
       <div id='<%# "details"+Container.ItemIndex %>' class="panel-collapse collapse panel_shadow">

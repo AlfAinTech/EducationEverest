@@ -11,11 +11,11 @@ html, body
 
 input[type="text"]
 {
- font-family : Raleway Medium;
-  font-size : 18px;
-  line-height : 22px;
-  color : #000000;
-  color : #000000;
+    font-family : 'Raleway', sans-serif;
+    font-size : 18px;
+    line-height : 22px;
+    color : #000000;
+    color : #000000;
 }
 .text-pink
 {
@@ -30,7 +30,7 @@ input[type="text"]
 .header2
 {
     box-shadow: 2px 3px 2px #D1D3D4;
-    text-align-: left;
+    text-align: left;
     height: 50px;
     width: 100%;
 	color: #CCCCCC;
@@ -156,19 +156,17 @@ input[type="text"]
 	
 
 input::placeholder { 
- font-family : Raleway Medium;
-  font-size : 18px;
+  font-family : 'Raleway', sans-serif;
+  font-size : 15px;
   line-height : 22px;
   color : #B3B3B3;
-  color : rgb(179, 179, 179);
   }
 
   select{ 
-  font-family : Raleway Medium;
-  font-size : 18px;
+  font-family : 'Raleway', sans-serif;
+  font-size : 15px;
   line-height : 22px;
-  color : #000000;
-  color : #000000;
+  color : #B3B3B3;
   }
 
 .side-menu
@@ -272,9 +270,10 @@ a:hover,a:focus,a:active,a:visited{
 }
 .panel-heading
 {
-	  background : #F2F2F2;
-  background : rgba(242, 242, 242, 1);
+    background : #F2F2F2;
+    background : rgba(242, 242, 242, 1);
 	background-image: none !important;
+    border-bottom-color: darkgrey !important;
 }
 .margin_left
 {
@@ -298,7 +297,7 @@ a:hover,a:focus,a:active,a:visited{
 }
 .margin_top3
 {
-	margin-top: 40px;
+	margin-top: 35px;
 }
 .margin_bottom
 {
@@ -310,7 +309,7 @@ a:hover,a:focus,a:active,a:visited{
 }
 .selected_Label
 {
-    font-family: Raleway Medium;
+    font-family: 'Raleway', sans-serif;
     font-size: 18px;
     line-height: 22px;
     color: #B3B3B3;
@@ -330,4 +329,9 @@ a:hover,a:focus,a:active,a:visited{
     filter: alpha(opacity=88) progid:DXImageTransform.Microsoft.Alpha(opacity=88);
 
 }
+
+
+/*CSS Styles Added by Hassan*/
+input[type="text"], input[type="password"], textarea, select { 
+    outline: none !important;
 }

@@ -259,13 +259,6 @@
     </header>
       <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Upload Documents</h3>
-      <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-      <br/>
-      <dl class="NormalCharacterStyle11">
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-      </dl>
       <div class="panel panel-default panel_shadow">
            <a id="menu_togglePersonalDoc" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
       <div class="panel-heading" style="height: 60px">
@@ -275,39 +268,38 @@
 
               </div></a>
       <div id="collapse2" class="panel-collapse panel-heading collapse">
-                  <div class="panel_divider"></div>
         <div class="panel-body" >
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true"><ContentTemplate>
-    <div class="upload_documents_names">&#9656;B Form/CNIC of Student&nbsp;<span class="upload_documents_info">(Scaned Copy front and back, High Resolution)</span></div>
+    <div class="upload_documents_names">&#9656;B Form/CNIC of Student&nbsp;<span class="upload_documents_info">(Scanned Copy)</span></div>
    <asp:Repeater ID="studentCNICList" OnItemDataBound="studentCNICList_ItemDataBound" runat="server">
        <ItemTemplate>
            <div class="col-md-12">
               <div class="col-md-1">
-                    <div class="upload_image_icon margin_top margin_left2"></div>
+                    <div class="upload_image_icon margin_top"></div>
                </div>
-            <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3"><%# Eval("documentName") %></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
+            <div class="col-md-6">
+                <div class="upload_documents_names margin_top3"><%# Eval("documentName") %></div>
+                <div class="upload_documents_complete_text">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
             </div>
             <div class="col-md-1"><asp:LinkButton runat="server" ID="deleteStudentCNIC" CommandArgument='<%# Eval("id")  %>' OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
-           </div>
+          </div>
        </ItemTemplate>
    </asp:Repeater>
    <br/><br/><br/><br/>
     <div class="col-md-12" id="showProgressStudentCNIC" style="display:none">
       <div class="col-md-1">
-            <div class="upload_image_icon margin_top margin_left2"></div>
+            <div class="upload_image_icon margin_top"></div>
      </div>
-    <div class="col-md-5">
-        <div class="upload_documents_progress_text margin_top3 margin_left3"><asp:Label runat="server" ClientIDMode="Static" id="studentCNICName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="studentCNICSize" class="upload_documents_filesize_text"></asp:Label></div>
-        <div class="progress margin_left3">
+    <div class="col-md-6">
+        <div class="upload_documents_progress_text margin_top3"><asp:Label runat="server" ClientIDMode="Static" id="studentCNICName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="studentCNICSize" class="upload_documents_filesize_text"></asp:Label></div>
+        <div class="progress">
           <div class="progress-bar progress-bar-info" id="progressStudentCNIC" role="progressbar" style="width:0%;height: 5px;">
           </div>
         </div>
     </div>
   </div>
     <br/><br/><br/><br/>
-    <div style="margin-left: 650px">
+    <div class="col-md-4 col-md-offset-8">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadStudentCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodStudentCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
@@ -327,11 +319,11 @@
        <ItemTemplate>
            <div class="col-md-12">
               <div class="col-md-1">
-                    <div class="upload_image_icon margin_top margin_left2"></div>
+                    <div class="upload_image_icon margin_top"></div>
                </div>
-            <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3"><%# Eval("documentName") %></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
+            <div class="col-md-6">
+                <div class="upload_documents_names margin_top3"><%# Eval("documentName") %></div>
+                <div class="upload_documents_complete_text">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
             </div>
             <div class="col-md-1"><asp:LinkButton runat="server" ID="deleteStudentCNIC" CommandArgument='<%# Eval("id")  %>' OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
            </div>
@@ -340,18 +332,18 @@
    <br/><br/><br/><br/>
     <div class="col-md-12" id="showProgressFatherCNIC" style="display:none">
       <div class="col-md-1">
-            <div class="upload_image_icon margin_top margin_left2"></div>
+            <div class="upload_image_icon margin_top"></div>
      </div>
-    <div class="col-md-5">
-        <div class="upload_documents_progress_text margin_top3 margin_left3"><asp:Label runat="server" ClientIDMode="Static" id="fatherCNICName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="fatherCNICSize" class="upload_documents_filesize_text"></asp:Label></div>
-        <div class="progress margin_left3">
+    <div class="col-md-6">
+        <div class="upload_documents_progress_text margin_top3"><asp:Label runat="server" ClientIDMode="Static" id="fatherCNICName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="fatherCNICSize" class="upload_documents_filesize_text"></asp:Label></div>
+        <div class="progress">
           <div class="progress-bar progress-bar-info" id="progressFatherCNIC" role="progressbar" style="width:0%;height: 5px;">
           </div>
         </div>
     </div>
   </div>
     <br/><br/><br/><br/>
-    <div style="margin-left: 650px">
+    <div class="col-md-4 col-md-offset-8">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadFatherCNIC" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherCNic()" name="Upload Image" title="Upload Image" class="upload" /></div>
@@ -373,11 +365,11 @@
        <ItemTemplate>
            <div class="col-md-12">
               <div class="col-md-1">
-                    <div class="upload_image_icon margin_top margin_left2"></div>
+                    <div class="upload_image_icon margin_top 2"></div>
                </div>
-            <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3"><%# Eval("documentName") %></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
+            <div class="col-md-6">
+                <div class="upload_documents_names margin_top3 "><%# Eval("documentName") %></div>
+                <div class="upload_documents_complete_text ">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
             </div>
             <div class="col-md-1"><asp:LinkButton runat="server" ID="deleteFatherIncomeCerti" CommandArgument='<%# Eval("id")  %>' OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
            </div>
@@ -386,18 +378,18 @@
    <br/><br/><br/><br/>
     <div class="col-md-12" id="showProgressFatherIncomeCerti" style="display:none">
       <div class="col-md-1">
-            <div class="upload_image_icon margin_top margin_left2"></div>
+            <div class="upload_image_icon margin_top 2"></div>
      </div>
-    <div class="col-md-5">
-        <div class="upload_documents_progress_text margin_top3 margin_left3"><asp:Label runat="server" ClientIDMode="Static" id="FatherIncomeCertiName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="FatherIncomeCertiSize" class="upload_documents_filesize_text"></asp:Label></div>
-        <div class="progress margin_left3">
+    <div class="col-md-6">
+        <div class="upload_documents_progress_text margin_top3 "><asp:Label runat="server" ClientIDMode="Static" id="FatherIncomeCertiName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="FatherIncomeCertiSize" class="upload_documents_filesize_text"></asp:Label></div>
+        <div class="progress ">
           <div class="progress-bar progress-bar-info" id="progressFatherIncomeCerti" role="progressbar" style="width:0%;height: 5px;">
           </div>
         </div>
     </div>
   </div>
     <br/><br/><br/><br/>
-    <div style="margin-left: 650px">
+    <div class="col-md-4 col-md-offset-8">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadFatherIncomeCerti" type="file" runat="server" onclose="closing(this)" onchange="UplaodFatherIncomeCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
@@ -425,7 +417,6 @@
 
               </div></a>
       <div id="Educational" class="panel-collapse panel-heading collapse">
-                  <div class="panel_divider"></div>
         <div class="panel-body" >
    <asp:UpdatePanel ID="UpdatePanel4" runat="server"><ContentTemplate>
     <div class="upload_documents_names">&#9656;Matriculation/O-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
@@ -433,11 +424,11 @@
        <ItemTemplate>
            <div class="col-md-12">
               <div class="col-md-1">
-                    <div class="upload_image_icon margin_top margin_left2"></div>
+                    <div class="upload_image_icon margin_top"></div>
                </div>
-            <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3"><%# Eval("documentName") %></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
+            <div class="col-md-6">
+                <div class="upload_documents_names margin_top3"><%# Eval("documentName") %></div>
+                <div class="upload_documents_complete_text ">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
             </div>
             <div class="col-md-1"><asp:LinkButton runat="server" ID="deleteMatricCerti" CommandArgument='<%# Eval("id")  %>' OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
            </div>
@@ -446,18 +437,18 @@
    <br/><br/><br/><br/>
     <div class="col-md-12" id="showProgressMatricCerti" style="display:none">
       <div class="col-md-1">
-            <div class="upload_image_icon margin_top margin_left2"></div>
+            <div class="upload_image_icon margin_top "></div>
      </div>
-    <div class="col-md-5">
-        <div class="upload_documents_progress_text margin_top3 margin_left3"><asp:Label runat="server" ClientIDMode="Static" id="MatricCertiName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="MatricCertiSize" class="upload_documents_filesize_text"></asp:Label></div>
-        <div class="progress margin_left3">
+    <div class="col-md-6">
+        <div class="upload_documents_progress_text margin_top3"><asp:Label runat="server" ClientIDMode="Static" id="MatricCertiName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="MatricCertiSize" class="upload_documents_filesize_text"></asp:Label></div>
+        <div class="progress ">
           <div class="progress-bar progress-bar-info" id="progressMatricCerti" role="progressbar" style="width:0%;height: 5px;">
           </div>
         </div>
     </div>
   </div>
     <br/><br/><br/><br/>
-    <div style="margin-left: 650px">
+    <div class="col-md-4 col-md-offset-8">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<input id="FileUploadMatricCerti" type="file" runat="server" onclose="closing(this)" onchange="UpoadMatricCerti()" name="Upload Image" title="Upload Image" class="upload" /></div>
@@ -478,11 +469,11 @@
        <ItemTemplate>
            <div class="col-md-12">
               <div class="col-md-1">
-                    <div class="upload_image_icon margin_top margin_left2"></div>
+                    <div class="upload_image_icon margin_top"></div>
                </div>
-            <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3"><%# Eval("documentName") %></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
+            <div class="col-md-6">
+                <div class="upload_documents_names margin_top3"><%# Eval("documentName") %></div>
+                <div class="upload_documents_complete_text">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
             </div>
             <div class="col-md-1"><asp:LinkButton runat="server" ID="deleteMatricCerti" CommandArgument='<%# Eval("id")  %>' OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
            </div>
@@ -491,18 +482,18 @@
    <br/><br/><br/><br/>
     <div class="col-md-12" id="showProgressIntermediateCerti" style="display:none">
       <div class="col-md-1">
-            <div class="upload_image_icon margin_top margin_left2"></div>
+            <div class="upload_image_icon margin_top"></div>
      </div> 
-    <div class="col-md-5">
-        <div class="upload_documents_progress_text margin_top3 margin_left3"><asp:Label runat="server" ClientIDMode="Static" id="IntermediateCertiName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="IntermediateCertiSize" class="upload_documents_filesize_text"></asp:Label></div>
-        <div class="progress margin_left3">
+    <div class="col-md-6">
+        <div class="upload_documents_progress_text margin_top3"><asp:Label runat="server" ClientIDMode="Static" id="IntermediateCertiName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" id="IntermediateCertiSize" class="upload_documents_filesize_text"></asp:Label></div>
+        <div class="progress">
           <div class="progress-bar progress-bar-info" id="progressIntermediateCerti" role="progressbar" style="width:0%;height: 5px;">
           </div>
         </div>
     </div>
   </div>
     <br/><br/><br/><br/>
-    <div style="margin-left: 650px">
+     <div class="col-md-4 col-md-offset-8">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image
@@ -534,7 +525,6 @@
 
               </div></a>
       <div id="Test" class="panel-collapse panel-heading collapse">
-                  <div class="panel_divider"></div>
         <div class="panel-body" >
         <asp:Repeater runat="server" ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" OnItemCommand="TestResultDocList_ItemCommand">
             <ItemTemplate>
@@ -542,12 +532,12 @@
   
            <div class="col-md-12" runat="server" id="documentDiv" visible="false">
               <div class="col-md-1">
-                    <div class="upload_image_icon margin_top margin_left2"></div>
+                    <div class="upload_image_icon margin_top 2"></div>
                </div>
-            <div class="col-md-3">
-                <div class="upload_documents_names margin_top3 margin_left3">
+            <div class="col-md-6">
+                <div class="upload_documents_names margin_top3 ">
                     <asp:Label ID="documentName" runat="server" ></asp:Label></div>
-                <div class="upload_documents_complete_text margin_left3">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><asp:Label ID="documentSizeInKB" runat="server" ></asp:Label> KB</span></div>
+                <div class="upload_documents_complete_text ">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><asp:Label ID="documentSizeInKB" runat="server" ></asp:Label> KB</span></div>
             </div>
             <div class="col-md-1"><asp:LinkButton runat="server" ID="delete"  OnClick="delete" ><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
            </div>
@@ -555,18 +545,18 @@
    <br/><br/><br/><br/>
     <div class="col-md-12" id="showProgressTest" runat="server" name='<%# "showProgress"+Container.ItemIndex %>' style="display:none">
       <div class="col-md-1">
-            <div class="upload_image_icon margin_top margin_left2"></div>
+            <div class="upload_image_icon margin_top 2"></div>
      </div>
-    <div class="col-md-5">
-        <div class="upload_documents_progress_text margin_top3 margin_left3"><asp:Label runat="server" ClientIDMode="Static" name='<%# "Name"+Container.ItemIndex %>' id="NameTest"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" name='<%# "Size"+Container.ItemIndex %>' id="sizeTest" class="upload_documents_filesize_text"></asp:Label></div>
-        <div class="progress margin_left3">
+    <div class="col-md-6">
+        <div class="upload_documents_progress_text margin_top3 "><asp:Label runat="server" ClientIDMode="Static" name='<%# "Name"+Container.ItemIndex %>' id="NameTest"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" name='<%# "Size"+Container.ItemIndex %>' id="sizeTest" class="upload_documents_filesize_text"></asp:Label></div>
+        <div class="progress ">
           <div class="progress-bar progress-bar-info" runat="server" id="progressTest" name='<%# "progress"+Container.ItemIndex %>' role="progressbar" style="width:0%;height: 5px;">
           </div>
         </div>
     </div>
   </div>
     <br/><br/><br/><br/>
-    <div style="margin-left: 650px">
+    <div class="col-md-4 col-md-offset-8">
         <a href=""><span class="NormalCharacterStyle101" > View Samples</span></a>
         <%--<a href=""  ><span class="NormalCharacterStyle22">Upload Image</span></a>--%>
         <div class="fileUpload btn btn-link NormalCharacterStyle22">Upload Image<asp:FileUpload id="FileUploadTest" type="file" runat="server" onclose="closing(this)" onchange='uploadItemTest(this,1)' data-itemID='<%# Container.ItemIndex %>' title="Upload Image" class="upload" /></div>

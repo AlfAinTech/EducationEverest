@@ -42,7 +42,7 @@
     </script>
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Personal Details</h3>
-      <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur.</p>
+      <p class="NormalCharacterStyle11"></p>
 
       <div class="panel panel-default panel_shadow">
       <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
@@ -53,7 +53,6 @@
 
               </div></a>
       <div id="collapse2" class="panel-collapse panel-heading collapse">
-      	<div class="panel_divider"></div>
         <div class="panel-body" >
     <br/>
 
@@ -69,7 +68,7 @@
     </div>
 </div>
 
-<div class="col-md-5">
+<div class="col-md-5 col-md-offset-1">
     <div class="form">
      <input id="father_name" class="input_father_name" type="text" name="father_name" placeholder="Father Name (according to matric certificate)" runat="server" />
      <br />  <asp:RequiredFieldValidator ID="rvFatherName" runat="server" ErrorMessage="Father name is required" ValidationGroup="vgPersonalDetails" ControlToValidate="father_name" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -81,7 +80,7 @@
 <br/><br/><br/><br/>
  <div class="col-md-5">
          <div class="form">
-     <input id="student_cnic"  maxlength="13" class="input_CNIC_no" type="text" name="CNIC" placeholder="Enter Your CNIC withou Dash" runat="server"   />
+     <input id="student_cnic"  maxlength="13" class="input_CNIC_no" type="text" name="CNIC" placeholder="Enter Your CNIC without Dashes" runat="server"   />
       <br />  <asp:RequiredFieldValidator ID="rvStudentCNIC" runat="server" ErrorMessage="CNIC is required" ValidationGroup="vgPersonalDetails" ControlToValidate="student_cnic" ForeColor="Red" ></asp:RequiredFieldValidator>
 <br /><asp:RegularExpressionValidator ID="reStudentCNICDigits" ValidationGroup="vgPersonalDetails"
     ControlToValidate="student_cnic" runat="server" ForeColor="red"
@@ -92,7 +91,7 @@
     </div>
 </div>
 
-<div class="col-md-5">
+<div class="col-md-5 col-md-offset-1">
     <div class="form">
      <input id="father_cnic"  maxlength="13" class="input_father_CINC_no" type="text" name="father_CNIC" placeholder="Father CNIC No" runat="server"  />
      <br />  <asp:RequiredFieldValidator ID="rvFatherCNIC" runat="server" ErrorMessage="Father CNIC is required" ValidationGroup="vgPersonalDetails" ControlToValidate="father_cnic" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -113,7 +112,7 @@
     </div>
 </div>
 
-<div class="col-md-5">
+<div class="col-md-5 col-md-offset-1">
     <div class="form">
      <input id="nationality" maxlength="20" class="input_nationality" type="text" name="nationality"  placeholder="Nationality" runat="server" />
      <br />  <asp:RequiredFieldValidator ID="rvNationality" runat="server" ErrorMessage="Nationality is required" ValidationGroup="vgPersonalDetails" ControlToValidate="nationality" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -125,7 +124,7 @@
 
 
 </div>
- <div class="col-md-2 pull-right">
+ <div class="col-md-1">
      <%--<asp:ImageButton runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" OnClientClick="browse()"  />--%>
 
 
@@ -158,13 +157,12 @@
 
               </div></a>
       <div id="contactinfo" class="panel-collapse panel-heading collapse">
-      	<div class="panel_divider"></div>
         <div class="panel-body" >
     <br/>
 
 <div class="col-md-12">
 <div class="col-md-10 text-left">
-  <div class="col-md-5">
+  <div class="col-md-6">
          <div class="form">
      <input id="current_address"  maxlength="300" class="input_name" type="text" name="Caddress"  placeholder="Current Address" runat="server" />
 <br />  <asp:RequiredFieldValidator ID="rvCurrentAddress" runat="server" ErrorMessage="Current Address is required" ValidationGroup="vgPersonalDetails" ControlToValidate="current_address" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -172,15 +170,16 @@
     </div>
 </div>
 
-<div class="col-md-5">
+<div class="col-md-6">
     <div class="form">
      <input id="permanent_address" maxlength="300" class="input_father_name" type="text" name="Padress" placeholder="Permanent Address" runat="server" />
         <br />  <asp:RequiredFieldValidator ID="rvPermanentAddress" runat="server" ErrorMessage="Permanent Address is required" ValidationGroup="vgPersonalDetails" ControlToValidate="permanent_address" ForeColor="Red" ></asp:RequiredFieldValidator>
 
     </div>
 </div>
+
 <br/><br/><br/><br/>
- <div class="col-md-5">
+   <div class="col-md-6">
          <div class="form">
      <input id="email" class="input_CNIC_no" type="text" name="Email" placeholder="Email" runat="server" />
   <br />  <asp:RequiredFieldValidator ID="rvEmail" runat="server" ErrorMessage="Email is required" ValidationGroup="vgPersonalDetails" ControlToValidate="email" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -189,7 +188,7 @@
     </div>
 </div>
 
-<div class="col-md-5">
+<div class="col-md-6">
     <div class="form">
      <input id="landline" maxlength="15" class="input_father_CINC_no" type="text" name="Phone_Landline" placeholder="Phone Landline" runat="server" />
      <br />  <asp:RequiredFieldValidator ID="rvLandline" runat="server" ErrorMessage="Landline number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -198,7 +197,7 @@
     </div>
 </div>
 <br/><br/><br/><br/>
- <div class="col-md-5">
+ <div class="col-md-6">
          <div class="form">
      <input id="phone" maxlength="15" class="input_DOB" type="text" name="Yphone"  placeholder="Phone (Your Phone)" runat="server" />
 <br />  <asp:RequiredFieldValidator ID="rvPhone" runat="server" ErrorMessage="Mobile number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="phone" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -207,7 +206,7 @@
     </div>
 </div>
 
-<div class="col-md-5">
+<div class="col-md-6">
     <div class="form">
      <input id="father_phone" maxlength="15" class="input_nationality" type="text" name="Fphone"  placeholder="Phone (Father)" runat="server" />
         <br />  <asp:RequiredFieldValidator ID="rvFatherPhone" runat="server" ErrorMessage="Father's Mobile number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="father_phone" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -217,7 +216,7 @@
     </div>
 </div>
 <br/><br/><br/><br/>
- <div class="col-md-5">
+ <div class="col-md-6">
          <div class="form">
      <input id="zip" maxlength="10" class="input_DOB" type="text" name="Zcode"  placeholder="Zip Code/Postal Code" runat="server" />
 <br />  <asp:RequiredFieldValidator ID="rvZip" runat="server" ErrorMessage="ZIP/Postal Code is required" ValidationGroup="vgPersonalDetails" ControlToValidate="zip" ForeColor="Red" ></asp:RequiredFieldValidator>
@@ -232,11 +231,6 @@
 </div>
 <br/><br/>
 </div>
- <div class="col-md-2 pull-right">
-     
- 
-
-    </div>
 
 </div>
 
@@ -249,7 +243,6 @@
          <button type="button" onserverclick="next_click" class=" btn button_bg" runat="server" validationgroup="vgPersonalDetails" ><span class="NormalCharacterStyle">NEXT</span></button>
   </div>
 
-</div>
 
 </asp:Content>
 
