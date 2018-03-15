@@ -390,15 +390,15 @@
            </asp:PlaceHolder>
            </ItemTemplate>
         </asp:Repeater>
-
+         </div>
 
                   
 
 
 
 
-       </div>
-         <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" style="height: 100%">
+      
+         <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" id="dvUnivDetailsShow" runat="server" style="height: 100%">
          <div class="">
           <div class="col-md-2">
                <asp:Image ID="Image2" runat="server" />

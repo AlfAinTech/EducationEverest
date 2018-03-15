@@ -92,7 +92,7 @@ public partial class Client : System.Web.UI.MasterPage
 
     protected void btnFilter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Search_Results.aspx");
+        Response.Redirect("Filter_Results.aspx");
     }
 
 

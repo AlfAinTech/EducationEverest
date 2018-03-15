@@ -7,13 +7,6 @@
     <asp:HiddenField ID="paymentAppID" runat="server" />
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Payments</h3>
-      <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-      <br/>
-      <dl class="NormalCharacterStyle11">
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-      </dl>
       <div class="panel panel-default panel_shadow">
       <div class="panel-heading" style="height: 50px">
         <h4 class="panel-title">
@@ -42,8 +35,7 @@
       </div>
         </div>
         </div><br/>
-        <div class="divider" style="width:900px"></div><br/>
-         <div class="pull-right margin_top"><span><button type="button" data-toggle="modal" data-target="#exampleModalCenterSingleItem" onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)'  class=" btn make_paymeny_button_bg">Make Payment</button></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="pull-right margin_top"><span><button type="button" data-toggle="modal" data-target="#exampleModalCenterSingleItem" onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)'  class=" btn make_paymeny_button_bg">Make Payment</button></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%--<a href="" class="pull-right NormalCharacterStyle18" style="margin-right: 30px;"><b>VIEW</b></a>--%></div>
       </div>
 

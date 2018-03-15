@@ -66,7 +66,7 @@ public partial class Application
             if (payment != null && payment.TrackingID != null)
                 return payment.TrackingID;
             else
-                return "No paymnet";
+                return "No payment";
 
         }
         set { }

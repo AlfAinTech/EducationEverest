@@ -32,7 +32,7 @@ public partial class Dashboard : System.Web.UI.Page
                     }
                     else
                     {
-                        if (!Request.QueryString["ReturnUrl"].Contains("Admin"))
+                        if (!(Request.QueryString["ReturnUrl"].Contains("Admin") || Request.QueryString["ReturnUrl"].Contains("admin")))
                         {
                             Response.Redirect(Request.QueryString["ReturnUrl"]);
                         }
