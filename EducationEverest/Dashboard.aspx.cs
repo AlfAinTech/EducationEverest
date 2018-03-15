@@ -22,6 +22,36 @@ public partial class Dashboard : System.Web.UI.Page
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
             }
+            else
+            {
+                if (Request.QueryString["ReturnUrl"] != null)
+                {
+                    if (HttpContext.Current.User.IsInRole("Super Admin"))
+                    {
+                        Response.Redirect("~/Admin/Applications.aspx");
+                    }
+                    else
+                    {
+                        if (!Request.QueryString["ReturnUrl"].Contains("Admin"))
+                        {
+                            Response.Redirect(Request.QueryString["ReturnUrl"]);
+                        }
+                        else
+                        {
+                            Response.Redirect("~/Dashboard.aspx");
+                        }
+                            
+                    }
+
+                }
+                else
+                {
+                    if (HttpContext.Current.User.IsInRole("Super Admin"))
+                    {
+                        Response.Redirect("~/Admin/Applications.aspx");
+                    }
+                }
+            }
 
             string UserID = HttpContext.Current.User.Identity.GetUserId();
            

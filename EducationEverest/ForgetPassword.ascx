@@ -1,11 +1,45 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ForgetPassword.ascx.cs" Inherits="ForgetPassword" %>
+
+<!DOCTYPE html>
+
+<head>
+     <title>Forgot Password</title>
+  <meta charset="utf-8" /><link rel="stylesheet" href="css/bootstrap.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/File_admission_application.css">
+  <%--<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/myScript.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <script type="text/javascript">
+    $(function() {
+   var links = $('a.link').click(function() {
+       links.removeClass('active');
+       $(this).addClass('active');
+   });
+});</script>--%>
+  
+</head>
+<div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" style="margin-top:-30px">
+      
+      <a class="navbar-brand" href="#"><img src="images/Logo_1_.png"></a>
+    </div>
+    </div>
+
+
 <div class="container">
 
     <div class="navbar-brand">
-        <img src="Content/img/EducationEverestLogo.jpg" alt="Eduaction Everest" />
+       <%-- <img src="Content/img/EducationEverestLogo.jpg" alt="Eduaction Everest" />--%>
     </div>
-    <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Password Reset</div>
+    <div class="card card-login2 mx-auto mt-5">
+        <div class="card-header" style="text-align:center" >Forgot Password</div>
         <div class="card-body">
             <asp:PlaceHolder runat="server" ID="status" Visible="false">
                 <p class="text-danger">
@@ -24,8 +58,8 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 30px; margin-bottom: 40px;">
-                    <div class="col-md-12">
-                        <asp:Button runat="server" OnClick="send_Click" Text="Reset Password Now" CssClass="btn btn-default" ID="send_btn" />
+                    <div class="col-md-12" style="margin-left:-100px" >
+                        <asp:Button runat="server" OnClick="send_Click" Text="Send Email" CssClass="btn registration_btn" ID="send_btn" />
                         <%--<button class="btn btn-default">Reset Password Now</button>--%>
                     </div>
                 </div>

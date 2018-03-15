@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Test_Result.aspx.cs" Inherits="Test_Result" %>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" Runat="Server">
+    <div style="margin-top: 15px">Dashboard > File Admission Application > Test Results</div>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <div class="col-sm-9 text-left"> 
@@ -108,6 +110,7 @@
                     runat="server" ValidationExpression="\d+" ForeColor="Red"
                         ErrorMessage="Please enter only numbers">
                     </asp:RegularExpressionValidator>
+      <br />  <asp:CompareValidator runat="server"  ValidationGroup="vgTestResults" id="cvobtainedmarks" controltovalidate="obtained_marks" controltocompare="total_marks" operator="LessThanEqual" type="Integer" errormessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
 
      <%--<input class="inputs" type="text" name="obtained_marks" placeholder="Obtained Marks" >--%>
     </div>

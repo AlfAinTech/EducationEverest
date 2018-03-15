@@ -19,6 +19,7 @@ using System.IO;
 public partial class Account_Register : Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
+   // public static string emailtextbox { get; set; }
 
 
     protected void CreateUser_Click(object sender, EventArgs e)
@@ -102,7 +103,7 @@ public partial class Account_Register : Page
             mm.Subject = "Account Activation";
             string body = "Hello " + Email.Text.Trim() + ",";
             body += "<br /><br />Please click the following link to activate your account";
-            body += "<br /><a href = '" + "http://110.36.238.124:88/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
+            body += "<br /><a href = '" + "http://"+Request.Url.Authority+"/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
             body += "<br /><br />Thanks";
             mm.Body = body;
             mm.IsBodyHtml = true;
@@ -118,13 +119,26 @@ public partial class Account_Register : Page
     }
 
     //Label1.Visible = true;
-   // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Confirmation Link has been sent to your Emaild ID')", true);
+    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Confirmation Link has been sent to your Emaild ID')", true);
 
-                //IdentityHelper.SignIn(manager, user, isPersistent: false);
-                //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            
-            
-        
+    //IdentityHelper.SignIn(manager, user, isPersistent: false);
+    //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+
+    [System.Web.Services.WebMethod]
+   
+    public static void incompleteregistration()
+    {
+  
+       
+        //if (Request.QueryString["emailRegistration"] != null && Request.QueryString["emailRegistration"] != string.Empty)
+        //{
+
+
+        //}
+
+    }
+
+   
       }
 
     

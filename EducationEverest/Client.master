@@ -32,14 +32,19 @@
        $(this).addClass('active');
    });
 });
-
+    $(document).keypress(function (e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+            return false;
+        }
+    });
   </script>
 </head>
 
 
 <body>
     
-    <form id="form1" runat="server"><asp:ScriptManager ID="ScriptManager1"  EnablePartialRendering="true" runat="server"></asp:ScriptManager>
+    <form id="form1" runat="server" defaultbutton=""><asp:ScriptManager ID="ScriptManager1"  EnablePartialRendering="true" runat="server"></asp:ScriptManager>
     <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -60,7 +65,7 @@
         
           <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
         </div>
-          <span><asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:imagebutton></span>
+          <span><asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server"  OnClick="btnSearch_Click"></asp:imagebutton></span>
           <span><asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" OnClick="btnFilter_Click" ></asp:imagebutton></span>
 
         <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
@@ -94,8 +99,9 @@
 
 
 <div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
-  
-    <div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>
+   <asp:ContentPlaceHolder ID="StatusBas" runat="server">
+            </asp:ContentPlaceHolder>
+    <%--<div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>--%>
 
 </div>
 <br/>
