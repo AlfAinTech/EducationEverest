@@ -7,13 +7,6 @@
     <asp:HiddenField ID="paymentAppID" runat="server" />
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Payments</h3>
-      <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-      <br/>
-      <dl class="NormalCharacterStyle11">
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-        <dd>-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</dd>
-      </dl>
       <div class="panel panel-default panel_shadow">
       <div class="panel-heading" style="height: 50px">
         <h4 class="panel-title">
@@ -42,8 +35,7 @@
       </div>
         </div>
         </div><br/>
-        <div class="divider" style="width:900px"></div><br/>
-         <div class="pull-right margin_top"><span><button type="button" data-toggle="modal" data-target="#exampleModalCenterSingleItem" onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)'  class=" btn make_paymeny_button_bg">Make Payment</button></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="pull-right margin_top"><span><button type="button" data-toggle="modal" data-target="#exampleModalCenterSingleItem" onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)'  class=" btn make_paymeny_button_bg">Make Payment</button></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <%--<a href="" class="pull-right NormalCharacterStyle18" style="margin-right: 30px;"><b>VIEW</b></a>--%></div>
       </div>
 
@@ -166,9 +158,9 @@ payment information.</div>
      	<br/>
      	<div class="pop_divider"></div>
      	<br/>
-     	<div class="popup_text">Your Invoice Total</div>
+     	<div class="popup_text">Your Invoice</div>
      	<br/>
-     	<div class="popup_text2">PKR <asp:Label ID="InvoicePayment" runat="server" ></asp:Label></div>
+     	<div class="popup_text2">PKR <asp:Label ID="InvoicePayment" runat="server" ></asp:Label> </div>
      	<br/>
 		<div class="NormalCharacterStyle25">Select your method from below</div>
 		<br/>
@@ -252,9 +244,10 @@ payment information.</div>
 <script type="text/javascript">
     function AddPayment(appid, price)
     {
-        console.log(appid);
+        console.log(appid, price);
         $("[id*=paymentAppID]").val(appid);
-        $("[id*=InvoicePayment]").text = price;
+        $("[id*=InvoicePayment]")[0].innerHTML = "";
+        $("[id*=InvoicePayment]")[0].innerHTML= price;
         
     }
     function OpenCurrentPage() {

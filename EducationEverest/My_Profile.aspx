@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/bootstrap-theme.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/File_admission_application.css">
+    <link href="https://fonts.googleapis.com/css?family=Karma|Maven+Pro|Oswald" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
@@ -105,11 +106,11 @@
 <div class="container-fluid text-center">    
   <div class="row content" style="min-height: 100vh;height: 1000px">
          
-    <div class="col-sm-2 sidenav text-left profile_sidemenu">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 sidenav text-left profile_sidemenu">
 
       <div class="panel panel-default text-center ">
   <div class=" profile_card_bg_2" >
-    <div class="pull-right" style="margin-right: 25px;margin-top: 10px;"><a href="" class="edit_icon"></a></div>
+    <div class="pull-right" style="margin-right: 25px;margin-top: 10px;"><a href="#" class="edit_icon"></a></div>
   </div>
       <div class="panel-heading profile_card_bg">
           <br />
@@ -124,29 +125,29 @@
 
 
       <div class="panel panel-default">
-      <div class="panel-heading" style="height: 200px">
+      <div class="panel-heading">
         <div class="Profile_sidemenu_Name3 text-left">Contact Details<span class="pull-right" style="margin-right: 10px;"><a href="" class="edit_icon_1_"></a></span></div>
         <br/>
         <div class="profile_panel_text"><span class="letter_icon"></span><span style="margin-left: 30px;"><asp:Label ID="email2" runat="server" Text="Label"></asp:Label></span></div> <br />
-        <div class="profile_panel_divider margin_top2 margin_bottom"></div>
-                <br /><div class="profile_panel_text margin_top2 margin_bottom"><span class="phone_icon"></span><span style="margin-left: 30px;"><asp:Label ID="contact" runat="server" Text="Label"></asp:Label></span></div>
-       <br /> <div class="profile_panel_divider margin_top2 margin_bottom"></div>
-          <br/>      <div class="profile_panel_text margin_top2 margin_bottom"><span class="location_icon"></span><span style="margin-left: 30px;"><asp:Label ID="city2" runat="server" Text="Label"></asp:Label></span></div><br/><br/><br/>
+        <div class="profile_panel_text"><span class="phone_icon"></span><span style="margin-left: 30px;"><asp:Label ID="contact" runat="server" Text="Label"></asp:Label></span></div>
+       <br /> 
+        <div class="profile_panel_text"><span class="location_icon"></span><span style="margin-left: 30px;"><asp:Label ID="city2" runat="server" Text="Label"></asp:Label></span></div><br/><br/><br/>
 
       </div>
           </div>
 
  <div class="panel panel-default">
-      <div class="panel-heading text-center" style="height: 170px">
+      <div class="panel-heading text-center" >
         <div class="Profile_sidemenu_Name3 text-left">Payment Details<span class="pull-right" style="margin-right: 10px;"><a href="" class="edit_icon_1_"></a></span></div>
-        
-        <div class="profile_panel_text">Total Spendings</div>
-                <div class="profile_panel_text2 ">PKR 6999</div>
-        <div class="profile_panel_divider"></div>
-                <div class="profile_panel_text text-left">Recent Card</div><br/>
-                <div class="profile_panel_text">352 ** ***** ***** *** 01</div>
-                <div class="profile_panel_text">exp 12/17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;***</div>
-
+                <div class="profile_panel_text">
+                <div>Total Spendings</div>
+                <div class="profile_panel_text2 ">PKR <strong>6999</strong></div>
+                </div>
+                <div class="profile_panel_text">
+                <div class="text-left">Recent Card</div><br/>
+                <div>352 ** ***** ***** *** 01</div>
+                <div>exp 12/17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;***</div>
+                </div>
       </div>
           </div>
 
@@ -253,9 +254,7 @@
   </div>
             
     </div>
-            
-<br/>
-    <div class="col-sm-9 text-center" style="margin-top:30px; "> 
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 text-center" style="margin-top:30px; "> 
 <div class=" col-md-12">
 <span class="col-md-6"><a  class="link myprofile_tabs myprofile_tabs_padding1 active" data-toggle="tab" data-target="#apptab">My Applications</a></span>
 <span class="col-md-6"><a  class="link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
@@ -333,7 +332,7 @@
         
   </div>
       </div>
-</div>
+    </div>
   </form>  
 </body>
 </html>

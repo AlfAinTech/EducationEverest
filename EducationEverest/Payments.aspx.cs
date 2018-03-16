@@ -14,7 +14,7 @@ public partial class Payments : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (!(HttpContext.Current.User.Identity.IsAuthenticated))
+            if ((!(HttpContext.Current.User.Identity.IsAuthenticated)) || (HttpContext.Current.User.IsInRole("Super Admin")))
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
             }
