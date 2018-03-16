@@ -152,8 +152,9 @@
             </asp:ContentPlaceHolder>
     </form>
     <script type="text/javascript">
-  $('#menu_toggle').on('click', function () {
-    var iSelector = $(this).find('i:first');
+        $('#applicationDashbord').on('click', function () {
+            var iSelector = $(this).find('i:first');
+            
     if (iSelector.hasClass('glyphicon-chevron-down')) {
         iSelector.removeClass('glyphicon-chevron-down')
         iSelector.addClass('glyphicon-chevron-up')
@@ -162,13 +163,13 @@
         iSelector.addClass('glyphicon-chevron-down')
     }
 });
-  $('#menu_toggle2').on('click', function () {
-    var iSelector = $(this).find('i:first');
+        $('#fileAdmission').on('click', function () {
+            var iSelector = $(this).find(':first-child').find(':first-child');
     if (iSelector.hasClass('glyphicon-chevron-down')) {
         iSelector.removeClass('glyphicon-chevron-down')
         iSelector.addClass('glyphicon-chevron-up')
     } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-        iSelector.removeClass('glyphicon-chevron-down')
+        iSelector.removeClass('glyphicon-chevron-up')
         iSelector.addClass('glyphicon-chevron-down')
     }
 });
