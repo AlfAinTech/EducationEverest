@@ -14,11 +14,26 @@ public partial class Application
         get
         {
             EducationEverestEntities db = new EducationEverestEntities();
-            
+
             return SubmittedOn.Value.ToString("dd MMM yyyy", CultureInfo.InvariantCulture);
 
         }
         set { }
+    }
+    public string CurrentStatus_
+    {
+        set { }
+        get
+        {
+            EducationEverestEntities db = new EducationEverestEntities();
+            Application apps = db.Applications.Where(q => q.id == id).FirstOrDefault();
+            if(apps.CurrentStatus.ToLower() == "pending" && apps.University.UniversityProfiles.FirstOrDefault().LastDate < System.DateTime.Now)
+            {
+                apps.CurrentStatus = "rejected";
+                db.SaveChanges();
+            }
+            return apps.CurrentStatus;
+        }
     }
     public int Fees
     {
