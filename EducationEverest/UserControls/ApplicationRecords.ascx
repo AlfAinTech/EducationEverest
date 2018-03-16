@@ -201,7 +201,7 @@
               <div class="Profile_sidemenu_Name4">Total Marks:</div>
               <div class="Profile_sidemenu_Name4">Obtained Marks:</div>
               <div class="Profile_sidemenu_Name4">Percentage:</div>
-              <div class="Profile_sidemenu_Name4">Aggregate:</div>
+              <%--<div class="Profile_sidemenu_Name4">Aggregate:</div>--%>
             </div>
             <div class="col-md-4">
               <div style="color: transparent;">Personal Details</div>
@@ -210,7 +210,7 @@
               <div ><%# Eval("Total_Marks")  %></div>
               <div ><%# Eval("Obtained_Marks")  %></div>
               <div ><%# Eval("Percentage")  %> %</div>
-              <div ><%# Eval("Aggregate")  %> %</div>
+              <%--<div ><%# Eval("Aggregate")  %> %</div>--%>
             </div>
             <div class="col-md-4">
                <div class="Profile_sidemenu_Name3" style="color: transparent;">Personal Details</div>
