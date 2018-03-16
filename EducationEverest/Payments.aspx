@@ -160,7 +160,7 @@ payment information.</div>
      	<br/>
      	<div class="popup_text">Your Invoice</div>
      	<br/>
-     	<div class="popup_text2"><asp:Label ID="InvoicePayment" runat="server" ></asp:Label> PKR</div>
+     	<div class="popup_text2">PKR <asp:Label ID="InvoicePayment" runat="server" ></asp:Label> </div>
      	<br/>
 		<div class="NormalCharacterStyle25">Select your method from below</div>
 		<br/>
