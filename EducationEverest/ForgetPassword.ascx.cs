@@ -25,18 +25,17 @@ public partial class ForgetPassword : System.Web.UI.UserControl
         try
         {
             string Body = System.IO.File.ReadAllText(Server.MapPath("~/PasswordRecovery.html"));
-           // Body = Body.Replace("{DynamicContent}", "https://www.cargoreadiness.com/ResetPassword?verificationID=" + currentuser_id + "");
-            Body = Body.Replace("{DynamicContent}", "http://localhost:65465/ResetPassword.aspx?idPasswordReset=" + currentuser_id + "");
+            Body = Body.Replace("{DynamicContent}", "http://"+Request.Url.Authority+"/ResetPassword.aspx?idPasswordReset=" + currentuser_id + "");
             EducationEverestEntities db = new EducationEverestEntities();
             AspNetUser dup = db.AspNetUsers.Where(q => q.Id == currentuser_id).First();
             MailMessage mailMessage = new MailMessage();
             mailMessage.To.Add(dup.UserName);
-            mailMessage.From = new MailAddress("wajidhussain.alfain@gmail.com");
+            //mailMessage.From = new MailAddress("wajidhussain.alfain@gmail.com");
             mailMessage.Subject = "Reset your password";
             mailMessage.IsBodyHtml = true;
-            mailMessage.Body = Body;//"http://localhost:64671/Components/Account/ResetPassword?verificationID=" + currentuser_id + "";
+            mailMessage.Body = Body;
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            smtpClient.Credentials = new System.Net.NetworkCredential("www.hahisb@gmail.com", "EducationEverest");
+            smtpClient.Credentials = new System.Net.NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword);
             smtpClient.EnableSsl = true;
             smtpClient.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
             ServicePointManager.ServerCertificateValidationCallback =
