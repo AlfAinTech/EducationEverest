@@ -102,7 +102,7 @@
               <asp:Repeater ID="PreferencesList" runat="server">
                     <ItemTemplate>
                         <div class="col-md-3 ">
-                            <div class="Profile_sidemenu_Name4"><%# Container.ItemIndex+"." %> <%# Eval("Department.Department_Name") %></div>
+                            <div class="Profile_sidemenu_Name4"><%# Container.ItemIndex+1+"." %> <%# Eval("Department.Department_Name") %></div>
                   
               
                             </div>
