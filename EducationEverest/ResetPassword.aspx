@@ -48,7 +48,7 @@
             padding-top: 30%;
         }
     </style>
-<%--<!DOCTYPE html>
+     <%--<!DOCTYPE html>
 
 <head>
      <title>Password Reset</title>
@@ -108,6 +108,9 @@
                     </p>
                     <p>
                         <asp:Label ID="lblSuccess" runat="server" Font-Bold="True" ForeColor="green" Text="Password Reset Successfully!" Visible="False"></asp:Label>
+                    </p>
+                    <p>
+                        <asp:Label ID="lblsamepassword" runat="server" ForeColor="Red" Text="New password cannot be same as old password, please choose different one!" Visible="False"></asp:Label>
                     </p>
                 </div>
                 <div class="row">

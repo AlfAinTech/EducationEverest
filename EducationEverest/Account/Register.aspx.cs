@@ -110,7 +110,7 @@ public partial class Account_Register : Page
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "EducationEverest"); // here ID and password changed 02-feb-18
+            NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;
@@ -137,7 +137,7 @@ public partial class Account_Register : Page
             {
                 // send 
 
-                using (MailMessage mm = new MailMessage("ibrarexam@gmail.com", email))  //here ID changed 02-feb-18
+                using (MailMessage mm = new MailMessage("www.hahisb@gmail.com", email))  //here ID changed 02-feb-18
                 {
                     mm.Subject = "Complete Your Account Registration";
                     string body = "Hello " + email.Trim() + ",";
