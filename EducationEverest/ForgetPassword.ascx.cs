@@ -30,7 +30,7 @@ public partial class ForgetPassword : System.Web.UI.UserControl
             AspNetUser dup = db.AspNetUsers.Where(q => q.Id == currentuser_id).First();
             MailMessage mailMessage = new MailMessage();
             mailMessage.To.Add(dup.UserName);
-            //mailMessage.From = new MailAddress("wajidhussain.alfain@gmail.com");
+            mailMessage.From = new MailAddress(EEUtil.FromEmail);
             mailMessage.Subject = "Reset your password";
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = Body;
