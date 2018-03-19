@@ -19,12 +19,11 @@
 
               </div></a>
       <div id='<%# "collapse"+Container.ItemIndex %>' class="panel-collapse panel-heading collapse">
-          <div class="panel_divider"></div>
-        <div class="panel-body" >
+          <div class="panel-body" >
     <br/>
 
 <div class="col-md-12">
-<div class="col-md-10 text-left">
+<div class="col-md-12 text-left">
 <div class="col-md-12">
          <div class="form">
              <asp:DropDownList ID="select_board" Class="combobox col-md-12 select_option" runat="server">
@@ -62,7 +61,7 @@
 
  <div class="col-md-6">
          <div class="form">
-             <asp:DropDownList ID="year_of_passing" Class="combobox select_campus" runat="server">
+             <asp:DropDownList ID="year_of_passing" Class="combobox select_campus col-md-12" runat="server">
                  <Items>
                    <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
                      <asp:ListItem Text="2015" Enabled="true" Selected="false" Value="2015" />

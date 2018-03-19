@@ -115,16 +115,13 @@
     <div class="modal fade" id="exampleModalCenter">
   <div class="modal-dialog">
       <div class="panel panel-heading pop_bg text-center">
-      <div class="NormalCharacterStyle12">Add Preferences</div>
-      <br/>
-      <div class="pop_divider"></div>
-      <br/>
+      <div class="NormalCharacterStyle12" style="border-bottom: 1px solid #c2c2c2; padding-bottom: 2%; padding-top:1%;">Add Preferences</div>
 
 
 <div class="col-md-12 text-left">
 <div class="col-md-12">
          <div class="form">
-             <asp:Label ID="Label1" name="University" class="combobox preference_select_campus selected_Label"  runat="server" Text=""></asp:Label>
+             <asp:Label ID="Label1" name="University" class="combobox preference_select_campus1 selected_Label"  runat="server" Text=""></asp:Label>
           <%--<input type="text" name="University" class="col-md-12 preference_select_option" placeholder="University of Engineering & Technology, Lahore">--%>
    
     </div>
@@ -141,14 +138,6 @@
              </asp:DropDownList>
 
 
-     <%--<select class="combobox preference_select_campus" runat="server">
-  <option selected="selected">Campus</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
     </div></div>
  <div class="col-md-6">
          <div class="form">
@@ -158,14 +147,6 @@
    </Items>
              </asp:DropDownList>
 
-     <%--<select class="combobox preference_select_campus">
-  <option selected="selected">Department</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
 
 </div></div>
 </div>
@@ -179,15 +160,6 @@
        <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
    </Items>
              </asp:DropDownList>
-
-     <%--<select class="combobox preference_select_campus">
-  <option selected="selected">Degree Program</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
     </div></div>
 
 
@@ -200,15 +172,6 @@
    </Items>
              </asp:DropDownList>
 
-     <%--<select class="combobox preference_select_campus">
-  <option selected="selected">Catagory</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
-
 </div></div></div>
 <br/><br/><br/>
 
@@ -219,14 +182,14 @@
 <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
           <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
 
-     <table class="table-fixed text-left css-serial"  >
+     <table class="my-table-fixed text-left css-serial"  >
                 <tbody id="GridPreferences">
     <tr class="col-md-12">
          <td class="col-md-1"><span style="">#</span></td>
-             <td class="col-md-3"><b>Degree Program</b></td>
+             <td class="col-md-5"><b>Degree Program</b></td>
              <td class="col-md-2"><b>Campus</b></td>
-             <td class="col-md-4"><b>Catagory/Semester</b></td>
-             <td class="col-md-2"><span style="color: transparent;"></span></td>
+             <td class="col-md-3"><b>Catagory/Semester</b></td>
+             <td class="col-md-1"><img src="images/delete_icon.png"/></td>
               
      
     </tr>
@@ -238,10 +201,10 @@
                
     <tr class="col-md-12">
         <td class="col-md-1"></td>
-        <td class="col-md-3">${departmentName}</td>
-              <td class="col-md-2">${campusName}</td>
-        <td class="col-md-4">${catagory}</td>
-              <td class="col-md-2">
+        <td class="col-md-5">${departmentName}</td>
+        <td class="col-md-2">${campusName}</td>
+        <td class="col-md-3">${catagory}</td>
+              <td class="col-md-1">
                   <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
                   <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
                  
@@ -314,13 +277,13 @@
     </tr>
 </table>--%>
 <br/><br/>
-<div><a href="" class="NormalCharacterStyle10" data-toggle="modal" data-target="#exampleModalCenter" style="margin-left: 420px;">DONE</a></div>
+<div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter" >DONE</a></div>
 
     </div>
   </div>
 </div>
 
-     <div class="NormalCharacterStyle12"><h4>Your Choices</h4></div>
+     <h3 class="NormalCharacterStyle12">Your Choices</h3>
         <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
     
    

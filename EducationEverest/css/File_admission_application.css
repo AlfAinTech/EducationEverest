@@ -45,7 +45,8 @@
   border-top: none;border-left: none;border-right: none;
   border-bottom: 1px Solid #2196F3;
   height : 22px;
-  width: 330px;
+  padding-left: 0 !important;
+  /*width: 330px;*/
 }
 .dropdown_icon
 {
@@ -109,9 +110,11 @@
   background : #2196F3;
   background : rgba(33, 150, 243, 1);
 	opacity : 0.88;
-	position : absolute ;
+    box-shadow: 2px 2px grey !important;
+    float:right;
+	/*position : absolute ;*/
 	color: white;
-	left : 648px;
+	/*left : 648px;*/
 	/*top : 743px;*/
 	width : 350px;
 	height : 45px;
@@ -259,12 +262,27 @@
 .NormalCharacterStyle101
 {
   font-family : Raleway;
-  font-size : 16px;
+  font-size : 18px;
   line-height : 22px;
   color : #FF9800;
   color : rgb(255, 152, 0);
 }
-
+/*View Button Hover and Simple CSS*/
+.viewbutton{
+    font-family : Raleway;
+	font-size : 18px;
+	line-height : 22px;
+    color : rgb(33, 150, 243);
+    border: 1px solid rgb(33, 150, 243);
+    border-radius : 2px;
+	-moz-border-radius : 2px;
+	-webkit-border-radius : 2px;
+    padding: 1% 2%;
+}
+.viewbutton:hover{
+    color: red;
+    border: 1px solid red;
+}
 .NormalCharacterStyle18
 {
 	font-family : Raleway;
@@ -316,7 +334,7 @@
 .NormalCharacterStyle12
 {
 	font-family : Raleway;
-	font-size : 21px;
+	font-size : 18px;
 	line-height : 22px;
   color : #FF9800;
   color : rgb(255, 152, 0);
@@ -675,6 +693,7 @@
 {
 	font-family : Raleway;
 	font-size : 21px;
+    font-weight: 600;
 	color : #333333;
 	color : rgb(51, 51, 51);
 }
@@ -817,6 +836,7 @@
 {
 	font-family : Raleway;
 	font-size : 14px;
+    font-weight: 600;
 	line-height : 22px;
 	vertical-align : super;
 	color : orange;
@@ -825,6 +845,7 @@
 {
 	font-family : Raleway;
 	font-size : 14px;
+    font-weight: 600;
 	line-height : 22px;
 	vertical-align : super;
 	color : red;
@@ -833,6 +854,7 @@
 {
 	font-family : Raleway;
 	font-size : 14px;
+    font-weight: 600;
 	line-height : 22px;
 	vertical-align : super;
 	color : green;
@@ -880,11 +902,11 @@
 	color : #ED1C24;
 	color : rgb(237, 28, 36);
 }
-.panel_shadow
+/*.panel_shadow
 {
 	box-shadow : 2px 2px 2px rgba(114, 114, 114, 0.75);
 	filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='#727272') ;
-}
+}*/
 .small_divider
 {
 	border-style : Solid;
@@ -957,8 +979,7 @@ a:hover{
 
 	list-style: none;
 	text-decoration: none;
-	color : #FF0043;
-	color : rgb(255, 0, 67);
+	color : #2196f3;
 }
 .upload_documents_progress_text
 {
@@ -1022,6 +1043,7 @@ a:hover{
   border-radius : 2px;
   -moz-border-radius : 2px;
   -webkit-border-radius : 2px;
+  box-shadow: 2px 2px lightgrey;
 }
 .card_info_bg
 {
@@ -1218,7 +1240,7 @@ div.callout {
   color : #999999;
   color : rgb(153, 153, 153);
 }
-.myprofile_tabs_padding1{
+/*.myprofile_tabs_padding1{
 	padding-left: 7.8em;     
 margin-left: -7.8em;
 padding-right: 7.8em;     
@@ -1229,7 +1251,7 @@ margin-right: -7.8em;
 margin-left: -5.9em;
 padding-right: 10em;     
 margin-right: -10em;
-}
+}*/
 .profile_card_bg_2
 {
   
@@ -1271,7 +1293,7 @@ margin-right: -10em;
 .Profile_sidemenu_Name1
 {
   font-family : Raleway;
-  font-size : 15px;
+  font-size : 18px;
   text-transform: capitalize;
   color : #333333;
   color : rgb(51, 51, 51);
@@ -1279,7 +1301,7 @@ margin-right: -10em;
 .Profile_sidemenu_Name2
 {
   font-family : Raleway;
-  font-size : 15px;
+  font-size : 18px;
   color : #2196F3;
   color : rgb(33, 150, 243);
 }
@@ -1309,15 +1331,16 @@ margin-right: -10em;
 }
 .profile_email_text
 {
-  font-family : Karma;
-  font-size : 12px;
+  font-family : Raleway;
+  font-size : 14px;
   color : #666666;
   color : rgb(102, 102, 102);
 }
 .profile_user_text
 {
   font-family : Raleway;
-  font-size : 11px;
+  font-size : 12px;
+  font-weight: 600;
   color : #333333;
   color : rgb(51, 51, 51);
 }
@@ -1382,11 +1405,11 @@ margin-right: -10em;
 .profile_panel_text
 {
   font-family : Raleway;
-  font-size : 12px;
+  font-size : 14px;
   color : #999999;
   color : rgb(153, 153, 153);
   padding-bottom: 6%;
-  border-bottom: 2px solid  rgb(153, 153, 153);
+  border-bottom: 1px solid  rgb(153, 153, 153);
 }
 .profile_panel_divider
 {
@@ -1462,7 +1485,7 @@ margin-right: -10em;
   border-top: none;border-left: none;border-right: none;
   border-bottom: 1px Solid;
     border-bottom-color : #CCCCCC;
-  border-bottom-color : rgba(204, 204, 204, 1);
+  border-bottom-color : #b3b3b3;
   height : 22px;
 }
 .preference_select_campus{
@@ -1470,6 +1493,15 @@ margin-right: -10em;
   background-color: transparent;
   border-top: none;border-left: none;border-right: none;
   border-bottom: 1px Solid #2196F3;;
+  height : 22px;
+  width: 300px;
+}
+/*To REMOVE BLUE BOTTOM BORDER UNDER THE NAME OF UNIVERSITY*/
+preference_select_campus1{
+  background-repeat : no-repeat;
+  background-color: transparent;
+  border-top: none;border-left: none;border-right: none;
+  border-bottom: 1px Solid #b3b3b3;
   height : 22px;
   width: 300px;
 }
@@ -1522,7 +1554,7 @@ margin-right: -10em;
 	background-color: transparent;
 	border-top: none;border-left: none;border-right: none;
 	border-bottom: 1px Solid #2196F3;;
-	width: 63%;
+	width: 95%;
 	height : 22px;
 }
 .check_box
@@ -1537,8 +1569,7 @@ margin-right: -10em;
 }
 .NormalCharacterStyle112
 {
-  font-family : 'Maven Pro';
-  font-size : 18px;
+  font-size : 16px;
   line-height : 22px;
   color : #B3B3B3;
   color : rgb(179, 179, 179);
@@ -1555,6 +1586,27 @@ margin-right: -10em;
   -webkit-border-radius : 2px;
   box-shadow : 1px 1px 2px rgba(0, 0, 0, 0.75);
   filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=1, Color='#000000') ;
+}
+.registration_btn:hover{
+  color: white !important;
+  font-weight:600 !important;
+}
+.registration_btn2
+{
+  background: rgba(33, 150, 243, 0);
+  border: 1px solid #2196F3;
+  margin-left: 110px;
+  width : 350px;
+  height : 48px;
+  border-radius : 2px;
+  -moz-border-radius : 2px;
+  -webkit-border-radius : 2px;
+  box-shadow : 1px 1px 2px rgba(0, 0, 0, 0.75);
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=1, Color='#000000') ;
+}
+.registration_btn2:hover{
+  color: white !important;
+  font-weight:600 !important;
 }
 .facebook_icon
 {

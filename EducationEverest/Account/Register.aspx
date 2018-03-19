@@ -83,12 +83,6 @@
     //    //or put whatever function you need to call when a user closes the web //browser.
     //}
   </script>
-     <style type="text/css">
-         #form {
-             width: 714px;
-             margin-right: 0px;
-         }
-     </style>
 </head>
     <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -272,27 +266,27 @@
 <div class="container-fluid text-left">   
 	
 	<div class="col-md-12"> 
-		<div class="col-md-2"></div>
-  <div class="col-md-8" style="margin-left: 320px; height: 1135px;">
-  <div class="text-left NormalCharacterStyle12" style="margin-top: 50px;margin-left: 15px">Create Account</div>
+        <div class="col-md-3"></div>
+       <div class="col-md-6" style="height: 1135px;">
+  <div class="text-center NormalCharacterStyle12">Create Account</div>
 
   <br/>
  <form id="form" runat="server">
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <asp:Label ID="lblDuplicateID" runat="server" Font-Bold="True" ForeColor="Red" Text="This Email ID is already registered, Please choose different ID" Visible="False"></asp:Label>
      <br/>
-<div class="col-md-4">
+<div class="col-md-6">
    
-        <asp:TextBox ID="fName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="First Name" style="width: 212px; top: 2px; left: 15px;"></asp:TextBox>
+        <asp:TextBox ID="fName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="First Name"></asp:TextBox>
         <br />     <asp:RequiredFieldValidator ID="fNameRequired" runat="server" ErrorMessage="First Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>
 
 </div>
    
 
 
-<div class="col-md-4">
+<div class="col-md-6">
    
-        <asp:TextBox ID="lName" MaxLength="20" runat="server" class="student_reg_inputs"   placeholder="Last Name" style="width: 212px; top: 2px; left: 15px;"></asp:TextBox>
+        <asp:TextBox ID="lName" MaxLength="20" runat="server" class="student_reg_inputs"   placeholder="Last Name" ></asp:TextBox>
       <br />   <asp:RequiredFieldValidator ID="lNameRequired" runat="server" ErrorMessage="Last Name is required" ControlToValidate="lName" ForeColor="Red" ></asp:RequiredFieldValidator>
 
    
@@ -365,15 +359,22 @@
 <br/><br/><br/><br/>
      
 <%--<asp:CheckBox ID="CheckBox1" runat="server"  class="check_box" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>--%>
- <asp:CheckBox ID="CheckBox1" runat="server"  style="height:100px; width:100px" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>
+ <div class ="col-md-12">
+     <asp:CheckBox ID="CheckBox1" runat="server"  style="height:100px; width:100px" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>
+ </div>
+     <div class="col-md-12">
+         <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="I agree to <i>terms and conditions</i>" Visible="False"></asp:Label>
+     </div>
     
 
 
 <br/><br/>
-     <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="You must agree to terms and conditions" Visible="False"></asp:Label>
+     
      <br/><br/>
 
-      <asp:Button ID="Button1" runat="server" Text="Register" class=" btn registration_btn NormalCharacterStyle"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
+      <div class="col-md-12">
+          <asp:Button ID="Button1" runat="server" Text="Register" class=" btn registration_btn NormalCharacterStyle"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
+      </div>
 
 
  </form>
@@ -381,14 +382,14 @@
 
 
 
-     <div class="NormalCharacterStyle7" style="margin-left:150px"> Already have an account?&nbsp; <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
+     <div class="NormalCharacterStyle7 col-md-12" style="margin-left:150px"><br/> Already have an account?&nbsp; <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
 
      </div>
 <br/>
       
  <%--<button type="button" class=" btn register_button_bg" ><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Sign in</span></a></button>--%>
 <br/><br/><br/>
-
+           
 
 
 <div class="NormalCharacterStyle7" style="margin-left: 280px;">OR</div>
@@ -398,22 +399,10 @@
 <div style="margin-left: 230px;"><a href=""> <fb:login-button scope="public_profile,email" style="background-repeat:no-repeat;position:absolute; padding-top:15px"   onlogin="checkLoginState();">
 </fb:login-button></a><a href=""><span class="google_icon" style="margin-left: 80px;"></span></a></div>
 <br/><br/><br/><br/>
+           </div>
    <%--   fb login link starts here--%>
       
 
-
-<div id="status">
-    <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-</div>
-      <%--fb login link ends here--%>
-</div>	
-  		<div class="col-md-2"></div>
-  </div>
-
-</div>
-
-    <p>
-        &nbsp;</p>
     
     </body>
 </html>

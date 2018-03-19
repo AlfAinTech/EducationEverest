@@ -7,6 +7,7 @@
     <asp:HiddenField ID="paymentAppID" runat="server" />
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Payments</h3>
+        <a id="menu_togglePersonalDoc" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
       <div class="panel panel-default panel_shadow">
       <div class="panel-heading" style="height: 50px">
         <h4 class="panel-title">
@@ -47,17 +48,9 @@
         </div>
       </div>
     </div>
-
- 
-            <asp:LinkButton runat="server" ID="continue" OnClick="continue_Click" class=" btn" style="float:left;background: rgba(33, 150, 243, 1);
-    opacity: 0.88;width: 350px;
-    color: white;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;" ><span class="NormalCharacterStyle">Continue</span></asp:LinkButton>
-
+        <div style="padding-bottom:3%">
          <button type="button" class=" btn button_bg" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">Make Payment</span></button>
-
+        </div>
             <div class="modal fade" id="exampleModalCenter" >
   <div class="modal-dialog">
      	<div class="panel panel-heading pop_bg text-center">
@@ -133,8 +126,9 @@ payment information.</div>
     <div class="NormalCharacterStyle16" style="text-align:left"><b>Add Tracking ID to Confirm Payment</b><br/></div>
     <div class="col-md-12">
      <input class="inputs" id="TrackingID"  type="text" name="TrackingID" style="position:relative" placeholder="Tracking Id" runat="server" />
-     <asp:LinkButton  ID="SubmitTrackingID" OnClick="SubmitTrackingID_Click" class=" btn btn_custom" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
-
+     </div>
+    <div class="col-md-12" style="padding:2%">
+        <asp:LinkButton  ID="SubmitTrackingID" OnClick="SubmitTrackingID_Click" class=" btn btn_custom pull-right" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
     </div>
 </div>
 <br/><br/><br/><br/>
@@ -204,8 +198,8 @@ payment information.</div>
 <div class="col-md-12" style="margin-top:13px;">
     <div class="NormalCharacterStyle16" style="text-align:left"><b>Add Tracking ID to Confirm Payment</b><br/></div>
     <div class="col-md-12">
-   <%--  <input class="inputs" id="TrackingID_"  type="text" name="TrackingID" placeholder="Tracking Id" runat="server" />
-     <asp:LinkButton  ID="SubmitTrackingID_" OnClick="SubmitTrackingID_Click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>--%>
+   <input class="inputs" id="TrackingID_"  type="text" name="TrackingID" placeholder="Tracking Id" runat="server" />
+     <asp:LinkButton  ID="SubmitTrackingID_" OnClick="SubmitTrackingID_Click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
 				<div class="payment_callout bottom text-center">
 					<div class="col-md-12 text-center" style="margin-top: 40px">
@@ -232,8 +226,9 @@ payment information.</div>
     <div class="NormalCharacterStyle16" style="text-align:left"><b>Add Tracking ID to Confirm Payment</b><br/></div>
     <div class="col-md-12">
      <input class="inputs" id="SingleTrackingId"  type="text" name="SingleTrackingID" style="position:relative" placeholder="Tracking Id" runat="server" />
-     <asp:LinkButton  ID="SinglePayment" OnClick="SinglePayment_Click" class=" btn btn_custom" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
-
+     </div>
+    <div class="col-md-12" style="padding:2%">
+        <asp:LinkButton  ID="SinglePayment" OnClick="SinglePayment_Click" class=" btn btn_custom pull-right" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
     </div>
 </div>
      	</div>

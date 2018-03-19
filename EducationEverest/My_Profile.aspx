@@ -131,7 +131,7 @@
         <div class="profile_panel_text"><span class="letter_icon"></span><span style="margin-left: 30px;"><asp:Label ID="email2" runat="server" Text="Label"></asp:Label></span></div> <br />
         <div class="profile_panel_text"><span class="phone_icon"></span><span style="margin-left: 30px;"><asp:Label ID="contact" runat="server" Text="Label"></asp:Label></span></div>
        <br /> 
-        <div class="profile_panel_text"><span class="location_icon"></span><span style="margin-left: 30px;"><asp:Label ID="city2" runat="server" Text="Label"></asp:Label></span></div><br/><br/><br/>
+        <div class="profile_panel_text"><span class="location_icon"></span><span style="margin-left: 30px;"><asp:Label ID="city2" runat="server" Text="Label"></asp:Label></span></div>
 
       </div>
           </div>
@@ -270,27 +270,14 @@
 </div>
       <div class="tab-pane fade in text-left""  id="paytab">
 
-      <h3 class="NormalCharacterStyle12" style="margin-top: -20px">My Banks & Credit Cards</h3>
-      <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-
-
-
-      <div class="payment_card_bg">
-
-        <div class="payment_divider"></div>
-        <button type="button" class=" btn profile_contact_panel_button " style="margin-top: 355px;margin-left: 810px;">Add Bank</button>
-      </div>
-<br/><br/><br/>
-
-<h3 class="NormalCharacterStyle12" style="margin-top: -20px">My Banks & Credit Cards</h3>
-      <p class="NormalCharacterStyle11">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+      <h3 class="NormalCharacterStyle12">My Banks & Credit Cards</h3>
 
 <br/>
           
 <asp:Repeater ID="PaymentsList" runat="server" OnItemDataBound="PaymentsList_ItemDataBound" ><ItemTemplate>
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
-        <div class="row text-left">
+        <div class="row text-left" style="border-bottom:1px solid #a3a3a3; padding:2% 2%">
           <div class="col-md-1">
              <asp:Image ID="logo" runat="server"  />
 
@@ -306,7 +293,7 @@
       </div>
         </div>
         </div><br/>
-        <div class="divider" style="width:900px"></div><br/>
+        
         <%--<a href="" class="pull-right NormalCharac terStyle18" style="margin-right: 30px;"><b>VIEW</b></a>--%>
       </div>
 

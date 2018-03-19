@@ -43,6 +43,10 @@ input[type="text"],input[type="date"]
       list-style: none;
 
 }
+.profiletabbottom{
+    border-bottom: 2px solid !important;
+    padding-bottom: 1% !important;
+}
 .profile-tabs{
 	border-top: none;
 	border-left: none;
@@ -176,7 +180,6 @@ input::placeholder {
 	cursor: pointer;
 	text-decoration: none;
 	border-top: none;
-	width: 20%;
 	
 }
 .text-dropdown
@@ -199,13 +202,14 @@ input::placeholder {
 a.link.active { 
 	color : #2196F3;
  	color : rgb(33, 150, 243);
-	border-bottom: solid 4px  #2196F3;
+	border-bottom: solid 2px  #2196F3;
 	border-radius: 0px;	
 	}
 a.link:hover{
 	color : #2196F3;
  	color : rgb(33, 150, 243);
 }
+
 a{
 	list-style: none;
 	text-decoration: none;
@@ -213,6 +217,59 @@ a{
 a:hover,a:focus,a:active,a:visited{
 	list-style: none;
 	text-decoration: none;
+}
+/*CSS ADDED FOR TABLE LINE BREAKING PROBLEM*/
+.my-table-fixed {
+    border-collapse: collapse;
+  color : dimgrey;
+  width: 100%;
+}
+.my-table-fixed th{
+    padding: 10px;
+}
+.my-table-fixed td{
+    padding: 10px;
+}
+.my-table-fixed tr:last-child td {
+    border-bottom: 0;
+    
+}
+.my-table-fixed th {
+     border-left: 0;
+     
+    
+}
+.my-table-fixed td {
+    border-bottom: 0;
+     border-left: 0;
+
+    
+}
+.my-table-fixed tr td:first-child,
+.my-table-fixed tr th:first-child {
+    border-left: 0;
+}
+.my-table-fixed tr td:last-child,
+.my-table-fixed tr th:last-child {
+    border-right: 0;
+}
+.my-table-fixed thead {
+  width: 100%;
+}
+.my-table-fixed tbody {
+  height: 180px;
+  overflow-y: auto;
+    overflow-x: auto;
+  width: 100%;
+}
+.my-table-fixed thead, .my-table-fixed tbody, .my-table-fixed tr, .my-table-fixed td, .my-table-fixed th {
+  display: block;
+}
+.my-table-fixed tbody td, .my-table-fixed thead > tr> th {
+  float: left;
+}
+.my-table-fixed tr:nth-child(even) {
+  background: #D0E4F5;
 }
 .table-fixed {
     border-collapse: collapse;

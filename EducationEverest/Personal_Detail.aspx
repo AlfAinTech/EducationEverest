@@ -45,7 +45,7 @@
     </script>
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Personal Details</h3>
-      <p class="NormalCharacterStyle11"></p>
+      <%--<p class="NormalCharacterStyle11">BlhalBadof </p>--%>
 
       <div class="panel panel-default panel_shadow">
       <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">

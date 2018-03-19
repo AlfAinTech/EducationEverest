@@ -76,8 +76,8 @@
 <div class="container-fluid text-left">   
 	
 	<div class="col-md-12"> 
-		<div class="col-md-2"></div>
-  <div class="col-md-8" style="margin-left: 320px;">
+		<div class="col-md-3"></div>
+  <div class="col-md-6">
   <div class="text-left NormalCharacterStyle12" style="margin-top: 50px;margin-left: 15px">Login</div>
       <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                    <p class="text-danger" style="font-size:20px;margin-left:100px" >
@@ -109,14 +109,13 @@
 <div class="NormalCharacterStyle213" style="margin-left: 15px;">Forgot password? <a href="ForgotPassword.aspx"><span class="NormalCharacterStyle221"><i>Reset Password</i></span></a></div>
 
 <br/><br/>
-      <asp:Button class=" btn registration_btn" runat="server" OnClick="LogIn" Text="Log In" /> 
+      <asp:Button class=" btn registration_btn" runat="server" OnClick="LogIn" Text="LOGIN" /> 
  <%--<button type="button" class=" btn registration_btn"><span class="NormalCharacterStyle">Login</span></button>--%>
 <br/><br/>
       </form>
-<div class="NormalCharacterStyle7" style="margin-left: 150px;">Doesn’t Have Account? <button type="button" class=" btn register_button_bg"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Register</span></a></button>
+<div class="NormalCharacterStyle7" style="margin-top: 50px;margin-left: 15px; padding-bottom:2%">Doesn’t Have Account? </div>
+    <button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>
 
-
-</div>
 <br/>
 
 <br/><br/><br/>
@@ -127,10 +126,8 @@
 <br/>
 <div style="margin-left: 230px;"><a href=""><span class="facebook_icon"></span></a><a href=""><span class="google_icon" style="margin-left: 80px;"></span></a></div>
 <br/><br/><br/><br/>
-</div>	
-  		<div class="col-md-2"></div>
-  </div>
 
-</div>
+  		<div class="col-md-2"></div>
+
 </body>
 </html>
