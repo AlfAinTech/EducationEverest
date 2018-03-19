@@ -32,6 +32,8 @@
                    <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
                      <asp:ListItem Text="FBISE" Enabled="true" Selected="false" Value="FBISE" />
                      <asp:ListItem Text="BISE Lahore" Enabled="true" Selected="false" Value="BISE Lahore" />
+                     <asp:ListItem Text="IGCSE" Enabled="true" Selected="false" Value="IGCSE" />
+                     <asp:ListItem Text="A-/AS-Levels" Enabled="true" Selected="false" Value="A-/AS-Levels" />
                  </Items>
              </asp:DropDownList>
 <br />  <asp:RequiredFieldValidator ID="rvSelectBoard" runat="server" ErrorMessage="Please select Your Board/Institute" ValidationGroup="vgTestResults" ControlToValidate="select_board" ForeColor="Red" ></asp:RequiredFieldValidator>

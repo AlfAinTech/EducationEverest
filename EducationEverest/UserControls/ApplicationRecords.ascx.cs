@@ -25,6 +25,7 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
     }
     public void BindData(string UserID)
     {
+      
         ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID).ToList();
         ApplicationsList.DataBind();
     }

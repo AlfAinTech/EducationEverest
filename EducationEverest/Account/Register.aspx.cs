@@ -110,7 +110,7 @@ public partial class Account_Register : Page
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "EducationEverest"); // here ID and password changed 02-feb-18
+            NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;
@@ -125,21 +125,54 @@ public partial class Account_Register : Page
     //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
 
     [System.Web.Services.WebMethod]
-   
-    public static void incompleteregistration()
+    public static Array incompleteregistration(string email)
     {
-  
-       
-        //if (Request.QueryString["emailRegistration"] != null && Request.QueryString["emailRegistration"] != string.Empty)
-        //{
+        EducationEverestEntities db = new EducationEverestEntities();
+
+        string incompleteform_email = email;
+
+        if (incompleteform_email != null && incompleteform_email != string.Empty)
+        {
+            if (!db.AspNetUsers.Any(a => a.Email == incompleteform_email || a.UserName == incompleteform_email))
+            {
+                // send 
+
+                using (MailMessage mm = new MailMessage("www.hahisb@gmail.com", email))  //here ID changed 02-feb-18
+                {
+                    mm.Subject = "Complete Your Account Registration";
+                    string body = "Hello " + email.Trim() + ",";
+                     body += "<br /><br />Click on the following link to complete your registration at Education Everest, in case of any issue, let us know";
+                    body += "<br /><a href = '" + "http://" + HttpContext.Current.Request.Url.Authority + "/Account/Register.aspx"+""+ "'>Click here to complete your registration.</a>";
+                    //body = body.Replace("{DynamicContent}", "http://localhost:65465/Register.aspx");
+                    //body += "<br /><a href = '" + "http://" + Request.Url.Authority + "/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
+
+                    body += "<br /><br />Thanks";
+                    body += "<br />Team Education Everest";
+                    mm.Body = body;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
+                    //NetworkCredential NetworkCred = new NetworkCredential("", ""); // here ID and password changed 02-feb-18
+
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                }
+            }
 
 
-        //}
+
+        }
+        string[] array = new string[1];
+        array[0] = incompleteform_email;
+        return array;
 
     }
 
-   
-      }
+}
 
     
    

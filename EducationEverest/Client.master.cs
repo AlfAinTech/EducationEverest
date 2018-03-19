@@ -75,7 +75,7 @@ public partial class Client : System.Web.UI.MasterPage
         {
             imgTickEducationDetails.Visible = true;
         }
-        if(db.Test_Results.Where(q=>q.User_ID == current_user).Count() == db.MakeChoices.Where(q=>q.User_ID==current_user).GroupBy(q=>q.Uni_ID).Count())
+        if(db.Test_Results.Where(q=>q.User_ID == current_user).Count() == db.MakeChoices.Where(q=>q.User_ID==current_user).GroupBy(q=>q.Uni_ID).Count() && (db.Test_Results.Where(q => q.User_ID == current_user).Count() >0))
         {
             imgTickTestResults.Visible = true;
         }
@@ -84,7 +84,7 @@ public partial class Client : System.Web.UI.MasterPage
             imgTickDocuments.Visible = true;
         }
         List<int> appids = db.Applications.Where(q => q.UserID == current_user).Select(q => q.id).ToList();
-        if(db.Payments.Where(q=>appids.Contains(q.ApplicationID)).Count() == appids.Count())
+        if(db.Payments.Where(q=>appids.Contains(q.ApplicationID)).Count() == appids.Count() && (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() > 0))
         {
             imgTickPayments.Visible = true;
         } 

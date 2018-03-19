@@ -163,12 +163,12 @@
     }
 });
         $('#fileAdmission').on('click', function () {
-    var iSelector = $(this).find('i:first');
+            var iSelector = $(this).find(':first-child').find(':first-child');
     if (iSelector.hasClass('glyphicon-chevron-down')) {
         iSelector.removeClass('glyphicon-chevron-down')
         iSelector.addClass('glyphicon-chevron-up')
     } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-        iSelector.removeClass('glyphicon-chevron-down')
+        iSelector.removeClass('glyphicon-chevron-up')
         iSelector.addClass('glyphicon-chevron-down')
     }
 });

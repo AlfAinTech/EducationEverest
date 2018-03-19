@@ -47,6 +47,8 @@
             </div>
             <div class="col-md-8">
                 <asp:TextBox runat="server" ID="tb_TestName" CssClass="form-control" placeholder="Enter Test Name i.e ECAT"  ></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfv_Testname" runat="server" Display="Dynamic" ValidationGroup="UniversityFields" CssClass="text-danger"
+                    ControlToValidate="tb_TestName" ForeColor="Red" ErrorMessage="* Test Name is required field" ></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" Display="Dynamic" ValidationGroup="UniversityFields" CssClass="text-danger"
                         ValidationExpression="^[A-Za-z]{1,100}$" ControlToValidate="tb_TestName" ForeColor="red"
                         ErrorMessage="* Test Name should consist of alphabets"></asp:RegularExpressionValidator>

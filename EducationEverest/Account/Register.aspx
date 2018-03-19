@@ -15,7 +15,7 @@
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/myScript.js"></script>
+    <%--<script type="text/javascript" src="/js/myScript.js"></script>--%>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script type="text/javascript">
     $(function() {
@@ -26,33 +26,37 @@
     });
 
 
-
-
-
-      window.onbeforeunload = closingCode;
+    window.onbeforeunload = closingCode;
     function closingCode() {
-        alert("closing");
-        var email = Email.Text;
-       // Response.Redirect("Register.aspx?emailRegistration=" + Email.Text);
-        if (email != null) {
-            $.ajax({
-                type: "POST",
-                url: "Register.aspx/incompleteregistration",
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function (result) {
+        // alert("closing");
 
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
+        var email = $("[id*=Email]");
+        var emailaddress = email.val();
+        localStorage.setItem("Email", emailaddress);
+        //incomplete_registration(email.value);
+        //var email = Email.Text;
+        // Response.Redirect("Register.aspx?emailRegistration=" + Email.Text);
+        var emailTemp = localStorage.getItem("Email");
+        $.ajax({
+            type: "POST",
+            url: "Register.aspx/incompleteregistration",
+            data: '{"email":"' + emailTemp + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
 
-            });
-        }
-       
-        }
-        
+            },
+            failure: function (response) {
+                alert(response.d);
+            }
+
+        });
+
+
+    }
+
+
+     
 
 
 

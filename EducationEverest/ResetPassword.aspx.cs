@@ -25,17 +25,28 @@ public partial class ResetPassword : System.Web.UI.Page
         string verificationID = Request.QueryString["idPasswordReset"];
         var manager = new UserManager();
         EducationEverestEntities db = new EducationEverestEntities();
-        var user = db.AspNetUsers.Where(q => q.Id == verificationID);
-        if (user.Count() != 0)
+        AspNetUser user = db.AspNetUsers.Where(q => q.Id == verificationID).First();
+        if (user != null)
+
         {
-            AspNetUser current_user = (AspNetUser)user.First();
-            ApplicationUser app_user = manager.FindById(current_user.Id);
-            //app_user
-            current_user.PasswordHash = manager.PasswordHasher.HashPassword(txtPassword.Text);
-            db.SaveChanges();
-            IdentityHelper.SignIn(manager, app_user, isPersistent: false);
-            Response.Redirect("Login.aspx");
-            lblSuccess.Visible = true;
+
+            ApplicationUser userpassword = manager.Find(user.UserName, txtPassword.Text);//if same password, then show message 
+            if (userpassword == null)
+            {
+
+                //AspNetUser current_user = (AspNetUser)user.First();
+                ApplicationUser app_user = manager.FindById(user.Id);
+                //app_user
+                user.PasswordHash = manager.PasswordHasher.HashPassword(txtPassword.Text);
+                db.SaveChanges();
+                //IdentityHelper.SignIn(manager, app_user, isPersistent: false);
+                Response.Redirect("Login.aspx");
+                //lblSuccess.Visible = true;
+            }
+            else
+            {
+                lblsamepassword.Visible = true;
+            }
         }
         //UserManager manager = new UserManager();
         //IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
