@@ -18,6 +18,7 @@
     <%--<script type="text/javascript" src="/js/myScript.js"></script>--%>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script type="text/javascript">
+      var isUserGettingRegistered = false;
     $(function() {
    var links = $('a.link').click(function() {
        links.removeClass('active');
@@ -25,34 +26,39 @@
    });
     });
 
+    function gettingRegistered() {
+         isUserGettingRegistered = true;
+    }
+
 
     window.onbeforeunload = closingCode;
     function closingCode() {
         // alert("closing");
+        if (!isUserGettingRegistered) {
+            var email = $("[id*=Email]");
+            var emailaddress = email.val();
+            localStorage.setItem("Email", emailaddress);
+            //incomplete_registration(email.value);
+            //var email = Email.Text;
+            // Response.Redirect("Register.aspx?emailRegistration=" + Email.Text);
+            var emailTemp = localStorage.getItem("Email");
+            $.ajax({
+                type: "POST",
+                url: "Register.aspx/incompleteregistration",
+                data: '{"email":"' + emailTemp + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
 
-        var email = $("[id*=Email]");
-        var emailaddress = email.val();
-        localStorage.setItem("Email", emailaddress);
-        //incomplete_registration(email.value);
-        //var email = Email.Text;
-        // Response.Redirect("Register.aspx?emailRegistration=" + Email.Text);
-        var emailTemp = localStorage.getItem("Email");
-        $.ajax({
-            type: "POST",
-            url: "Register.aspx/incompleteregistration",
-            data: '{"email":"' + emailTemp + '"}',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (result) {
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
 
-            },
-            failure: function (response) {
-                alert(response.d);
-            }
-
-        });
+            });
 
 
+        }
     }
 
 
@@ -377,7 +383,7 @@
      <br/><br/>
 
       <div class="col-md-12">
-          <asp:Button ID="Button1" runat="server" Text="Register" class=" btn registration_btn NormalCharacterStyle"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
+          <asp:Button ID="Button1" runat="server" Text="Register" class=" btn registration_btn NormalCharacterStyle" OnClientClick="gettingRegistered()"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
       </div>
 
 
