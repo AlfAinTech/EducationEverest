@@ -57,26 +57,27 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
         <div class="form">
             <asp:TextBox runat="server" ID="Email" class="student_reg_inputs" data-error="Bruh, that email address is invalid" placeholder="Email"></asp:TextBox>
-                <br /> <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" ErrorMessage="The User Name field is required." ForeColor="Red" style="text-align:center;margin-top:20px" />
+                <br /> <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" ValidationGroup="loginForm"  ErrorMessage="The User Name field is required." ForeColor="Red" style="text-align:center;margin-top:20px" />
         </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
         <div class="form">
             <asp:TextBox runat="server" ID="Password" TextMode="Password" class="student_reg_inputs" placeholder="Password"></asp:TextBox>
-                <br /> <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"  ErrorMessage="The password field is required." ForeColor="red" style="text-align:center" />
+                <br /> <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ValidationGroup="loginForm"  ErrorMessage="The password field is required." ForeColor="red" style="text-align:center" />
         </div>
     </div>
     <div class="NormalCharacterStyle213 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc3">Forgot password? <a href="ForgotPassword.aspx"><span class="NormalCharacterStyle221"><i>Reset Password</i></span></a></div>
-      <asp:Button class=" btn registration_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc3" runat="server" OnClick="LogIn" Text="LOGIN" />
+      <asp:Button class=" btn registration_btn col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc3" runat="server" ValidationGroup="loginForm"  OnClick="LogIn" Text="LOGIN" />
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
          
     </div>
-    </form>
+    
     <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc1">Doesn’t Have Account? </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
         <%--<button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>--%>
         <asp:Button ID="btn_register"  class="btn registration_btn2" runat="server" OnClick="btn_register_Click" Text="Register" />
     </div>
+      </form>
     <div class="NormalCharacterStyle7 col-md-12">OR</div>
     <div class="NormalCharacterStyle12 col-md-12">SignUp with</div>
     <div class="col-md-12">
