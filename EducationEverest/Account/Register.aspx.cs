@@ -98,13 +98,14 @@ public partial class Account_Register : Page
             }
         }
 
-        using (MailMessage mm = new MailMessage("www.hahisb@gmail.com", Email.Text))  //here ID changed 02-feb-18
+        using (MailMessage mm = new MailMessage(EEUtil.FromEmail, Email.Text))  //here ID changed 02-feb-18
         {
             mm.Subject = "Account Activation";
             string body = "Hello " + Email.Text.Trim() + ",";
             body += "<br /><br />Please click the following link to activate your account";
             body += "<br /><a href = '" + "http://"+Request.Url.Authority+"/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
             body += "<br /><br />Thanks";
+            body += "<br />Team Education Everest";
             mm.Body = body;
             mm.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
@@ -133,11 +134,12 @@ public partial class Account_Register : Page
 
         if (incompleteform_email != null && incompleteform_email != string.Empty)
         {
+            
             if (!db.AspNetUsers.Any(a => a.Email == incompleteform_email || a.UserName == incompleteform_email))
             {
                 // send 
 
-                using (MailMessage mm = new MailMessage("www.hahisb@gmail.com", email))  //here ID changed 02-feb-18
+                using (MailMessage mm = new MailMessage(EEUtil.FromEmail, email))  //here ID changed 02-feb-18
                 {
                     mm.Subject = "Complete Your Account Registration";
                     string body = "Hello " + email.Trim() + ",";

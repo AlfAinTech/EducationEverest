@@ -25,7 +25,7 @@
    });
     });
 
-
+    
     window.onbeforeunload = closingCode;
     function closingCode() {
         // alert("closing");
