@@ -74,7 +74,8 @@
     </form>
     <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc1">Doesn’t Have Account? </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
-        <button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>
+        <%--<button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>--%>
+        <asp:Button ID="btn_register"  class="btn registration_btn2" runat="server" OnClick="btn_register_Click" Text="Register" />
     </div>
     <div class="NormalCharacterStyle7 col-md-12">OR</div>
     <div class="NormalCharacterStyle12 col-md-12">SignUp with</div>
