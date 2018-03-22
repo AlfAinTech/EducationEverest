@@ -86,7 +86,7 @@ public partial class Client : System.Web.UI.MasterPage
             int TestResultDocsCount = documents.Where(a => a.TestResult_Document.Any()).Count();
             //count of all static docs
             int staticDocsCount = documents.Count - TestResultDocsCount;
-            if (TestResultDocsCount == db.MakeChoices.Where(q => q.User_ID == current_user).GroupBy(q => q.Uni_ID).Count() && staticDocsCount == EEUtil.totalStaticDocumentFields)
+            if (TestResultDocsCount >= db.MakeChoices.Where(q => q.User_ID == current_user).GroupBy(q => q.Uni_ID).Count() && staticDocsCount >= EEUtil.totalStaticDocumentFields)
             {
                 imgTickDocuments.Visible = true;
             }
