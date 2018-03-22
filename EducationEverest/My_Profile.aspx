@@ -22,12 +22,12 @@
     <script type="text/javascript" src="js/myScript.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script type="text/javascript">
-    $(function() {
-   var links = $('a.link').click(function() {
-       links.removeClass('active');
-       $(this).addClass('active');
-   });
-});
+      $(function () {
+          var links = $('a.link').click(function () {
+              links.removeClass('active');
+              $(this).addClass('active');
+          });
+      });
   </script>
 </head>
     <body>
@@ -43,7 +43,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
        <li><a href="https://educationeverest.org/" target="_blank" style="font-size: 20px;top: 6px;">Home </a></li>
-        <li><a href="Dashboard.aspx"><img src="images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
+        <li><a href="Dashboard.aspx" style="font-size: 20px;top: 6px;">Dashboard </a></li>
         <li style="color: transparent;">home</li>
       </ul>
       <div class="navbar-form navbar-left">
@@ -62,7 +62,7 @@
 
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
+        <%--<li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>--%>
         <li class="dropdown" style="height: 60px;">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">
               <asp:Label ID="lblLoggedUser" runat="server" Text=""  style="font-size:20px;color:#0094ff;border-bottom:1px solid;border-color:white"></asp:Label>
@@ -86,12 +86,12 @@
 
    <%-- code to share on facebook starts here--%>
    <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=516503188742935&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=516503188742935&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
    <%-- code to share on facebook ends here--%>
 
@@ -110,7 +110,7 @@
 
       <div class="panel panel-default text-center ">
   <div class=" profile_card_bg_2" >
-    <div class="pull-right" style="margin-right: 25px;margin-top: 10px;"><a href="#" class="edit_icon"></a></div>
+    <div class="pull-right" style="margin-right: 25px;margin-top: 10px;"><%--<a href="#" class="edit_icon"></a>--%></div>
   </div>
       <div class="panel-heading profile_card_bg">
           <br />
@@ -126,7 +126,7 @@
 
       <div class="panel panel-default">
       <div class="panel-heading">
-        <div class="Profile_sidemenu_Name3 text-left">Contact Details<span class="pull-right" style="margin-right: 10px;"><a href="" class="edit_icon_1_"></a></span></div>
+        <div class="Profile_sidemenu_Name3 text-left">Contact Details<span class="pull-right" style="margin-right: 10px;"><%--<a href="" class="edit_icon_1_"></a>--%></span></div>
         <br/>
         <div class="profile_panel_text"><span class="letter_icon"></span><span style="margin-left: 30px;"><asp:Label ID="email2" runat="server" Text="Label"></asp:Label></span></div> <br />
         <div class="profile_panel_text"><span class="phone_icon"></span><span style="margin-left: 30px;"><asp:Label ID="contact" runat="server" Text="Label"></asp:Label></span></div>
@@ -138,7 +138,7 @@
 
  <div class="panel panel-default">
       <div class="panel-heading text-center" >
-        <div class="Profile_sidemenu_Name3 text-left">Payment Details<span class="pull-right" style="margin-right: 10px;"><a href="" class="edit_icon_1_"></a></span></div>
+        <div class="Profile_sidemenu_Name3 text-left">Payment Details<span class="pull-right" style="margin-right: 10px;"><%--<a href="" class="edit_icon_1_"></a>--%></span></div>
                 <div class="profile_panel_text">
                 <div>Total Spendings</div>
                 <div class="profile_panel_text2 ">PKR <strong>6999</strong></div>
@@ -151,12 +151,12 @@
       </div>
           </div>
 
-  <a href="">
+  <%--<a href="">
           <div class="panel panel-default panel_shadow">
     <div class="panel-heading profile_card_small" style="height: 60px">
      <div class="Profile_sidemenu_Name4 margin_top">Settings<span class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right text-colour"></span></span></div>
  </div>
-          </div></a>
+          </div></a>--%>
 
            <a href="" data-toggle="modal" data-target="#contactmodel">
           <div class="panel panel-default panel_shadow">
@@ -255,13 +255,14 @@
             
     </div>
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 text-center" style="margin-top:30px; "> 
-<div class=" col-md-12">
-<span class="col-md-6"><a  class="link myprofile_tabs myprofile_tabs_padding1 active" data-toggle="tab" data-target="#apptab">My Applications</a></span>
-<span class="col-md-6"><a  class="link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
+<div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<span class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a  class="link myprofile_tabs myprofile_tabs_padding1 active" data-toggle="tab" data-target="#apptab">My Applications</a></span>
+<span class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a  class="link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
 </div>
 <br/><br/><br/><br/>
     <div class="tab-content">
       <div class="tab-pane fade in active" id="apptab">
+           <h3 class="NormalCharacterStyle12 text-left">My Applications</h3>
           <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
     <br/><br/>
           
@@ -278,11 +279,11 @@
     <div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left" style="border-bottom:1px solid #a3a3a3; padding:2% 2%">
-          <div class="col-md-1">
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
              <asp:Image ID="logo" runat="server"  />
 
           </div>
-             <div class="col-md-11">
+             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
         <h4 class="panel-title margin_top">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus_").ToString()=="pending" || Eval("CurrentStatus_").ToString()=="rejected"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
         </h4>

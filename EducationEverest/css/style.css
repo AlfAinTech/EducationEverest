@@ -330,7 +330,7 @@ a:hover,a:focus,a:active,a:visited{
     background : #F2F2F2;
     background : rgba(242, 242, 242, 1);
 	background-image: none !important;
-    border-bottom-color: darkgrey !important;
+    border-bottom-color: #d0d0d0 !important;
 }
 .margin_left
 {
@@ -392,3 +392,37 @@ a:hover,a:focus,a:active,a:visited{
 input[type="text"], input[type="password"], textarea, select { 
     outline: none !important;
 }
+/*5% Spacing above input fields*/
+.myspc5{
+    padding-top: 5%;
+}
+.myspc4{
+    padding-top: 4%;
+}
+.myspc3{
+    padding-top: 3%;
+}
+.myspc2{
+    padding-top: 2%;
+}
+.myspc1{
+    padding-top: 1%;
+}
+
+/*Spacing Below input fields*/
+.mybspc5{
+    padding-bottom: 5%;
+}
+.mybspc4{
+    padding-bottom: 4%;
+}
+.mybspc3{
+    padding-bottom: 3%;
+}
+.mybspc2{
+    padding-bottom: 2%;
+}
+.mybspc1{
+    padding-bottom: 1%;
+}
+/*Shrinking Side Navbar */

@@ -36,22 +36,44 @@ public partial class Payments : System.Web.UI.Page
     {
         
         List<Application> apps = db.Applications.Where(q => q.UserID == current_user).ToList();
-       
-        
-        foreach (Application app in apps)
-        { 
-            if(!db.Payments.Any(q=>q.ApplicationID == app.id)) { 
-        Payment p = new Payment()
+        if (TrackingID.Value != "" && !String.IsNullOrWhiteSpace(TrackingID.Value))
         {
-            TrackingID = TrackingID.Value.ToString(),
-            ApplicationID = app.id,
-        };
-                app.CurrentStatus = "In Progress";
-                db.Payments.Add(p);
-            db.SaveChanges();
+            int firstApplicationID = 0;
+            foreach (Application app in apps)
+            {
+                if (apps.First() == app)
+                {
+                    firstApplicationID = app.id;
+                }
+                if (!db.Payments.Any(q => q.ApplicationID == app.id))
+                {
+                    Payment p = new Payment()
+                    {
+                        TrackingID = TrackingID.Value.ToString(),
+                        ApplicationID = app.id,
+                    };
+                    app.CurrentStatus = "In Progress";
+                    db.Payments.Add(p);
+                    db.SaveChanges();
+                }
+            }
+            if (firstApplicationID != 0)
+            {
+                //create a notification for user
+                SystemNotification newNotification = new SystemNotification();
+                newNotification.User_ID = current_user;
+                newNotification.AppID = firstApplicationID;
+                newNotification.Read = false;
+                newNotification.Type = "Payment";
+                newNotification.TriggeredBy = "System";
+                newNotification.DateTime = DateTime.Now;
+                newNotification.Title = "Your Payment against tracking Id :" + TrackingID.Value + " is sent to Education Everest team.You'll get confirmation message soon";
+
+                db.SystemNotifications.Add(newNotification);
+                db.SaveChanges();
             }
         }
-        
+
     }
 
     protected void continue_Click(object sender, EventArgs e)
@@ -74,6 +96,20 @@ public partial class Payments : System.Web.UI.Page
                 app.CurrentStatus = "In Progress";
                 db.Payments.Add(p);
                 db.SaveChanges();
+                //create new notification
+                //create a notification for user
+                SystemNotification newNotification = new SystemNotification();
+                newNotification.User_ID = current_user;
+                newNotification.AppID = app.id;
+                newNotification.Read = false;
+                newNotification.Type = "Payment";
+                newNotification.TriggeredBy = "System";
+                newNotification.DateTime = DateTime.Now;
+                newNotification.Title = "Your Payment against tracking Id :" + p.TrackingID + " is sent to Education Everest team.You'll get confirmation message soon";
+
+                db.SystemNotifications.Add(newNotification);
+                db.SaveChanges();
+
             }
         }
         }

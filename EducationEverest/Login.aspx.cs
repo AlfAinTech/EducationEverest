@@ -50,4 +50,9 @@ public partial class Login : System.Web.UI.Page
             
         }
     }
+
+    protected void btn_register_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/Account/Register.aspx");
+    }
 }

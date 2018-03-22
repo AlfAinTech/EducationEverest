@@ -364,7 +364,20 @@ public partial class Applications : System.Web.UI.Page
                 db.SaveChanges();
                 BindData();
                 AspNetUser candidate = db.AspNetUsers.Where(a => a.Id == CandidateId).First();
-                
+
+                //create a notification for user
+                SystemNotification newNotification = new SystemNotification();
+                newNotification.User_ID = candidate.Id;
+                newNotification.AppID = dbApplication.id;
+                newNotification.Read = false;
+                newNotification.Type = "Application";
+                newNotification.TriggeredBy = "Admin";
+                newNotification.DateTime = DateTime.Now;
+                newNotification.Title = "Status of your application : " + dbApplication.appID + " is changed from " + previousStatus + " to " + dbApplication.CurrentStatus;
+
+                db.SystemNotifications.Add(newNotification);
+                db.SaveChanges();
+
                 using (MailMessage mm = new MailMessage(EEUtil.FromEmail, candidate.UserName))  //here ID changed 02-feb-18
                 {
                     mm.Subject = "Application Status Change";
@@ -382,7 +395,7 @@ public partial class Applications : System.Web.UI.Page
                     smtp.Port = 587;
                     smtp.Send(mm);
                 }
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Email sent to candidate successfully');", true);
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Email of status change sent to candidate successfully');", true);
             }
             catch
             {
@@ -428,9 +441,26 @@ public partial class Applications : System.Web.UI.Page
                 {
                     application.Payments.FirstOrDefault().ConfirmPayment = true;
                     db.SaveChanges();
-                    // send an email
+                    
                     string CandidateId = lb_confirm.Attributes["data-candidateId"].ToString();
                     AspNetUser candidate = db.AspNetUsers.Where(a => a.Id == CandidateId).First();
+
+                    //create new notification
+
+                    //create a notification for user
+                    SystemNotification newNotification = new SystemNotification();
+                    newNotification.User_ID = candidate.Id;
+                    newNotification.AppID = application.id;
+                    newNotification.Read = false;
+                    newNotification.Type = "Payment";
+                    newNotification.TriggeredBy = "Admin";
+                    newNotification.DateTime = DateTime.Now;
+                    newNotification.Title = "Your Payment against Tracking ID "+application.TrackingID + "is confirmed";
+
+                    db.SystemNotifications.Add(newNotification);
+                    db.SaveChanges();
+
+                    // send an email
                     using (MailMessage mm = new MailMessage(EEUtil.FromEmail, candidate.UserName))  //here ID changed 02-feb-18
                     {
                         mm.Subject = "Payment Confirmation";

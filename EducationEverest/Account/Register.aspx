@@ -18,6 +18,7 @@
     <%--<script type="text/javascript" src="/js/myScript.js"></script>--%>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script type="text/javascript">
+      var isUserGettingRegistered = false;
     $(function() {
    var links = $('a.link').click(function() {
        links.removeClass('active');
@@ -25,34 +26,41 @@
    });
     });
 
-    
+
+    function gettingRegistered() {
+         isUserGettingRegistered = true;
+    }
+
+
+
     window.onbeforeunload = closingCode;
     function closingCode() {
         // alert("closing");
+        if (!isUserGettingRegistered) {
+            var email = $("[id*=Email]");
+            var emailaddress = email.val();
+            localStorage.setItem("Email", emailaddress);
+            //incomplete_registration(email.value);
+            //var email = Email.Text;
+            // Response.Redirect("Register.aspx?emailRegistration=" + Email.Text);
+            var emailTemp = localStorage.getItem("Email");
+            $.ajax({
+                type: "POST",
+                url: "Register.aspx/incompleteregistration",
+                data: '{"email":"' + emailTemp + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
 
-        var email = $("[id*=Email]");
-        var emailaddress = email.val();
-        localStorage.setItem("Email", emailaddress);
-        //incomplete_registration(email.value);
-        //var email = Email.Text;
-        // Response.Redirect("Register.aspx?emailRegistration=" + Email.Text);
-        var emailTemp = localStorage.getItem("Email");
-        $.ajax({
-            type: "POST",
-            url: "Register.aspx/incompleteregistration",
-            data: '{"email":"' + emailTemp + '"}',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (result) {
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
 
-            },
-            failure: function (response) {
-                alert(response.d);
-            }
-
-        });
+            });
 
 
+        }
     }
 
 
@@ -99,40 +107,6 @@
 
 
 
-<%--<div class="navbar-inverse" style="border-radius: 0px;">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      
-      <a class="navbar-brand" href="#"><img src="/images/Logo_1_.png"></a>
-    </div>--%>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <%--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#" style="font-size: 20px;top: 6px;">Home </a></li>
-        <li><a href="#"><img src="/images/header_dashboard_button_1_.png" style="margin: -15px;height: 65px"></a></li>
-        <li style="color: transparent;">home</li>
-      </ul>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">
-        </div>
-        <span><a href=""><img src="/images/search_button.png" style="margin-top: 4px;"></a></span>
-        <span><a href=""><img src="/images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
-     <%-- <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><img src="/images/header_notification_icon_1_.png"></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/images/Guest_Image.png">&nbsp;<img src="/images/header_profile_icon_1_.png"></a>
-          <ul class="dropdown-menu myprofile_dropdown">
-            <li><a href="My_Profile.html" class="myprofile_dropdown_link NormalCharacterStyle24">Profilee</a></li>
-             <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Settingss</a></li>
-            <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle24">Log Outt</a></li>
-          </ul>
-        </li>
-      </ul>--%>
-    <%--</div>--%>
-    <!-- /.navbar-collapse -->
 </div>
 <body>
 
@@ -237,34 +211,7 @@
   }
 </script>
 
-    <%--Logout Code starte here
-    <script>
-        var logOut = function () {
-            FB.logout(function (response) {
-                document.getElementById("loggedout").innerHTML = "You are logged out of Fabebook";
-                // Person is now logged out
-            });
-        };
-    </script>
-    <p id="loggedout"></p>
-    Logout code ends here --%>
-
     
-    <%--<button onclick="logOut()">Log Out of Facebook</button>--%>
-
-   <%-- fb login code ends here--%>
-    
-
-
-
-
-
-
-<%--<div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
-  
-    <div style="margin-top: 15px">Dashboard &gt; Registration</div>
-
-</div>--%>
 <br/>
   
 <div class="container-fluid text-left">   
@@ -377,7 +324,7 @@
      <br/><br/>
 
       <div class="col-md-12">
-          <asp:Button ID="Button1" runat="server" Text="Register" class=" btn registration_btn NormalCharacterStyle"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
+          <asp:Button ID="Button1" runat="server" Text="Register" class=" btn registration_btn NormalCharacterStyle" OnClientClick="gettingRegistered()"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
       </div>
 
 
@@ -404,9 +351,11 @@
 </fb:login-button></a><a href=""><span class="google_icon" style="margin-left: 80px;"></span></a></div>
 <br/><br/><br/><br/>
            </div>
-   <%--   fb login link starts here--%>
+        <div class="col-md-3"></div>
       
 
-    
+   </div>
+    </div>
+
     </body>
 </html>

@@ -330,7 +330,20 @@ public partial class Choices : System.Web.UI.Page
                                                 appID = Guid.NewGuid()
                                             };
                                             dbcontext.Applications.Add(app);
-                                            try { dbcontext.SaveChanges(); }
+                                            try { dbcontext.SaveChanges();
+                                                //create a notification for user
+                                                SystemNotification newNotification = new SystemNotification();
+                                                newNotification.User_ID = current_user;
+                                                newNotification.AppID = app.id;
+                                                newNotification.Read = false;
+                                                newNotification.Type = "Application";
+                                                newNotification.TriggeredBy = "System";
+                                                newNotification.DateTime = DateTime.Now;
+                                                newNotification.Title = "Your Application with Application ID : " + app.appID + " is created";
+
+                                                dbcontext.SystemNotifications.Add(newNotification);
+                                                dbcontext.SaveChanges();
+                                            }
                                             catch(Exception e)
                                             {
                                                
@@ -349,7 +362,20 @@ public partial class Choices : System.Web.UI.Page
                                         };
                                         dbcontext.Applications.Add(app);
                                         dbcontext.SaveChanges();
-                                        
+
+                                        //create a notification for user
+                                        SystemNotification newNotification = new SystemNotification();
+                                        newNotification.User_ID = current_user;
+                                        newNotification.AppID = app.id;
+                                        newNotification.Read = false;
+                                        newNotification.Type = "Application";
+                                        newNotification.TriggeredBy = "System";
+                                        newNotification.DateTime = DateTime.Now;
+                                        newNotification.Title = "Your Application with Application ID : " + app.appID + " is created";
+
+                                        dbcontext.SystemNotifications.Add(newNotification);
+                                        dbcontext.SaveChanges();
+
                                     }
                                    
                                     
