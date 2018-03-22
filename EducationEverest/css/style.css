@@ -409,4 +409,20 @@ input[type="text"], input[type="password"], textarea, select {
     padding-top: 1%;
 }
 
+/*Spacing Below input fields*/
+.mybspc5{
+    padding-bottom: 5%;
+}
+.mybspc4{
+    padding-bottom: 4%;
+}
+.mybspc3{
+    padding-bottom: 3%;
+}
+.mybspc2{
+    padding-bottom: 2%;
+}
+.mybspc1{
+    padding-bottom: 1%;
+}
 /*Shrinking Side Navbar */

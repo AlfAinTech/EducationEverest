@@ -63,7 +63,7 @@
             <div id="collapse2" class="panel-collapse panel-heading collapse">
                 <div class="panel-body">
                     <br />
-                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-left">
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9 text-left">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="student_name" class="input_name" type="text" name="name" placeholder="Name (according to matric certificate)" runat="server" />
@@ -140,7 +140,7 @@
 
 
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-center">
                             <%--<asp:ImageButton runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" OnClientClick="browse()"  />--%>
 
 
@@ -171,8 +171,8 @@
                 <div class="panel-body">
                     <br />
 
-                    <div class="col-md-10 text-left">
-                            <div class="col-md-6">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-left">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc3">
                                 <div class="form">
                                     <input id="current_address" maxlength="300" class="input_name" type="text" name="Caddress" placeholder="Current Address" runat="server" />
                                     <br />
@@ -181,7 +181,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc3">
                                 <div class="form">
                                     <input id="permanent_address" maxlength="300" class="input_father_name" type="text" name="Padress" placeholder="Permanent Address" runat="server" />
                                     <br />
@@ -190,7 +190,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="email" class="input_CNIC_no" type="text" name="Email" placeholder="Email" runat="server" />
                                     <br />
@@ -201,7 +201,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="landline" maxlength="15" class="input_father_CINC_no" type="text" name="Phone_Landline" placeholder="Phone Landline" runat="server" />
                                     <br />
@@ -211,11 +211,7 @@
 
                                 </div>
                             </div>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="phone" maxlength="15" class="input_DOB" type="text" name="Yphone" placeholder="Phone (Your Phone)" runat="server" />
                                     <br />
@@ -226,7 +222,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="father_phone" maxlength="15" class="input_nationality" type="text" name="Fphone" placeholder="Phone (Father)" runat="server" />
                                     <br />
@@ -237,11 +233,7 @@
 
                                 </div>
                             </div>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="zip" maxlength="10" class="input_DOB" type="text" name="Zcode" placeholder="Zip Code/Postal Code" runat="server" />
                                     <br />

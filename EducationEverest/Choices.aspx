@@ -2,224 +2,238 @@
 
 <%@ Register Src="~/UserControls/ApplicationRecords.ascx" TagPrefix="uc1" TagName="ApplicationRecords" %>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" runat="Server">
     <div style="margin-top: 15px">Dashboard > File Admission Application > Make Choices</div>
 </asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <div class="col-sm-9 text-left"> 
-      <h3 class="NormalCharacterStyle12">Make Choices</h3><asp:HiddenField ID="HiddenField1" runat="server" />
-   
-
-      <div class="panel panel-default panel_shadow">
-       <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
-      <div class="panel-heading" style="height: 60px">
-        <h4 class="panel-title">
-         <div class="NormalCharacterStyle10 margin_top">Add Choices<div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
-        </h4>
-
-              </div></a>
-      <div id="collapse2" class="panel-collapse panel-heading collapse">
-        <div class="panel-body" >
-
-    <br/>
-
-<div class="col-md-12">
-<div class="col-md-12 text-left">
-<div class="col-md-12">
-<div class="form">
-     
-             <asp:DropDownList ID="DropDownList1" runat="server"  Class="combobox col-md-12 select_option" >
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
-   </Items>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
+        <h3 class="NormalCharacterStyle12">Make Choices</h3>
+        <asp:HiddenField ID="HiddenField1" runat="server" />
 
 
-             </asp:DropDownList>
-    </div>
-</div>
-<br/><br/><br/><br/>
-<div class="col-md-6">
+        <div class="panel panel-default panel_shadow">
+            <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+                <div class="panel-heading" style="height: 60px">
+                    <h4 class="panel-title">
+                        <div class="NormalCharacterStyle10 margin_top">
+                            Add Choices<div class="icon-arrow-right pull-right">
+                                <div class="check-"></div>
+                                <i class="glyphicon glyphicon-chevron-down normal-color"></i>
+                            </div>
+                        </div>
+                    </h4>
 
-         <div class="form">
+                </div>
+            </a>
+            <div id="collapse2" class="panel-collapse panel-heading collapse">
+                <div class="panel-body">
 
-             <asp:DropDownList ID="DropDownList2" Class="combobox col-md-12 select_option" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
+                    <br />
 
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5">
+                                <div class="form">
 
-             </asp:DropDownList>
-
-     <%--<select class="combobox select_campus">
-  <option selected="selected">Campus</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="CT">Connecticut</option>
-  <option value="NY">New York</option>
-  <option value="MD">Maryland</option>
-  <option value="VA">Virginia</option>
-</select>--%>
-    </div></div>
-
-
- <div class="col-md-6">
-         <div class="form">
-             <asp:DropDownList ID="DropDownList3" Class="combobox col-md-12 select_option" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
+                                    <asp:DropDownList ID="DropDownList1" runat="server" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
+                                        </Items>
 
 
-             </asp:DropDownList>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
 
-</div></div>
-<br/><br/><br/><br/>
- <div class="col-md-6">
+                                <div class="form">
 
-         <div class="form">
-     
-             <asp:DropDownList ID="DropDownList5" Class="combobox col-md-12 select_option" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
-
-
-             </asp:DropDownList>
-        
-    </div></div>
+                                    <asp:DropDownList ID="DropDownList2" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
 
 
- <div class="col-md-6">
-         <div class="form">
-             <asp:DropDownList ID="DropDownList4" Class="combobox col-md-12 select_option" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
-             </asp:DropDownList>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
 
-     
 
-</div></div>
-<br/><br/><br/><br/>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                                <div class="form">
+                                    <asp:DropDownList ID="DropDownList3" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
 
-</div> <%--outer ADD button--%>
 
-<button type="button" id="button1" class=" btn button_bg_1_ pull-right" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">ADD</span></button>
-</div>
+                                    </asp:DropDownList>
 
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+
+                                <div class="form">
+
+                                    <asp:DropDownList ID="DropDownList5" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
+
+
+                                    </asp:DropDownList>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                                <div class="form">
+                                    <asp:DropDownList ID="DropDownList4" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
+                                    </asp:DropDownList>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button type="button" id="button1" class=" btn button_bg_1_ pull-right" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">ADD</span></button>
+                    </div>
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-        
-
-    <div class="modal fade" id="exampleModalCenter">
-  <div class="modal-dialog">
-      <div class="panel panel-heading pop_bg text-center">
-      <div class="NormalCharacterStyle12" style="border-bottom: 1px solid #c2c2c2; padding-bottom: 2%; padding-top:1%;">Add Preferences</div>
 
 
-<div class="col-md-12 text-left">
-<div class="col-md-12">
-         <div class="form">
-             <asp:Label ID="Label1" name="University" class="combobox preference_select_campus1 selected_Label"  runat="server" Text=""></asp:Label>
-          <%--<input type="text" name="University" class="col-md-12 preference_select_option" placeholder="University of Engineering & Technology, Lahore">--%>
-   
-    </div>
-</div>
-<br/><br/><br/><br/>
-<div class="row col-md-12">  <%--here starts modal dropdown lists--%>
-<div class="col-md-6">
-
-         <div class="form">
-             <asp:DropDownList ID="DropDownList6" class="combobox preference_select_campus" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
-             </asp:DropDownList>
+        <div class="modal fade" id="exampleModalCenter">
+            <div class="modal-dialog">
+                <div class="panel panel-heading pop_bg text-center">
+                    <div class="NormalCharacterStyle12" style="border-bottom: 1px solid #c2c2c2; padding-bottom: 2%; padding-top: 1%;">Add Preferences</div>
 
 
-    </div></div>
- <div class="col-md-6">
-         <div class="form">
-             <asp:DropDownList ID="DropDownList7" class="combobox preference_select_campus" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
-             </asp:DropDownList>
+                    <div class="col-md-12 text-left">
+                        <div class="col-md-12">
+                            <div class="form">
+                                <asp:Label ID="Label1" name="University" class="combobox preference_select_campus1 selected_Label" runat="server" Text=""></asp:Label>
+
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="row col-md-12">
+                            <%--here starts modal dropdown lists--%>
+                            <div class="col-md-6">
+
+                                <div class="form">
+                                    <asp:DropDownList ID="DropDownList6" class="combobox preference_select_campus" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
+                                    </asp:DropDownList>
 
 
-</div></div>
-</div>
-
-<br/><br/><br/><br/>
-<div class="row col-md-12">
- <div class="col-md-6">
-         <div class="form">
-             <asp:DropDownList ID="DropDownList8" class="combobox preference_select_campus" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
-             </asp:DropDownList>
-    </div></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form">
+                                    <asp:DropDownList ID="DropDownList7" class="combobox preference_select_campus" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
+                                    </asp:DropDownList>
 
 
- <div class="col-md-6">
-         <div class="form">
+                                </div>
+                            </div>
+                        </div>
 
-             <asp:DropDownList ID="DropDownList9" class="combobox preference_select_campus" runat="server">
-                 <Items>
-       <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
-   </Items>
-             </asp:DropDownList>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div class="row col-md-12">
+                            <div class="col-md-6">
+                                <div class="form">
+                                    <asp:DropDownList ID="DropDownList8" class="combobox preference_select_campus" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
 
-</div></div></div>
-<br/><br/><br/>
 
-</div>
-          <%--Model ADD Button--%>
-<button type="button" id="button_modal" class=" btn add_button_1_ pull-right" ><span class="NormalCharacterStyle">ADD</span></button>
+                            <div class="col-md-6">
+                                <div class="form">
 
-<div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
-          <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
+                                    <asp:DropDownList ID="DropDownList9" class="combobox preference_select_campus" runat="server">
+                                        <Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                        </Items>
+                                    </asp:DropDownList>
 
-     <table class="my-table-fixed text-left css-serial"  >
-                <tbody id="GridPreferences">
-    <tr class="col-md-12">
-         <td class="col-md-1"><span style="">#</span></td>
-             <td class="col-md-5"><b>Degree Program</b></td>
-             <td class="col-md-2"><b>Campus</b></td>
-             <td class="col-md-3"><b>Catagory/Semester</b></td>
-             <td class="col-md-1"><img src="images/delete_icon.png"/></td>
-              
-     
-    </tr>
-          </tbody>            
-                   
-          <script id="preferences_template" type="text/x-jquery-tmpl">
-              
-             
-               
-    <tr class="col-md-12">
-        <td class="col-md-1"></td>
-        <td class="col-md-5">${departmentName}</td>
-        <td class="col-md-2">${campusName}</td>
-        <td class="col-md-3">${catagory}</td>
-              <td class="col-md-1">
-                  <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
-                  <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
-                 
-                  <a id='delete${id}'   onclick="return deletePreferences('${id}')"><img src="images/delete_icon.png"></a></td>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
 
-    </tr>
-                
-          </script>
-               
+                    </div>
+                    <%--Model ADD Button--%>
+                    <button type="button" id="button_modal" class=" btn add_button_1_ pull-right"><span class="NormalCharacterStyle">ADD</span></button>
 
-             <%-- <tbody  id="GridPreferences">
+                    <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
+                    <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
+
+                    <table class="my-table-fixed text-left css-serial">
+                        <tbody id="GridPreferences">
+                            <tr class="col-md-12">
+                                <td class="col-md-1"><span style="">#</span></td>
+                                <td class="col-md-5"><b>Degree Program</b></td>
+                                <td class="col-md-2"><b>Campus</b></td>
+                                <td class="col-md-3"><b>Catagory/Semester</b></td>
+                                <td class="col-md-1">
+                                    <img src="images/delete_icon.png" /></td>
+
+
+                            </tr>
+                        </tbody>
+
+                        <script id="preferences_template" type="text/x-jquery-tmpl">
+
+
+
+                            <tr class="col-md-12">
+                                <td class="col-md-1"></td>
+                                <td class="col-md-5">${departmentName}</td>
+                                <td class="col-md-2">${campusName}</td>
+                                <td class="col-md-3">${catagory}</td>
+                                <td class="col-md-1">
+                                    <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
+                                    <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
+
+                                    <a id='delete${id}' onclick="return deletePreferences('${id}')">
+                                        <img src="images/delete_icon.png"></a></td>
+
+                            </tr>
+
+                        </script>
+
+
+                        <%-- <tbody  id="GridPreferences">
     </tbody>--%>
-             </table>           
-              <%--</ContentTemplate></asp:UpdatePanel>--%>
-          <%--<asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
+                    </table>
+                    <%--</ContentTemplate></asp:UpdatePanel>--%>
+                    <%--<asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
               <%--<Columns>
 
                                   <asp:TemplateField>
@@ -251,7 +265,7 @@
                   </Columns>
           </asp:GridView>--%>
 
-<%--<table>
+                    <%--<table>
     <tr>
         <th></th>
         <th>Degree Program</th>
@@ -276,33 +290,37 @@
 
     </tr>
 </table>--%>
-<br/><br/>
-<div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter" >DONE</a></div>
+                    <br />
+                    <br />
+                    <div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter">DONE</a></div>
 
-    </div>
-  </div>
-</div>
+                </div>
+            </div>
+        </div>
 
-     <h3 class="NormalCharacterStyle12">Your Choices</h3>
+        <h3 class="NormalCharacterStyle12">Your Choices</h3>
         <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
-    
-   
-<br/>
 
-        
-         <asp:LinkButton type="button" runat="server" OnClick="next_click"  class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
-         
+        <br />
 
-         <br/><br/><br/><br/>
+
+        <asp:LinkButton type="button" runat="server" OnClick="next_click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
+
+
+
+        <br />
+        <br />
+        <br />
+        <br />
         <asp:HiddenField ID="hf_UniID" Value="0" runat="server" />
-  </div>
-</div>
+    </div>
+    </div>
 
     <script type="text/javascript">
-        
 
-        function populateGridview(universityId){
+
+        function populateGridview(universityId) {
             alert("this is university Id : " + universityId);
             document.getElementById('<%= hf_UniID.ClientID %>').value = universityId.toString();
             alert(document.getElementById("hf_UniID").value);
@@ -315,17 +333,17 @@
 
 
             var count = 0;
-            
-            
-                $('a').click(function () {
-                    //store the id of the collapsible element
-                    localStorage.setItem('collapseItem', $(this).attr('href'));
-                });
 
-                var collapseItem = localStorage.getItem('collapseItem');
-                if (collapseItem) {
-                    $(collapseItem).collapse('show')
-                }
+
+            $('a').click(function () {
+                //store the id of the collapsible element
+                localStorage.setItem('collapseItem', $(this).attr('href'));
+            });
+
+            var collapseItem = localStorage.getItem('collapseItem');
+            if (collapseItem) {
+                $(collapseItem).collapse('show')
+            }
 
             // $('#exampleModalCenter').modal('show');
 
@@ -334,14 +352,14 @@
                 GetData(e.target.value);
 
             });
-        //console.log(ddlCustomers1.val());
-       // GetData(ddlCustomers1.val());
+            //console.log(ddlCustomers1.val());
+            // GetData(ddlCustomers1.val());
             //)
             function GetData(id) {
                 $.ajax({
                     type: "POST",
                     url: "Choices.aspx/GetData",
-                    data: '{"id":"'+id+'"}',
+                    data: '{"id":"' + id + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: OnSuccess,
@@ -356,7 +374,7 @@
                 console.log(Label);
                 Label.innerText = ddl1.text();
                 console.log(Label, Label.text, ddl1.text);
-                var ddlCustomers2 = $("[id*=DropDownList2]"); 
+                var ddlCustomers2 = $("[id*=DropDownList2]");
                 ddlCustomers2.empty().append('<option selected="selected" value="0">Select Campus</option>');
                 for (var i = 0; i < r.d.length; i++) {
                     var data = r.d[i];
@@ -367,7 +385,7 @@
 
             var uni = $("[id*=DropDownList1]");
 
-         
+
             $("[id*=DropDownList2]").on('change', function (e) {
                 GetCampusbasedDepartmentData(e.target.value);
             }
@@ -376,7 +394,7 @@
                 GetModalDepartmentData(e.target.value);
             }
            )
-           // GetCampusData(campusval.val());
+            // GetCampusData(campusval.val());
             function GetCampusbasedDepartmentData(campusValue) {
                 //window.alert(campusValue)
                 $.ajax({
@@ -401,20 +419,20 @@
                 }
             }
 
-          
+
             var uni = $("[id*=DropDownList1]");
             var dpt = $("[id*=DropDownList3]");
             var program = $("[id*=DropDownList5]");
 
             program.on('change', function (e) {
-                Get1CategoryData(e.target.value,uni.val(),dpt.val());
+                Get1CategoryData(e.target.value, uni.val(), dpt.val());
             }
             )
-            function Get1CategoryData(id,uniId,dptId) {
+            function Get1CategoryData(id, uniId, dptId) {
                 $.ajax({
                     type: "POST",
                     url: "Choices.aspx/GetCategoryData",
-                    data: '{"id":"' + id + '","uniId":"' + uniId + '","dptId":"'+ dptId +'"}',
+                    data: '{"id":"' + id + '","uniId":"' + uniId + '","dptId":"' + dptId + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: OnCategorySuccess,
@@ -436,14 +454,14 @@
             var uni = $("[id*=DropDownList1]");
             var department = $("[id*=DropDownList3]");
             department.on('change', function (e) {
-                GetDepartmentData(e.target.value,uni.val());
+                GetDepartmentData(e.target.value, uni.val());
             }
             )
-            function GetDepartmentData(id,uniId) {
+            function GetDepartmentData(id, uniId) {
                 $.ajax({
                     type: "POST",
                     url: "Choices.aspx/GetProgrammData",
-                    data: '{"id":"'+ id+'","uniId":"'+uniId+'"}',
+                    data: '{"id":"' + id + '","uniId":"' + uniId + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: OnProgramSuccess,
@@ -474,7 +492,7 @@
                 save_main_page_data(uni.val(), campus.val(), department.val(), category.val(), program.val());
             });
 
-            function save_main_page_data(uni,cmp,dpt,ctg,pgm) {
+            function save_main_page_data(uni, cmp, dpt, ctg, pgm) {
                 $.ajax({
                     type: "POST",
                     url: "Choices.aspx/SaveMainPageData",
@@ -490,10 +508,10 @@
                         BindData(result)
                         //populateGridview(result);
 
-                }
+                    }
                 });
             }
-            
+
 
 
             var ddlCustomersuni = $("[id*=DropDownList1]");
@@ -525,8 +543,8 @@
                 }
             }
 
-            
-           // GetModalDepartmentData(ddlCustomersuni1.val());
+
+            // GetModalDepartmentData(ddlCustomersuni1.val());
             function GetModalDepartmentData(id) {
                 $.ajax({
                     type: "POST",
@@ -579,8 +597,8 @@
                     ddl8.append("<option value='" + dataList[0] + "'>" + dataList[1] + "</option>");
                 }
             }
-            
-            
+
+
 
             var uni9 = $("[id*=DropDownList1]");
             var dpt9 = $("[id*=DropDownList7]");
@@ -625,7 +643,7 @@
             //Model Button Add Click
             var button_modal = $("[id*=button_modal]");
             button_modal.click(function () {
-               // alert("here")
+                // alert("here")
                 save_main_page_data1(uni10.val(), campus10.val(), department10.val(), category10.val(), program10.val());
             });
 
@@ -639,9 +657,8 @@
                     failure: function (response) {
                         alert(response.d);
                     },
-                    success: function(response)
-                    {
-                       
+                    success: function (response) {
+
                         BindData(response)
 
                     }
@@ -664,30 +681,28 @@
                         BindData(response);
                         return false;
                     },
-                    error:function(error)
-                    {
+                    error: function (error) {
                         alert(error);
                     }
                 });
 
             }
-            
-            
+
+
 
 
 
         })
-        BindData = function (response)
-        {
+        BindData = function (response) {
             //alert(response.d);
             var data = response.d;
-            data1 =  JSON.parse(data);
+            data1 = JSON.parse(data);
             console.log(data1);
             $("#GridPreferences").find("tr:gt(0)").remove();
             $("#preferences_template").tmpl(data1).appendTo("#GridPreferences");
             // $("GridPreferences")
         }
-       
+
         EditPreferences = function (id) {
             alert(id);
             $("catagory" + id).disabled = false;
@@ -696,14 +711,13 @@
             $("buttonEdit" + id).style.display = "none";
             $("addEdit$" + id).style.display = "block";
             return false;
-            
+
         }
-        addPreferences= function(id)
-        {
-           var catagory =  $("catagory" + id).value;
-           var departmentName = $("departmentName" + id).value;
-           var campusName = $("campusName" + id).value;
-            
+        addPreferences = function (id) {
+            var catagory = $("catagory" + id).value;
+            var departmentName = $("departmentName" + id).value;
+            var campusName = $("campusName" + id).value;
+
         }
         function OpenCurrentPage() {
             $("#makeChoices").parent().addClass("selected_bg");
