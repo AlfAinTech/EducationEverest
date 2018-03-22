@@ -458,4 +458,83 @@ public partial class Applications : System.Web.UI.Page
             }
         }
     }
+
+    protected void btnSendEmail_Click(object sender, EventArgs e)
+    {
+        EducationEverestEntities db = new EducationEverestEntities();
+
+
+        //App_Start aps = new App_Start();
+        //Application ap = new Application();
+
+        //var result = from a in db.App_Start
+        //             from b in db.Applications
+        //             where (a.AspNetUserID == b.UserID)
+        //             select a;
+        // var result = db.App_Start.Select(ad => new { email = ad.Email }).ToList();
+
+        //var result = db.App_Start.Select(ad => new { email = ad.Email, dtime = ad.datetime, alreadysent = ad.incompleteEmailSent, appadded = ad.ApplicationAdded, id = ad.AspNetUserID }).ToList().FirstOrDefault();
+
+
+
+        List<App_Start> results = db.App_Start.Where(a => a.incompleteEmailSent == false && a.ApplicationAdded == false && a.Email!=null   ).ToList();
+
+
+
+
+
+        foreach (var result in results)
+        {
+            DateTime dtnow = DateTime.Now;
+            DateTime dtdb = Convert.ToDateTime(result.datetime);
+            TimeSpan ts = dtnow - dtdb;
+
+            var diff = ts.TotalHours;
+            try
+            {
+
+                if (diff > 24)
+                {
+                    //loop
+                    using (MailMessage mm = new MailMessage(EEUtil.FromEmail, result.Email))  //here ID changed 02-feb-18
+                    {
+                        mm.Subject = "Complete Your Admission Application";
+                        string body = "Hello " + result.Email.Trim() + ",";
+                        body += "<br /><br />Your admission application is incomplete, click on the following link to complete your application at Education Everest, in case of any issue, let us know";
+                        body += "<br /><a href = '" + "http://" + HttpContext.Current.Request.Url.Authority + "/Login.aspx" + "" + "'>Click here to complete your admission application.</a>";
+                        //body = body.Replace("{DynamicContent}", "http://localhost:65465/Register.aspx");
+                        //body += "<br /><a href = '" + "http://" + Request.Url.Authority + "/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
+
+                        body += "<br /><br />Thanks";
+                        body += "<br />Team Education Everest";
+                        mm.Body = body;
+                        mm.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
+                                                                                                                      //NetworkCredential NetworkCred = new NetworkCredential("", ""); // here ID and password changed 02-feb-18
+
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = NetworkCred;
+                        smtp.Port = 587;
+                        smtp.Send(mm);
+                        //change status in db
+                        result.incompleteEmailSent = true;
+                       // db.App_Start.(result);
+                        db.SaveChanges();
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+
+
+    }
 }

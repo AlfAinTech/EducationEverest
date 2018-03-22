@@ -173,7 +173,7 @@
             <div class="col-md-10 text-left">
               <div class="NormalCharacterStyle_new1"><tr>
             <td>
-                <asp:Label ID="lblUniversity" runat="server" Text='<%# Eval("Name") %>' />
+           <asp:Label ID="lblUniversity" runat="server" Text='<%# Eval("University.Name") %>' />
                 <%--<asp:Label ID="lblUniversity" runat="server" Text="Label"></asp:Label>--%>
                
            
@@ -202,7 +202,7 @@
 
               </div>
 
-                   <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> <asp:Label ID="lblUnivAddress" runat="server" Text="Label"></asp:Label>   <span style="font-size:16px">     <asp:LinkButton ID="lb_UniversityPanel" runat="server" Text="Details" CommandName="Select" ClientIDMode="Static" CommandArgument='<%# Eval("id") %>' style="float:right"></asp:LinkButton></span>
+                   <div class="NormalCharacterStyle211"><span><img src="images/location_icon2.png"></span> <asp:Label ID="lblUnivAddress" runat="server" Text="Label"></asp:Label>   <span style="font-size:16px">     <asp:LinkButton ID="lb_UniversityPanel" runat="server" Text="Details" CommandName="Select" ClientIDMode="Static" CommandArgument='<%# Eval("University.id") %>' style="float:right"></asp:LinkButton></span>
  </div>
 
               <div class="pull-right"><span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212">  <asp:Label ID="lblDeadLine" runat="server" Text="Label"></asp:Label></span></div>

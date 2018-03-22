@@ -21,7 +21,9 @@
     </script>
     <div class="container" style="margin-top: 100px;">
         <div class="container-fluid">
+            <span style="float:right"><asp:Button ID="btnSendEmail" CssClass="btn btn-primary form-control" runat="server" Text="Send Email to Incomplete Applicants"  OnClick="btnSendEmail_Click" Width="300px"  /></span>
             <div class="row">
+
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -117,8 +119,9 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <div class="col-xs-12">
-                                                <label class="col-xs-3 control-label">&nbsp;</label>
-                                                <asp:Button CssClass="btn btn-primary form-control" ID="btn_Search" runat="server" Text="Search" OnClick="btn_Search_Click" />
+                                                <label class="col-xs-3 control-label">&nbsp;
+                                                </label>
+                                                &nbsp;<asp:Button CssClass="btn btn-primary form-control" ID="btn_Search" runat="server" Text="Search" OnClick="btn_Search_Click" />
                                             </div>
                                         </div>
                                     </div>

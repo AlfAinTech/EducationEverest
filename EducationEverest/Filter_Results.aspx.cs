@@ -167,7 +167,7 @@ public partial class Filter_Results : System.Web.UI.Page
                     }
                     else
                     {
-                        Rating2.CurrentRating = 3;
+                        Rating2.CurrentRating = 0;
                     }
                     if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                     {
@@ -489,7 +489,7 @@ public partial class Filter_Results : System.Web.UI.Page
                 }
                 else
                 {
-                    Rating2.CurrentRating = 3;
+                    Rating2.CurrentRating = 0;
                 }
                 if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                 {
@@ -616,6 +616,10 @@ public partial class Filter_Results : System.Web.UI.Page
             if (checkemptyUniversity > 0)
             {
                 lblcount.Text = db.Universities.Where(x => x.Name.Contains(a)).Count().ToString();
+                if (lblcount.Text == Convert.ToString(0))
+                {
+                    dvUnivDetailsShow.Visible = false;
+                }
                 lblcount.Visible = true;
                 if (lblcount.Visible == true)
 
@@ -739,7 +743,7 @@ public partial class Filter_Results : System.Web.UI.Page
                         }
                         else
                         {
-                            Rating2.CurrentRating = 3;
+                            Rating2.CurrentRating = 0;
                         }
                         if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                         {
@@ -947,7 +951,7 @@ public partial class Filter_Results : System.Web.UI.Page
                     }
                     else
                     {
-                        Rating2.CurrentRating = 3;
+                        Rating2.CurrentRating = 0;
                     }
                     //show univeristy logo here
                     UniversityMedia um = new UniversityMedia();
@@ -981,7 +985,7 @@ public partial class Filter_Results : System.Web.UI.Page
                 Label lblCountDegreePrograms = e.Item.FindControl("lblCountDegreePrograms") as Label;
                 lblCountDegreePrograms.Text = Convert.ToString(0);
 
-                Rating1.CurrentRating = 3;
+                Rating1.CurrentRating = 0;
 
             }
 
@@ -1090,7 +1094,7 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
                 var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
                 CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
 
-                if (urating != null)
+                if (urating != null && urating.AdminRatings != "")
                 {
                     Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
                 }
@@ -1098,7 +1102,7 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
             }
             else
             {
-                Rating2.CurrentRating = 3;
+                Rating2.CurrentRating = 0;
             }
             if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
             {

@@ -227,9 +227,19 @@ public partial class Personal_Detail : System.Web.UI.Page
             db.SaveChanges();
         }
 
+        //code here for user leaves in between
+        App_Start aps= new App_Start();
+        aps.AspNetUserID = current_user;
+        aps.Email = email.Value;
+        aps.datetime = DateTime.Now;
+        aps.incompleteEmailSent = false;
+        aps.ApplicationAdded = false;
+        db.App_Start.Add(aps);
+        db.SaveChanges();
+
 
         //button next click from Personal Details to Choice
-       
+
         Response.Redirect("Choices.aspx");
         
     }

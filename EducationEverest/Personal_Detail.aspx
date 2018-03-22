@@ -6,6 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
    <%-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
    
     <script src="/js/bootstrap.js"></script>
     <script type="text/javascript" src="/js/myScript.js"></script>--%>
@@ -26,22 +27,22 @@
             $("#fileAdmission").addClass("NormalCharacterStyle18");
             document.getElementById("fileAdmission").click();
         }
-        $('#student_cnic').keydown(function () {
+        //$('#student_cnic').keydown(function () {
 
-            //allow  backspace, tab, ctrl+A, escape, carriage return
-            if (event.keyCode == 8 || event.keyCode == 9
-                              || event.keyCode == 27 || event.keyCode == 13
-                              || (event.keyCode == 65 && event.ctrlKey === true))
-                return;
-            if ((event.keyCode < 48 || event.keyCode > 57))
-                event.preventDefault();
+        //    //allow  backspace, tab, ctrl+A, escape, carriage return
+        //    if (event.keyCode == 8 || event.keyCode == 9
+        //                      || event.keyCode == 27 || event.keyCode == 13
+        //                      || (event.keyCode == 65 && event.ctrlKey === true))
+        //        return;
+        //    if ((event.keyCode < 48 || event.keyCode > 57))
+        //        event.preventDefault();
 
-            var length = $(this).val().length;
+        //    var length = $(this).val().length;
 
-            if (length == 5 || length == 13)
-                $(this).val($(this).val() + '-');
-            //alert("Hello! I am an alert box!");
-        });
+        //    if (length == 5 || length == 13)
+        //        $(this).val($(this).val() + '-');
+        //    //alert("Hello! I am an alert box!");
+        //});
     </script>
     <div class="col-sm-9 text-left"> 
       <h3 class="NormalCharacterStyle12">Personal Details</h3>
@@ -83,13 +84,15 @@
 <br/><br/><br/><br/>
  <div class="col-md-5">
          <div class="form">
-     <input id="student_cnic"  maxlength="13" class="input_CNIC_no" type="text" name="CNIC" placeholder="Enter Your CNIC without Dashes" runat="server"   />
+     <input id="student_cnic"  class="input_CNIC_no" maxlength="13" type="text" name="CNIC" placeholder="Enter Your CNIC without Dashes" runat="server"   />
       <br />  <asp:RequiredFieldValidator ID="rvStudentCNIC" runat="server" ErrorMessage="CNIC is required" ValidationGroup="vgPersonalDetails" ControlToValidate="student_cnic" ForeColor="Red" ></asp:RequiredFieldValidator>
 <br /><asp:RegularExpressionValidator ID="reStudentCNICDigits" ValidationGroup="vgPersonalDetails"
     ControlToValidate="student_cnic" runat="server" ForeColor="red"
     ErrorMessage="Only Numbers allowed"
     ValidationExpression="\d+">
 </asp:RegularExpressionValidator>
+   
+<br /> <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "student_cnic" ID="reCNICDigitsLength" ValidationGroup="vgPersonalDetails" ValidationExpression = "^[\s\S]{13,13}$" runat="server" ErrorMessage=" Enter 13 digits CNIC without dash." ForeColor="Red"></asp:RegularExpressionValidator>
 <%--             <asp:RangeValidator ID="rngvStudentCNIC" Type="Integer" ValidationGroup="vgPersonalDetails" MinimumValue="13" MaximumValue="13" ControlToValidate="student_cnic" runat="server" ErrorMessage=""></asp:RangeValidator>--%>
     </div>
 </div>
@@ -103,6 +106,8 @@
     ErrorMessage="Only Numbers allowed"
     ValidationExpression="\d+">
 </asp:RegularExpressionValidator>
+        <br /> <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "father_cnic" ID="reFCNICDigitsLength" ValidationGroup="vgPersonalDetails" ValidationExpression = "^[\s\S]{13,13}$" runat="server" ErrorMessage=" Enter 13 digits CNIC without dash." ForeColor="Red"></asp:RegularExpressionValidator>
+
 
     </div>
 </div>
