@@ -81,7 +81,15 @@ public partial class Client : System.Web.UI.MasterPage
         }
         if(db.Documents.Any(q=>q.userID == current_user))
         {
-            imgTickDocuments.Visible = true;
+            List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
+            //count of all test result documents
+            int TestResultDocsCount = documents.Where(a => a.TestResult_Document.Any()).Count();
+            //count of all static docs
+            int staticDocsCount = documents.Count - TestResultDocsCount;
+            if (TestResultDocsCount == db.MakeChoices.Where(q => q.User_ID == current_user).GroupBy(q => q.Uni_ID).Count() && staticDocsCount == EEUtil.totalStaticDocumentFields)
+            {
+                imgTickDocuments.Visible = true;
+            }
         }
         List<int> appids = db.Applications.Where(q => q.UserID == current_user).Select(q => q.id).ToList();
         if(db.Payments.Where(q=>appids.Contains(q.ApplicationID)).Count() == appids.Count() && (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() > 0))

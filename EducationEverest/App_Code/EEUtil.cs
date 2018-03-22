@@ -16,4 +16,5 @@ public class EEUtil
     }
     public static string FromEmail = "www.hahisb@gmail.com";
     public static string FromPassword = "EducationEverest";
+    public static int totalStaticDocumentFields = 5;
 }
