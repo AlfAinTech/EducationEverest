@@ -1,7 +1,7 @@
 USE [EducationEverest]
 GO
 
-/****** Object:  Table [dbo].[App_Start]    Script Date: 20-Mar-18 3:59:00 PM ******/
+/****** Object:  Table [dbo].[App_Start]    Script Date: 26-Mar-18 11:03:31 AM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,6 +13,8 @@ CREATE TABLE [dbo].[App_Start](
 	[Email] [nvarchar](256) NULL,
 	[AspNetUserID] [nvarchar](128) NULL,
 	[datetime] [datetime] NULL,
+	[incompleteEmailSent] [bit] NULL,
+	[ApplicationAdded] [bit] NULL,
  CONSTRAINT [PK_App_Start] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -27,4 +29,5 @@ GO
 
 ALTER TABLE [dbo].[App_Start] CHECK CONSTRAINT [FK_App_Start_AspNetUsers1]
 GO
+
 
