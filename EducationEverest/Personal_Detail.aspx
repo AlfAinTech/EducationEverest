@@ -5,10 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="StatusBas" runat="Server">
     <div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>
 </asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-   <%-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
    
@@ -31,135 +27,23 @@
             $("#fileAdmission").addClass("NormalCharacterStyle18");
             document.getElementById("fileAdmission").click();
         }
-        //$('#student_cnic').keydown(function () {
+        $('#student_cnic').keydown(function () {
 
-        //    //allow  backspace, tab, ctrl+A, escape, carriage return
-        //    if (event.keyCode == 8 || event.keyCode == 9
-        //                      || event.keyCode == 27 || event.keyCode == 13
-        //                      || (event.keyCode == 65 && event.ctrlKey === true))
-        //        return;
-        //    if ((event.keyCode < 48 || event.keyCode > 57))
-        //        event.preventDefault();
+            //allow  backspace, tab, ctrl+A, escape, carriage return
+            if (event.keyCode == 8 || event.keyCode == 9
+                              || event.keyCode == 27 || event.keyCode == 13
+                              || (event.keyCode == 65 && event.ctrlKey === true))
+                return;
+            if ((event.keyCode < 48 || event.keyCode > 57))
+                event.preventDefault();
 
-        //    var length = $(this).val().length;
+            var length = $(this).val().length;
 
-        //    if (length == 5 || length == 13)
-        //        $(this).val($(this).val() + '-');
-        //    //alert("Hello! I am an alert box!");
-        //});
+            if (length == 5 || length == 13)
+                $(this).val($(this).val() + '-');
+            //alert("Hello! I am an alert box!");
+        });
     </script>
-
-    <div class="col-sm-9 text-left"> 
-      <h3 class="NormalCharacterStyle12">Personal Details</h3>
-      <%--<p class="NormalCharacterStyle11">BlhalBadof </p>--%>
-
-      <div class="panel panel-default panel_shadow">
-      <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
-      <div class="panel-heading" style="height: 60px">
-        <h4 class="panel-title">
-         <div class="NormalCharacterStyle10 margin_top">Personal Information<div class="icon-arrow-right pull-right"><div class="check-"></div><i class="glyphicon glyphicon-chevron-down normal-color"></i></div></div> 
-        </h4>
-
-              </div></a>
-      <div id="collapse2" class="panel-collapse panel-heading collapse">
-        <div class="panel-body" >
-    <br/>
-
-<div class="col-md-12">
-<div class="col-md-10 text-left">
-  <div class="col-md-5">
-         <div class="form">
-     <input id="student_name" class="input_name" type="text" name="name"  placeholder="Name (according to matric certificate)" runat="server"  />
-     <br />  <asp:RequiredFieldValidator ID="rvName" runat="server" ErrorMessage="Name is required" ValidationGroup="vgPersonalDetails" ControlToValidate="student_name" ForeColor="Red" ></asp:RequiredFieldValidator>
-           <br />  <asp:RegularExpressionValidator ID="reStudentName" runat="server" ControlToValidate="student_name" ValidationGroup="vgPersonalDetails"
-    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in Name field"  ForeColor="Red"/>
-
-    </div>
-</div>
-
-<div class="col-md-5 col-md-offset-1">
-    <div class="form">
-     <input id="father_name" class="input_father_name" type="text" name="father_name" placeholder="Father Name (according to matric certificate)" runat="server" />
-     <br />  <asp:RequiredFieldValidator ID="rvFatherName" runat="server" ErrorMessage="Father name is required" ValidationGroup="vgPersonalDetails" ControlToValidate="father_name" ForeColor="Red" ></asp:RequiredFieldValidator>
-<br />  <asp:RegularExpressionValidator ID="reFatherName" runat="server" ControlToValidate="father_name" ValidationGroup="vgPersonalDetails"
-    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in Father Name field"  ForeColor="Red"/>
-
-    </div>
-</div>
-<br/><br/><br/><br/>
- <div class="col-md-5">
-         <div class="form">
-     <input id="student_cnic"  class="input_CNIC_no" maxlength="13" type="text" name="CNIC" placeholder="Enter Your CNIC without Dashes" runat="server"   />
-      <br />  <asp:RequiredFieldValidator ID="rvStudentCNIC" runat="server" ErrorMessage="CNIC is required" ValidationGroup="vgPersonalDetails" ControlToValidate="student_cnic" ForeColor="Red" ></asp:RequiredFieldValidator>
-<br /><asp:RegularExpressionValidator ID="reStudentCNICDigits" ValidationGroup="vgPersonalDetails"
-    ControlToValidate="student_cnic" runat="server" ForeColor="red"
-    ErrorMessage="Only Numbers allowed"
-    ValidationExpression="\d+">
-</asp:RegularExpressionValidator>
-   
-<br /> <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "student_cnic" ID="reCNICDigitsLength" ValidationGroup="vgPersonalDetails" ValidationExpression = "^[\s\S]{13,13}$" runat="server" ErrorMessage=" Enter 13 digits CNIC without dash." ForeColor="Red"></asp:RegularExpressionValidator>
-<%--             <asp:RangeValidator ID="rngvStudentCNIC" Type="Integer" ValidationGroup="vgPersonalDetails" MinimumValue="13" MaximumValue="13" ControlToValidate="student_cnic" runat="server" ErrorMessage=""></asp:RangeValidator>--%>
-    </div>
-</div>
-
-<div class="col-md-5 col-md-offset-1">
-    <div class="form">
-     <input id="father_cnic"  maxlength="13" class="input_father_CINC_no" type="text" name="father_CNIC" placeholder="Father CNIC No" runat="server"  />
-     <br />  <asp:RequiredFieldValidator ID="rvFatherCNIC" runat="server" ErrorMessage="Father CNIC is required" ValidationGroup="vgPersonalDetails" ControlToValidate="father_cnic" ForeColor="Red" ></asp:RequiredFieldValidator>
-        <br /><asp:RegularExpressionValidator ID="reFatherCNIC" ValidationGroup="vgPersonalDetails"
-    ControlToValidate="father_cnic" runat="server" ForeColor="red"
-    ErrorMessage="Only Numbers allowed"
-    ValidationExpression="\d+">
-</asp:RegularExpressionValidator>
-        <br /> <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "father_cnic" ID="reFCNICDigitsLength" ValidationGroup="vgPersonalDetails" ValidationExpression = "^[\s\S]{13,13}$" runat="server" ErrorMessage=" Enter 13 digits CNIC without dash." ForeColor="Red"></asp:RegularExpressionValidator>
-
-
-    </div>
-</div>
-<br/><br/><br/><br/>
- <div class="col-md-5">
-         <div class="form">
-    <input id="dob" class="input_DOB" type="date" name="dob" placeholder="Date of Birth" min="1980-01-01" max="2005-01-01" runat="server" />
-             <br />
-    <asp:RequiredFieldValidator ID="rvDOB" runat="server" ErrorMessage="Date of Birth is required" ValidationGroup="vgPersonalDetails" ControlToValidate="dob" ForeColor="Red" ></asp:RequiredFieldValidator>
-    <asp:RangeValidator ID="rv1" runat="server" ErrorMessage="Date of birth should be between 1900 and 2006" ControlToValidate="dob" ValidationGroup="vgPersonalDetails" Type="Date" ForeColor="Red" Display="Dynamic" MinimumValue="01/01/1990" MaximumValue="01/01/2006"></asp:RangeValidator>
-
-    </div>
-</div>
-
-<div class="col-md-5 col-md-offset-1">
-    <div class="form">
-     <input id="nationality" maxlength="20" class="input_nationality" type="text" name="nationality"  placeholder="Nationality" runat="server" />
-     <br />  <asp:RequiredFieldValidator ID="rvNationality" runat="server" ErrorMessage="Nationality is required" ValidationGroup="vgPersonalDetails" ControlToValidate="nationality" ForeColor="Red" ></asp:RequiredFieldValidator>
-<br />  <asp:RegularExpressionValidator ID="reNationality" runat="server" ControlToValidate="nationality" ValidationGroup="vgPersonalDetails"
-    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in Nationality field"  ForeColor="Red"/>
-
-    </div>
-</div>
-
-
-</div>
- <div class="col-md-1">
-     <%--<asp:ImageButton runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" OnClientClick="browse()"  />--%>
-
-
-     
-    <asp:Image runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" style="cursor:pointer" onclick="browse()"/>
- 
- <%--<a href="" onclick="browse()" class="upload_photo"> <div class="well text-center" style="width: 150px;height: 180px">
-<div class="upload_icon text-center"></div><br/><br/><br/><br/>
-<div class="upload_icon_text"> Upload</div>
-<div class="upload_icon_text">Passport Size Photograph</div>
-  </div></a>--%>
-     <asp:FileUpload ID="FileUpload1" accept="image/*" style="display:none;" ClientIDMode="Static"   runat="server" onchange="this.form.submit()" />
-     <asp:RegularExpressionValidator ValidationGroup="validateFile" ID="RegularExpressionValidator1" ControlToValidate="FileUpload1" ForeColor="Red" ValidationExpression="^.*\.(jpg|png|JPG|gif|GIF|jpeg)$" runat="server" ErrorMessage="Select a Valid File"></asp:RegularExpressionValidator>
-     <asp:Button ID="btn_UplaodImage" ValidationGroup="validateFile"  style="display:none;" OnClick="btn_UplaodImage_Click" runat="server"  />
-
-    </div>
-
-</div>
-
-
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
         <h3 class="NormalCharacterStyle12">Personal Details</h3>
         <%--<p class="NormalCharacterStyle11">BlhalBadof </p>--%>
@@ -270,7 +154,6 @@
 
                 </div>
             </div>
-
         </div>
 
 
