@@ -42,12 +42,13 @@
                             <img src="images/Logo_1_.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
+                <div class="row">
                 <div class="container-fluid text-left">
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="col-lg-3 col-md-3 col-sm-3"></div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left NormalCharacterStyle12" style="margin-top: 50px">Login</div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left NormalCharacterStyle12 mybspc4" style="margin-top: 80px">Login</div>
                             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                                 <p class="text-danger" style="font-size: 18px; margin-left: 100px">
                                     <asp:Literal runat="server" ID="FailureText" />
@@ -58,20 +59,22 @@
                                     <asp:TextBox runat="server" ID="Email" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12" data-error="Bruh, that email address is invalid"
                                         placeholder="Email"></asp:TextBox>
                                     <br />
+                                    <br />
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" ValidationGroup="loginForm" ErrorMessage="The User Name field is required."
                                         ForeColor="Red" Style="text-align: center; margin-top: 20px" />
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <asp:TextBox runat="server" ID="Password" TextMode="Password" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12"
                                         placeholder="Password"></asp:TextBox>
+                                    <br />
                                     <br />
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ValidationGroup="loginForm" ErrorMessage="The password field is required."
                                         ForeColor="red" Style="text-align: center" />
                                 </div>
                             </div>
-                            <div class="NormalCharacterStyle213 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc3">Forgot password?
+                            <div class="NormalCharacterStyle213 col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc3">Forgot password?
                                 <a href="ForgotPassword.aspx">
                                     <span class="NormalCharacterStyle221">
                                         <i>Reset Password</i>
@@ -81,16 +84,18 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                                 <asp:Button class=" btn registration_btn" runat="server" ValidationGroup="loginForm" OnClick="LogIn" Text="LOGIN" />
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                             </div>
 
                             <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc1">Doesn’t Have Account? </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                                 <%--<button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>--%>
-                                    <asp:Button ID="btn_register" class="btn registration_btn2" runat="server" OnClick="btn_register_Click" Text="Register" />
+                                    <asp:Button ID="btn_register" class="btn registration_btn2" runat="server" OnClick="btn_register_Click" Text="REGISTER" />
                             </div>
                         </div>
                     </div>
+                </div>
+
                 </div>
             </div>
         </form>

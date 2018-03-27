@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 30px; margin-bottom: 40px;">
-                    <div class="col-md-12" style="margin-left:-100px" >
+                    <div class="col-md-12 text-center" >
                         <asp:Button runat="server" OnClick="send_Click" Text="Send Email" CssClass="btn registration_btn" ID="send_btn" />
                         <%--<button class="btn btn-default">Reset Password Now</button>--%>
                     </div>

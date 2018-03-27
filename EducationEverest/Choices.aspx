@@ -227,72 +227,9 @@
                             </tr>
 
                         </script>
-
-
-                        <%-- <tbody  id="GridPreferences">
-    </tbody>--%>
-                    </table>
-                    <%--</ContentTemplate></asp:UpdatePanel>--%>
-                    <%--<asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
-              <%--<Columns>
-
-                                  <asp:TemplateField>
-                        <ItemTemplate>
-                             <%#Container.DataItemIndex+1 %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-
-              <asp:TemplateField HeaderText ="Degree Program">
-                <ItemTemplate>
-                    <asp:Label ID="Label14" runat="server" Text='<%#Eval("Programm.Program_Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-                  <asp:TemplateField HeaderText ="Campus">
-                <ItemTemplate>
-                    <asp:Label ID="Label15" runat="server" Text='<%#Eval("Campus.Campus_Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-
-                  <asp:TemplateField HeaderText ="Category/Semester">
-                <ItemTemplate>
-                    <asp:Label ID="Label16" runat="server" Text='<%#Eval("ProgrammCategory.Category.Category_Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-                  </Columns>
-          </asp:GridView>--%>
-
-                    <%--<table>
-    <tr>
-        <th></th>
-        <th>Degree Program</th>
-         <th>Campus</th>
-          <th>Catagory/Semester</th>
-           <th></th>
-    </tr>
-    <tr class="text-left">
-        <td>1-</td>
-        <td>Civil Engineering</td>
-              <td>Lahore</td>
-        <td>Catagory A</td>
-              <td><a href=""><span class="edit_icon_1_"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""><span class="delete_icon"></span></a></td>
-
-    </tr>
-    <tr class="text-left">
-        <td></td>
-        <td></td>
-              <td></td>
-        <td></td>
-              <td></td>
-
-    </tr>
-</table>--%>
+                        </table>
                     <br />
-                    <br />
-                    <div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter">DONE</a></div>
+                    <div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter" style="padding-right:2% !important">DONE</a></div>
 
                 </div>
             </div>
