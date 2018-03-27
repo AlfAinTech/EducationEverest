@@ -19,7 +19,7 @@
                 </div>
                 </div>
             </div>
-            <div class="row" style="border-top:1px solid #d0d0d0; padding:2% 2%">
+            <div class="row" style="border-top:1px solid #d0d0d0;">
                 <a data-toggle="collapse" data-parent="#accordion" href='<%# "#details"+Container.ItemIndex %>' class="pull-right viewbutton margin_top" style="margin-right: 30px;"><b>VIEW</b></a>
             </div>
       </div>
@@ -252,7 +252,7 @@
                   </div>
                     <br/>
                   </ItemTemplate></asp:Repeater>
-            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/>
             <div class="profile_divider2" ></div><br/>
               
             <div class="NormalCharacterStyle101 " >&#9656;B Form/CNIC of Father/Guardian&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
@@ -268,7 +268,7 @@
                   </div>
                     <br/>
                   </ItemTemplate></asp:Repeater>
-            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/>
                  <div class="profile_divider2" ></div><br/>
               <div class="NormalCharacterStyle101 " >&#9656;Father/Guardian Income Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
              <asp:Repeater ID="FatherIncomeCertiList" runat="server"><ItemTemplate>
@@ -283,7 +283,7 @@
                       </div>
                         <br/>
                       </ItemTemplate></asp:Repeater>
-            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/>
              <div class="profile_divider2" ></div><br/>
             <div class="NormalCharacterStyle101 " >&#9656;Matriculation/ O-Leve Certificate/Result Cards&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
              <asp:Repeater ID="MatricCertiList" runat="server"><ItemTemplate>

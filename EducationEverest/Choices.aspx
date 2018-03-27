@@ -26,14 +26,14 @@
 
                 </div>
             </a>
-            <div id="collapse2" class="panel-collapse panel-heading collapse">
-                <div class="panel-body">
+            <div id="collapse2" class="panel-collapse panel-heading collapse" style="padding-left: 0px; padding-right: 0px;">
+                <div class="panel-body" style="padding-left: 0px; padding-right: 0px;">
 
                     <br />
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mybspc5">
                                 <div class="form">
 
                                     <asp:DropDownList ID="DropDownList1" runat="server" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option">
@@ -45,7 +45,7 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
 
                                 <div class="form">
 
@@ -60,7 +60,7 @@
                             </div>
 
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList3" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
@@ -72,7 +72,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
 
                                 <div class="form">
 
@@ -88,7 +88,7 @@
                             </div>
 
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList4" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>

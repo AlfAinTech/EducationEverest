@@ -273,15 +273,15 @@
 	font-size : 18px;
 	line-height : 22px;
     color : rgb(33, 150, 243);
-    border: 1px solid rgb(33, 150, 243);
+    /*border: 1px solid rgb(33, 150, 243);
     border-radius : 2px;
 	-moz-border-radius : 2px;
-	-webkit-border-radius : 2px;
+	-webkit-border-radius : 2px;*/
     padding: 1% 2%;
 }
 .viewbutton:hover{
     color: red;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 .NormalCharacterStyle18
 {
