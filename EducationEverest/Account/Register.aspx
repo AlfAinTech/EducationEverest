@@ -288,30 +288,35 @@
 
 
 
-                <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left: 150px">
+                <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" >
                     <br />
                     Already have an account?&nbsp;
                     <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
 
                 </div>
-                <br />
-
-                <%--<button type="button" class=" btn register_button_bg" ><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Sign in</span></a></button>--%>
-                <br />
-                <br />
-                <br />
+                <div class="row">
+                    <div class=" myspc3 NormalCharacterStyle7 text-center mybspc3">OR</div>
+                </div>
 
 
-
-                <div class=" myspc3 NormalCharacterStyle7 text-center mybspc3">OR</div>
+                
                 <br />
                 <div class="NormalCharacterStyle12 text-center">SignUp with</div>
                 <br />
-                <div style="margin-left: 230px;">
-                    <a href="">
-                        <fb:login-button scope="public_profile,email" style="background-repeat: no-repeat; position: absolute; padding-top: 15px" onlogin="checkLoginState();">
-</fb:login-button>
-                    </a><a href=""><span class="google_icon" style="margin-left: 80px;"></span></a>
+                <div class="row">
+                    <div class="col-md-6">
+                         <a href="#">
+                             <img src="../images/facebook_icon.png" / class="pull-right">
+                         </a>
+                        <%--<a href="">
+                        <fb:login-button scope="public_profile,email" class="pull-right" style="background-repeat: no-repeat; position: absolute; padding-top: 15px" onlogin="checkLoginState();">
+</fb:login-button> </a>--%>
+                    </div>
+                    <div class="col-md-6">
+                       <a href="#">
+                           <img src="../images/google_icon.png" />
+                        </a>
+                    </div>
                 </div>
                 <br />
                 <br />
