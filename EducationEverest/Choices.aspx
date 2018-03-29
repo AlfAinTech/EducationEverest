@@ -189,7 +189,8 @@
 
                     </div>
                     <%--Model ADD Button--%>
-                    <button type="button" id="button_modal" class=" btn add_button_1_ pull-right"><span class="NormalCharacterStyle">ADD</span></button>
+                    <button type="button" id="button_modal" class=" btn add_button_1_ pull-right" style="margin-right: 2%;">
+                        <span class="NormalCharacterStyle">ADD</span></button>
 
                     <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
                     <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
@@ -202,7 +203,9 @@
                                 <td class="col-md-2"><b>Campus</b></td>
                                 <td class="col-md-3"><b>Catagory/Semester</b></td>
                                 <td class="col-md-1">
-                                    <img src="images/delete_icon.png" /></td>
+                                    <b>Delete</b>
+
+                                </td>
 
 
                             </tr>
@@ -221,15 +224,15 @@
                                     <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
                                     <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
 
-                                    <a id='delete${id}' onclick="return deletePreferences('${id}')">
-                                        <img src="images/delete_icon.png"></a></td>
+                                    <a id='delete${id}' onclick="return deletePreferences('${id}')" style="cursor: pointer;">
+                                        <img src="images/delete_icon.png" /></a></td>
 
                             </tr>
 
                         </script>
-                        </table>
+                    </table>
                     <br />
-                    <div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter" style="padding-right:2% !important">DONE</a></div>
+                    <div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter" style="padding-right: 10% !important">DONE</a></div>
 
                 </div>
             </div>

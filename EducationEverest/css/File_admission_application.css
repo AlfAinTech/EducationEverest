@@ -1977,3 +1977,72 @@ preference_select_campus1 {
       margin-top: -32px;
       margin-left: 12px
   }
+
+  /*CSS ADDED FOR DASHBOARD CALLOUT BOX*/
+
+div.homehomecallout {
+	height: 60px;
+	width: 200px;
+	float: right;
+}
+
+div.homecallout {
+	background-color: #f5f5f5;
+	background-image: -moz-linear-gradient(top, #d0d0d0, #d0d0d0);
+	position:absolute;
+	color: #333;
+	padding: 10px;
+	border-radius: 1px;
+	box-shadow: 0px 0px 10px #999;
+	margin: 25px;
+	min-height: 50px;
+	border: 1px solid #d0d0d0;
+    text-align:left;
+	/*text-shadow: 0 0 1px #000;*/
+	
+	/*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
+}
+
+.homecallout::before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border: 0.8em solid transparent;
+	position: absolute;
+}
+
+.homecallout.top::before {
+	left: 45%;
+	bottom: -20px;
+	border-top: 10px solid #d0d0d0;
+}
+
+.homecallout.bottom::before {
+	left: 45%;
+	top: -20px;
+	border-bottom: 10px solid #d0d0d0;
+}
+
+.homecallout.left::before {
+	right: -20px;
+	top: 40%;
+	border-left: 10px solid #444;
+}
+
+.homecallout.right::before {
+	left: -22px;
+	top: 10%;
+	border-right: 10px solid #d0d0d0;
+}
+
+.homecallout.top-left::before {
+	left: 7px;
+	bottom: -20px;
+	border-top: 10px solid #444;
+}
+
+.homecallout.top-right::before {
+	right: 7px;
+	bottom: -20px;
+	border-top: 10px solid #444;
+}
