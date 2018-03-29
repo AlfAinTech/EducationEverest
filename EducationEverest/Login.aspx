@@ -44,11 +44,12 @@
             </div>
             <div class="row">
                 <div class="container-fluid text-left">
-                    <div class="alert text-center" role="alert" style="margin-top: 50px; background-color: #f01970 !important">
+                    <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="visibility:hidden;margin-top: 50px; background-color: #f01970 !important">
                         <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: white; font-size: 14px"></span>
                         <span class="sr-only" style="color: white; font-size: 14px">Error:</span>
                         <span style="color: white; font-size: 16px">Wrong Email or Passowrd. Please provide valid ID details.</span>
                     </div>
+
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="col-lg-3 col-md-3 col-sm-3"></div>
