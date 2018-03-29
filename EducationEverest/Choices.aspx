@@ -26,14 +26,14 @@
 
                 </div>
             </a>
-            <div id="collapse2" class="panel-collapse panel-heading collapse">
-                <div class="panel-body">
+            <div id="collapse2" class="panel-collapse panel-heading collapse" style="padding-left: 0px; padding-right: 0px;">
+                <div class="panel-body" style="padding-left: 0px; padding-right: 0px;">
 
                     <br />
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mybspc5">
                                 <div class="form">
 
                                     <asp:DropDownList ID="DropDownList1" runat="server" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option">
@@ -45,7 +45,7 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
 
                                 <div class="form">
 
@@ -60,7 +60,7 @@
                             </div>
 
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList3" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
@@ -72,7 +72,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
 
                                 <div class="form">
 
@@ -88,7 +88,7 @@
                             </div>
 
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10 mybspc5">
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList4" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
@@ -189,7 +189,8 @@
 
                     </div>
                     <%--Model ADD Button--%>
-                    <button type="button" id="button_modal" class=" btn add_button_1_ pull-right"><span class="NormalCharacterStyle">ADD</span></button>
+                    <button type="button" id="button_modal" class=" btn add_button_1_ pull-right" style="margin-right: 2%;">
+                        <span class="NormalCharacterStyle">ADD</span></button>
 
                     <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
                     <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
@@ -202,7 +203,9 @@
                                 <td class="col-md-2"><b>Campus</b></td>
                                 <td class="col-md-3"><b>Catagory/Semester</b></td>
                                 <td class="col-md-1">
-                                    <img src="images/delete_icon.png" /></td>
+                                    <b>Delete</b>
+
+                                </td>
 
 
                             </tr>
@@ -221,78 +224,15 @@
                                     <%--<a id='buttonEdit${id}'   onclick="return EditPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
                                     <%--<a id='addEdit${id}' style="display:none"   onclick="return addPreferences('${id}')"><span class="edit_icon_1_"></span></a>--%>
 
-                                    <a id='delete${id}' onclick="return deletePreferences('${id}')">
-                                        <img src="images/delete_icon.png"></a></td>
+                                    <a id='delete${id}' onclick="return deletePreferences('${id}')" style="cursor: pointer;">
+                                        <img src="images/delete_icon.png" /></a></td>
 
                             </tr>
 
                         </script>
-
-
-                        <%-- <tbody  id="GridPreferences">
-    </tbody>--%>
                     </table>
-                    <%--</ContentTemplate></asp:UpdatePanel>--%>
-                    <%--<asp:GridView ID="GridView1" AutoGenerateColumns="true" runat="server">
-              <%--<Columns>
-
-                                  <asp:TemplateField>
-                        <ItemTemplate>
-                             <%#Container.DataItemIndex+1 %>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-
-              <asp:TemplateField HeaderText ="Degree Program">
-                <ItemTemplate>
-                    <asp:Label ID="Label14" runat="server" Text='<%#Eval("Programm.Program_Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-                  <asp:TemplateField HeaderText ="Campus">
-                <ItemTemplate>
-                    <asp:Label ID="Label15" runat="server" Text='<%#Eval("Campus.Campus_Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-
-                  <asp:TemplateField HeaderText ="Category/Semester">
-                <ItemTemplate>
-                    <asp:Label ID="Label16" runat="server" Text='<%#Eval("ProgrammCategory.Category.Category_Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-
-                  </Columns>
-          </asp:GridView>--%>
-
-                    <%--<table>
-    <tr>
-        <th></th>
-        <th>Degree Program</th>
-         <th>Campus</th>
-          <th>Catagory/Semester</th>
-           <th></th>
-    </tr>
-    <tr class="text-left">
-        <td>1-</td>
-        <td>Civil Engineering</td>
-              <td>Lahore</td>
-        <td>Catagory A</td>
-              <td><a href=""><span class="edit_icon_1_"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=""><span class="delete_icon"></span></a></td>
-
-    </tr>
-    <tr class="text-left">
-        <td></td>
-        <td></td>
-              <td></td>
-        <td></td>
-              <td></td>
-
-    </tr>
-</table>--%>
                     <br />
-                    <br />
-                    <div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter">DONE</a></div>
+                    <div><a href="" class="NormalCharacterStyle10 pull-right" data-toggle="modal" data-target="#exampleModalCenter" style="padding-right: 10% !important">DONE</a></div>
 
                 </div>
             </div>

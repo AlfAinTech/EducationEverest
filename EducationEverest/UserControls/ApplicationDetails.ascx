@@ -1,7 +1,7 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ApplicationRecords.ascx.cs" Inherits="UserControls_ApplicationRecords" %>
-<asp:Repeater ID="ApplicationsList" runat="server" OnItemDataBound="ApplicationsList_ItemDataBound">
-           <ItemTemplate>
-    <div class="panel panel-default ">
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ApplicationDetails.ascx.cs" Inherits="UserControls_ApplicationDetails" %>
+
+
+<div class="panel panel-default ">
       <div class="panel-heading card_bg">
         <div class="row text-left" style="padding-bottom:2%">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -9,30 +9,32 @@
           </div>
              <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                 <h4 class="panel-title margin_top">
-                          <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus_").ToString()=="pending" || Eval("CurrentStatus_").ToString()=="rejected"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
+                          <div class="NormalCharacterStyle_new1 margin_left"><asp:Label runat="server" ID="lbl_UniName"></asp:Label><small runat="server" id="currentStatusField" class='rejected_text pull-right'><b><asp:Label runat="server" ID="lbl_CurrentStatus01"></asp:Label></b></small></div>
                 </h4>
                 <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>
-                <h4 class="blue_text col-lg-12 col-md-12 col-sm-12 col-xs-12">Application ID: <%# Eval("appID") %></h4>
+                <h4 class="blue_text col-lg-12 col-md-12 col-sm-12 col-xs-12">Application ID: <asp:Label ID="lbl_appID" runat="server"></asp:Label></h4>
                 <div>
-                    <span class="orange_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Application Date: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><%# Eval("ApplicationDate") %></span>
-                    <span class="red_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Last Date: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><%# Eval("university.deadLine") %></span><span class="green_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Status: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><%# Eval("CurrentStatus_") %></span>
+                    <span class="orange_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Application Date: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><asp:Label runat="server" ID="lbl_LastDate"></asp:Label></span>
+                    <span class="red_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Last Date: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><asp:Label runat="server" ID="lbl_UniDeadline"></asp:Label></span><span class="green_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Status: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><asp:Label runat="server" ID="lbl_CurrentStatus"></asp:Label></span>
                 </div>
                 </div>
             </div>
-            <div class="row" style="border-top:1px solid #d0d0d0;">
-                <a data-toggle="collapse" data-parent="#accordion" href='<%# "#details"+Container.ItemIndex %>' class="pull-right viewbutton margin_top" style="margin-right: 30px;"><b>VIEW</b></a>
+            <div class="row" style="border-top:1px solid #d0d0d0; padding:2% 2%">
+                <%--<a data-toggle="collapse" data-parent="#accordion" href='<%# "#details"+Container.ItemIndex %>' class="pull-right viewbutton margin_top" style="margin-right: 30px;"><b>VIEW</b></a>--%>
+                <a data-toggle="collapse" data-parent="#accordion" href="#details"  class="pull-right viewbutton margin_top" style="margin-right: 30px;"><b>VIEW</b></a>
             </div>
       </div>
-      <div id='<%# "details"+Container.ItemIndex %>' class="panel-collapse collapse panel_shadow">
+      
+          <div id="details" class="panel-collapse collapse panel_shadow">
         <div class="panel-body">
             <div class="panel panel-default panel_shadow">
-  <a id="menu_toggle3" href='<%# "#pinfo"+Container.ItemIndex %>' data-toggle="collapse" data-parent="#accordion" >
+  <a id="menu_toggle3" href="#pinfo" data-toggle="collapse" data-parent="#accordion" >
       <div class="panel-heading text-left" style="background: white;height: 60px;">       
         
         <h4 class="panel-title NormalCharacterStyle2 other_info_card_icon">
                  <div class="NormalCharacterStyle10 margin_top">My Personal Information<span class="icon-arrow-right pull-right"><i class="glyphicon glyphicon-chevron-down normal-color" ></i></span></div>
         </h4></div></a>
-      <div id='<%# "pinfo"+Container.ItemIndex %>'  class="panel-collapse collapse" >
+      <div id="pinfo"  class="panel-collapse collapse" >
         <div class="panel-body" style="background: white;">
           
             <div class="col-md-12 text-left">
@@ -42,7 +44,7 @@
             <div class="col-lg-5 col-md-5 col-sm-4 col-xs-4">
               <div class="Profile_sidemenu_Name4">Full Name:</div>
               <div class="Profile_sidemenu_Name4">Father Name:</div>
-              <div class="Profile_sidemenu_Name4">CNIC (Faizan Elahi):</div>
+              <div class="Profile_sidemenu_Name4">CNIC (Personal):</div>
               <div class="Profile_sidemenu_Name4">CNIC (Father):</div>
               <div class="Profile_sidemenu_Name4">Date of Birth:</div>
               <div class="Profile_sidemenu_Name4">Nationality:</div>
@@ -91,13 +93,13 @@
       </div>
     </div>
              <div class="panel panel-default panel_shadow">
-  <a id="menu_toggle3" href='<%# "#mychoice"+Container.ItemIndex %>'  data-toggle="collapse" data-parent="#accordion" >
+  <a id="menu_toggle3" href="#mychoice"  data-toggle="collapse" data-parent="#accordion" >
       <div class="panel-heading text-left" style="background: white;height: 60px;">       
         
         <h4 class="panel-title NormalCharacterStyle2 other_info_card_icon">
                  <div class="NormalCharacterStyle10 margin_top">My Preferences<span class="icon-arrow-right pull-right"><i class="glyphicon glyphicon-chevron-down normal-color" ></i></span></div>
         </h4></div></a>
-      <div id='<%# "mychoice"+Container.ItemIndex %>' class="panel-collapse collapse" >
+      <div id="mychoice" class="panel-collapse collapse" >
         <div class="panel-body" style="background: white;">
           
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
@@ -126,13 +128,13 @@
       </div>
     </div>
              <div class="panel panel-default panel_shadow">
-  <a id="menu_toggle3" href='<%# "#myeduinfo"+Container.ItemIndex %>' data-toggle="collapse" data-parent="#accordion" >
+  <a id="menu_toggle3" href="#myeduinfo" data-toggle="collapse" data-parent="#accordion" >
       <div class="panel-heading text-left" style="background: white;height: 60px;">       
         
         <h4 class="panel-title NormalCharacterStyle2 other_info_card_icon">
                  <div class="NormalCharacterStyle10 margin_top">My Educational Information<span class="icon-arrow-right pull-right"><i class="glyphicon glyphicon-chevron-down normal-color" ></i></span></div>
         </h4></div></a>
-      <div id='<%# "myeduinfo"+Container.ItemIndex %>' class="panel-collapse collapse" >
+      <div id="myeduinfo" class="panel-collapse collapse" >
         <div class="panel-body" style="background: white;">
           
           
@@ -191,13 +193,13 @@
       </div>
     </div>
              <div class="panel panel-default panel_shadow">
-  <a id="menu_toggle3" href='<%# "#mytests"+Container.ItemIndex %>' data-toggle="collapse" data-parent="#accordion" >
+  <a id="menu_toggle3" href="#mytests" data-toggle="collapse" data-parent="#accordion" >
       <div class="panel-heading text-left" style="background: white;height: 60px;">       
         
         <h4 class="panel-title NormalCharacterStyle2 other_info_card_icon">
                  <div class="NormalCharacterStyle10 margin_top">My Test Results<span class="icon-arrow-right pull-right"><i class="glyphicon glyphicon-chevron-down normal-color" ></i></span></div>
         </h4></div></a>
-      <div id='<%# "mytests"+Container.ItemIndex %>'class="panel-collapse collapse" >
+      <div id="mytests" class="panel-collapse collapse" >
         <div class="panel-body" style="background: white;">
             <asp:Repeater ID="TestResultList" runat="server"><ItemTemplate>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
@@ -227,13 +229,13 @@
       </div>
     </div>
             <div class="panel panel-default panel_shadow">
-  <a id="menu_toggle3" href='<%# "#mydocs"+Container.ItemIndex %>' data-toggle="collapse" data-parent="#accordion" >
+  <a id="menu_toggle3" href="#mydocs" data-toggle="collapse" data-parent="#accordion" >
       <div class="panel-heading text-left" style="background: white;height: 60px;">       
         
         <h4 class="panel-title NormalCharacterStyle2 other_info_card_icon">
                  <div class="NormalCharacterStyle10 margin_top">My Documents<span class="icon-arrow-right pull-right"><i class="glyphicon glyphicon-chevron-down normal-color" ></i></span></div>
         </h4></div></a>
-      <div id='<%# "mydocs"+Container.ItemIndex %>' class="panel-collapse collapse" >
+      <div id="mydocs" class="panel-collapse collapse" >
         <div class="panel-body" style="background: white;">
           
         
@@ -252,7 +254,7 @@
                   </div>
                     <br/>
                   </ItemTemplate></asp:Repeater>
-            <br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/>
             <div class="profile_divider2" ></div><br/>
               
             <div class="NormalCharacterStyle101 " >&#9656;B Form/CNIC of Father/Guardian&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
@@ -268,7 +270,7 @@
                   </div>
                     <br/>
                   </ItemTemplate></asp:Repeater>
-            <br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/>
                  <div class="profile_divider2" ></div><br/>
               <div class="NormalCharacterStyle101 " >&#9656;Father/Guardian Income Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
              <asp:Repeater ID="FatherIncomeCertiList" runat="server"><ItemTemplate>
@@ -283,7 +285,7 @@
                       </div>
                         <br/>
                       </ItemTemplate></asp:Repeater>
-            <br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/><br/><br/>
              <div class="profile_divider2" ></div><br/>
             <div class="NormalCharacterStyle101 " >&#9656;Matriculation/ O-Leve Certificate/Result Cards&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
              <asp:Repeater ID="MatricCertiList" runat="server"><ItemTemplate>
@@ -333,15 +335,3 @@
             
     </div>
                 </div></div></div>
-</ItemTemplate>
-           
-            <FooterTemplate>
-                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" runat="server" visible="false" id="EmptyDiv">
-                  <img src="images/Dashboard.png" style="margin-top: 120px;">
-
-                     <br/><br/>
-                    <div class="NormalCharacterStyle111">You have no admission application yet.</div>
-                </div>
-                 <br/>
-            </FooterTemplate>
-        </asp:Repeater>

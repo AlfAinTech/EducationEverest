@@ -61,7 +61,7 @@
                 </div>
             </a>
             <div id="collapse2" class="panel-collapse panel-heading collapse">
-                <div class="panel-body">
+                <div class="panel-body" style="padding:0px !important">
                     <br />
                         <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9 text-left">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -147,7 +147,7 @@
 
                             <asp:Image runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" Style="cursor: pointer" onclick="browse()" />
                             <asp:FileUpload ID="FileUpload1" accept="image/*" Style="display: none;" ClientIDMode="Static" runat="server" onchange="this.form.submit()" />
-                            <asp:RegularExpressionValidator ValidationGroup="validateFile" ID="RegularExpressionValidator1" ControlToValidate="FileUpload1" ForeColor="Red" ValidationExpression="^.*\.(jpg|png|JPG|gif|GIF|jpeg)$" runat="server" ErrorMessage="Select a Valid File"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ValidationGroup="validateFile" ID="RegularExpressionValidator1" ControlToValidate="FileUpload1" ForeColor="Red" ValidationExpression="^.*\.(jpg|png|JPG|gif|GIF|jpeg|JPEG|PNG)$" runat="server" ErrorMessage="Select a Valid File"></asp:RegularExpressionValidator>
                             <asp:Button ID="btn_UplaodImage" ValidationGroup="validateFile" Style="display: none;" OnClick="btn_UplaodImage_Click" runat="server" />
 
                         </div>
@@ -168,7 +168,7 @@
                 </div>
             </a>
             <div id="contactinfo" class="panel-collapse panel-heading collapse">
-                <div class="panel-body">
+                <div class="panel-body" style="padding:0px !important">
                     <br />
 
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 text-left">

@@ -50,7 +50,7 @@ public partial class Account_Register : Page
 
                     up.AspNetUserID = user.Id;
                     userId = up.AspNetUserID;
-
+                    
                     
                     SendActivationEmail(userId);
 
@@ -91,8 +91,11 @@ public partial class Account_Register : Page
                     up.City = city.Text;
                     up.AspNetUserID = userId;
                     up.Email = Email.Text;
+                    //CandidateID = YEAR-SERIAL
+                    up.CandidateID = DateTime.Today.Year.ToString() + "-" + (db.UserProfiles.Count()+1);
                     db.UserProfiles.Add(up);
                     db.SaveChanges();
+                    
                     con.Close();
                 }
             }

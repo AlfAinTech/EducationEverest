@@ -136,14 +136,14 @@
                                     <input class="inputs" maxlength="5" id="obtained_marks_matric" onchange="OnMatricMarksChange()" type="text" name="obtained_marks" placeholder="Obtained Marks" runat="server" />
 
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvObtainedMarksMatric" runat="server" ErrorMessage="Obtained Marks required" ValidationGroup="vgEducationalDetails" ControlToValidate="obtained_marks_matric" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvObtainedMarksMatric" runat="server" ErrorMessage="Obtained Marks required" Display="Dynamic" ValidationGroup="vgEducationalDetails" ControlToValidate="obtained_marks_matric" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <asp:RegularExpressionValidator ID="reObtainedMarksMatric" ControlToValidate="obtained_marks_matric" ValidationGroup="vgEducationalDetails"
+                                    <asp:RegularExpressionValidator ID="reObtainedMarksMatric" Display="Dynamic" ControlToValidate="obtained_marks_matric" ValidationGroup="vgEducationalDetails"
                                         runat="server" ValidationExpression="\d+" ForeColor="Red"
                                         ErrorMessage="Please enter only numbers">
                                     </asp:RegularExpressionValidator>
                                     <br />
-                                    <asp:CompareValidator runat="server" ID="cvMatric" ValidationGroup="vgEducationalDetails" ControlToValidate="obtained_marks_matric" ControlToCompare="total_marks_matric" Operator="LessThanEqual" Type="Integer" ErrorMessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
+                                    <asp:CompareValidator runat="server" ID="cvMatric" Display="Dynamic" ValidationGroup="vgEducationalDetails" ControlToValidate="obtained_marks_matric" ControlToCompare="total_marks_matric" Operator="LessThanEqual" Type="Integer" ErrorMessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">

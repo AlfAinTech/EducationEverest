@@ -11,7 +11,7 @@ public partial class Applications : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         if (!IsPostBack)
         {
             populateUniversities();
@@ -26,6 +26,9 @@ public partial class Applications : System.Web.UI.Page
                 BindData();
             }
             //BindData();
+            if(ViewState["PageNumber"] != null) {
+                dataTable.PageIndex = Convert.ToInt32(ViewState["PageNumber"]);
+            }
         }
         
     }
@@ -38,7 +41,7 @@ public partial class Applications : System.Web.UI.Page
         ddl_University.DataTextField = "Name";
         ddl_University.DataValueField = "id";
         ddl_University.DataBind();
-        ddl_University.Items.Insert(0,new ListItem("Select University", "0"));
+        ddl_University.Items.Insert(0,new System.Web.UI.WebControls.ListItem("Select University", "0"));
     }
     public void BindData()
     {
@@ -114,28 +117,29 @@ public partial class Applications : System.Web.UI.Page
             List<Application> applications = new List<Application>();
             if (ApplicationID != Guid.Empty && university !=0 )
             {
-                applications = db.Applications.Where(x => x.appID.Equals(ApplicationID) && x.UserID.Contains(CandidateId) && x.UnivID == university && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
+                applications = db.Applications.Where(x => x.appID.Equals(ApplicationID)  && x.UnivID == university && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
             }
             if(ApplicationID != Guid.Empty && university == 0)
             {
-                 applications = db.Applications.Where(x => x.appID.Equals(ApplicationID) && x.UserID.Contains(CandidateId)  && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate  && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
+                 applications = db.Applications.Where(x => x.appID.Equals(ApplicationID)   && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate  && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
                
             }
             if(ApplicationID == Guid.Empty && university != 0)
             {
-                 applications = db.Applications.Where(x =>  x.UnivID == university   && x.UserID.Contains(CandidateId) && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
+                 applications = db.Applications.Where(x =>  x.UnivID == university    && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
                
             }
             if(ApplicationID == Guid.Empty && university == 0)
             {
-                 applications = db.Applications.Where(x =>  x.CurrentStatus.Contains(CurrentStatus) && x.UserID.Contains(CandidateId) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate ).OrderByDescending(x => x.SubmittedOn).ToList();
+                 applications = db.Applications.Where(x =>  x.CurrentStatus.Contains(CurrentStatus)  && x.SubmittedOn >= startDate && x.SubmittedOn < endDate ).OrderByDescending(x => x.SubmittedOn).ToList();
                 
             }
             foreach(var application in applications)
             {
-                if (!application.TrackingID.Contains(TrackingID))
+                if ((!application.TrackingID.Contains(TrackingID)) && (!application.CandidateID.Contains(CandidateId)))
                 {
                     applications.Remove(application);
+                    
                 }
             }
 
@@ -395,15 +399,15 @@ public partial class Applications : System.Web.UI.Page
                     smtp.Port = 587;
                     smtp.Send(mm);
                 }
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Email of status change sent to candidate successfully');", true);
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Email of status change sent to candidate successfully');fading();", true);
             }
             catch
             {
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Something went wrong, Please try again or contact your support team.');", true);
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Something went wrong, Please try again or contact your support team.');fading();", true);
             }
         }
 
-
+        
     }
 
     protected void lb_thumb_Click(object sender, EventArgs e)
@@ -478,13 +482,13 @@ public partial class Applications : System.Web.UI.Page
                         smtp.Port = 587;
                         smtp.Send(mm);
                     }
-                    ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Payment Confirmed Successfully and email is sent to candidate');", true);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Payment Confirmed Successfully and email is sent to candidate');fading();", true);
                     BindData();
                 }
             }
             catch
             {
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Something went wrong, Please try again or contact your support team.');", true);
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Something went wrong, Please try again or contact your support team.');fading();", true);
             }
         }
     }
@@ -492,7 +496,7 @@ public partial class Applications : System.Web.UI.Page
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
         EducationEverestEntities db = new EducationEverestEntities();
-
+        
 
         //App_Start aps = new App_Start();
         //Application ap = new Application();
@@ -565,6 +569,15 @@ public partial class Applications : System.Web.UI.Page
 
 
 
+
+    }
+    
+    protected void btn_view_Click(object sender, EventArgs e)
+    {
+        LinkButton lb_confirm = sender as LinkButton;
+        int applicationID = Convert.ToInt32(lb_confirm.Attributes["data-fileid"].ToString());
+        ViewState["PageNumber"] = dataTable.PageIndex;
+        Response.Redirect("ApplicationDetails.aspx?appID=" + applicationID);
 
     }
 }

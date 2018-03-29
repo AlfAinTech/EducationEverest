@@ -140,7 +140,7 @@
                                 <div class="tab-pane fade in" id="jazztab">
 
 
-                                    <div class="payment_callout bottom text-center">
+                                    <div class="callout1 bottom text-center">
                                         <div class="col-md-12 text-center" style="margin-top: 40px">
                                             <div class="NormalCharacterStyle16">
                                                 Please contact the following representative for
@@ -271,7 +271,7 @@
                                             <input class="inputs" id="TrackingID_" type="text" name="TrackingID" placeholder="Tracking Id" runat="server" />
                                             <asp:LinkButton ID="SubmitTrackingID_" OnClick="SubmitTrackingID_Click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
-                                            <div class="payment_callout bottom text-center">
+                                            <div class="callout1 bottom text-center">
                                                 <div class="col-md-12 text-center" style="margin-top: 40px">
                                                     <div class="NormalCharacterStyle16">
                                                         Please contact the following representative for
