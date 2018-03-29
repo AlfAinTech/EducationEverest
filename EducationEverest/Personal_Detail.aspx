@@ -27,7 +27,7 @@
             $("#fileAdmission").addClass("NormalCharacterStyle18");
             document.getElementById("fileAdmission").click();
         }
-        $('#student_cnic').keydown(function () {
+        $('#nop').keydown(function () {
 
             //allow  backspace, tab, ctrl+A, escape, carriage return
             if (event.keyCode == 8 || event.keyCode == 9
@@ -203,32 +203,33 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
-                                    <input id="landline" maxlength="15" class="input_father_CINC_no" type="text" name="Phone_Landline" placeholder="Phone Landline" runat="server" />
+                                    <input id="landline" maxlength="11" class="input_father_CINC_no" type="text" name="Phone_Landline" placeholder="Phone Landline" runat="server" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="rvLandline" runat="server" ErrorMessage="Landline number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <%--<asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>--%>
+                                   <asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
-                                    <input id="phone" maxlength="15" class="input_DOB" type="text" name="Yphone" placeholder="Phone (Your Phone)" runat="server" />
+                                    <input id="phone" maxlength="11" class="input_DOB" type="text" name="Yphone" placeholder="Phone (Your Phone)" runat="server" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="rvPhone" runat="server" ErrorMessage="Mobile number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="phone" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <asp:RegularExpressionValidator ID="rePhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="phone" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="rePhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="phone" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
-                                    <input id="father_phone" maxlength="15" class="input_nationality" type="text" name="Fphone" placeholder="Phone (Father)" runat="server" />
+                                    <input id="father_phone" maxlength="11" class="input_nationality" type="text" name="Fphone" placeholder="Phone (Father)" runat="server" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="rvFatherPhone" runat="server" ErrorMessage="Father's Mobile number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="father_phone" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <asp:RegularExpressionValidator ID="reFatherPhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="father_phone" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="reFatherPhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="father_phone" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
 
 
                                 </div>
