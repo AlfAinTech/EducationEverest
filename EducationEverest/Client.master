@@ -7,14 +7,14 @@
     <link href="~/Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
     <title>Education Everest</title>
 
-        <meta charset="utf-8" />
-  <link rel="stylesheet" href="css/bootstrap.css" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/bootstrap-theme.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/File_admission_application.css" />
-  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
     <%--<script type="text/javascript" src="Content/js/myScript.js"></script>--%>
@@ -23,98 +23,185 @@
     <link href="css/style.css" rel="stylesheet" />
     <%--<script type="text/javascript" src="Content/js/jquery.uploadify.js"></script>--%>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
-     <script src='<%= ResolveUrl("~/Content/js/jquery.quicksearch.js") %>'></script>
-<script src='<%= ResolveUrl("~/Content/js/jquery.tmpl.min.js") %>'></script>
-   <script type="text/javascript">
-    $(function() {
-   var links = $('a.link').click(function() {
-       links.removeClass('active');
-       $(this).addClass('active');
-   });
-});
-    $(document).keypress(function (e) {
-        if (e.keyCode === 13) {
-            e.preventDefault();
-            return false;
+    <script src='<%= ResolveUrl("~/Content/js/jquery.quicksearch.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Content/js/jquery.tmpl.min.js") %>'></script>
+    <script type="text/javascript">
+        $(function () {
+            var links = $('a.link').click(function () {
+                links.removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+        $(document).keypress(function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        function excluirItemNotificacao(e) {
+            $('#item_notification_' + e.id).remove()
         }
-    });
-  </script>
+    </script>
 </head>
 
 
 <body>
-    
-    <form id="form1" runat="server" defaultbutton=""><asp:ScriptManager ID="ScriptManager1"  EnablePartialRendering="true" runat="server"></asp:ScriptManager>
-    <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      
-      <a class="navbar-brand" href="Dashboard.aspx"><img src="images/Logo_1_.png"></a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="https://educationeverest.org/" target="_blank" style="font-size: 20px;top: 6px;">Home </a></li>
-        <li><a href="Dashboard.aspx" style="font-size: 20px;top: 6px;">Dashboard</a></li>
-        <li style="color: transparent;">home</li>
-      </ul>
-      <div class="navbar-form navbar-left">
-        <div class="form-group" style="margin-top:-40px">
-          <asp:TextBox ID="TextBox1" runat="server" style="height:32px"></asp:TextBox>
-        
-          <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
-        </div>
-          <span><asp:imagebutton ID="btnSearch" ImageUrl="images/search_button.png" style="margin-top: 4px;" runat="server"  OnClick="btnSearch_Click"></asp:imagebutton></span>
-          <span><asp:imagebutton ID="btnFilter" ImageUrl="images/filter_button.png" style="margin-top: 4px;margin-left: -10px" runat="server" OnClick="btnFilter_Click" ></asp:imagebutton></span>
+    <form id="form1" runat="server" defaultbutton="">
+        <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server"></asp:ScriptManager>
+        <div class="navbar-inverse" style="border-radius: 0px; height: 60px;">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
 
-        <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
+                <a class="navbar-brand" href="Dashboard.aspx">
+                    <img src="images/Logo_1_.png"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="https://educationeverest.org/" target="_blank" style="font-size: 20px; top: 6px;">Home </a></li>
+                    <li><a href="Dashboard.aspx" style="font-size: 20px; top: 6px;">Dashboard</a></li>
+                    <li style="color: transparent;">home</li>
+                </ul>
+                <div class="navbar-form navbar-left">
+                    <div class="form-group" style="margin-top: -40px">
+                        <asp:TextBox ID="TextBox1" runat="server" Style="height: 32px"></asp:TextBox>
+
+                        <%--<input type="text" class="form-control" placeholder="UET" style="width: 260px;border-radius: 3px;">--%>
+                    </div>
+                    <span>
+                        <asp:ImageButton ID="btnSearch" ImageUrl="images/search_button.png" Style="margin-top: 4px;" runat="server" OnClick="btnSearch_Click"></asp:ImageButton></span>
+                    <span>
+                        <asp:ImageButton ID="btnFilter" ImageUrl="images/filter_button.png" Style="margin-top: 4px; margin-left: -10px" runat="server" OnClick="btnFilter_Click"></asp:ImageButton></span>
+
+                    <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>
         <span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
+                </div>
 
-      </div>
 
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="alertNotificacao">
+                                <img src="images/bell.png" /></span>
+                            <span class='badgeAlert'>3</span>
+                            <%--<span class="caret"></span>--%>
+                        </a>
+                        <ul class="list-notificacao dropdown-menu">
+                            <li id='item_notification_1'>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="/images/notifi_payment_icon.png" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <%--<div class='exclusaoNotificacao'>
+                                            <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
+                                        </div>--%>
+                                        <p class="media-heading" style="font-size: 11px">
+                                            <strong>Your application has been created. Click to view</strong>
 
-      <ul class="nav navbar-nav navbar-right">
-       <%-- <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>--%>
-        <li class="dropdown" style="height: 60px;">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">
-              <asp:Label ID="lblLoggedUser" runat="server" Text=""  style="font-size:20px;color:#0094ff;border-bottom:1px solid;border-color:white"></asp:Label>
-          </span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
-          <ul class="dropdown-menu myprofile_dropdown">
-            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
-             <li role="separator" class="profile_divider"></li>
-            <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
+                                        </p>
+                                        <p style="font-size: 10px; color: lightgray">Today, 6:15 PM</p>
+                                    </div>
+                                    <div class="media-right">
+                                        <img src="images/circle.png" class="media-object" style="width: 8px ;padding-top: 15px !important;" />
+                                    </div>
+                                </div>
+                            </li>
+                            <li id='item_notification_2'>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="/images/application_icon.png" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <%--<div class='exclusaoNotificacao'>
+                                            <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
+                                        </div>--%>
+                                        <p class="media-heading" style="font-size: 11px">
+                                            <strong>Your application has been created. Click to view</strong>
+
+                                        </p>
+                                        <p style="font-size: 10px; color: lightgray">Today, 6:15 PM</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id='item_notification_3'>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="/images/admin_icon.png" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <%--<div class='exclusaoNotificacao'>
+                                            <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
+                                        </div>--%>
+                                        <p class="media-heading" style="font-size: 11px">
+                                            <strong>Your application has been created. Click to view</strong>
+
+                                        </p>
+                                        <p style="font-size: 10px; color: lightgray">Today, 6:15 PM</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <%--<li id='item_notification_4'>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>See all notifications</strong></h5>
+                                        
+                                    </div>
+                                </div>
+                            </li>--%>
+                        </ul>
+                    </li>
+                    <%-- <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>--%>
+                    <li class="dropdown" style="height: 60px;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px; margin-right: 10px; border-bottom: 1px solid white;">
+                            <asp:Label ID="lblLoggedUser" runat="server" Text="" Style="font-size: 20px; color: #0094ff; border-bottom: 1px solid; border-color: white"></asp:Label>
+                        </span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
+                        <ul class="dropdown-menu myprofile_dropdown">
+                            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
+                            <li role="separator" class="profile_divider"></li>
+                            <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
             <li role="separator" class="profile_divider"></li>--%>
-            <%--<li><a href="Login.aspx"  class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>--%>
-              <li><asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
+                            <%--<li><a href="Login.aspx"  class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>--%>
+                            <li>
+                                <asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
                                         <i class="myprofile_dropdown_link NormalCharacterStyle24"></i>Logout
-                                    </asp:LinkButton></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-</div>
-<body>
+                                </asp:LinkButton></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <body>
 
 
 
-<div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
-   <asp:ContentPlaceHolder ID="StatusBas" runat="server">
-            </asp:ContentPlaceHolder>
-    <%--<div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>--%>
+            <div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
+                <asp:ContentPlaceHolder ID="StatusBas" runat="server">
+                </asp:ContentPlaceHolder>
+                <%--<div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>--%>
+            </div>
+            <br />
 
-</div>
-<br/>
-  
-<div class="container-fluid text-center">    
-  <div class="row content" style="min-height: 100vh;height: 1000px">
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 sidenav text-left side-menu">
+            <div class="container-fluid text-center">
+                <div class="row content" style="min-height: 100vh; height: 1000px">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 sidenav text-left side-menu">
 
-      <div class="dropdown" style="margin-bottom: 10px;">
-    <a data-toggle="collapse" data-target="#clps1" id="applicationDashbord" class="main_list NormalCharacterStyle25" href="Dashboard.aspx">My Applications<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps1"></span></div></a>
- 
-</div>
+                        <div class="dropdown" style="margin-bottom: 10px;">
+                            <a data-toggle="collapse" data-target="#clps1" id="applicationDashbord" class="main_list NormalCharacterStyle25" href="Dashboard.aspx">My Applications<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps1"></span></div>
+                            </a>
 
+                        </div>
+
+                        
       <div class="dropdown"  style="margin-bottom: 10px;">
     <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25">File Admission App<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></a>
     <div class="collapse" id="clps2">
@@ -138,50 +225,51 @@
 
 
 
-    </div>   
-</div>
+                            </div>
+                        </div>
 
-      <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="Payments.aspx">My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div></a>
- 
-</div>
+                        <div class="dropdown" style="margin-bottom: 10px;">
+                            <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="Payments.aspx">My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div>
+                            </a>
+
+                        </div>
 
 
-    </div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+                    </div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
     </form>
     <script type="text/javascript">
         $('#applicationDashbord').on('click', function () {
-    var iSelector = $(this).find('i:first');
-    if (iSelector.hasClass('glyphicon-chevron-down')) {
-        iSelector.removeClass('glyphicon-chevron-down')
-        iSelector.addClass('glyphicon-chevron-up')
-    } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-        iSelector.removeClass('glyphicon-chevron-down')
-        iSelector.addClass('glyphicon-chevron-down')
-    }
-});
+            var iSelector = $(this).find('i:first');
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
         $('#fileAdmission').on('click', function () {
             var iSelector = $(this).find(':first-child').find(':first-child');
-    if (iSelector.hasClass('glyphicon-chevron-down')) {
-        iSelector.removeClass('glyphicon-chevron-down')
-        iSelector.addClass('glyphicon-chevron-up')
-    } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-        iSelector.removeClass('glyphicon-chevron-up')
-        iSelector.addClass('glyphicon-chevron-down')
-    }
-});
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-up')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
         $('#mypayments').on('click', function () {
-    var iSelector = $(this).find('i:first');
-    if (iSelector.hasClass('glyphicon-chevron-down')) {
-        iSelector.removeClass('glyphicon-chevron-down')
-        iSelector.addClass('glyphicon-chevron-up')
-    } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-        iSelector.removeClass('glyphicon-chevron-down')
-        iSelector.addClass('glyphicon-chevron-down')
-    }
-});
-</script>
+            var iSelector = $(this).find('i:first');
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
+    </script>
 </body>
 </html>

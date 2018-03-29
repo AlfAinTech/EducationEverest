@@ -1917,3 +1917,63 @@ preference_select_campus1 {
     border-bottom:1px solid;
     border-color:white;
 }*/
+
+/*CSS Added for Notification Bell Icon*/
+.list-notificacao{
+    min-width: 340px;
+    background: #ffffff;
+  }
+  
+  .list-notificacao li{
+     border-bottom : 1px #d8d8d8 solid;
+     text-align    : justify;
+     padding       : 5px 10px 5px 10px;
+     cursor: pointer;
+     font-size: 12px;
+  }
+  
+  .list-notificacao li:hover{
+  background: #f1eeee;
+  }
+  
+  .list-notificacao li:hover .exclusaoNotificacao{
+  display: block;
+  }
+  
+  .list-notificacao li  p{
+   color: black;
+   /*width: 305px;*/
+  }
+  
+  .list-notificacao li .exclusaoNotificacao{
+      width: 25px;
+      min-height: 40px;
+      position: absolute;
+      right: 0;
+      display: none;
+  }
+  
+  .list-notificacao .media img{
+      width: 30px;
+      height: auto;
+      float:left;
+      margin-right: 7px;
+  }
+  
+  .badgeAlert {
+      display: inline-block;
+      min-width: 10px;
+      padding: 3px 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      vertical-align: baseline;
+      white-space: nowrap;
+      text-align: center;
+      background-color: #ed1c24;
+      border-radius: 10px;
+      position: absolute;
+      margin-top: -32px;
+      margin-left: 12px
+  }
