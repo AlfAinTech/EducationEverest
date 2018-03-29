@@ -523,7 +523,7 @@ public partial class Applications : System.Web.UI.Page
             try
             {
 
-                if (diff > 24)
+                if (diff > 12)
                 {
                     //loop
                     using (MailMessage mm = new MailMessage(EEUtil.FromEmail, result.Email))  //here ID changed 02-feb-18
