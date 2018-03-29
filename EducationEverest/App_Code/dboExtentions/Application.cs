@@ -103,4 +103,22 @@ public partial class Application
         set { }
     }
 
+    public string CandidateID
+    {
+        get
+        {
+            EducationEverestEntities db = new EducationEverestEntities();
+
+            UserProfile userProfile = db.UserProfiles.Where(a => a.AspNetUserID == this.UserID).FirstOrDefault();
+            if (userProfile != null)
+            {
+                return userProfile.CandidateID;
+            }
+            else
+                return "CandidateID missing";
+
+        }
+        set { }
+    }
+
 }

@@ -173,7 +173,7 @@
 
                                 <asp:GridView ID="dataTable" style="table-layout:fixed;" OnRowDataBound="dataTable_RowDataBound" OnPageIndexChanging="dataTable_PageIndexChanging" OnRowDeleting="dataTable_RowDeleting" OnRowCommand="dataTable_RowCommand" AutoGenerateColumns="false" AllowPaging="true" PageSize="5" ClientIDMode="Static" CssClass="table table-bordered" runat="server">
                                     <Columns>
-                                        <asp:BoundField DataField="AspNetUserID" HeaderText="CandidateId" />
+                                        <asp:BoundField DataField="CandidateID" HeaderText="CandidateId" />
                                         <%--<asp:BoundField DataField="UserID" HeaderText="UserID" />--%>
                                         <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                                         <asp:BoundField DataField="LastName" HeaderText="Last Name" />

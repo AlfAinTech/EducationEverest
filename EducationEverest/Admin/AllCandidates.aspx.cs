@@ -65,7 +65,7 @@ public partial class Admin_AllCandidates : System.Web.UI.Page
         EducationEverestEntities db = new EducationEverestEntities();
         if (db.AspNetUsers.Any())
         {
-            List<UserProfile> users = db.UserProfiles.Where(x => x.AspNetUserID.Contains(CandidateId) && x.AspNetUser.UserName.Contains(Username) && x.FirstName.Contains(Fname) && x.LastName.Contains(Lname)).ToList();
+            List<UserProfile> users = db.UserProfiles.Where(x => x.CandidateID.Contains(CandidateId) && x.AspNetUser.UserName.Contains(Username) && x.FirstName.Contains(Fname) && x.LastName.Contains(Lname)).ToList();
             List<UserProfile> admins = new List<UserProfile>();
             foreach (var user in users)
             {

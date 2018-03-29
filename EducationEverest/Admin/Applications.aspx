@@ -4,23 +4,50 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <!-- Navigation-->
+     <%--<script src="https://code.jquery.com/jquery.js"></script>--%>
     <script src="Content/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
         $(window).on('load', (function () {
             $(".overlay").fadeOut(1000);
         }));
         jQuery(document).ready(function ($) {
-
+            $(document).on('click', '[id*=LinkButton1]', function () {
+                
+                    $('.overlay').css("display", "block");
+                
+            });
+            $('#ddl_current_status').change(function () {
+                
+                    $('.overlay').css("display", "block");
+                
+            });
         });
-        function OpenPopup(value) {
-            window.open(value, 'mywin', 'left=20,top=20,width=800,height=600,toolbar=1,resizable=0');
-        }
+//        $(function () {
+//            $("#btn_view").click(function () {
+//                window.open('http://www.google.com', "NewWindow");
+//            });
+//});
+        function fading(){
+            $(".overlay").fadeOut(1000);
+}
+        
         function ConfirmDeletion() {
             alert("are you sure?");
         }
+        
+        function Confirm() {
+            $('#exampleModalCenter').modal('show');
+           // return true;
+        };
+        
+
     </script>
+    
     <div class="container" style="margin-top: 100px;">
         <div class="container-fluid">
+            <div class="overlay">
+                <img src="Content/img/contact_loading.gif" />
+            </div>
             <span style="float:right"><asp:Button ID="btnSendEmail" CssClass="btn btn-primary form-control" runat="server" Text="Send Email to Incomplete Applicants"  OnClick="btnSendEmail_Click" Width="300px"  /></span>
             <div class="row">
 
@@ -182,9 +209,9 @@
         <asp:Panel ID="panel_active" runat="server">
             <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
                 <ProgressTemplate>
-                    <div class="overlay">
+                    <%--<div class="overlay">
                         <img src="../../Content/img/contact_loading.gif" />
-                    </div>
+                    </div>--%>
                 </ProgressTemplate>
             </asp:UpdateProgress>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -219,7 +246,7 @@
                                 <asp:GridView ID="dataTable" style="table-layout:fixed;" OnRowDataBound="dataTable_RowDataBound" OnPageIndexChanging="dataTable_PageIndexChanging" OnRowDeleting="dataTable_RowDeleting" OnRowCommand="dataTable_RowCommand" AutoGenerateColumns="false" AllowPaging="true" PageSize="5" ClientIDMode="Static" CssClass="table table-bordered" runat="server">
                                     <Columns>
                                         <asp:BoundField DataField="appID" HeaderText="ApplicationID" />
-                                        <asp:BoundField DataField="UserID" HeaderText="CandidateID" />
+                                        <asp:BoundField DataField="CandidateID" HeaderText="CandidateID" />
                                         <asp:BoundField DataField="University.Name" HeaderText="University" />
                                         <asp:BoundField DataField="TrackingID" HeaderText="TrackingId" />
                                         <asp:BoundField DataField="SubmittedOn" HeaderText="Submitted On" />
@@ -238,6 +265,11 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary" data-fileid='<%#Eval("id")%>' data-candidateId='<%# Eval("UserID")%>' OnClick="LinkButton1_Click1" runat="server" Text="Confirm"></asp:LinkButton>
                                                 <asp:Label ID="Label1" runat="server" Visible="false" Text="Confirmed"> </asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText ="View Application">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btn_view" CssClass="btn btn-primary" data-fileid='<%#Eval("id")%>' OnClick="btn_view_Click" runat="server" >View</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <%--<asp:TemplateField HeaderText="Actions">
@@ -301,6 +333,15 @@
         </asp:Panel>--%>
 
     </div>
+
+    <div class="modal fade" id="exampleModalCenter"  >
+            <div class="modal-dialog">
+                <div class="panel panel-heading pop_bg text-center">
+                    
+
+                </div>
+            </div>
+        </div>
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#admin_login">
         <i class="fa fa-angle-up"></i>
