@@ -196,14 +196,13 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 sidenav text-left side-menu">
 
                         <div class="dropdown" style="margin-bottom: 10px;">
-                            <a data-toggle="collapse" data-target="#clps1" id="applicationDashbord" class="main_list NormalCharacterStyle25" href="Dashboard.aspx">My Applications<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps1"></span></div>
-                            </a>
+                            <a data-toggle="collapse" data-target="#clps1" id="applicationDashbord" class="main_list NormalCharacterStyle25" href="Dashboard.aspx"><div>My Applications<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps1"></span></div></div></a>
 
                         </div>
 
                         
       <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25">File Admission App<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></a>
+    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25"><div>File Admission App<div class="pull-right"><span class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></div></a>
     <div class="collapse" id="clps2">
       <br/>
         <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail"><p>Personal Detail<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
@@ -229,7 +228,7 @@
                         </div>
 
                         <div class="dropdown" style="margin-bottom: 10px;">
-                            <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="Payments.aspx">My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div>
+                            <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="Payments.aspx"><div>My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div></div>
                             </a>
 
                         </div>
@@ -245,6 +244,7 @@
             if (iSelector.hasClass('glyphicon-chevron-down')) {
                 iSelector.removeClass('glyphicon-chevron-down')
                 iSelector.addClass('glyphicon-chevron-up')
+                
             } else if (iSelector.hasClass('glyphicon-chevron-up')) {
                 iSelector.removeClass('glyphicon-chevron-down')
                 iSelector.addClass('glyphicon-chevron-down')
@@ -252,12 +252,13 @@
         });
         $('#fileAdmission').on('click', function () {
             var iSelector = $(this).find(':first-child').find(':first-child');
-            if (iSelector.hasClass('glyphicon-chevron-down')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-up')
+            
+            if (iSelector.hasClass('glyphicon-chevron-down ')) {
+                iSelector.removeClass('glyphicon-chevron-down hide-before')
+                iSelector.addClass('glyphicon-chevron-up hide-before')
             } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-up')
-                iSelector.addClass('glyphicon-chevron-down')
+                iSelector.removeClass('glyphicon-chevron-up hide-before')
+                iSelector.addClass('glyphicon-chevron-down hide-before')
             }
         });
         $('#mypayments').on('click', function () {
