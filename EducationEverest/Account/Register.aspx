@@ -271,7 +271,7 @@
 
                     <%--<asp:CheckBox ID="CheckBox1" runat="server"  class="check_box" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>--%>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <asp:CheckBox ID="CheckBox1" runat="server" Style="height: 100px; width: 100px" /><label class="checkbox-inline NormalCharacterStyle112" style="margin-left: 10px;"> <span>&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>
+                        <asp:CheckBox ID="CheckBox1" runat="server" Style="height: 100px; width: 100px" /><label class="checkbox-inline NormalCharacterStyle112" style="margin-left: 10px;"> <span>&nbsp;&nbsp;&nbsp;I agree to the <i>Terms and Conditions</i></span></label>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="I agree to <i>terms and conditions</i>" Visible="False"></asp:Label>
@@ -288,17 +288,14 @@
 
 
 
-                <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" >
+                <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mybspc3" >
                     <br />
                     Already have an account?&nbsp;
                     <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
 
                 </div>
-                <div class="row">
-                    <div class=" myspc3 NormalCharacterStyle7 text-center mybspc3">OR</div>
-                </div>
-
-
+                <div class=" myspc3 NormalCharacterStyle7 text-center">OR</div>
+               
                 
                 <br />
                 <div class="NormalCharacterStyle12 text-center">SignUp with</div>

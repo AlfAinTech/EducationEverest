@@ -109,7 +109,7 @@
                 </div>
             </div>
         </div>
-
+        <asp:LinkButton type="button" runat="server" OnClick="next_click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
         <div class="modal fade" id="exampleModalCenter">
             <div class="modal-dialog">
@@ -118,7 +118,7 @@
 
 
                     <div class="col-md-12 text-left">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="border-bottom: 1px solid #afafaf; padding-bottom: 2px;">
                             <div class="form">
                                 <asp:Label ID="Label1" name="University" class="combobox preference_select_campus1 selected_Label" runat="server" Text=""></asp:Label>
 
@@ -192,7 +192,7 @@
                     <button type="button" id="button_modal" class=" btn add_button_1_ pull-right" style="margin-right: 2%;">
                         <span class="NormalCharacterStyle">ADD</span></button>
 
-                    <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;">Your Preferences</div>
+                    <div class="NormalCharacterStyle111 text-left" style="margin-top: 300px;padding-bottom: 5px;">Your Preferences</div>
                     <%--<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" ChildrenAsTriggers="true" runat="server"><ContentTemplate>--%>
 
                     <table class="my-table-fixed text-left css-serial">
@@ -237,25 +237,16 @@
                 </div>
             </div>
         </div>
+        <br />
+        <br />
 
         <h3 class="NormalCharacterStyle12">Your Choices</h3>
         <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
 
-
-        <br />
-
-
-        <asp:LinkButton type="button" runat="server" OnClick="next_click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
-
-
-
-        <br />
-        <br />
-        <br />
         <br />
         <asp:HiddenField ID="hf_UniID" Value="0" runat="server" />
     </div>
-    </div>
+
 
     <script type="text/javascript">
 
