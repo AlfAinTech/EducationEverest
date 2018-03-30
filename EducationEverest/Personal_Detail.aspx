@@ -1,15 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Personal_Detail.aspx.cs" Inherits="Personal_Detail" %>
 
-<%@ MasterType VirtualPath="~/Client.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="StatusBas" runat="Server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" runat="Server">
     <div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-   
-    <script src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/myScript.js"></script>--%>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <script type="text/javascript">
         function browse(e) {
 
@@ -26,7 +23,18 @@
             $("#prsonalDetail").addClass("NormalCharacterStyle22");
             $("#fileAdmission").addClass("NormalCharacterStyle18");
             document.getElementById("fileAdmission").click();
+            document.getElementById("menu_toggle").click();
         }
+        $('#menu_toggle').on('click', function () {
+            var iSelector = $(this).find('i:first');
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
         $('#nop').keydown(function () {
 
             //allow  backspace, tab, ctrl+A, escape, carriage return
@@ -125,7 +133,7 @@
                                 <div class="form">
                                     <input id="dob" class="input_DOB" type="date" name="dob" placeholder="Date of Birth" min="1980-01-01" max="2005-01-01" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvDOB" runat="server" ErrorMessage="Date of Birth is required" ValidationGroup="vgPersonalDetails" ControlToValidate="dob" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvDOB" runat="server" ErrorMessage="Date of Birth is required" Display="Dynamic" ValidationGroup="vgPersonalDetails" ControlToValidate="dob" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <asp:RangeValidator ID="rv1" runat="server" ErrorMessage="Date of birth should be between 1900 and 2006" ControlToValidate="dob" ValidationGroup="vgPersonalDetails" Type="Date" ForeColor="Red" Display="Dynamic" MinimumValue="01/01/1990" MaximumValue="01/01/2006"></asp:RangeValidator>
 
                                 </div>
@@ -163,7 +171,7 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggle" href="#contactinfo" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggle2" href="#contactinfo" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Contact Information

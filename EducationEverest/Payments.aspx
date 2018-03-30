@@ -57,6 +57,7 @@
                     </div>
                 </div>
             </div>
+            </a>
             <div style="padding-bottom: 3%">
                 <button type="button" class=" btn button_bg" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">Make Payment</span></button>
             </div>
@@ -336,6 +337,8 @@
                         $("#Payments").addClass("NormalCharacterStyle22");
                         $("#fileAdmission").addClass("NormalCharacterStyle18");
                         document.getElementById("fileAdmission").click();
+                        document.getElementById("menu_toggle").click();
+                        
                     }
                     $('#menu_toggle').on('click', function () {
                         var iSelector = $(this).find('i:first');
