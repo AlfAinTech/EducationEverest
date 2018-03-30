@@ -15,33 +15,27 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <img alt="Education Everest" src="images/Logo_1_.png" style="padding-top:2%">
+                <h1 style="font-family:'Raleway', sans-serif;  color: #ffcb28; font-size:24px; font-weight:600" >Education Everest</h1>
                 <h2 style="text-align:center; color: #ffcb28; border-bottom:1px solid grey; padding-bottom:1%;">
-                    Your Account has been Created
+                    {title}
                 </h2>
                 <p>
                     Hi
-                    <strong>Wajid Hussain</strong>
+                    <strong>{fullName}</strong>
                     <br>
-                    <br> We wanted to let you know that your account has been created. Click the link below to activate your profile. The following
-                    link will expire within 24 hours.
+                    <br> {body}
                 </p>
                 <p>
                     If you don't want to move forward, ignore this message.
                 </p>
                 <br>
-                <br>
-                <br>
-                <p>
-                    Click the following link to activate
-                    <a href="#">Link Here</a>
-                </p>
+                
                 <br>
                 <br>
                 <div class="text-center">
-                    <button type="button" class="btn-lg btn-primary" style="background-color:#2196F3 !important; border-color: #259AD1 !important">
-                        ACTIVATE ACCOUNT
-                    </button>
+                    <a type="button" class="btn-lg btn-primary" href={href} style="background-color:#2196F3 !important; border-color: #259AD1 !important">
+                        {ButtonText}
+                    </a>
                     <br>
                     <br>
                     <h1 style="font-family:'Dancing Script', cursive;  color: #ffcb28; font-size:50px">Thank You!</h1>

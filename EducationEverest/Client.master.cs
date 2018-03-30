@@ -60,9 +60,9 @@ public partial class Client : System.Web.UI.MasterPage
     protected void populateNotifications()
     {
         
-        if(db.SystemNotifications.Any(a => a.User_ID == current_user))
+        if(db.SystemNotifications.Any(a => a.User_ID == current_user && a.Read==false))
         {
-            List<SystemNotification> notifications = db.SystemNotifications.Where(a => a.User_ID == current_user).OrderBy(a => a.Read).ToList();
+            List<SystemNotification> notifications = db.SystemNotifications.Where(a => a.User_ID == current_user && a.Read==false).OrderByDescending(x => x.DateTime).ToList();
             lbl_Totalnotification.Text = notifications.Count(a => a.Read == false).ToString();
             rptr_Notifications.DataSource = notifications;
             rptr_Notifications.DataBind();
