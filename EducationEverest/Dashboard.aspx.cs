@@ -58,6 +58,7 @@ public partial class Dashboard : System.Web.UI.Page
            if(db.Applications.Any(a => a.UserID == current_user))
             {
                 div_CallOut.Style.Add("display", "none");
+                div_artWork.Style.Add("display", "none");
             }
         }
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
