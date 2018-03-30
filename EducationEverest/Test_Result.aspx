@@ -16,9 +16,15 @@
                         <div class="panel-heading" style="height: 60px">
                             <h4 class="panel-title">
                                 <div class="NormalCharacterStyle10 margin_top">
-                                    <asp:Label ID="Label12" runat="server" Text='<%#Eval("TestName")%>'></asp:Label><div class="icon-arrow-right pull-right">
-                                        <div class="check-"></div>
-                                        <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                                    <asp:Label ID="Label12" runat="server" Text='<%#Eval("TestName")%>'></asp:Label>
+                                    <div class="pull-right">
+                                        <img src="images/caution_icon.png" style="margin-right: 5px" />
+                                        <img src="images/check_icon.png" style="margin-right: 10px" />
+                                        <div class="icon-arrow-right pull-right">
+                                            <div class="check-"></div>
+                                            <i class="glyphicon glyphicon-chevron-down normal-color"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </h4>
 
@@ -28,9 +34,9 @@
                         <div class="panel-body">
                             <br />
 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5">
                                         <div class="form">
                                             <asp:DropDownList ID="select_board" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
 
@@ -72,7 +78,7 @@
                                             <asp:RequiredFieldValidator ID="rvYearPassing" runat="server" ErrorMessage="Please select Passing year" ValidationGroup="vgTestResults" ControlToValidate="year_of_passing" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form">
 
@@ -85,7 +91,7 @@
                                                 ErrorMessage="Please enter only numbers">
                                             </asp:RegularExpressionValidator>
 
-                                            </div>
+                                        </div>
                                     </div>
 
 
@@ -136,8 +142,8 @@
                                             <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
                                         </div>
                                     </div>
-                                    </div>
-                               
+                                </div>
+
                             </div>
 
 
@@ -151,7 +157,7 @@
 
         <br />
         <button type="button" onserverclick="save_click" class=" btn button_bg" validationgroup="vgTestResults" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
-        
+
     </div>
 
     <script type="text/javascript">

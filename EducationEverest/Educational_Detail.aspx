@@ -59,10 +59,13 @@
             <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
-                        <div class="NormalCharacterStyle10 margin_top">
-                            Matriculation/ O-Level<div class="icon-arrow-right pull-right">
-                                <div class="check-"></div>
-                                <i class="glyphicon glyphicon-chevron-down normal-color"></i>
+                        <div class="NormalCharacterStyle10 margin_top">Matriculation/O-Level
+                            <div class="pull-right">
+                            <img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>
+                            <div class="icon-arrow-right pull-right">
+                            <div class="check-"></div>
+                            <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
                             </div>
                         </div>
                     </h4>
@@ -183,10 +186,13 @@
             <a id="menu_toggle" href="#interpanel" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
-                        <div class="NormalCharacterStyle2 margin_top">
-                            Intermediate/A-Level<div class="icon-arrow-right pull-right">
-                                <div class="check-"></div>
-                                <i class="glyphicon glyphicon-chevron-down normal-color"></i>
+                        <div class="NormalCharacterStyle10 margin_top">Intermediate/A-Level
+                            <div class="pull-right">
+                            <img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>
+                            <div class="icon-arrow-right pull-right">
+                            <div class="check-"></div>
+                            <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
                             </div>
                         </div>
                     </h4>
