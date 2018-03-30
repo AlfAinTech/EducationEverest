@@ -74,6 +74,11 @@
         <AssociationConnector Association="EducationEverestModel.FK_TestResult_Document_Document" />
         <EntityTypeShape EntityType="EducationEverestModel.Personal_Details" Width="1.5" PointX="5.25" PointY="45.5" />
         <AssociationConnector Association="EducationEverestModel.FK__Personal___User___73BA3083" />
+        <EntityTypeShape EntityType="EducationEverestModel.App_Start" Width="1.5" PointX="5.25" PointY="58" />
+        <EntityTypeShape EntityType="EducationEverestModel.SystemNotification" Width="1.5" PointX="12.75" PointY="24.75" />
+        <AssociationConnector Association="EducationEverestModel.FK_App_Start_AspNetUsers1" />
+        <AssociationConnector Association="EducationEverestModel.FK__SystemNot__AppID__3A179ED3" />
+        <AssociationConnector Association="EducationEverestModel.FK__SystemNot__User___39237A9A" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
