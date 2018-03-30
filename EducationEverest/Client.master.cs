@@ -59,6 +59,7 @@ public partial class Client : System.Web.UI.MasterPage
     }
     protected void populateNotifications()
     {
+        
         if(db.SystemNotifications.Any(a => a.User_ID == current_user))
         {
             List<SystemNotification> notifications = db.SystemNotifications.Where(a => a.User_ID == current_user).OrderBy(a => a.Read).ToList();
@@ -70,6 +71,7 @@ public partial class Client : System.Web.UI.MasterPage
         {
             div_notfxnBell.Style.Add("display", "none");
             //no notification for you
+            div_noNotification.Style.Add("display", "block");
         }
         
     }

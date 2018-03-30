@@ -90,10 +90,10 @@
                     
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <div id="div_notfxnBell" runat="server">
+                            
                             <span class="alertNotificacao">
                                 <img src="images/bell.png" /></span>
-                            <span class='badgeAlert'><asp:Label runat="server"  ID="lbl_Totalnotification"></asp:Label></span></div>
+                            <div id="div_notfxnBell" runat="server"><span class='badgeAlert'><asp:Label runat="server"  ID="lbl_Totalnotification"></asp:Label></span></div>
                             <%--<span class="caret"></span>--%>
                         </a>
                         <ul class="list-notificacao dropdown-menu">
@@ -126,6 +126,25 @@
                             </li>
                             </ItemTemplate>
                             </asp:Repeater>
+                            <li>
+                                <div runat="server" class="media" id="div_noNotification" style="display:none;" >
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="/images/admin_icon.png" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <%--<div class='exclusaoNotificacao'>
+                                            <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
+                                        </div>--%>
+                                        <p class="media-heading" style="font-size: 11px">
+                                            <strong>No New Notifications</strong>
+
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                            </li>
                             </ul>
                            <%-- <li id='item_notification_2'>
                                 <div class="media">
