@@ -8,6 +8,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-center">
         <h3 class="NormalCharacterStyle12 text-left">My Applications</h3>
+            <div>
+                <img src="images/Dashboard.png" />
+                <h3 style="color:#a7a7a7">You have no admission applicaiton yet!</h3>
+            </div>
                 <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
             <div style="display:inline-block">
                 <asp:Button ID="btnFileAdmission" class=" btn File_Admission_btn NormalCharacterStyle pull-right" runat="server" Text="File Admission Application" OnClick="btnFileAdmission_Click" />
