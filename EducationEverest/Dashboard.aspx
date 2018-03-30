@@ -12,7 +12,7 @@
             <div style="display:inline-block">
                 <asp:Button ID="btnFileAdmission" class=" btn File_Admission_btn NormalCharacterStyle pull-right" runat="server" Text="File Admission Application" OnClick="btnFileAdmission_Click" />
             </div>
-            <div class="homecallout right" style="display:inline-block;margin-top: 0px;margin-right: 0px;">
+            <div class="homecallout right" id="div_CallOut" runat="server" style="display:inline-block;margin-top: 0px;margin-right: 0px;">
                 <p class="orange_text">No Admission File yet?</p>
                 <p class="panel_text">Click here to file a new admission application</p>
                 <br />

@@ -26,6 +26,7 @@
             $("#prsonalDetail").addClass("NormalCharacterStyle22");
             $("#fileAdmission").addClass("NormalCharacterStyle18");
             document.getElementById("fileAdmission").click();
+            document.getElementById("menu_toggle").click();
         }
         $('#nop').keydown(function () {
 
@@ -163,7 +164,7 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggle" href="#contactinfo" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggle2" href="#contactinfo" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Contact Information

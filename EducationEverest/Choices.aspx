@@ -666,6 +666,7 @@
             document.getElementById("fileAdmission").click();
             $("#fileAdmission").removeClass("NormalCharacterStyle25")
             $("#fileAdmission").addClass("NormalCharacterStyle18");
+            document.getElementById("menu_toggle").click();
         }
     </script>
 
