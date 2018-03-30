@@ -301,7 +301,7 @@
                 <div class="panel-body">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;B Form/CNIC of Student&nbsp;<span class="upload_documents_info">(Scanned Copy)</span></div>
+                            <div class="upload_documents_names1">&#9656;B Form/CNIC of Student&nbsp;<span class="upload_documents_info">(Scanned Copy)</span></div>
                             <asp:Repeater ID="studentCNICList" OnItemDataBound="studentCNICList_ItemDataBound" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -347,7 +347,7 @@
 
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Father CNIC&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Father CNIC&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="FatherCNICList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -393,7 +393,7 @@
 
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Father Income Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Father Income Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="FatherIncomeCertiList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -461,7 +461,7 @@
                 <div class="panel-body">
                     <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Matriculation/O-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Matriculation/O-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="MatricCertiList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -506,7 +506,7 @@
                     <br />
                     <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Intermediate/A-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Intermediate/A-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="InterCertiList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -579,7 +579,7 @@
                 <div class="panel-body">
                     <asp:Repeater runat="server" ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" OnItemCommand="TestResultDocList_ItemCommand">
                         <ItemTemplate>
-                            <div class="upload_documents_names">&#9656;<%# Eval("TestName")  %>&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;<%# Eval("TestName")  %>&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2" runat="server" id="documentDiv" visible="false">
                                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">

@@ -138,9 +138,9 @@
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                     <asp:Repeater ID="rptSearch" runat="server" OnItemDataBound="rptSearch_ItemDataBound" OnItemCommand="rptSearch_ItemCommand">
                         <ItemTemplate>
-                            
 
-                            <div class="panel panel-default panel_shadow results_cards" onclick="location.href='#'" style="cursor: pointer;">
+
+                            <div class="panel panel-default panel_shadow results_cards" onclick="location.href='#'" style="cursor: pointer; margin-bottom: 10px;">
 
                                 <div class="container-fluid row">
                                     <div class="col-md-2">
@@ -198,7 +198,7 @@
                                                     <asp:LinkButton ID="lb_UniversityPanel" runat="server" Text="Details" CommandName="Select" ClientIDMode="Static" CommandArgument='<%# Eval("University.id") %>' Style="float: right"></asp:LinkButton></span>--%>
                                         </div>
 
-                                        <div class="pull-right">
+                                        <div class="pull-right" style="font-weight: 600;">
                                             <span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212">
                                                 <asp:Label ID="lblDeadLine" runat="server" Text="Label"></asp:Label></span>
                                         </div>
@@ -223,7 +223,7 @@
 
 
                 </div>
-                                <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" id="dvUnivDetailsShow" runat="server" style="height: 100%">
+                <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" id="dvUnivDetailsShow" runat="server" style="height: 100%">
                     <div class="row" style="border-bottom: 1px solid #b3b3b3; padding-bottom: 4%">
                         <div class="col-md-2">
                             <asp:Image ID="Image2" runat="server" />

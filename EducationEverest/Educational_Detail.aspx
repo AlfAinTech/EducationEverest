@@ -122,7 +122,7 @@
                                     <asp:RequiredFieldValidator ID="rvSelectYear" runat="server" ErrorMessage="Please select Passing year" ValidationGroup="vgEducationalDetails" ControlToValidate="DropDownList2" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc3">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc2">
                                 <div class="form">
 
                                     <input class="inputs" maxlength="5" id="total_marks_matric" onchange="OnMatricMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />
@@ -250,7 +250,7 @@
                                     <asp:RequiredFieldValidator ID="rvSelectyearInter" runat="server" ErrorMessage="Please select Passing Year" ValidationGroup="vgEducationalDetails" ControlToValidate="DropDownList4" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc3">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc2">
                                 <div class="form">
 
                                     <input class="inputs" maxlength="5" id="total_marks_intermediate" onchange="OnintermediateMarksChange()" type="text" name="marks" placeholder="Total Marks" runat="server" />

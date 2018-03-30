@@ -8,6 +8,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-center">
         <h3 class="NormalCharacterStyle12 text-left">My Applications</h3>
+
+
             <div id="div_artWork" runat="server">
                 <img src="images/Dashboard.png" />
                 <h3 style="color:#a7a7a7">You have no admission applicaiton yet!</h3>
@@ -22,15 +24,10 @@
                 <br />
                 <a href="#" onclick="hideCallout()"><p class="pull-right" style="font-weight:600">GOT IT</p></a>
 
-            </div>
+
+        </div>
     </div>
 
-
-
-
-    <%--         <button type="button" class=" btn File_Admission_btn"><span class="NormalCharacterStyle">File Admission Application</span></button>--%>
-    
-    <%--</div>--%>
     <script type="text/javascript">
         function hideCallout() {
             document.getElementById("ContentPlaceHolder1_div_CallOut").style.display = "none";

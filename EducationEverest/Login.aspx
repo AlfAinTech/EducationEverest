@@ -44,7 +44,7 @@
             </div>
             <div class="row">
                 <div class="container-fluid text-left">
-                    <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="visibility:hidden;margin-top: 50px; background-color: #f01970 !important">
+                    <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="visibility:hidden;margin-top: 50px; background-color: #f01970 !important; padding-bottom: 7px;padding-top: 7px;">
                         <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: white; font-size: 14px"></span>
                         <span class="sr-only" style="color: white; font-size: 14px">Error:</span>
                         <span style="color: white; font-size: 16px">Wrong Email or Passowrd. Please provide valid ID details.</span>

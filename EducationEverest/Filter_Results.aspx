@@ -247,7 +247,7 @@
 
 
 
-                            <div class="panel panel-default panel_shadow results_cards" onclick="location.href='#'" style="cursor: pointer;">
+                            <div class="panel panel-default panel_shadow results_cards" onclick="location.href='#'" style="cursor: pointer;margin-bottom:10px;">
 
                                 <div class="container-fluid row">
                                     <div class="col-md-2">
@@ -305,7 +305,7 @@
                                                     <asp:LinkButton ID="lb_UniversityPanel" runat="server" Text="Details" CommandName="Select" ClientIDMode="Static" CommandArgument='<%# Eval("University.id") %>' Style="float: right"></asp:LinkButton></span>--%>
                                         </div>
 
-                                        <div class="pull-right">
+                                        <div class="pull-right" style="font-weight:600;">
                                             <span class="NormalCharacterStyle213">Apply Before:</span><span class="NormalCharacterStyle212">
                                                 <asp:Label ID="lblDeadLine" runat="server" Text="Label"></asp:Label></span>
                                         </div>
