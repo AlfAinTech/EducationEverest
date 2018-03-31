@@ -99,7 +99,7 @@ public partial class Personal_Detail : System.Web.UI.Page
                 ViewState["ImageName"] = FileUpload1.PostedFile.FileName;
             }
         }
-        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+        //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }
 
     protected void next_click(object sender, EventArgs e)

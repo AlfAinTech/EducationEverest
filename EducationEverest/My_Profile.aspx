@@ -256,8 +256,8 @@
     </div>
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 text-center" style="margin-top:30px; "> 
 <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<span class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a  class="link myprofile_tabs myprofile_tabs_padding1 active" data-toggle="tab" data-target="#apptab">My Applications</a></span>
-<span class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a  class="link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
+<span> <a  class="active col-lg-6 col-md-6 col-sm-6 col-xs-6 link myprofile_tabs myprofile_tabs_padding1" data-toggle="tab" data-target="#apptab">My Applications</a></span>
+<span><a  class="col-lg-6 col-md-6 col-sm-6 col-xs-6 link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
 </div>
 <br/><br/><br/><br/>
     <div class="tab-content">

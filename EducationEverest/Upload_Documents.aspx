@@ -12,7 +12,27 @@
                 $("#menu_togglePersonalDoc").click();
                 $("#fileAdmission").addClass("NormalCharacterStyle18");
                 document.getElementById("fileAdmission").click();
+                document.getElementById("menu_togglePersonalDoc").click();
             }
+            $(window).on('load', function () {
+
+                OpenCurrentPage();
+            });
+
+            $(document).ready(function () {
+                $('.menu_toggles').on('click', function () {
+
+                    var iSelector = $(this).find('i:first');
+                    if (iSelector.hasClass('glyphicon-chevron-down')) {
+                        iSelector.removeClass('glyphicon-chevron-down')
+                        iSelector.addClass('glyphicon-chevron-up')
+                    } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                        iSelector.removeClass('glyphicon-chevron-up')
+                        iSelector.addClass('glyphicon-chevron-down')
+                    }
+                });
+                //  OpenCurrentPage();
+            });
             function OpenEducationPanel() {
                 $("#Upload_Documents").addClass("NormalCharacterStyle24")
                 $("#Upload_Documents").removeClass("NormalCharacterStyle22");
@@ -281,7 +301,7 @@
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
         <h3 class="NormalCharacterStyle12">Upload Documents</h3>
         <div class="panel panel-default panel_shadow">
-            <a id="menu_togglePersonalDoc" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_togglePersonalDoc" class="menu_toggles" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Personal Documents
@@ -441,7 +461,7 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggleEducationalDoc" href="#Educational" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggleEducationalDoc" class="menu_toggles" href="#Educational" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Educational Details
@@ -559,7 +579,7 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggleTest" href="#Test" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggleTest" class="menu_toggles" href="#Test" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Test Result Documents

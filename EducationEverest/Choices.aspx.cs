@@ -71,7 +71,7 @@ public partial class Choices : System.Web.UI.Page
             populate_uni();
             
              current_user = HttpContext.Current.User.Identity.GetUserId();
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
         }
     }
 

@@ -8,18 +8,20 @@
     <asp:HiddenField ID="paymentAppID" runat="server" />
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
         <h3 class="NormalCharacterStyle12">Payments</h3>
-        <a id="menu_togglePersonalDoc" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+        
             <div class="panel panel-default panel_shadow">
+                <a id="menu_togglePersonalDoc" class="menu_toggles" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 50px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10">
                             Application Invoice<div class="icon-arrow-right pull-right">
                                 <div class="check-"></div>
-                                <a id="menu_toggle"><i class="glyphicon glyphicon-chevron-down normal-color" data-toggle="collapse" data-parent="#accordion" href="#collapse2"></i></a>
+                                <i class="glyphicon glyphicon-chevron-up normal-color" ></i>
                             </div>
                         </div>
                     </h4>
                 </div>
+                    </a>
                 <div id="collapse2" class="panel-collapse panel-heading collapse">
                     <div class="panel-body">
 
@@ -57,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            </a>
+            
             <div style="padding-bottom: 3%">
                 <button type="button" class=" btn button_bg" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">Make Payment</span></button>
             </div>
@@ -90,7 +92,7 @@
 
 
                             <a href="" data-toggle="tab" data-target="#easypaisatab">
-                                <div class="col-md-2" style="margin-left: 150px;">
+                                <div class="col-md-2" style="margin-left: 150px; box-shadow: 0px 0px 20px #999;">
                                     <div class="popup_cards2">
                                         <div class="easy_paisa_logo"></div>
                                         <br />
@@ -332,44 +334,27 @@
                         $("[id*=InvoicePayment]")[0].innerHTML = price;
 
                     }
-                    function OpenCurrentPage() {
-                        $("#Payments").removeClass("NormalCharacterStyle24")
-                        $("#Payments").addClass("NormalCharacterStyle22");
-                        $("#fileAdmission").addClass("NormalCharacterStyle18");
-                        document.getElementById("fileAdmission").click();
-                        document.getElementById("menu_toggle").click();
-                        
-                    }
-                    $('#menu_toggle').on('click', function () {
-                        var iSelector = $(this).find('i:first');
-                        if (iSelector.hasClass('glyphicon-chevron-down')) {
-                            iSelector.removeClass('glyphicon-chevron-down')
-                            iSelector.addClass('glyphicon-chevron-up')
-                        } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                            iSelector.removeClass('glyphicon-chevron-down')
-                            iSelector.addClass('glyphicon-chevron-down')
-                        }
+                    
+                    $(window).on('load',function () {
+
+                        OpenCurrentPage();
                     });
-                    $('#menu_toggle2').on('click', function () {
-                        var iSelector = $(this).find('i:first');
-                        if (iSelector.hasClass('glyphicon-chevron-down')) {
-                            iSelector.removeClass('glyphicon-chevron-down')
-                            iSelector.addClass('glyphicon-chevron-up')
-                        } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                            iSelector.removeClass('glyphicon-chevron-down')
-                            iSelector.addClass('glyphicon-chevron-down')
-                        }
+
+                    $(document).ready(function () {
+                        $('.menu_toggles').on('click', function () {
+
+                            var iSelector = $(this).find('i:first');
+                            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                                iSelector.removeClass('glyphicon-chevron-down')
+                                iSelector.addClass('glyphicon-chevron-up')
+                            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                                iSelector.removeClass('glyphicon-chevron-up')
+                                iSelector.addClass('glyphicon-chevron-down')
+                            }
+                        });
+                        //  OpenCurrentPage();
                     });
-                    $('#menu_toggle3').on('click', function () {
-                        var iSelector = $(this).find('i:first');
-                        if (iSelector.hasClass('glyphicon-chevron-down')) {
-                            iSelector.removeClass('glyphicon-chevron-down')
-                            iSelector.addClass('glyphicon-chevron-up')
-                        } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                            iSelector.removeClass('glyphicon-chevron-down')
-                            iSelector.addClass('glyphicon-chevron-down')
-                        }
-                    });
+                   
 
                     function OpenCurrentPage() {
                         $("#Payments").parent().addClass("selected_bg");
@@ -378,6 +363,7 @@
                         document.getElementById("fileAdmission").click();
                         $("#fileAdmission").removeClass("NormalCharacterStyle25")
                         $("#fileAdmission").addClass("NormalCharacterStyle18");
+                        document.getElementById("menu_togglePersonalDoc").click();
                     }
                 </script>
 

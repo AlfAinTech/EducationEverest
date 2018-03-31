@@ -48,6 +48,47 @@
             clickButton.click();
         }
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+
+            $('#fileAdmission').on('click', function () {
+                var iSelector = $(this).find('span:first');
+                
+
+                if (iSelector.hasClass('glyphicon-chevron-right')) {
+                    iSelector.removeClass('glyphicon-chevron-right hide-before')
+                    iSelector.addClass('glyphicon-chevron-up hide-before')
+                } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                    iSelector.removeClass('glyphicon-chevron-up hide-before')
+                    iSelector.addClass('glyphicon-chevron-right hide-before')
+                }
+            });
+
+        });
+        $('#applicationDashbord').on('click', function () {
+            var iSelector = $(this).find('i:first');
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+                
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
+        
+        $('#mypayments').on('click', function () {
+            var iSelector = $(this).find('i:first');
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
+    </script>
 </head>
 
 
@@ -233,7 +274,7 @@
 
                         
       <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25"><div>File Admission App<div class="pull-right"><span class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></div></a>
+    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25"><div>File Admission App<div class="pull-right"><span class="glyphicon glyphicon-chevron-right dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></div></a>
     <div class="collapse" id="clps2">
       <br/>
         <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail"><p>Personal Detail<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
@@ -271,39 +312,6 @@
                     <asp:HiddenField runat="server" ID="hf1" />
                     <asp:Button ID="btn_notfxn" runat="server" OnClick="btn_notfxn_Click" style="display:none;" />
     </form>
-    <script type="text/javascript">
-        $('#applicationDashbord').on('click', function () {
-            var iSelector = $(this).find('i:first');
-            if (iSelector.hasClass('glyphicon-chevron-down')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-up')
-                
-            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-down')
-            }
-        });
-        $('#fileAdmission').on('click', function () {
-            var iSelector = $(this).find(':first-child').find(':first-child');
-            
-            if (iSelector.hasClass('glyphicon-chevron-down ')) {
-                iSelector.removeClass('glyphicon-chevron-down hide-before')
-                iSelector.addClass('glyphicon-chevron-up hide-before')
-            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-up hide-before')
-                iSelector.addClass('glyphicon-chevron-down hide-before')
-            }
-        });
-        $('#mypayments').on('click', function () {
-            var iSelector = $(this).find('i:first');
-            if (iSelector.hasClass('glyphicon-chevron-down')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-up')
-            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-down')
-            }
-        });
-    </script>
+    
 </body>
 </html>
