@@ -87,9 +87,16 @@ public partial class Client : System.Web.UI.MasterPage
         {
             imgTickPersonalDetails.Visible = true;
         }
-        if (db.MakeChoices.Any(q => q.User_ID == current_user))
+        if (Request.QueryString["NA"] != null && Request.QueryString["NA"]=="true")
         {
-            imgTickChoices.Visible = true;
+            imgTickChoices.Visible = false;
+        }
+        else
+        {
+            if(db.MakeChoices.Any(q => q.User_ID == current_user))
+            {
+                imgTickChoices.Visible = true;
+            }
         }
         if (db.Matriculation_Education.Any(q => q.User_ID == current_user) && db.Intermediate_Education.Any(q => q.User_ID == current_user))
         {

@@ -306,8 +306,8 @@
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Personal Documents
                             <div class="pull-right">
-                            <img src="images/caution_icon.png"  style="margin-right:5px" />
-                            <img src="images/check_icon.png"   style="margin-right:10px"/>
+                            <%--<img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
@@ -466,8 +466,8 @@
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Educational Details
                             <div class="pull-right">
-                            <img src="images/caution_icon.png"  style="margin-right:5px" />
-                            <img src="images/check_icon.png"   style="margin-right:10px"/>
+                           <%-- <img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
@@ -584,8 +584,8 @@
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Test Result Documents
                             <div class="pull-right">
-                            <img src="images/caution_icon.png"  style="margin-right:5px" />
-                            <img src="images/check_icon.png"   style="margin-right:10px"/>
+                            <%--<img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>

@@ -20,6 +20,9 @@
 
         $(document).ready(function () {
 
+            $('#exampleModalCenter').on('hidden.bs.modal', function () {
+                location.reload();
+            })
             
             var count = 0;
 
@@ -437,12 +440,14 @@
             });
             //  OpenCurrentPage();
         });
+
+        
         
     </script>
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
         <h3 class="NormalCharacterStyle12">Make Choices</h3>
         <asp:HiddenField ID="HiddenField1" runat="server" />
-
+        Those universities will not appear for which deadline has passed.
 
         <div class="panel panel-default panel_shadow">
             <a id="menu_toggle" class="menu_toggles" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
@@ -541,7 +546,7 @@
                 </div>
             </div>
         </div>
-        <asp:LinkButton type="button" runat="server" OnClick="next_click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
+        <asp:LinkButton type="button" runat="server" OnClick="next_click" class=" btn button_bg" ><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
 
         <div class="modal fade" id="exampleModalCenter">
             <div class="modal-dialog">

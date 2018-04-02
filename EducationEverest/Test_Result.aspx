@@ -18,8 +18,8 @@
                                 <div class="NormalCharacterStyle10 margin_top">
                                     <asp:Label ID="Label12" runat="server" Text='<%#Eval("TestName")%>'></asp:Label>
                                     <div class="pull-right">
-                                        <img src="images/caution_icon.png" style="margin-right: 5px" />
-                                        <img src="images/check_icon.png" style="margin-right: 10px" />
+                                        <img id='<%# "imgCaution"+Container.ItemIndex %>'  src="images/caution_icon.png"   style="margin-right:5px;display:none;" />
+                                        <img id='<%# "imgSuccess"+Container.ItemIndex %>' src="images/check_icon.png"   style="margin-right:10px"/>
                                         <div class="icon-arrow-right pull-right">
                                             <div class="check-"></div>
                                             <i class="glyphicon glyphicon-chevron-up normal-color"></i>
@@ -49,7 +49,7 @@
                                                 </Items>
                                             </asp:DropDownList>
                                             <br />
-                                            <asp:RequiredFieldValidator ID="rvSelectBoard" runat="server" ErrorMessage="Please select Your Board/Institute" ValidationGroup="vgTestResults" ControlToValidate="select_board" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvSelectBoard" runat="server" ErrorMessage="Please select Your Board/Institute" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="select_board" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                         <div class="form">
                                             <asp:TextBox ID="roll_number" class="inputs" MaxLength="30" placeholder="Roll Number" runat="server"></asp:TextBox>
                                             <br />
-                                            <asp:RequiredFieldValidator ID="rvRollNo" runat="server" ErrorMessage="Roll Number is required" ValidationGroup="vgTestResults" ControlToValidate="roll_number" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvRollNo" runat="server" ErrorMessage="Roll Number is required" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="roll_number" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                         </div>
                                     </div>
@@ -75,7 +75,7 @@
                                                 </Items>
                                             </asp:DropDownList>
                                             <br />
-                                            <asp:RequiredFieldValidator ID="rvYearPassing" runat="server" ErrorMessage="Please select Passing year" ValidationGroup="vgTestResults" ControlToValidate="year_of_passing" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvYearPassing" runat="server" ErrorMessage="Please select Passing year" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="year_of_passing" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
 
@@ -84,9 +84,9 @@
 
                                             <asp:TextBox ID="total_marks" MaxLength="5" class="inputs" onchange="OnMarksChange(this)" Placeholder="Total Marks" runat="server"></asp:TextBox>
                                             <br />
-                                            <asp:RequiredFieldValidator ID="rvTotalMarks" runat="server" ErrorMessage="Total Marks required" ValidationGroup="vgTestResults" ControlToValidate="total_marks" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvTotalMarks" runat="server" ErrorMessage="Total Marks required" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="total_marks" ForeColor="Red"></asp:RequiredFieldValidator>
                                             <br />
-                                            <asp:RegularExpressionValidator ID="reTotalMarks" ControlToValidate="total_marks" ValidationGroup="vgTestResults"
+                                            <asp:RegularExpressionValidator ID="reTotalMarks" ControlToValidate="total_marks" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>'
                                                 runat="server" ValidationExpression="\d+" ForeColor="Red"
                                                 ErrorMessage="Please enter only numbers">
                                             </asp:RegularExpressionValidator>
@@ -99,14 +99,14 @@
                                         <div class="form">
                                             <asp:TextBox ID="obtained_marks" MaxLength="5" class="inputs" onchange="OnMarksChange(this)" Placeholder="Obtained Marks" runat="server"></asp:TextBox>
                                             <br />
-                                            <asp:RequiredFieldValidator ID="rvObtainedMarks" runat="server" ErrorMessage="Obtained Marks required" ValidationGroup="vgTestResults" ControlToValidate="obtained_marks" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvObtainedMarks" runat="server" ErrorMessage="Obtained Marks required" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="obtained_marks" ForeColor="Red"></asp:RequiredFieldValidator>
                                             <br />
-                                            <asp:RegularExpressionValidator ID="reObtainedMarks" ControlToValidate="obtained_marks" ValidationGroup="vgTestResults"
+                                            <asp:RegularExpressionValidator ID="reObtainedMarks" ControlToValidate="obtained_marks" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>'
                                                 runat="server" ValidationExpression="\d+" ForeColor="Red"
                                                 ErrorMessage="Please enter only numbers">
                                             </asp:RegularExpressionValidator>
                                             <br />
-                                            <asp:CompareValidator runat="server" ValidationGroup="vgTestResults" ID="cvobtainedmarks" ControlToValidate="obtained_marks" ControlToCompare="total_marks" Operator="LessThanEqual" Type="Integer" ErrorMessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
+                                            <asp:CompareValidator runat="server" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ID="cvobtainedmarks" ControlToValidate="obtained_marks" ControlToCompare="total_marks" Operator="LessThanEqual" Type="Integer" ErrorMessage="Obtained marks cannot be greater than total marks!" ForeColor="red" /><br />
 
                                             <%--<input class="inputs" type="text" name="obtained_marks" placeholder="Obtained Marks" >--%>
                                         </div>
@@ -118,9 +118,9 @@
                                             <%--<asp:TextBox ID="percentage" class="inputs" Placeholder="Percentage" runat="server"  ReadOnly="true"></asp:TextBox>--%>
                                             <input class="inputs" maxlength="5" id="percentage" type="text" name="percentage" placeholder="Percentage" runat="server" readonly="true" />
                                             <br />
-                                            <asp:RequiredFieldValidator ID="rvPercetage" runat="server" ErrorMessage="Percentage will be calculated automatically" ValidationGroup="vgTestResults" ControlToValidate="percentage" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvPercetage" runat="server" ErrorMessage="Percentage will be calculated automatically" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="percentage" ForeColor="Red"></asp:RequiredFieldValidator>
                                             <br />
-                                            <asp:RegularExpressionValidator ID="rePercentage" ControlToValidate="percentage" ValidationGroup="vgTestResults"
+                                            <asp:RegularExpressionValidator ID="rePercentage" ControlToValidate="percentage" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>'
                                                 runat="server" ValidationExpression="^[1-9]\d*(\.\d+)?$" ForeColor="Red"
                                                 ErrorMessage="numbers/decimals">
                                             </asp:RegularExpressionValidator>
@@ -137,7 +137,7 @@
                                             <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
                                             <asp:TextBox ID="division" MaxLength="6" class="inputs" Placeholder="Division" runat="server"></asp:TextBox>
                                             <br />
-                                            <asp:RequiredFieldValidator ID="rvDivision" runat="server" ErrorMessage="Division required" ValidationGroup="vgTestResults" ControlToValidate="division" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="rvDivision" runat="server" ErrorMessage="Division required" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="division" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                             <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
                                         </div>
@@ -156,11 +156,30 @@
         </asp:Repeater>
 
         <br />
-        <button type="button" onserverclick="save_click" class=" btn button_bg" validationgroup="vgTestResults" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
+        <button type="button" onserverclick="save_click" class=" btn button_bg" onclick="validatePage();" runat="server"><span class="NormalCharacterStyle">NEXT</span></button>
 
     </div>
 
     <script type="text/javascript">
+        function validatePage() {
+            if (typeof (Page_ClientValidate) == 'function') {
+                Page_ClientValidate();
+            }
+
+            if (!Page_IsValid) {
+                for(var i=0;i<10;i++){
+                if (Page_ClientValidate('vgTestResults'+i)) {
+                    document.getElementById('imgCaution'+i).style.display = 'none';
+                    document.getElementById('imgSuccess'+i).style.display = 'inline-block';
+                }
+            else {
+                document.getElementById('imgCaution'+i).style.display = 'inline-block';
+                document.getElementById('imgSuccess'+i).style.display = 'none';
+            }
+        }
+                return (Page_ClientValidate('vgTestResults1'));
+            }
+        }
 
         function OnMarksChange(textbox) {
             //var total = $("[id*=total_marks]")[0];

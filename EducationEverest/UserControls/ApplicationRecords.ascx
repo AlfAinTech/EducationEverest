@@ -1,4 +1,22 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ApplicationRecords.ascx.cs" Inherits="UserControls_ApplicationRecords" %>
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+        $('.viewbutton').on('click', function () {
+            if ($(this).text() == "VIEW") {
+                $(this).text('CLOSE');
+                $(this).css("font-weight", "Bold");
+            }
+            else {
+                $(this).text('VIEW');
+                $(this).css("font-weight", "Bold");
+            }
+            
+        });
+
+    });
+</script>
 <asp:Repeater ID="ApplicationsList" runat="server" OnItemDataBound="ApplicationsList_ItemDataBound">
     <ItemTemplate>
         <div class="panel panel-default ">
@@ -21,7 +39,7 @@
                     </div>
                 </div>
                 <div class="row" style="border-top: 1px solid #d0d0d0;">
-                    <a data-toggle="collapse" data-parent="#accordion" href='<%# "#details"+Container.ItemIndex %>' class="pull-right viewbutton margin_top" style="margin-right: 30px;"><b>VIEW</b></a>
+                    <a data-toggle="collapse"  data-parent="#accordion" href='<%# "#details"+Container.ItemIndex %>' class="pull-right viewbutton margin_top" style="margin-right: 30px;"><b>VIEW</b></a>
                 </div>
             </div>
             <div id='<%# "details"+Container.ItemIndex %>' class="panel-collapse collapse panel_shadow">

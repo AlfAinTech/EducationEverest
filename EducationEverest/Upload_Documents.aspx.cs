@@ -36,8 +36,12 @@ public partial class Upload_Documents : System.Web.UI.Page
         MatricCertiList.DataBind();
         InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti" && q.userID == current_user).ToList();
         InterCertiList.DataBind();
-        List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
-        TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
+        //List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
+        //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
+        //TestResultDocList.DataBind();
+
+        int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+        TestResultDocList.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
         TestResultDocList.DataBind();
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
@@ -222,7 +226,8 @@ public partial class Upload_Documents : System.Web.UI.Page
         if (e.Item.DataItem is UniversityProfile)
         {
             UniversityProfile dataItem = e.Item.DataItem as UniversityProfile;
-            TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID).FirstOrDefault();
+            List<int> docs = db.Documents.Where(a => a.userID == current_user).Select(a => a.id).ToList();
+            TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID && docs.Contains(q.documentID)).FirstOrDefault();
             
             if (td != null) {
                 e.Item.FindControl("documentDiv").Visible=true;
