@@ -26,7 +26,7 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
     public void BindData(string UserID)
     {
       
-        ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID).ToList();
+        ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID).OrderByDescending(u => u.id).ToList();
         ApplicationsList.DataBind();
     }
     protected void ApplicationsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
