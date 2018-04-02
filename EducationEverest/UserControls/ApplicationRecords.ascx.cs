@@ -25,10 +25,19 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
     }
     public void BindData(string UserID)
     {
-        int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+        if (Request.Url.ToString().Contains("Dashboard") || Request.Url.ToString().Contains("My_Profile"))
+        {
+            ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID).OrderByDescending(u => u.id).ToList();
+            ApplicationsList.DataBind();
 
-        ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();
-        ApplicationsList.DataBind();
+        }
+        else
+        {
+            int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+
+            ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();
+            ApplicationsList.DataBind();
+        }
     }
     protected void ApplicationsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
