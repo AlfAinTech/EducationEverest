@@ -37,7 +37,7 @@ public partial class Test_Result : System.Web.UI.Page
             panels();
             populate_panels();
         }
-        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+        //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }
 
 

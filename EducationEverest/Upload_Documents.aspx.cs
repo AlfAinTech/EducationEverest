@@ -20,7 +20,7 @@ public partial class Upload_Documents : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         { bindData();
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
         }
     }
 

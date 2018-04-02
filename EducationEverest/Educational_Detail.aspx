@@ -51,13 +51,32 @@
                 document.getElementById("fileAdmission").click();
                 document.getElementById("menu_toggle").click();
             }
+            $(window).load(function () {
+
+                OpenCurrentPage();
+            });
+
+            $(document).ready(function () {
+                $('.menu_toggles').on('click', function () {
+
+                    var iSelector = $(this).find('i:first');
+                    if (iSelector.hasClass('glyphicon-chevron-down')) {
+                        iSelector.removeClass('glyphicon-chevron-down')
+                        iSelector.addClass('glyphicon-chevron-up')
+                    } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                        iSelector.removeClass('glyphicon-chevron-up')
+                        iSelector.addClass('glyphicon-chevron-down')
+                    }
+                });
+                //  OpenCurrentPage();
+            });
         </script>
     </header>
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
         <h3 class="NormalCharacterStyle12">Educational Details</h3>
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggle" class="menu_toggles" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Matriculation/O-Level
@@ -66,7 +85,7 @@
                             <img src="images/check_icon.png"   style="margin-right:10px"/>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
-                            <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                            <i class="glyphicon glyphicon-chevron-up normal-color"></i></div>
                             </div>
                         </div>
                     </h4>
@@ -184,7 +203,7 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggle2" href="#interpanel" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggle2" class="menu_toggles" href="#interpanel" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Intermediate/A-Level

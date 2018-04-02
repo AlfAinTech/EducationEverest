@@ -64,7 +64,8 @@
                                 <div class="form">
                                     <asp:TextBox runat="server" ID="Email" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12" data-error="Bruh, that email address is invalid"
                                         placeholder="Email"></asp:TextBox>
-
+                                    <br />
+                                    <br />
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" ValidationGroup="loginForm" ErrorMessage="The User Name field is required."
                                         ForeColor="Red" Style="text-align: center; margin-top: 20px" />
                                 </div>
