@@ -300,7 +300,7 @@
                         </div>
 
                         <div class="dropdown" style="margin-bottom: 10px;">
-                            <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="Payments.aspx"><div>My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div></div>
+                            <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="My_Profile.aspx?pays=true"><div>My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div></div>
                             </a>
 
                         </div>
