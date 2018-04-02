@@ -40,8 +40,8 @@
     <div class="navbar-brand">
         <%-- <img src="Content/img/EducationEverestLogo.jpg" alt="Eduaction Everest" />--%>
     </div>
-    <div class="card card-login2 mx-auto mt-5" style="border:none;">
-        <div class="card-header" style="text-align: center; font-weight:600">Forgot Password</div>
+    <div class="card card-login2 mx-auto mt-5" style="border: none;">
+        <div class="card-header" style="text-align: center; font-weight: 600">Forgot Password</div>
         <div class="card-body">
             <asp:PlaceHolder runat="server" ID="status" Visible="false">
                 <p class="text-danger">
@@ -59,12 +59,17 @@
                             CssClass="text-danger" ErrorMessage="The Email field is required." ID="validator_Email" />
                     </div>
                 </div>
-                <div class="row" style="margin-top: 30px; margin-bottom: 40px;">
+                <div class="row" style="margin-top: 30px;">
                     <div class="col-md-12 text-center">
                         <asp:Button runat="server" OnClick="send_Click" Text="Send Email" CssClass="btn registration_btn" ID="send_btn" />
                         <%--<button class="btn btn-default">Reset Password Now</button>--%>
                     </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
+                        <%--<button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>--%>
+                        <asp:Button ID="Button1" class="btn registration_btn2" runat="server" OnClick="btn_register_Click" Text="LOGIN" Style="font-size: 16px;" />
+                    </div>
                 </div>
+
             </asp:Panel>
         </div>
     </div>
