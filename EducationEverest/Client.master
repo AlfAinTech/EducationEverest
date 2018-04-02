@@ -242,9 +242,9 @@
                             <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
             <li role="separator" class="profile_divider"></li>--%>
                             <%--<li><a href="Login.aspx"  class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>--%>
-                            <li>
+                            <li class="myprofile_dropdown_link">
                                 <asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
-                                        <i class="myprofile_dropdown_link NormalCharacterStyle24"></i>Logout
+                                        <i class=" NormalCharacterStyle24"></i>Logout
                                 </asp:LinkButton></li>
                         </ul>
                     </li>

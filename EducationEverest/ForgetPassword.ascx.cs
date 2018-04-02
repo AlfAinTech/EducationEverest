@@ -85,4 +85,8 @@ public partial class ForgetPassword : System.Web.UI.UserControl
             forget_panel.Visible = false;
         }
     }
+    protected void btn_register_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("../Login.aspx");
+    }
 }
