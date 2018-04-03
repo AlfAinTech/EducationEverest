@@ -1,16 +1,46 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Personal_Detail.aspx.cs" Inherits="Personal_Detail" %>
 
-<%@ MasterType VirtualPath="~/Client.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="StatusBas" runat="Server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" runat="Server">
     <div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%-- <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-   
-    <script src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/myScript.js"></script>--%>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <script type="text/javascript">
+        function validatePage() {
+            if (typeof (Page_ClientValidate) == 'function') {
+                Page_ClientValidate();
+            }
+            
+            if (!Page_IsValid) {
+                
+                if (Page_ClientValidate('vgPersonalDetails2')) {
+                    document.getElementById('imgCaution2').style.display = 'none';
+                    document.getElementById('imgSuccess2').style.display = 'inline-block';
+                }
+                else {
+                    document.getElementById('imgCaution2').style.display = 'inline-block';
+                    document.getElementById('imgSuccess2').style.display = 'none';
+                }
+                if (Page_ClientValidate('vgPersonalDetails')) {
+                    document.getElementById('imgCaution').style.display = 'none';
+                    document.getElementById('imgSuccess').style.display = 'inline-block';
+                }
+                else {
+                    document.getElementById('imgCaution').style.display = 'inline-block';
+                    document.getElementById('imgSuccess').style.display = 'none';
+                }
+                return (Page_ClientValidate('vgPersonalDetails2') && Page_ClientValidate('vgPersonalDetails'));
+            }
+        }
+        $(function () {
+            var links = $('a.link').click(function () {
+                links.removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+
         function browse(e) {
 
             document.getElementById('<%= FileUpload1.ClientID %>').click();
@@ -26,7 +56,45 @@
             $("#prsonalDetail").addClass("NormalCharacterStyle22");
             $("#fileAdmission").addClass("NormalCharacterStyle18");
             document.getElementById("fileAdmission").click();
+            document.getElementById("menu_toggle").click();
         }
+
+        $(window).load(function () {
+
+            OpenCurrentPage();
+        });
+
+        $(document).ready(function () {
+            $('.menu_toggles').on('click', function () {
+                
+                var iSelector = $(this).find('i:first');
+                if (iSelector.hasClass('glyphicon-chevron-down')) {
+                    iSelector.removeClass('glyphicon-chevron-down')
+                    iSelector.addClass('glyphicon-chevron-up')
+                } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                    iSelector.removeClass('glyphicon-chevron-up')
+                    iSelector.addClass('glyphicon-chevron-down')
+                }
+            });
+            //  OpenCurrentPage();
+            var tryNumber = 0;
+            $('btn').click(function (event) {
+                var self = $(this);
+
+                if (self.closest('form').valid()) {
+                    if (tryNumber > 0) {
+                        tryNumber++;
+                        alert('Your form has been already submited. wait please');
+                        return false;
+                    }
+                    else {
+                        tryNumber++;
+                    }
+                };
+            });
+        });
+        
+        
         $('#nop').keydown(function () {
 
             //allow  backspace, tab, ctrl+A, escape, carriage return
@@ -43,18 +111,25 @@
                 $(this).val($(this).val() + '-');
             //alert("Hello! I am an alert box!");
         });
+        
+
     </script>
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
         <h3 class="NormalCharacterStyle12">Personal Details</h3>
         <%--<p class="NormalCharacterStyle11">BlhalBadof </p>--%>
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggle" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggle" class="menu_toggles" href="#collapse2" data-toggle="collapse"  data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
-                        <div class="NormalCharacterStyle10 margin_top">Personal Information<div class="icon-arrow-right pull-right">
+                        <div class="NormalCharacterStyle10 margin_top">Personal Information
+                            <div class="pull-right">
+                            <img id="imgCaution" src="images/caution_icon.png"   style="margin-right:5px;display:none;" />
+                            <img id="imgSuccess" src="images/check_icon.png"   style="margin-right:10px"/>
+                            <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                            </div>
                         </div>
                     </h4>
 
@@ -118,10 +193,10 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
-                                    <input id="dob" class="input_DOB" type="date" name="dob" placeholder="Date of Birth" min="1980-01-01" max="2005-01-01" runat="server" />
+                                    <input id="dob" class="input_DOB" type="date" name="dob" placeholder="Date of Birth" min="1990-01-01" max="2005-01-01" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvDOB" runat="server" ErrorMessage="Date of Birth is required" ValidationGroup="vgPersonalDetails" ControlToValidate="dob" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <asp:RangeValidator ID="rv1" runat="server" ErrorMessage="Date of birth should be between 1900 and 2006" ControlToValidate="dob" ValidationGroup="vgPersonalDetails" Type="Date" ForeColor="Red" Display="Dynamic" MinimumValue="01/01/1990" MaximumValue="01/01/2006"></asp:RangeValidator>
+                                    <asp:RequiredFieldValidator ID="rvDOB" runat="server" ErrorMessage="Date of Birth is required" Display="Dynamic" ValidationGroup="vgPersonalDetails" ControlToValidate="dob" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RangeValidator ID="rv1" runat="server" ErrorMessage="Date of birth should be between 1990 and 2006" ControlToValidate="dob" ValidationGroup="vgPersonalDetails" Type="Date" ForeColor="Red" Display="Dynamic" MinimumValue="01/01/1990" MaximumValue="01/01/2006"></asp:RangeValidator>
 
                                 </div>
                             </div>
@@ -605,15 +680,7 @@
     <asp:ListItem Value="ZW">Zimbabwe</asp:ListItem>
 
 </asp:DropDownList>
-                               <%-- <div class="form">
-                                    <input id="nationality" maxlength="20" class="input_nationality" type="text" name="nationality" placeholder="Nationality" runat="server" />
-                                    <br />
-                                    <asp:RequiredFieldValidator ID="rvNationality" runat="server" ErrorMessage="Nationality is required" ValidationGroup="vgPersonalDetails" ControlToValidate="nationality" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <br />
-                                    <asp:RegularExpressionValidator ID="reNationality" runat="server" ControlToValidate="nationality" ValidationGroup="vgPersonalDetails"
-                                        ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in Nationality field" ForeColor="Red" />
 
-                                </div>--%>
                             </div>
 
 
@@ -636,10 +703,17 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggle" href="#contactinfo" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggle2" class="menu_toggles" href="#contactinfo"  data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
-                        <div class="NormalCharacterStyle2 margin_top">Contact Information<div class="icon-arrow-right pull-right"><span class="check_icon" style="visibility: hidden"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                        <div class="NormalCharacterStyle10 margin_top">Contact Information
+                            <div class="pull-right">
+                            <img src="images/caution_icon.png" id="imgCaution2" style="margin-right:5px;display:none;" />
+                            <img src="images/check_icon.png" id="imgSuccess2"   style="margin-right:10px"/>
+                            <div class="icon-arrow-right pull-right">
+                            <div class="check-"></div>
+                            <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                            </div>
                         </div>
                     </h4>
 
@@ -654,7 +728,7 @@
                                 <div class="form">
                                     <input id="current_address" maxlength="300" class="input_name" type="text" name="Caddress" placeholder="Current Address" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvCurrentAddress" runat="server" ErrorMessage="Current Address is required" ValidationGroup="vgPersonalDetails" ControlToValidate="current_address" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvCurrentAddress" runat="server" ErrorMessage="Current Address is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="current_address" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                 </div>
                             </div>
@@ -663,7 +737,7 @@
                                 <div class="form">
                                     <input id="permanent_address" maxlength="300" class="input_father_name" type="text" name="Padress" placeholder="Permanent Address" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvPermanentAddress" runat="server" ErrorMessage="Permanent Address is required" ValidationGroup="vgPersonalDetails" ControlToValidate="permanent_address" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvPermanentAddress" runat="server" ErrorMessage="Permanent Address is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="permanent_address" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                 </div>
                             </div>
@@ -672,9 +746,9 @@
                                 <div class="form">
                                     <input id="email" class="input_CNIC_no" type="text" name="Email" placeholder="Email" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvEmail" runat="server" ErrorMessage="Email is required" ValidationGroup="vgPersonalDetails" ControlToValidate="email" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvEmail" runat="server" ErrorMessage="Email is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="email" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <asp:RegularExpressionValidator ID="reEmail" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="email" ValidationGroup="vgPersonalDetails" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="reEmail" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="email" ValidationGroup="vgPersonalDetails2" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
@@ -683,10 +757,10 @@
                                 <div class="form">
                                     <input id="landline" maxlength="11" class="input_father_CINC_no" type="text" name="Phone_Landline" placeholder="Phone Landline" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvLandline" runat="server" ErrorMessage="Landline number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvLandline" runat="server" ErrorMessage="Landline number is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="landline" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
                                     <%--<asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>--%>
-                                   <asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
+                                   <asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails2" ControlToValidate="landline" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
@@ -694,9 +768,9 @@
                                 <div class="form">
                                     <input id="phone" maxlength="11" class="input_DOB" type="text" name="Yphone" placeholder="Phone (Your Phone)" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvPhone" runat="server" ErrorMessage="Mobile number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="phone" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvPhone" runat="server" ErrorMessage="Mobile number is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="phone" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <asp:RegularExpressionValidator ID="rePhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="phone" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="rePhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails2" ControlToValidate="phone" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
 
                                 </div>
                             </div>
@@ -705,9 +779,9 @@
                                 <div class="form">
                                     <input id="father_phone" maxlength="11" class="input_nationality" type="text" name="Fphone" placeholder="Phone (Father)" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvFatherPhone" runat="server" ErrorMessage="Father's Mobile number is required" ValidationGroup="vgPersonalDetails" ControlToValidate="father_phone" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvFatherPhone" runat="server" ErrorMessage="Father's Mobile number is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="father_phone" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <asp:RegularExpressionValidator ID="reFatherPhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="father_phone" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
+                                    <asp:RegularExpressionValidator ID="reFatherPhone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails2" ControlToValidate="father_phone" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
 
 
                                 </div>
@@ -716,10 +790,10 @@
                                 <div class="form">
                                     <input id="zip" maxlength="10" class="input_DOB" type="text" name="Zcode" placeholder="Zip Code/Postal Code" runat="server" />
                                     <br />
-                                    <asp:RequiredFieldValidator ID="rvZip" runat="server" ErrorMessage="ZIP/Postal Code is required" ValidationGroup="vgPersonalDetails" ControlToValidate="zip" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rvZip" runat="server" ErrorMessage="ZIP/Postal Code is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="zip" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
                                     <asp:RegularExpressionValidator ID="reZip"
-                                        ControlToValidate="zip" ValidationGroup="vgPersonalDetails"
+                                        ControlToValidate="zip" ValidationGroup="vgPersonalDetails2"
                                         ValidationExpression="\d+"
                                         Display="Static" ForeColor="Red"
                                         EnableClientScript="true"
@@ -737,7 +811,7 @@
 
 
         <br />
-        <button type="button" onserverclick="next_click" class=" btn button_bg" runat="server" validationgroup="vgPersonalDetails"><span class="NormalCharacterStyle">NEXT</span></button>
+        <button type="button" id="btn" onserverclick="next_click" class=" btn button_bg" runat="server"  onclick="validatePage();" ><span class="NormalCharacterStyle">NEXT</span></button>
     </div>
 
 

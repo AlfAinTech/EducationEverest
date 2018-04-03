@@ -363,133 +363,146 @@
   <div class="text-center NormalCharacterStyle12">Create Account</div>
 
   <br/>
- <form id="form" runat="server">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <br />
+                <form id="form" runat="server">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
      <asp:Label ID="lblDuplicateID" runat="server" Font-Bold="True" ForeColor="Red" Text="This Email ID is already registered, Please choose different ID" Visible="False"></asp:Label>
-     <br/>
-<div class="col-md-6">
-   
-        <asp:TextBox ID="fName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="First Name"></asp:TextBox>
-        <br />     <asp:RequiredFieldValidator ID="fNameRequired" ValidationGroup="vgRegister" runat="server" ErrorMessage="First Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>
+                    <br />
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-</div>
-   
+                        <asp:TextBox ID="fName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="First Name"></asp:TextBox>
+                        <br />
+                        <asp:RequiredFieldValidator ID="fNameRequired" runat="server" ErrorMessage="First Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>
 
-
-<div class="col-md-6">
-   
-        <asp:TextBox ID="lName" MaxLength="20" runat="server" class="student_reg_inputs"   placeholder="Last Name" ></asp:TextBox>
-      <br />   <asp:RequiredFieldValidator ID="lNameRequired" ValidationGroup="vgRegister" runat="server" ErrorMessage="Last Name is required" ControlToValidate="lName" ForeColor="Red" ></asp:RequiredFieldValidator>
-
-   
-</div>
-     
-     
-     <br /> <br />  <asp:RegularExpressionValidator ID="reFName" runat="server" ControlToValidate="fName" ValidationGroup="vgRegister"
-    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as First Name "  ForeColor="Red"/>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <asp:RegularExpressionValidator ID="reLName" runat="server" ControlToValidate="lName" ValidationGroup="vgRegister"
-    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as Last Name "  ForeColor="Red"/>
+                    </div>
 
 
 
-<br/><br/>
-<div class="col-md-12">
-    <div class="form">
-        <asp:TextBox ID="Email" runat="server" class="student_reg_inputs" placeholder="Email"></asp:TextBox>
-    </div>
-    <br />
-            <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ValidationGroup="vgRegister" ErrorMessage="Email is Required" ControlToValidate="Email" ForeColor="Red"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" ValidationGroup="vgRegister" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding-left: 0px; padding-right: 30px;">
 
-</div>
-
-<br/><br/><br/><br/>
-<div class="col-md-12">
-    <div class="form">
-        <asp:TextBox ID="password" runat="server" class="student_reg_inputs" placeholder="Password" TextMode="Password"></asp:TextBox>
-    </div>
-    <br />
-            <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ValidationGroup="vgRegister" ErrorMessage="Password is Required" ControlToValidate="password" ForeColor="Red"></asp:RequiredFieldValidator>
-       <br /> <asp:regularexpressionvalidator display="Dynamic" ValidationGroup="vgRegister" id="RegularExpressionValidator1"  errormessage="Password must be minimum 6 characters long  at least  one upper case and one special character " forecolor="Red" validationexpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" controltovalidate="password" runat="server"></asp:regularexpressionvalidator>
-
-</div>
-
-<br/><br/><br/><br/>
-<div class="col-md-12">
-    <div class="form">
-        <asp:TextBox ID="confirmPassword" runat="server" class="student_reg_inputs" placeholder="Confirm Password" TextMode="Password"></asp:TextBox>
-    </div>
-    <br />
-            <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" ValidationGroup="vgRegister" runat="server" ErrorMessage="Confirm is Required" ControlToValidate="confirmPassword" ForeColor="Red"></asp:RequiredFieldValidator>
-        <asp:CompareValidator ID="CompareValidator1" runat="server" ValidationGroup="vgRegister" ControlToCompare="password" ControlToValidate="confirmPassword" ErrorMessage="Both passwords must match" ForeColor="Red"></asp:CompareValidator>
-
-</div>
-
-<br/><br/><br/><br/>
-<div class="col-md-12">
-    <div class="form">
-        <asp:TextBox ID="phone" MaxLength="11" runat="server" class="student_reg_inputs"  placeholder="Phone" ></asp:TextBox>
-        
-    </div>
-    <br />
-            <asp:RequiredFieldValidator ID="PhoneRequired" runat="server" ValidationGroup="vgRegister" ErrorMessage="Phone Number is Required" ControlToValidate="phone" ForeColor="Red"></asp:RequiredFieldValidator>
-<%--        <asp:RegularExpressionValidator ID="RegularExpressionphone" ValidationGroup="vgRegister" runat="server" ErrorMessage="Please Enter Valid Phone Number" ControlToValidate="phone" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>--%>
-        <asp:RegularExpressionValidator ID="RegularExpressionphone" ValidationGroup="vgRegister" runat="server" ErrorMessage="Please Enter Valid Phone Number" ControlToValidate="phone"  ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
-
-</div>
-
-<br/><br/><br/><br/>
-<div class="col-md-12">
-    <div class="form">
-        <asp:TextBox ID="city" runat="server" class="student_reg_inputs"  placeholder="City"></asp:TextBox>
-    </div>
-    <br />
-            <asp:RequiredFieldValidator ID="CityRequired" runat="server" ValidationGroup="vgRegister" ErrorMessage="City is Required" ControlToValidate="city" ForeColor="Red"></asp:RequiredFieldValidator>
-    <br />  <asp:RegularExpressionValidator ID="reCity" runat="server" ValidationGroup="vgRegister" ControlToValidate="city" 
-    ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in City field"  ForeColor="Red"/>
-
-</div>
-
-<br/><br/><br/><br/>
-     
-<%--<asp:CheckBox ID="CheckBox1" runat="server"  class="check_box" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>--%>
- <div class ="col-md-12">
-     <asp:CheckBox ID="CheckBox1" runat="server"  style="height:100px; width:100px" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>
- </div>
-     <div class="col-md-12">
-         <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="I agree to <i>terms and conditions</i>" Visible="False"></asp:Label>
-     </div>
-    
+                        <asp:TextBox ID="lName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="Last Name"></asp:TextBox>
+                        <br />
+                        <asp:RequiredFieldValidator ID="lNameRequired" runat="server" ErrorMessage="Last Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>
 
 
-<br/><br/>
-     
-     <br/><br/>
+                    </div>
+                    <asp:RegularExpressionValidator ID="reFName" runat="server" ControlToValidate="fName"
+                        ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as First Name " ForeColor="Red" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <asp:RegularExpressionValidator ID="reLName" runat="server" ControlToValidate="lName"
+                        ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as Last Name " ForeColor="Red" />
 
-      <div class="col-md-12">
-          <asp:Button ID="Button1" runat="server" Text="Register" ValidationGroup="vgRegister" class=" btn registration_btn NormalCharacterStyle" OnClientClick="gettingRegistered()"   OnClick="CreateUser_Click" /> <span class="NormalCharacterStyle"></span> 
-      </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form">
+                            <asp:TextBox ID="Email" runat="server" class="student_reg_inputs" placeholder="Email"></asp:TextBox>
+                        </div>
+                        <br />
+                        <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ErrorMessage="Email is Required" ControlToValidate="Email" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
+
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form">
+                            <asp:TextBox ID="password" runat="server" class="student_reg_inputs" placeholder="Password" TextMode="Password"></asp:TextBox>
+                        </div>
+                        <br />
+                        <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ErrorMessage="Password is Required" ControlToValidate="password" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
+                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" ErrorMessage="Password must be minimum 6 characters long  at least  one upper case and one special character " ForeColor="Red" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" ControlToValidate="password" runat="server"></asp:RegularExpressionValidator>
+
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form">
+                            <asp:TextBox ID="confirmPassword" runat="server" class="student_reg_inputs" placeholder="Confirm Password" TextMode="Password"></asp:TextBox>
+                        </div>
+                        <br />
+                        <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ErrorMessage="Confirm is Required" ControlToValidate="confirmPassword" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="password" ControlToValidate="confirmPassword" ErrorMessage="Both passwords must match" ForeColor="Red"></asp:CompareValidator>
+
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form">
+                            <asp:TextBox ID="phone" MaxLength="15" runat="server" class="student_reg_inputs" placeholder="Phone"></asp:TextBox>
+
+                        </div>
+                        <br />
+                        <asp:RequiredFieldValidator ID="PhoneRequired" runat="server" ErrorMessage="Phone Number is Required" ControlToValidate="phone" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionphone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ControlToValidate="phone" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="form">
+                            <asp:TextBox ID="city" runat="server" class="student_reg_inputs" placeholder="City"></asp:TextBox>
+                        </div>
+                        <br />
+                        <asp:RequiredFieldValidator ID="CityRequired" runat="server" ErrorMessage="City is Required" ControlToValidate="city" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
+                        <asp:RegularExpressionValidator ID="reCity" runat="server" ControlToValidate="city"
+                            ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets are allowed in City field" ForeColor="Red" />
+
+                    </div>
+
+                    <%--<asp:CheckBox ID="CheckBox1" runat="server"  class="check_box" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>--%>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <asp:CheckBox ID="CheckBox1" runat="server" Style="height: 100px; width: 100px" /><label class="checkbox-inline NormalCharacterStyle112" style="margin-left: 10px;"> <span>&nbsp;&nbsp;&nbsp;I agree to the <i>Terms and Conditions</i></span></label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="I agree to <i>terms and conditions</i>" Visible="False"></asp:Label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
+                        <asp:Button ID="Button1" runat="server" Text="REGISTER" class=" btn registration_btn NormalCharacterStyle" OnClientClick="gettingRegistered()" OnClick="CreateUser_Click" />
+                        <span class="NormalCharacterStyle"></span>
+                    </div>
 
 
- 
-<br/><br/>
+                </form>
+                <br />
+                <br />
 
 
 
-     <div class="NormalCharacterStyle7 col-md-12" style="margin-left:150px"><br/> Already have an account?&nbsp; <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
+                <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mybspc3" >
+                    <br />
+                    Already have an account?&nbsp;
+                    <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
 
-     </div>
+                </div>
+                <div class=" myspc3 NormalCharacterStyle7 text-center">OR</div>
+               
+                
+                <br />
+                <div class="NormalCharacterStyle12 text-center">SignUp with</div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                         <a href="#">
+                             <img src="../images/facebook_icon.png" / class="pull-right">
+                         </a>
+                        <%--<a href="">
+                        <fb:login-button scope="public_profile,email" class="pull-right" style="background-repeat: no-repeat; position: absolute; padding-top: 15px" onlogin="checkLoginState();">
+</fb:login-button> </a>--%>
+                    </div>
+                    <div class="col-md-6">
+                       <a href="#">
+                           <img src="../images/google_icon.png" />
+                        </a>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="col-md-3"></div>
+
+
+        </div>
+
+        </div>
+
 <br/>
-      
- <%--<button type="button" class=" btn register_button_bg" ><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">Sign in</span></a></button>--%>
-<br/><br/><br/>
-           
-
-
-<div class="NormalCharacterStyle7" style="margin-left: 280px;">OR</div>
-<br/>
-<div class="NormalCharacterStyle12" style="margin-left: 240px;">SignUp with</div>
-<br/>
+     
 <div style="margin-left: 115px;" >
     
  
@@ -500,6 +513,7 @@
     <br /> <br /> <br /> <br />
 
     <div id="my-signin2"></div>
+    </div>
   <script>
     function onSuccess(googleUser) {
         console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -523,24 +537,7 @@
 
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
-   
-    <%-- <div> <a ><span id="btn-gp" class="g-signin2" data-width="350" data-onsuccess="onSignIn" data-theme="light"></span></a></div>--%>
-   <%-- <a ><span class="google_icon" style="margin-left: 80px;"></span></a>--%>
-
-
- </form>
-     <div id="status" style="display:none">
-    <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-
-</div>
-
-<br/><br/><br/><br/>
-           </div>
-        <div class="col-md-3"></div>
-      
-
-   </div>
-    </div>
+ 
      <button onclick="logOut()">Log Out of Facebook</button>
     <a href="#" onclick="signOut();">Sign out</a>
 <script>

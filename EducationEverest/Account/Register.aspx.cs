@@ -100,13 +100,16 @@ public partial class Account_Register : Page
 
         using (MailMessage mm = new MailMessage(EEUtil.FromEmail, Email.Text))  //here ID changed 02-feb-18
         {
+            UserProfile up = db.UserProfiles.Where(a => a.AspNetUserID == userId).First();
             mm.Subject = "Account Activation";
-            string body = "Hello " + Email.Text.Trim() + ",";
-            body += "<br /><br />Please click the following link to activate your account";
-            body += "<br /><a href = '" + "http://"+Request.Url.Authority+"/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
-            body += "<br /><br />Thanks";
-            body += "<br />Team Education Everest";
-            mm.Body = body;
+            string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+            Body = Body.Replace("{title}", "Your Account has been Created");
+            Body = Body.Replace("{fullName}", up.FirstName + " " +up.LastName);
+            Body = Body.Replace("{body}", "we wanted to let you know that your profile has been created.Click the link below to activate your profile.");
+            Body = Body.Replace("{ButtonText}", "" + "Activate Account");
+            Body = Body.Replace("{href}", "" + "http://" + Request.Url.Authority + "/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "");
+
+            mm.Body = Body;
             mm.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
@@ -142,15 +145,15 @@ public partial class Account_Register : Page
                 using (MailMessage mm = new MailMessage(EEUtil.FromEmail, email))  //here ID changed 02-feb-18
                 {
                     mm.Subject = "Complete Your Account Registration";
-                    string body = "Hello " + email.Trim() + ",";
-                     body += "<br /><br />Click on the following link to complete your registration at Education Everest, in case of any issue, let us know";
-                    body += "<br /><a href = '" + "http://" + HttpContext.Current.Request.Url.Authority + "/Account/Register.aspx"+""+ "'>Click here to complete your registration.</a>";
-                    //body = body.Replace("{DynamicContent}", "http://localhost:65465/Register.aspx");
-                    //body += "<br /><a href = '" + "http://" + Request.Url.Authority + "/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
+                    string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+                    Body = Body.Replace("{title}", "Complete Your Account Registration");
+                    Body = Body.Replace("{fullName}", incompleteform_email);
+                    Body = Body.Replace("{body}", "Click on the following link to complete your registration at Education Everest, in case of any issue, let us know");
+                    Body = Body.Replace("{ButtonText}", "" + "Register");
+                    Body = Body.Replace("{href}", "" + "http://" + HttpContext.Current.Request.Url.Authority + "/Account/Register.aspx" + "" + "");
 
-                    body += "<br /><br />Thanks";
-                    body += "<br />Team Education Everest";
-                    mm.Body = body;
+                    
+                    mm.Body = Body;
                     mm.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";

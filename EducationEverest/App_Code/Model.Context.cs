@@ -55,4 +55,6 @@ public partial class EducationEverestEntities : DbContext
     public virtual DbSet<TestResult_Document> TestResult_Document { get; set; }
     public virtual DbSet<Document> Documents { get; set; }
     public virtual DbSet<Personal_Details> Personal_Details { get; set; }
+    public virtual DbSet<App_Start> App_Start { get; set; }
+    public virtual DbSet<SystemNotification> SystemNotifications { get; set; }
 }

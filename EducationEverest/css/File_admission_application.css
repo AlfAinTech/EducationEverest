@@ -128,6 +128,10 @@
     -webkit-border-radius: 2px;
     filter: alpha(opacity=88) progid:DXImageTransform.Microsoft.Alpha(opacity=88);
 }
+.button_bg:hover{
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75) !important;
+    color: white !important;
+}
 
 .Logo_1_ {
     background-image: url(../images/Logo_1_.png);
@@ -341,6 +345,7 @@
 .NormalCharacterStyle12 {
     font-family: Raleway;
     font-size: 18px;
+    font-weight: 600 !important;
     line-height: 22px;
     color: #FF9800;
     color: rgb(255, 152, 0);
@@ -366,7 +371,7 @@
 
 .NormalCharacterStyle10 {
     font-family: Raleway;
-    font-size: 21px;
+    font-size: 18px;
     line-height: 22px;
     color: #2196F3;
     color: rgb(33, 150, 243);
@@ -698,6 +703,9 @@
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
 }
+.button_bg_1_:hover{
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75) !important;
+}
 
 .NormalCharacterStyle_new1 {
     font-family: Raleway;
@@ -859,7 +867,7 @@
 
 .orange_text {
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 22px;
     vertical-align: super;
@@ -868,7 +876,7 @@
 
 .red_text {
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 22px;
     vertical-align: super;
@@ -877,7 +885,7 @@
 
 .green_text {
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 22px;
     vertical-align: super;
@@ -886,7 +894,7 @@
 
 .panel_text {
     font-family: Raleway;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 22px;
     vertical-align: super;
     color: #999999;
@@ -954,6 +962,14 @@
     color: #666666;
     color: rgb(102, 102, 102);
 }
+.upload_documents_names1 {
+    font-family: Raleway;
+    font-size: 17px;
+    color: #666666;
+    color: rgb(102, 102, 102);
+    font-weight:600;
+}
+
 
 .upload_documents_info {
     font-family: Raleway;
@@ -1014,6 +1030,14 @@ a:hover {
 }
 
 .pop_bg {
+    background: #E6E6E6;
+    background: rgba(230, 230, 230, 1);
+    position: absolute;
+    width: 700px;
+    height: 625px;
+    top: 10px;
+}
+.pop_bg1 {
     background: #E6E6E6;
     background: rgba(230, 230, 230, 1);
     position: absolute;
@@ -1369,7 +1393,7 @@ margin-right: -10em;
 .Profile_sidemenu_Name4 {
     font-family: Raleway;
     font-weight: 500;
-    font-size: 15px;
+    font-size: 16px;
     color: #999999;
     color: rgb(153, 153, 153);
 }
@@ -1512,6 +1536,10 @@ margin-right: -10em;
     -webkit-border-radius: 2px;
     color: white;
 }
+.make_paymeny_button_bg:hover{
+    color:white !important;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75) !important;
+}
 
 .panel-body {
     background: #F5F5F5;
@@ -1528,6 +1556,10 @@ margin-right: -10em;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     filter: alpha(opacity=88) progid:DXImageTransform.Microsoft.Alpha(opacity=88);
+}
+.File_Admission_btn:hover{
+    color: white !important;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75) !important;
 }
 
 .preference_select_option {
@@ -1573,6 +1605,9 @@ preference_select_campus1 {
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
+}
+.add_button_1_:hover{
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75) !important;
 }
 
 .payment_card_bg {
@@ -1665,7 +1700,7 @@ preference_select_campus1 {
 
 .registration_btn:hover {
     color: white !important;
-    font-weight: 600 !important;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75) !important;
 }
 
 @media only screen and (min-width: 1100px) {
@@ -1701,7 +1736,7 @@ preference_select_campus1 {
 
 .registration_btn2:hover {
     color: #2196F3 !important;
-    font-weight: 600 !important;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.75) !important;
 }
 
 .facebook_icon {
@@ -2045,4 +2080,14 @@ div.homecallout {
 	right: 7px;
 	bottom: -20px;
 	border-top: 10px solid #444;
+}
+/*CSS Added For Dropdown Black Text*/
+select {
+  color: black !important;
+  font-size:16px !important;
+ }
+
+select option {
+  color: black !important;
+  font-size:17px;
 }

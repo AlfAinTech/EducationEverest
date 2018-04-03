@@ -24,13 +24,18 @@ public partial class Choices : System.Web.UI.Page
     public void populate_uni()
     {
         List<University> uv = db.Universities.ToList();
+        
         DropDownList ddl1 = (DropDownList)DropDownList1;
         foreach (var z in uv)
         {
-            ListItem l = new ListItem();
-            l.Text = z.Name;
-            l.Value = z.id.ToString();
-            ddl1.Items.Add(l);
+            // if deadline has passed then skip university
+            if ((z.UniversityProfiles.Count != 0) && !(z.UniversityProfiles.First().LastDate < DateTime.Today))
+            {
+                ListItem l = new ListItem();
+                l.Text = z.Name;
+                l.Value = z.id.ToString();
+                ddl1.Items.Add(l);
+            }
 
         }
     }
@@ -71,7 +76,7 @@ public partial class Choices : System.Web.UI.Page
             populate_uni();
             
              current_user = HttpContext.Current.User.Identity.GetUserId();
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
         }
     }
 

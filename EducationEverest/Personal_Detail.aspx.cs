@@ -85,9 +85,11 @@ public partial class Personal_Detail : System.Web.UI.Page
                         using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
                         {
                             // Load, resize, set the format and quality and save an image.
+
                             imageFactory.Load(inStream)
                                         .Resize(size)
                                         .Quality(quality)
+                                        .BackgroundColor(Color.WhiteSmoke)
                                         .Save(imagePath);
                         }
                         // Do something with the stream.
@@ -100,7 +102,7 @@ public partial class Personal_Detail : System.Web.UI.Page
                 ViewState["ImageName"] = FileUpload1.PostedFile.FileName;
             }
         }
-        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+        //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }
 
     protected void next_click(object sender, EventArgs e)
@@ -243,8 +245,14 @@ public partial class Personal_Detail : System.Web.UI.Page
 
 
         //button next click from Personal Details to Choice
-
-        Response.Redirect("Choices.aspx");
+        if (Request.QueryString["NA"] != null && Request.QueryString["NA"] == "true")
+        {
+            Response.Redirect("Choices.aspx?NA=true");
+        }
+        else
+        {
+            Response.Redirect("Choices.aspx");
+        }
         
     }
 

@@ -392,38 +392,53 @@
 
 
     <form id="form" runat="server">
-        <%--<div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
-  
-    <div style="margin-top: 12px">Dashboard > Login</div>
 
-</div>--%>
-        <br />
+        <div>
+            <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
 
+                    <a class="navbar-brand" href="#">
+                        <img src="images/Logo_1_.png" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="row">
+                
         <div class="container-fluid text-left">
-
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="col-lg-3 col-md-3 col-sm-3"></div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left NormalCharacterStyle12" style="margin-top: 50px">Login</div>
-                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                        <p class="text-danger" style="font-size: 18px; margin-left: 100px">
-                            <asp:Literal runat="server" ID="FailureText" />
-                        </p>
-                    </asp:PlaceHolder>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
-                        <div class="form">
-                            <asp:TextBox runat="server" ID="Email" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12" data-error="Bruh, that email address is invalid" placeholder="Email"></asp:TextBox>
-                            <br />
-                            <asp:RequiredFieldValidator runat="server"   ControlToValidate="Email" ValidationGroup="loginForm" ErrorMessage="User Name field is required." ForeColor="Red" Style="text-align: center; margin-top: 20px" />
-                        </div>
+            <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="visibility:hidden;margin-top: 50px; background-color: #f01970 !important; padding-bottom: 7px;padding-top: 7px;">
+                        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: white; font-size: 14px"></span>
+                        <span class="sr-only" style="color: white; font-size: 14px">Error:</span>
+                        <span style="color: white; font-size: 16px">Wrong Email or Passowrd. Please provide valid ID details.</span>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
-                        <div class="form">
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12" placeholder="Password"></asp:TextBox>
-                            <br />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ValidationGroup="loginForm" ErrorMessage="password field is required." ForeColor="red" Style="text-align: center" />
-                        </div>
-                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left NormalCharacterStyle12 mybspc4" style="margin-top: 20px">Login</div>
+                            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                                <p class="text-danger" style="font-size: 18px; margin-left: 100px">
+                                    <asp:Literal runat="server" ID="FailureText" />
+                                </p>
+                            </asp:PlaceHolder>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
+                                <div class="form">
+                                    <asp:TextBox runat="server" ID="Email" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12" data-error="Bruh, that email address is invalid"
+                                        placeholder="Email"></asp:TextBox>
+                                    <br />
+                                    <br />
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" ValidationGroup="loginForm" ErrorMessage="The User Name field is required."
+                                        ForeColor="Red" Style="text-align: center; margin-top: 20px" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form">
+                                    <asp:TextBox runat="server" ID="Password" TextMode="Password" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12"
+                                        placeholder="Password"></asp:TextBox>
+                                    <br />
+                                    <br />
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" ValidationGroup="loginForm" ErrorMessage="The password field is required."
+                                        ForeColor="red" Style="text-align: center" />
+                                </div>
+                            </div>
                     <div class="NormalCharacterStyle213 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc3">Forgot password? <a href="ForgotPassword.aspx"><span class="NormalCharacterStyle221"><i>Reset Password</i></span></a></div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                         <asp:Button class=" btn registration_btn" runat="server" ValidationGroup="loginForm" OnClick="LogIn" Text="LOGIN" />

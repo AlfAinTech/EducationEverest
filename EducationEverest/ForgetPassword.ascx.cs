@@ -24,10 +24,19 @@ public partial class ForgetPassword : System.Web.UI.UserControl
     {
         try
         {
-            string Body = System.IO.File.ReadAllText(Server.MapPath("~/PasswordRecovery.html"));
-            Body = Body.Replace("{DynamicContent}", "http://"+Request.Url.Authority+"/ResetPassword.aspx?idPasswordReset=" + currentuser_id + "");
             EducationEverestEntities db = new EducationEverestEntities();
             AspNetUser dup = db.AspNetUsers.Where(q => q.Id == currentuser_id).First();
+            string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+            Body = Body.Replace("{title}", "Reset your password");
+            Body = Body.Replace("{fullName}", dup.UserProfiles.First().FirstName + " " + dup.UserProfiles.First().LastName);
+            Body = Body.Replace("{body}", "Click below link to reset your password");
+            Body = Body.Replace("{ButtonText}", "" + "Reset Password");
+            Body = Body.Replace("{href}", "" + "http://" + Request.Url.Authority + "/ResetPassword.aspx?idPasswordReset=" + currentuser_id + "");
+
+            
+            
+            
+            
             MailMessage mailMessage = new MailMessage();
             mailMessage.To.Add(dup.UserName);
             mailMessage.From = new MailAddress(EEUtil.FromEmail);
@@ -75,5 +84,9 @@ public partial class ForgetPassword : System.Web.UI.UserControl
             status_text.ForeColor = System.Drawing.Color.ForestGreen;
             forget_panel.Visible = false;
         }
+    }
+    protected void btn_register_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Login.aspx");
     }
 }

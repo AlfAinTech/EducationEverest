@@ -12,7 +12,27 @@
                 $("#menu_togglePersonalDoc").click();
                 $("#fileAdmission").addClass("NormalCharacterStyle18");
                 document.getElementById("fileAdmission").click();
+                document.getElementById("menu_togglePersonalDoc").click();
             }
+            $(window).on('load', function () {
+
+                OpenCurrentPage();
+            });
+
+            $(document).ready(function () {
+                $('.menu_toggles').on('click', function () {
+
+                    var iSelector = $(this).find('i:first');
+                    if (iSelector.hasClass('glyphicon-chevron-down')) {
+                        iSelector.removeClass('glyphicon-chevron-down')
+                        iSelector.addClass('glyphicon-chevron-up')
+                    } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                        iSelector.removeClass('glyphicon-chevron-up')
+                        iSelector.addClass('glyphicon-chevron-down')
+                    }
+                });
+                //  OpenCurrentPage();
+            });
             function OpenEducationPanel() {
                 $("#Upload_Documents").addClass("NormalCharacterStyle24")
                 $("#Upload_Documents").removeClass("NormalCharacterStyle22");
@@ -281,12 +301,17 @@
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 text-left">
         <h3 class="NormalCharacterStyle12">Upload Documents</h3>
         <div class="panel panel-default panel_shadow">
-            <a id="menu_togglePersonalDoc" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_togglePersonalDoc" class="menu_toggles" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
-                        <div class="NormalCharacterStyle10 margin_top">Personal Documents<div class="icon-arrow-right pull-right">
+                        <div class="NormalCharacterStyle10 margin_top">Personal Documents
+                            <div class="pull-right">
+                            <%--<img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
+                            <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                            </div>
                         </div>
                     </h4>
 
@@ -296,7 +321,7 @@
                 <div class="panel-body">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;B Form/CNIC of Student&nbsp;<span class="upload_documents_info">(Scanned Copy)</span></div>
+                            <div class="upload_documents_names1">&#9656;B Form/CNIC of Student&nbsp;<span class="upload_documents_info">(Scanned Copy)</span></div>
                             <asp:Repeater ID="studentCNICList" OnItemDataBound="studentCNICList_ItemDataBound" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -342,7 +367,7 @@
 
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Father CNIC&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Father CNIC&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="FatherCNICList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -388,7 +413,7 @@
 
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Father Income Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Father Income Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="FatherIncomeCertiList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -436,12 +461,17 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggleEducationalDoc" href="#Educational" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggleEducationalDoc" class="menu_toggles" href="#Educational" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
-                        <div class="NormalCharacterStyle2 margin_top">Educational Documents<div class="icon-arrow-right pull-right">
+                        <div class="NormalCharacterStyle10 margin_top">Educational Details
+                            <div class="pull-right">
+                           <%-- <img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
+                            <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                            </div>
                         </div>
                     </h4>
 
@@ -451,7 +481,7 @@
                 <div class="panel-body">
                     <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Matriculation/O-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Matriculation/O-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="MatricCertiList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -496,7 +526,7 @@
                     <br />
                     <asp:UpdatePanel ID="UpdatePanel5" runat="server">
                         <ContentTemplate>
-                            <div class="upload_documents_names">&#9656;Intermediate/A-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;Intermediate/A-Level Certificate&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                             <asp:Repeater ID="InterCertiList" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
@@ -549,12 +579,17 @@
 
 
         <div class="panel panel-default panel_shadow">
-            <a id="menu_toggleTest" href="#Test" data-toggle="collapse" data-parent="#accordion">
+            <a id="menu_toggleTest" class="menu_toggles" href="#Test" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
-                        <div class="NormalCharacterStyle2 margin_top">Test Results Documents<div class="icon-arrow-right pull-right">
+                        <div class="NormalCharacterStyle10 margin_top">Test Result Documents
+                            <div class="pull-right">
+                            <%--<img src="images/caution_icon.png"  style="margin-right:5px" />
+                            <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
+                            <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                            </div>
                         </div>
                     </h4>
 
@@ -564,7 +599,7 @@
                 <div class="panel-body">
                     <asp:Repeater runat="server" ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" OnItemCommand="TestResultDocList_ItemCommand">
                         <ItemTemplate>
-                            <div class="upload_documents_names">&#9656;<%# Eval("TestName")  %>&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
+                            <div class="upload_documents_names1">&#9656;<%# Eval("TestName")  %>&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2" runat="server" id="documentDiv" visible="false">
                                 <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">

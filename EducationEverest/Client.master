@@ -26,6 +26,38 @@
     <script src='<%= ResolveUrl("~/Content/js/jquery.quicksearch.js") %>'></script>
     <script src='<%= ResolveUrl("~/Content/js/jquery.tmpl.min.js") %>'></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#makeChoices').on('click', function () {
+
+                var x = location.href;
+                if (x.includes("NA=true")) {
+                    window.location.href = 'choices.aspx?NA=true';
+                } else {
+                    window.location.href = 'choices.aspx';
+                }
+            });
+            $('#testResult').on('click', function () {
+
+                var x = location.href;
+                if (x.includes("NA=true")) {
+                    window.location.href = 'Test_Result.aspx?NA=true';
+                }
+                else {
+                    window.location.href = 'Test_Result.aspx'
+                }
+            });
+            $('#Upload_Documents').on('click', function () {
+
+                var x = location.href;
+                if (x.includes("NA=true")) {
+                    window.location.href = 'Upload_Documents.aspx?NA=true';
+                } else {
+                    window.location.href = 'Upload_Documents.aspx'
+                }
+            });
+            //  OpenCurrentPage();
+        });
+       
         $(function () {
             var links = $('a.link').click(function () {
                 links.removeClass('active');
@@ -41,6 +73,53 @@
         function excluirItemNotificacao(e) {
             $('#item_notification_' + e.id).remove()
         }
+
+        function notificationClicked(notfxnID) {
+            document.getElementById("<%= hf1.ClientID %>").value = notfxnID;
+            var clickButton = document.getElementById("<%= btn_notfxn.ClientID %>");
+            clickButton.click();
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+
+            $('#fileAdmission').on('click', function () {
+                var iSelector = $(this).find('span:first');
+                
+
+                if (iSelector.hasClass('glyphicon-chevron-right')) {
+                    iSelector.removeClass('glyphicon-chevron-right hide-before')
+                    iSelector.addClass('glyphicon-chevron-up hide-before')
+                } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                    iSelector.removeClass('glyphicon-chevron-up hide-before')
+                    iSelector.addClass('glyphicon-chevron-right hide-before')
+                }
+            });
+
+        });
+        $('#applicationDashbord').on('click', function () {
+            var iSelector = $(this).find('i:first');
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+                
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
+        
+        $('#mypayments').on('click', function () {
+            var iSelector = $(this).find('i:first');
+            if (iSelector.hasClass('glyphicon-chevron-down')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-up')
+            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
+                iSelector.removeClass('glyphicon-chevron-down')
+                iSelector.addClass('glyphicon-chevron-down')
+            }
+        });
     </script>
 </head>
 
@@ -81,19 +160,25 @@
 
 
                 <ul class="nav navbar-nav navbar-right">
+                    
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            
                             <span class="alertNotificacao">
                                 <img src="images/bell.png" /></span>
-                            <span class='badgeAlert'>3</span>
+                            <div id="div_notfxnBell" runat="server"><span class='badgeAlert'><asp:Label runat="server"  ID="lbl_Totalnotification"></asp:Label></span></div>
                             <%--<span class="caret"></span>--%>
                         </a>
                         <ul class="list-notificacao dropdown-menu">
-                            <li id='item_notification_1'>
-                                <div class="media">
+                        <asp:Repeater runat="server" ID="rptr_Notifications" OnItemDataBound="rptr_Notifications_ItemDataBound">
+                        <ItemTemplate>
+                            
+                            <li>
+                                <div class="media" id="div_listItem"  onclick="notificationClicked(<%# Eval("id") %>)" >
                                     <div class="media-left">
                                         <a href="#">
-                                            <img src="/images/notifi_payment_icon.png" />
+                                            <asp:Image runat="server" ID="img_notfxn" ImageUrl="/images/notifi_payment_icon.png" />
+                                            <%--<img src="/images/notifi_payment_icon.png" />--%>
                                         </a>
                                     </div>
                                     <div class="media-body">
@@ -101,17 +186,40 @@
                                             <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
                                         </div>--%>
                                         <p class="media-heading" style="font-size: 11px">
-                                            <strong>Your application has been created. Click to view</strong>
+                                            <strong><%# Eval("Title") %></strong>
 
                                         </p>
-                                        <p style="font-size: 10px; color: lightgray">Today, 6:15 PM</p>
+                                        <asp:Label runat="server" ID="lbl_Time" style="font-size: 10px; color: lightgray">Today</asp:Label>
                                     </div>
                                     <div class="media-right">
-                                        <img src="images/circle.png" class="media-object" style="width: 8px ;padding-top: 15px !important;" />
+                                        <asp:Image ImageUrl="images/circle.png" ID="img_Circle" runat="server" class="media-object" style="width: 8px ;padding-top: 15px !important;" />
+                                        <%--<img src="images/circle.png" id="img_Circle" class="media-object" style="width: 8px ;padding-top: 15px !important;" />--%>
                                     </div>
                                 </div>
                             </li>
-                            <li id='item_notification_2'>
+                            </ItemTemplate>
+                            </asp:Repeater>
+                            <li>
+                                <div runat="server" class="media" id="div_noNotification" style="display:none;" >
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img src="/images/admin_icon.png" />
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <%--<div class='exclusaoNotificacao'>
+                                            <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
+                                        </div>--%>
+                                        <p class="media-heading" style="font-size: 11px">
+                                            <strong>No New Notifications</strong>
+
+                                        </p>
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                            </ul>
+                           <%-- <li id='item_notification_2'>
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#">
@@ -119,9 +227,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <%--<div class='exclusaoNotificacao'>
-                                            <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
-                                        </div>--%>
+                                        
                                         <p class="media-heading" style="font-size: 11px">
                                             <strong>Your application has been created. Click to view</strong>
 
@@ -138,9 +244,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <%--<div class='exclusaoNotificacao'>
-                                            <button class='btn btn-danger btn-xs button_exclusao' id='1' onclick='excluirItemNotificacao(this)'>x</button>
-                                        </div>--%>
+                                       
                                         <p class="media-heading" style="font-size: 11px">
                                             <strong>Your application has been created. Click to view</strong>
 
@@ -148,7 +252,7 @@
                                         <p style="font-size: 10px; color: lightgray">Today, 6:15 PM</p>
                                     </div>
                                 </div>
-                            </li>
+                            </li>--%>
                             <%--<li id='item_notification_4'>
                                 <div class="media">
                                     <div class="media-body">
@@ -157,7 +261,7 @@
                                     </div>
                                 </div>
                             </li>--%>
-                        </ul>
+                        
                     </li>
                     <%-- <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>--%>
                     <li class="dropdown" style="height: 60px;">
@@ -170,9 +274,9 @@
                             <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
             <li role="separator" class="profile_divider"></li>--%>
                             <%--<li><a href="Login.aspx"  class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>--%>
-                            <li>
+                            <li class="myprofile_dropdown_link">
                                 <asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
-                                        <i class="myprofile_dropdown_link NormalCharacterStyle24"></i>Logout
+                                        <i class=" NormalCharacterStyle24"></i>Logout
                                 </asp:LinkButton></li>
                         </ul>
                     </li>
@@ -192,7 +296,7 @@
             <br />
 
             <div class="container-fluid text-center">
-                <div class="row content" style="min-height: 100vh; height: 1000px">
+                <div class="row content" style="min-height: 200vh; height: 100vh">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 sidenav text-left side-menu">
 
                         <div class="dropdown" style="margin-bottom: 10px;">
@@ -202,14 +306,14 @@
 
                         
       <div class="dropdown"  style="margin-bottom: 10px;">
-    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25"><div>File Admission App<div class="pull-right"><span class="glyphicon glyphicon-chevron-down dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></div></a>
+    <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25"><div>File Admission App<div class="pull-right"><span class="glyphicon glyphicon-chevron-right dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></div></a>
     <div class="collapse" id="clps2">
       <br/>
         <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail"><p>Personal Detail<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
-        <li class="menu_list"><a href="choices" class="NormalCharacterStyle24" id="makeChoices"><p>Make Choices&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li> 
+        <li class="menu_list"><a  class="NormalCharacterStyle24" id="makeChoices"><p>Make Choices&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li> 
         <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" ><p>Educational Details&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickEducationDetails"  visible="false" style="float:right;height:20px;width:20px"  /></span></p></a></li>
-        <li class="menu_list"><a href="Test_Result" class="NormalCharacterStyle24" id="testResult"><p>Test Results&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
-        <li class="menu_list"><a href="Upload_Documents" id="Upload_Documents" class="NormalCharacterStyle24"><p>Documents&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
+        <li class="menu_list"><a  class="NormalCharacterStyle24" id="testResult"><p>Test Results&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
+        <li class="menu_list"><a  id="Upload_Documents" class="NormalCharacterStyle24"><p>Documents&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
         <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments"><p>Payments&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
 
 
@@ -228,7 +332,7 @@
                         </div>
 
                         <div class="dropdown" style="margin-bottom: 10px;">
-                            <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="Payments.aspx"><div>My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div></div>
+                            <a data-toggle="collapse" data-target="#clps3" id="mypayments" class="main_list NormalCharacterStyle25" href="My_Profile.aspx?pays=true"><div>My Payments<div class="icon-arrow-right pull-right"><span class="glyphicon glyphicon-chevron-right drop_down_icon_1_" data-toggle="collapse" data-target="#clps3"></span></div></div>
                             </a>
 
                         </div>
@@ -237,40 +341,9 @@
                     </div>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
+                    <asp:HiddenField runat="server" ID="hf1" />
+                    <asp:Button ID="btn_notfxn" runat="server" OnClick="btn_notfxn_Click" style="display:none;" />
     </form>
-    <script type="text/javascript">
-        $('#applicationDashbord').on('click', function () {
-            var iSelector = $(this).find('i:first');
-            if (iSelector.hasClass('glyphicon-chevron-down')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-up')
-                
-            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-down')
-            }
-        });
-        $('#fileAdmission').on('click', function () {
-            var iSelector = $(this).find(':first-child').find(':first-child');
-            
-            if (iSelector.hasClass('glyphicon-chevron-down ')) {
-                iSelector.removeClass('glyphicon-chevron-down hide-before')
-                iSelector.addClass('glyphicon-chevron-up hide-before')
-            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-up hide-before')
-                iSelector.addClass('glyphicon-chevron-down hide-before')
-            }
-        });
-        $('#mypayments').on('click', function () {
-            var iSelector = $(this).find('i:first');
-            if (iSelector.hasClass('glyphicon-chevron-down')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-up')
-            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-down')
-            }
-        });
-    </script>
+    
 </body>
 </html>

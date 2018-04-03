@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
@@ -25,9 +26,34 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
     }
     public void BindData(string UserID)
     {
-      
-        ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID).ToList();
-        ApplicationsList.DataBind();
+        if (Request.Url.ToString().Contains("Dashboard") || Request.Url.ToString().Contains("My_Profile"))
+        {
+            ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID).OrderByDescending(u => u.id).ToList();
+            ApplicationsList.DataBind();
+
+        }
+        else
+        {
+            if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+            {
+                ApplicationsList.DataSource = null;
+                ApplicationsList.DataBind();
+            }
+            else
+            {
+                if (db.MakeChoices.Any(a => a.User_ID == current_user))
+                {
+                    int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+
+                    ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();
+                    ApplicationsList.DataBind();
+                }else
+                {
+                    ApplicationsList.DataSource = null;
+                    ApplicationsList.DataBind();
+                }
+            }
+        }
     }
     protected void ApplicationsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -148,19 +174,19 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                 TestResultList.DataBind();
                 //Documents detail 
                 Repeater studentCNICList = (Repeater)e.Item.FindControl("studentCNICList");
-                studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC").ToList();
+                studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC" && q.userID == current_user).ToList();
                 studentCNICList.DataBind();
                 Repeater FatherCNICList = (Repeater)e.Item.FindControl("FatherCNICList");
-                FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC").ToList();
+                FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC" && q.userID == current_user).ToList();
                 FatherCNICList.DataBind();
                 Repeater FatherIncomeCertiList = (Repeater)e.Item.FindControl("FatherIncomeCertiList");
-                FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti").ToList();
+                FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti" && q.userID == current_user).ToList();
                 FatherIncomeCertiList.DataBind();
                 Repeater MatricCertiList = (Repeater)e.Item.FindControl("MatricCertiList");
-                MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti").ToList();
+                MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti" && q.userID == current_user).ToList();
                 MatricCertiList.DataBind();
                 Repeater InterCertiList = (Repeater)e.Item.FindControl("InterCertiList");
-                InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti").ToList();
+                InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti" && q.userID == current_user).ToList();
                 InterCertiList.DataBind();
                 Repeater TestResultDocList = (Repeater)e.Item.FindControl("TestResultDocList");
 
@@ -180,7 +206,9 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         if (e.Item.DataItem is UniversityProfile)
         {
             UniversityProfile dataItem = e.Item.DataItem as UniversityProfile;
-            TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID).FirstOrDefault();
+            List<int> docs = db.Documents.Where(a => a.userID == current_user).Select(a => a.id).ToList();
+            TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID && docs.Contains(q.documentID)).FirstOrDefault();
+            //TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID).FirstOrDefault();
 
             if (td != null)
             {

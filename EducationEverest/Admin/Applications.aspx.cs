@@ -384,11 +384,18 @@ public partial class Applications : System.Web.UI.Page
 
                 using (MailMessage mm = new MailMessage(EEUtil.FromEmail, candidate.UserName))  //here ID changed 02-feb-18
                 {
-                    mm.Subject = "Application Status Change";
-                    string body = "Hello " + candidate.UserName.Trim() + ",";
-                    body += "<br /><br />Status of your application consisting of ApplicationID = "+dbApplication.appID+" has been changed from " + previousStatus + " to "+dbApplication.CurrentStatus+".";
                     
-                    mm.Body = body;
+                    mm.Subject = "Application Status Change";
+                    string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+                    Body = Body.Replace("{title}", "Application Status Change");
+                    Body = Body.Replace("{fullName}", candidate.UserProfiles.First().FirstName + " " + candidate.UserProfiles.First().LastName);
+                    Body = Body.Replace("{body}", "Status of your application consisting of ApplicationID = " + dbApplication.appID + " has been changed from " + previousStatus + " to " + dbApplication.CurrentStatus + ".");
+                    Body = Body.Replace("{ButtonText}", "" + "Login");
+                    Body = Body.Replace("{href}", "" + "http://" + Request.Url.Authority + "/Login");
+
+                    
+                    
+                    mm.Body = Body;
                     mm.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
@@ -468,10 +475,19 @@ public partial class Applications : System.Web.UI.Page
                     using (MailMessage mm = new MailMessage(EEUtil.FromEmail, candidate.UserName))  //here ID changed 02-feb-18
                     {
                         mm.Subject = "Payment Confirmation";
-                        string body = "Hello " + candidate.UserName.Trim() + ",";
-                        body += "<br /><br />Your Payment against TrackingID = " + application.TrackingID + " has been confirmed";
+                        string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+                        Body = Body.Replace("{title}", "Payment Confirmation");
+                        Body = Body.Replace("{fullName}", candidate.UserProfiles.First().FirstName + " " + candidate.UserProfiles.First().LastName);
+                        Body = Body.Replace("{body}", "Your Payment against TrackingID = " + application.TrackingID + " has been confirmed");
+                        Body = Body.Replace("{ButtonText}", "" + "Login");
+                        Body = Body.Replace("{href}", "" + "http://" + Request.Url.Authority + "/Login");
 
-                        mm.Body = body;
+
+
+                        mm.Body = Body;
+                        
+
+                        
                         mm.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient();
                         smtp.Host = "smtp.gmail.com";
@@ -532,16 +548,18 @@ public partial class Applications : System.Web.UI.Page
                     //loop
                     using (MailMessage mm = new MailMessage(EEUtil.FromEmail, result.Email))  //here ID changed 02-feb-18
                     {
+                        UserProfile up = db.UserProfiles.Where(a => a.Email == result.Email).First();
                         mm.Subject = "Complete Your Admission Application";
-                        string body = "Hello " + result.Email.Trim() + ",";
-                        body += "<br /><br />Your admission application is incomplete, click on the following link to complete your application at Education Everest, in case of any issue, let us know";
-                        body += "<br /><a href = '" + "http://" + HttpContext.Current.Request.Url.Authority + "/Login.aspx" + "" + "'>Click here to complete your admission application.</a>";
-                        //body = body.Replace("{DynamicContent}", "http://localhost:65465/Register.aspx");
-                        //body += "<br /><a href = '" + "http://" + Request.Url.Authority + "/Account/CS_Activation.aspx?ActivationCode=" + activationCode + "'>Click here to activate your account.</a>";
 
-                        body += "<br /><br />Thanks";
-                        body += "<br />Team Education Everest";
-                        mm.Body = body;
+                        string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+                        Body = Body.Replace("{title}", "Complete Your Admission Application");
+                        Body = Body.Replace("{fullName}", up.FirstName + " " + up.LastName);
+                        Body = Body.Replace("{body}", "Your admission application is incomplete, click on the following link to complete your application at Education Everest, in case of any issue, let us know");
+                        Body = Body.Replace("{ButtonText}", "" + "Login");
+                        Body = Body.Replace("{href}", "" + "http://" + Request.Url.Authority + "/Login");
+
+                        
+                        mm.Body = Body;
                         mm.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient();
                         smtp.Host = "smtp.gmail.com";

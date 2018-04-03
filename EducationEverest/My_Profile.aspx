@@ -28,6 +28,13 @@
               $(this).addClass('active');
           });
       });
+      $(document).ready(function () {
+          var x = location.href;
+          if (x.includes("pays=true")) {
+              document.getElementById("link_payment").click();
+          }
+          //  OpenCurrentPage();
+      });
   </script>
 </head>
     <body>
@@ -256,8 +263,8 @@
     </div>
     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 text-center" style="margin-top:30px; "> 
 <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
-<span class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a  class="link myprofile_tabs myprofile_tabs_padding1 active" data-toggle="tab" data-target="#apptab">My Applications</a></span>
-<span class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a  class="link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
+<span> <a  class="active col-lg-6 col-md-6 col-sm-6 col-xs-6 link myprofile_tabs myprofile_tabs_padding1" data-toggle="tab" data-target="#apptab">My Applications</a></span>
+<span><a id="link_payment"  class="col-lg-6 col-md-6 col-sm-6 col-xs-6 link myprofile_tabs myprofile_tabs_padding2" data-toggle="tab" data-target="#paytab">My Payments</a></span>
 </div>
 <br/><br/><br/><br/>
     <div class="tab-content">
@@ -280,11 +287,12 @@
       <div class="panel-heading card_bg">
         <div class="row text-left" style="border-bottom:1px solid #a3a3a3; padding:2% 2%">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-             <asp:Image ID="logo" runat="server"  />
+             <asp:Image ID="logo" runat="server" src="../images/university_icon.png"/>
+                        
+            </div>
 
-          </div>
              <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-        <h4 class="panel-title margin_top">
+        <h4 class="panel-title">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus_").ToString()=="pending" || Eval("CurrentStatus_").ToString()=="rejected"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
         </h4>
         <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>

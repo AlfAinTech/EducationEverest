@@ -54,7 +54,12 @@ public partial class Dashboard : System.Web.UI.Page
             }
 
             string UserID = HttpContext.Current.User.Identity.GetUserId();
-           
+            
+           if(db.Applications.Any(a => a.UserID == current_user))
+            {
+                div_CallOut.Style.Add("display", "none");
+                div_artWork.Style.Add("display", "none");
+            }
         }
         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
@@ -63,7 +68,7 @@ public partial class Dashboard : System.Web.UI.Page
    
     protected void btnFileAdmission_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Personal_Detail.aspx");
+        Response.Redirect("Personal_Detail.aspx?NA=true");
     }
 
    

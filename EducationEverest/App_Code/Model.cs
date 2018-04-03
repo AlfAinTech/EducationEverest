@@ -21,12 +21,25 @@ public partial class AdmissionDetail
     public virtual University University { get; set; }
 }
 
+public partial class App_Start
+{
+    public int id { get; set; }
+    public string Email { get; set; }
+    public string AspNetUserID { get; set; }
+    public Nullable<System.DateTime> datetime { get; set; }
+    public Nullable<bool> incompleteEmailSent { get; set; }
+    public Nullable<bool> ApplicationAdded { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
+}
+
 public partial class Application
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public Application()
     {
         this.Payments = new HashSet<Payment>();
+        this.SystemNotifications = new HashSet<SystemNotification>();
     }
 
     public int id { get; set; }
@@ -43,6 +56,8 @@ public partial class Application
     public virtual University University { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Payment> Payments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<SystemNotification> SystemNotifications { get; set; }
 }
 
 public partial class AspNetRole
@@ -79,6 +94,8 @@ public partial class AspNetUser
         this.Applications = new HashSet<Application>();
         this.Documents = new HashSet<Document>();
         this.Personal_Details = new HashSet<Personal_Details>();
+        this.App_Start = new HashSet<App_Start>();
+        this.SystemNotifications = new HashSet<SystemNotification>();
     }
 
     public string Id { get; set; }
@@ -122,6 +139,10 @@ public partial class AspNetUser
     public virtual ICollection<Document> Documents { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Personal_Details> Personal_Details { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<App_Start> App_Start { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<SystemNotification> SystemNotifications { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -438,6 +459,21 @@ public partial class ProgrammCategory
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
 }
 
+public partial class SystemNotification
+{
+    public int id { get; set; }
+    public string Title { get; set; }
+    public string User_ID { get; set; }
+    public int AppID { get; set; }
+    public Nullable<bool> Read { get; set; }
+    public string Type { get; set; }
+    public string TriggeredBy { get; set; }
+    public Nullable<System.DateTime> DateTime { get; set; }
+
+    public virtual Application Application { get; set; }
+    public virtual AspNetUser AspNetUser { get; set; }
+}
+
 public partial class Test_Results
 {
     public int id { get; set; }
@@ -561,6 +597,7 @@ public partial class UserProfile
     public string City { get; set; }
     public string AspNetUserID { get; set; }
     public string Email { get; set; }
+    public string CandidateID { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
 }
