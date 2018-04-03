@@ -187,7 +187,7 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                 Repeater InterCertiList = (Repeater)e.Item.FindControl("InterCertiList");
                 InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti" && q.userID == current_user).ToList();
                 InterCertiList.DataBind();
-                Repeater TestResultDocList = (Repeater)e.Item.FindControl("TestResultDocList" && q.userID == current_user);
+                Repeater TestResultDocList = (Repeater)e.Item.FindControl("TestResultDocList");
 
                 List<int> universities = new List<int>();
                 if (dataItem.deptID != null)
