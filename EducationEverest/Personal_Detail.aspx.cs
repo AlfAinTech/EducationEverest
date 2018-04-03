@@ -84,9 +84,11 @@ public partial class Personal_Detail : System.Web.UI.Page
                         using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
                         {
                             // Load, resize, set the format and quality and save an image.
+
                             imageFactory.Load(inStream)
                                         .Resize(size)
                                         .Quality(quality)
+                                        .BackgroundColor(Color.WhiteSmoke)
                                         .Save(imagePath);
                         }
                         // Do something with the stream.
