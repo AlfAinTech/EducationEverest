@@ -91,7 +91,7 @@
                     <div class="col-md-12">
 
 
-                        <a href="" data-toggle="tab" data-target="#easypaisatab">
+                        <a href="" data-toggle="tab" data-target="#easypaisatab2">
                             <div class="col-md-2" style="margin-left: 150px; box-shadow: 0px 0px 20px #999;">
                                 <div class="popup_cards2">
                                     <div class="easy_paisa_logo"></div>
@@ -105,7 +105,7 @@
                             </div>
                         </a>
 
-                        <a href="" data-toggle="tab" data-target="#jazztab">
+                        <a  href="" data-toggle="tab" data-target="#jazztab2">
                             <div class="col-md-2" style="margin-left: 50px;">
                                 <div class="popup_cards2">
                                     <div class="jazz_cash_logo"></div>
@@ -122,7 +122,7 @@
 
 
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="easypaisatab">
+                            <div class="tab-pane fade in active" id="easypaisatab2">
 
 
                                 <div class="callout bottom text-center">
@@ -134,7 +134,7 @@
                                         </div>
                                         <br />
                                         <br />
-                                        <div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4567</div>
+                                        <div class="NormalCharacterStyle222">Mr. Representative : +92 321 999 999</div>
                                         <br />
                                         <br />
                                         <div class="NormalCharacterStyle16">Our representative will guide you through.</div>
@@ -144,7 +144,7 @@
                                 </div>
 
                             </div>
-                            <div class="tab-pane fade in" id="jazztab">
+                            <div class="tab-pane fade in" id="jazztab2">
 
 
                                 <div class="callout1 bottom text-center">
@@ -232,7 +232,7 @@
                             </div>
                         </a>
 
-                        <a href="" data-toggle="tab" data-target="#jazztab">
+                        <a href="#jazztab" data-toggle="tab" data-target="#jazztab">
                             <div class="col-md-2" style="margin-left: 50px;">
                                 <div class="popup_cards2">
                                     <div class="jazz_cash_logo"></div>
@@ -261,7 +261,7 @@
                                         </div>
                                         <br />
                                         <br />
-                                        <div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4567</div>
+                                        <div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4587</div>
                                         <br />
                                         <br />
                                         <div class="NormalCharacterStyle16">Our representative will guide you through.</div>
@@ -273,14 +273,10 @@
                             </div>
                             <div class="tab-pane fade in" id="jazztab">
 
-                                <div class="col-md-12" style="margin-top: 13px;">
-                                    <div class="NormalCharacterStyle16" style="text-align: left">
-                                        <b>Add Tracking ID to Confirm Payment</b><br />
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input class="inputs" id="TrackingID_" type="text" name="TrackingID" placeholder="Tracking Id" runat="server" />
-                                        <asp:LinkButton ID="SubmitTrackingID_" OnClick="SubmitTrackingID_Click" class=" btn button_bg" runat="server"><span class="NormalCharacterStyle">NEXT</span></asp:LinkButton>
-
+                               
+                                    
+                                    
+                                        
                                         <div class="callout1 bottom text-center">
                                             <div class="col-md-12 text-center" style="margin-top: 40px">
                                                 <div class="NormalCharacterStyle16">
@@ -299,15 +295,8 @@
 
                                         </div>
 
-                                    </div>
-
-
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <br />
-
-                                </div>
+                                  
+                               
 
                             </div>
                             <div class="col-md-12" style="margin-top: 13px;">
@@ -352,6 +341,7 @@
                             iSelector.addClass('glyphicon-chevron-down')
                         }
                     });
+                    
                     //  OpenCurrentPage();
                 });
 
