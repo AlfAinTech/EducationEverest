@@ -228,10 +228,6 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                     documentName.Text = td.Document.documentName.ToString();
                 }
 
-            }else
-            {
-                HtmlGenericControl divDoc = e.Item.FindControl("divTestResultDoc") as HtmlGenericControl;
-                divDoc.Visible = false;
             }
         }
     }

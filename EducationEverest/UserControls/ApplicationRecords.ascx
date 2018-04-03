@@ -421,7 +421,7 @@
                                     <asp:Repeater ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" runat="server">
                                         <ItemTemplate>
                                             <div class="NormalCharacterStyle101 ">&#9656;<%# Eval("TestName")  %> Certificate/Result Cards&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
-                                            <div id="divTestResultDoc" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
                                                     <div class="upload_image_icon margin_top "></div>
                                                 </div>
