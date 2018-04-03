@@ -6,11 +6,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 
 public partial class Search_Results : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
+    public static string current_user = HttpContext.Current.User.Identity.GetUserId();
+
     public void show()
     {
 
@@ -191,14 +194,31 @@ public partial class Search_Results : System.Web.UI.Page
         }
         Control divDetailsRightSide = FindControl("dvUnivDetailsShow");//new code added on 21-mar-18
         divDetailsRightSide.Visible = true;
-    } 
-    
+    }
+    protected void logout_Click(object sender, EventArgs e)
+    {
+        Context.GetOwinContext().Authentication.SignOut();
+        Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((!(HttpContext.Current.User.Identity.IsAuthenticated)) || (HttpContext.Current.User.IsInRole("Super Admin")))
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
+
+        current_user = HttpContext.Current.User.Identity.GetUserId();
+        UserProfile up = new UserProfile();
+
+        //code to show user information
+        var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em = q.Email, fn = q.FirstName, ln = q.LastName, c = q.City, p = q.Phone }).FirstOrDefault();
+        //show user first name
+        if (logged != null)
+            lblLoggedUser.Text = logged.fn;
+
+
+
         if (!IsPostBack)
         {
 
@@ -601,13 +621,26 @@ public partial class Search_Results : System.Web.UI.Page
 
 
 
-
+    
     protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         //on click open university details
-        int universityid;
-        if (int.TryParse((string)e.CommandArgument, out universityid))
-        {
+      
+
+
+
+
+    }
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Filter_Results.aspx");
+    }
+
+    protected void btn_UniversityClicked_Click(object sender, EventArgs e)
+    {
+        //on click open university details
+        int universityid = Convert.ToInt32(hf1.Value);
+       
             var UnivName = db.Universities.Where(u => u.id == universityid).Select(u => u.Name).FirstOrDefault();
             lblUniversity2.Text = UnivName;
             lblUniversityName2.Text = UnivName;
@@ -617,7 +650,7 @@ public partial class Search_Results : System.Web.UI.Page
             var uniprofile = db.UniversityProfiles.Where(ad => ad.UniversityID == universityid).Select(ad => new { admissiondocuments = ad.AdmisssionDocs, criteria = ad.Criteria, feestructre = ad.FeeStructure, about = ad.About, address = ad.Address, admissionstatus = ad.AdmissionOpen }).FirstOrDefault();
             if (uniprofile != null)
             {
-                if (lblCriteria.Text != null )
+                if (lblCriteria.Text != null)
                 {
                     lblCriteria.Text = uniprofile.criteria;
                 }
@@ -625,7 +658,7 @@ public partial class Search_Results : System.Web.UI.Page
                 {
                     lblCriteria.Text = "Criteria not given";
                 }
-                if (lblFeeStructure.Text != null )
+                if (lblFeeStructure.Text != null)
                 {
                     lblFeeStructure.Text = uniprofile.feestructre;
                 }
@@ -633,7 +666,7 @@ public partial class Search_Results : System.Web.UI.Page
                 {
                     lblFeeStructure.Text = "Fee structure is not given";
                 }
-                if (lblAbout.Text != null )
+                if (lblAbout.Text != null)
                 {
 
 
@@ -643,7 +676,7 @@ public partial class Search_Results : System.Web.UI.Page
                 {
                     lblAbout.Text = "";
                 }
-                if (lblAdmissionDocuments.Text != null )
+                if (lblAdmissionDocuments.Text != null)
                 {
 
 
@@ -653,7 +686,7 @@ public partial class Search_Results : System.Web.UI.Page
                 {
                     lblAdmissionDocuments.Text = "Admission documents not mentioned";
                 }
-                if (lblUnivAddress2.Text != null )
+                if (lblUnivAddress2.Text != null)
                 {
                     lblUnivAddress2.Text = uniprofile.address;
                 }
@@ -664,7 +697,7 @@ public partial class Search_Results : System.Web.UI.Page
 
 
                 lbl_IsAdmissionOpen2.Text = Convert.ToString(uniprofile.admissionstatus);
-                if (lbl_IsAdmissionOpen2.Text != null && lbl_IsAdmissionOpen2.Text!="")
+                if (lbl_IsAdmissionOpen2.Text != null && lbl_IsAdmissionOpen2.Text != "")
                 {
 
                     if (lbl_IsAdmissionOpen2.Text == "True")
@@ -708,7 +741,7 @@ public partial class Search_Results : System.Web.UI.Page
             if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
             {
                 string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
-                if (logoPath2 != null )
+                if (logoPath2 != null)
                 {
                     //Image imgpd2 = e.Item.FindControl("Image2") as Image;
                     Image2.ImageUrl = logoPath2;
@@ -719,15 +752,8 @@ public partial class Search_Results : System.Web.UI.Page
                 Image2.ImageUrl = "";
             }
 
-        }
+        
 
-
-
-
-    }
-    protected void btnFilter_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Filter_Results.aspx");
     }
 }
 

@@ -1004,124 +1004,128 @@ public partial class Filter_Results : System.Web.UI.Page
 protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         //on click open university details
-        int universityid;
-        if (int.TryParse((string)e.CommandArgument, out universityid))
-        {
-            var UnivName = db.Universities.Where(u => u.id == universityid).Select(u => u.Name).FirstOrDefault();
-            lblUniversity2.Text = UnivName;
-            lblUniversityName2.Text = UnivName;
-            UniversityProfile up = new UniversityProfile();
-
-           
-            var uniprofile = db.UniversityProfiles.Where(ad => ad.UniversityID == universityid).Select(ad => new { admissiondocuments = ad.AdmisssionDocs, criteria = ad.Criteria, feestructre = ad.FeeStructure, about = ad.About, address = ad.Address, admissionstatus = ad.AdmissionOpen }).FirstOrDefault();
-            if (uniprofile != null)
-            {
-                if (lblCriteria.Text != null)
-                {
-                    lblCriteria.Text = uniprofile.criteria;
-                }
-                else
-                {
-                    lblCriteria.Text = "Criteria not given";
-                }
-                if (lblFeeStructure.Text != null)
-                {
-                    lblFeeStructure.Text = uniprofile.feestructre;
-                }
-                else
-                {
-                    lblFeeStructure.Text = "Fee structure is not given";
-                }
-                if (lblAbout.Text != null)
-                {
-
-
-                    lblAbout.Text = uniprofile.about;
-                }
-                else
-                {
-                    lblAbout.Text = "";
-                }
-                if (lblAdmissionDocuments.Text != null)
-                {
-
-
-                    lblAdmissionDocuments.Text = uniprofile.admissiondocuments;
-                }
-                else
-                {
-                    lblAdmissionDocuments.Text = "Admission documents not mentioned";
-                }
-                if (lblUnivAddress2.Text != null)
-                {
-                    lblUnivAddress2.Text = uniprofile.address;
-                }
-                else
-                {
-                    lblUnivAddress2.Text = "Address not given";
-                }
-
-
-                lbl_IsAdmissionOpen2.Text = Convert.ToString(uniprofile.admissionstatus);
-                if (lbl_IsAdmissionOpen2.Text != null)
-                {
-
-                    if (lbl_IsAdmissionOpen2.Text == "True")
-                    {
-
-                        lbl_IsAdmissionOpen2.Text = "<font color='green'>Admission Open</font>";
-                    }
-                    else
-                    {
-
-                        lbl_IsAdmissionOpen2.Text = "<font color='red'>Admission Closed</font>";
-                    }
-                }
-                else
-                {
-                    lbl_IsAdmissionOpen2.Text = "Admission status not mentioned";
-                }
-            }//uniprofile ends here
-
-
-
-
-
-            //code for rating
-
-            if (db.Campuses.Any(x => x.Uni_ID == universityid))
-            {
-                var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
-                CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
-
-                if (urating != null && urating.AdminRatings != "")
-                {
-                    Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-                }
-
-            }
-            else
-            {
-                Rating2.CurrentRating = 0;
-            }
-            if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
-            {
-                string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
-                if (logoPath2 != null)
-                {
-                    //Image imgpd2 = e.Item.FindControl("Image2") as Image;
-                    Image2.ImageUrl = logoPath2;
-                }
-            }
-            else
-            {
-                Image2.ImageUrl = "";
-            }
-
-        }
+       
 
 
 
        
+    }
+
+    protected void btn_UniversityClicked_Click(object sender, EventArgs e)
+    { 
+        //on click open university details
+        int universityid = Convert.ToInt32(hf1.Value);
+
+        var UnivName = db.Universities.Where(u => u.id == universityid).Select(u => u.Name).FirstOrDefault();
+        lblUniversity2.Text = UnivName;
+        lblUniversityName2.Text = UnivName;
+        UniversityProfile up = new UniversityProfile();
+
+
+        var uniprofile = db.UniversityProfiles.Where(ad => ad.UniversityID == universityid).Select(ad => new { admissiondocuments = ad.AdmisssionDocs, criteria = ad.Criteria, feestructre = ad.FeeStructure, about = ad.About, address = ad.Address, admissionstatus = ad.AdmissionOpen }).FirstOrDefault();
+        if (uniprofile != null)
+        {
+            if (lblCriteria.Text != null)
+            {
+                lblCriteria.Text = uniprofile.criteria;
+            }
+            else
+            {
+                lblCriteria.Text = "Criteria not given";
+            }
+            if (lblFeeStructure.Text != null)
+            {
+                lblFeeStructure.Text = uniprofile.feestructre;
+            }
+            else
+            {
+                lblFeeStructure.Text = "Fee structure is not given";
+            }
+            if (lblAbout.Text != null)
+            {
+
+
+                lblAbout.Text = uniprofile.about;
+            }
+            else
+            {
+                lblAbout.Text = "";
+            }
+            if (lblAdmissionDocuments.Text != null)
+            {
+
+
+                lblAdmissionDocuments.Text = uniprofile.admissiondocuments;
+            }
+            else
+            {
+                lblAdmissionDocuments.Text = "Admission documents not mentioned";
+            }
+            if (lblUnivAddress2.Text != null)
+            {
+                lblUnivAddress2.Text = uniprofile.address;
+            }
+            else
+            {
+                lblUnivAddress2.Text = "Address not given";
+            }
+
+
+            lbl_IsAdmissionOpen2.Text = Convert.ToString(uniprofile.admissionstatus);
+            if (lbl_IsAdmissionOpen2.Text != null && lbl_IsAdmissionOpen2.Text != "")
+            {
+
+                if (lbl_IsAdmissionOpen2.Text == "True")
+                {
+
+                    lbl_IsAdmissionOpen2.Text = "<font color='green'>Admission Open</font>";
+                }
+                else
+                {
+
+                    lbl_IsAdmissionOpen2.Text = "<font color='red'>Admission Closed</font>";
+                }
+            }
+            else
+            {
+                lbl_IsAdmissionOpen2.Text = "Admission status not mentioned";
+            }
+        }//uniprofile ends here
+
+
+
+
+
+        //code for rating
+
+        if (db.Campuses.Any(x => x.Uni_ID == universityid))
+        {
+            var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
+            CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
+
+            if (urating != null && urating.AdminRatings != "")
+            {
+                Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
+            }
+
+        }
+        else
+        {
+            Rating2.CurrentRating = 0;
+        }
+        if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
+        {
+            string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
+            if (logoPath2 != null)
+            {
+                //Image imgpd2 = e.Item.FindControl("Image2") as Image;
+                Image2.ImageUrl = logoPath2;
+            }
+        }
+        else
+        {
+            Image2.ImageUrl = "";
+        }
+
     }
 }

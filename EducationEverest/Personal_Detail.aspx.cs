@@ -24,8 +24,9 @@ public partial class Personal_Detail : System.Web.UI.Page
 
             dob.Value = personal.DOB.Value.ToString("yyyy-MM-dd");
 
-           // DateTime s = DateTime.ParseExact(personal.DOB, "MM/dd/yyyy", null);
-            nationality.Value = personal.Nationality;
+            // DateTime s = DateTime.ParseExact(personal.DOB, "MM/dd/yyyy", null);
+            // nationality.Value = personal.Nationality; need dropdown list here
+            ddlnationality.SelectedItem.Text = personal.Nationality;
         }
         if(db.Media.Any(a => a.User_ID == current_user))
         {
@@ -117,11 +118,13 @@ public partial class Personal_Detail : System.Web.UI.Page
            // x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
             //x.DOB = Convert.ToDateTime(dob.Value);
             x.DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null);
-            x.Nationality = nationality.Value;
-
+            //x.Nationality = nationality.Value; need dropdown list here
+            x.Nationality = ddlnationality.SelectedItem.Text;
+           
             // save the image
-            
+
             db.SaveChanges();
+
             //student_name.Value = string.Empty;
             //father_name.Value = "";
             //student_cnic.Value = "";
@@ -141,10 +144,11 @@ public partial class Personal_Detail : System.Web.UI.Page
                 Father_CNIC = father_cnic.Value,
                 DOB = DateTime.ParseExact(dob.Value, "yyyy-MM-dd", null),
 
-                Nationality = nationality.Value,
+               // Nationality = nationality.Value, need dropdown list here
+               Nationality= ddlnationality.SelectedItem.Text,
 
 
-                User_ID = current_user
+            User_ID = current_user
 
             };
             try { 

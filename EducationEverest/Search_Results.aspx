@@ -19,6 +19,13 @@
     <script type="text/javascript" src="js/myScript.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script type="text/javascript">
+        function Div_repeaterclick(id) {
+            
+            document.getElementById("<%= hf1.ClientID %>").value = id;
+            document.getElementById("<%= btn_UniversityClicked.ClientID %>").click();
+        }
+
+
         $(function () {
             var links = $('a.link').click(function () {
                 links.removeClass('active');
@@ -30,7 +37,7 @@
             alert("hello there");
 
         }
-
+        
     </script>
     <style>
         .linkbutton {
@@ -97,19 +104,25 @@
                 <%--<span><a href=""><img src="images/search_button.png" style="margin-top: 4px;"></a></span>--%>
                 <%--<span><a href=""><img src="images/filter_button.png" style="margin-top: 4px;;margin-left: -10px;"></a></span>--%>
             </div>
-            <%-- <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>
-        <li class="dropdown" style="height: 60px;">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px;margin-right: 10px;border-bottom: 1px solid white;">Faizan</span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
-          <ul class="dropdown-menu myprofile_dropdown">
-            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle25">Profile</a></li>
-             <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
-            <li role="separator" class="profile_divider"></li>
-            <li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>
-          </ul>
-        </li>
-      </ul>--%>
+           <ul class="nav navbar-nav navbar-right">
+                    <%-- <li><a href="#" style="margin-top: 5px;"><img src="images/header_notification_icon_1_.png"></a></li>--%>
+                    <li class="dropdown" style="height: 60px;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="NormalCharacterStyle22" style="font-size: 20px; margin-right: 10px; border-bottom: 1px solid white;">
+                            <asp:Label ID="lblLoggedUser" runat="server" Text="" Style="font-size: 20px; color: #0094ff; border-bottom: 1px solid; border-color: white"></asp:Label>
+                        </span>&nbsp;<img src="images/header_profile_icon_1_.png"></a>
+                        <ul class="dropdown-menu myprofile_dropdown">
+                            <li><a href="My_Profile.aspx" class="myprofile_dropdown_link NormalCharacterStyle24">Profile</a></li>
+                            <li role="separator" class="profile_divider"></li>
+                            <%--<li><a href="#" class="myprofile_dropdown_link NormalCharacterStyle25">Settings</a></li>
+            <li role="separator" class="profile_divider"></li>--%>
+                            <%--<li><a href="Login.aspx"  class="myprofile_dropdown_link NormalCharacterStyle25">Log Out</a></li>--%>
+                            <li>
+                                <asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
+                                        <i class="myprofile_dropdown_link NormalCharacterStyle24"></i>Logout
+                                </asp:LinkButton></li>
+                        </ul>
+                    </li>
+                </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -138,10 +151,10 @@
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                     <asp:Repeater ID="rptSearch" runat="server" OnItemDataBound="rptSearch_ItemDataBound" OnItemCommand="rptSearch_ItemCommand">
                         <ItemTemplate>
+
                             
-
-                            <div class="panel panel-default panel_shadow results_cards" onclick="location.href='#'" style="cursor: pointer;">
-
+                            <div  class="panel panel-default panel_shadow results_cards" onclick="Div_repeaterclick('<%# Eval("UniversityID") %>')" style="cursor: pointer;">
+                                
                                 <div class="container-fluid row">
                                     <div class="col-md-2">
                                         <div class="centered text-center">
@@ -337,6 +350,8 @@
 
             </div>
         </div>
+        <asp:HiddenField runat="server" ID="hf1"/>
+        <asp:Button runat="server" ID="btn_UniversityClicked" OnClick="btn_UniversityClicked_Click" style="display:none;" />
 </form>
 </body>
 </html>

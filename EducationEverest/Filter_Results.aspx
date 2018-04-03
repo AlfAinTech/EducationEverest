@@ -26,6 +26,12 @@
 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script type="text/javascript">
+        function Div_repeaterclick(id) {
+            
+            document.getElementById("<%= hf1.ClientID %>").value = id;
+            document.getElementById("<%= btn_UniversityClicked.ClientID %>").click();
+        }
+
         $(function () {
             var links = $('a.link').click(function () {
                 links.removeClass('active');
@@ -247,7 +253,7 @@
 
 
 
-                            <div class="panel panel-default panel_shadow results_cards" onclick="location.href='#'" style="cursor: pointer;">
+                            <div class="panel panel-default panel_shadow results_cards" onclick="Div_repeaterclick('<%# Eval("UniversityID") %>')" style="cursor: pointer;">
 
                                 <div class="container-fluid row">
                                     <div class="col-md-2">
@@ -444,6 +450,8 @@
                 </div>
             </div>
         </div>
+         <asp:HiddenField runat="server" ID="hf1"/>
+        <asp:Button runat="server" ID="btn_UniversityClicked" OnClick="btn_UniversityClicked_Click" style="display:none;" />
     </form>
 </body>
 </html>
