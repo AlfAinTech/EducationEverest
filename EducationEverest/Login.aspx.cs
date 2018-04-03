@@ -27,7 +27,13 @@ public partial class Login : System.Web.UI.Page
             // Validate the user password
             var manager = new UserManager();
             ApplicationUser user = manager.Find(Email.Text, Password.Text);
-            if (user != null)
+            EducationEverestEntities db = new EducationEverestEntities();
+            if(db.UserActivations.Any(a => a.UserId == user.Id)) {
+                FailureText.Text = "Please Activate your account first.";
+                ErrorMessage.Visible = true;
+    
+            }
+            else if (user != null)
             {
                 
                 IdentityHelper.SignIn(manager, user, false);
