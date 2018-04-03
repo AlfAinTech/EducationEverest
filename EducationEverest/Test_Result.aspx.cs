@@ -66,7 +66,7 @@ public partial class Test_Result : System.Web.UI.Page
         {
             Label label = item.FindControl("Label12") as Label;
 
-            DropDownList board = ((DropDownList)item.FindControl("select_board"));
+            //DropDownList board = ((DropDownList)item.FindControl("select_board"));
             TextBox roll_no = item.FindControl("roll_number") as TextBox;
             DropDownList passing_year = item.FindControl("year_of_passing") as DropDownList;
             TextBox total_marks = item.FindControl("total_marks") as TextBox;
@@ -77,7 +77,7 @@ public partial class Test_Result : System.Web.UI.Page
             if (db.Test_Results.Any(x => x.User_ID == current_user && x.Test_Name == label.Text))
             {
                 var p = db.Test_Results.Single(x => x.User_ID == current_user && x.Test_Name == label.Text);
-                board.SelectedValue = p.Board;
+               // board.SelectedValue = p.Board;
                 roll_no.Text = p.Rollno;
                 passing_year.Text = p.Passing_Year;
                 total_marks.Text = p.Total_Marks;
@@ -96,7 +96,7 @@ public partial class Test_Result : System.Web.UI.Page
         {
             Label label = item.FindControl("Label12") as Label;
 
-            DropDownList board = ((DropDownList)item.FindControl("select_board"));
+            //DropDownList board = ((DropDownList)item.FindControl("select_board"));
             TextBox roll_no = item.FindControl("roll_number") as TextBox;
             DropDownList passing_year = item.FindControl("year_of_passing") as DropDownList;
             TextBox total_marks = item.FindControl("total_marks") as TextBox;
@@ -107,7 +107,7 @@ public partial class Test_Result : System.Web.UI.Page
             if (db.Test_Results.Any(x => x.User_ID == current_user && x.Test_Name == label.Text))
             {
                 var p = db.Test_Results.Single(x => x.User_ID == current_user && x.Test_Name == label.Text);
-                p.Board = board.SelectedValue;
+               // p.Board = board.SelectedValue;
                 p.Rollno = roll_no.Text;
                 p.Passing_Year = passing_year.SelectedValue;
                 p.Total_Marks = total_marks.Text;
@@ -124,7 +124,7 @@ public partial class Test_Result : System.Web.UI.Page
                 {
                     User_ID = current_user,
                     Test_Name = label.Text,
-                    Board = board.SelectedValue,
+                    //Board = board.SelectedValue,
                     Rollno = roll_no.Text,
                     Passing_Year = passing_year.Text,
                     Total_Marks = total_marks.Text,

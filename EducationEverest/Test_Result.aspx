@@ -36,7 +36,7 @@
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5">
+                                    <%--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5">
                                         <div class="form">
                                             <asp:DropDownList ID="select_board" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
 
@@ -52,7 +52,7 @@
                                             <asp:RequiredFieldValidator ID="rvSelectBoard" runat="server" ErrorMessage="Please select Your Board/Institute" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="select_board" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                         </div>
-                                    </div>
+                                    </div>--%>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc4">
                                         <div class="form">
                                             <asp:TextBox ID="roll_number" class="inputs" MaxLength="30" placeholder="Roll Number" runat="server"></asp:TextBox>
@@ -65,14 +65,24 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
                                         <div class="form">
-                                            <asp:DropDownList ID="year_of_passing" Class="combobox select_campus col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5" runat="server">
+                                            <asp:DropDownList ID="year_of_passing" Class="combobox select_option col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5" runat="server">
                                                 <Items>
-                                                    <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
-                                                    <asp:ListItem Text="2015" Enabled="true" Selected="false" Value="2015" />
-                                                    <asp:ListItem Text="2014" Enabled="true" Selected="false" Value="2014" />
-                                                    <asp:ListItem Text="2013" Enabled="true" Selected="false" Value="2013" />
-                                                    <asp:ListItem Text="2012" Enabled="true" Selected="false" Value="2012" />
-                                                </Items>
+                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2015" Value="2015" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2014" Value="2014" />
+                                        </Items>
+                                                <Items>
+                                            <asp:ListItem Text="2013" Value="2013" />
+                                        </Items>
+                                                <Items>
+                                            <asp:ListItem Text="2012" Value="2012" />
+                                        </Items>
+
+
                                             </asp:DropDownList>
                                             <br />
                                             <asp:RequiredFieldValidator ID="rvYearPassing" runat="server" ErrorMessage="Please select Passing year" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="year_of_passing" ForeColor="Red"></asp:RequiredFieldValidator>
