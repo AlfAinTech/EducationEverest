@@ -280,9 +280,10 @@
       <div class="panel-heading card_bg">
         <div class="row text-left" style="border-bottom:1px solid #a3a3a3; padding:2% 2%">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-             <asp:Image ID="logo" runat="server"  />
+             <asp:Image ID="logo" runat="server" src="../images/university_icon.png"/>
+                        
+            </div>
 
-          </div>
              <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
         <h4 class="panel-title">
                   <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus_").ToString()=="pending" || Eval("CurrentStatus_").ToString()=="rejected"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
