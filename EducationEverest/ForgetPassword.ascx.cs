@@ -87,6 +87,6 @@ public partial class ForgetPassword : System.Web.UI.UserControl
     }
     protected void btn_register_Click(object sender, EventArgs e)
     {
-        Response.Redirect("../Login.aspx");
+        Response.Redirect("~/Login.aspx");
     }
 }

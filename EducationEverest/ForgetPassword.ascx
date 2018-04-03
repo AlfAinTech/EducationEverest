@@ -64,13 +64,16 @@
                         <asp:Button runat="server" OnClick="send_Click" Text="Send Email" CssClass="btn registration_btn" ID="send_btn" />
                         <%--<button class="btn btn-default">Reset Password Now</button>--%>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
+                    
+                </div>
+
+            </asp:Panel>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                         <%--<button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>--%>
                         <asp:Button ID="Button1" class="btn registration_btn2" runat="server" OnClick="btn_register_Click" Text="LOGIN" Style="font-size: 16px;" />
                     </div>
                 </div>
-
-            </asp:Panel>
         </div>
     </div>
 </div>
