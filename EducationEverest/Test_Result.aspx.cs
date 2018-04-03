@@ -23,9 +23,17 @@ public partial class Test_Result : System.Web.UI.Page
         Repeater1.DataSource = db.UniversityProfiles.Where(q => Univ.Contains(q.UniversityID)).ToList();
         Repeater1.DataBind();
         //getting recent make choice 'stest
-        int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-        Repeater1.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
-        Repeater1.DataBind();
+        if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+        {
+            Repeater1.DataSource = null;
+            Repeater1.DataBind();
+        }
+        else
+        {
+            int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+            Repeater1.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
+            Repeater1.DataBind();
+        }
     }
 
 

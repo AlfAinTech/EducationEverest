@@ -1,9 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ApplicationRecords.ascx.cs" Inherits="UserControls_ApplicationRecords" %>
 <script type="text/javascript">
     
+
     $(document).ready(function () {
 
         $('.viewbutton').on('click', function () {
+            var panel_id=($(this).attr('id').replace("href_","#details"));
+            $(panel_id).slideToggle("slow");
             if ($(this).text() == "VIEW") {
                 $(this).text('CLOSE');
                 $(this).css("font-weight", "Bold");
@@ -13,6 +16,11 @@
                 $(this).css("font-weight", "Bold");
             }
             
+        });
+
+        
+        $(".panel-collapse").on('show.bs.modal', function (event) {
+            alert('hi');
         });
 
     });
@@ -37,9 +45,9 @@
                             <span class="red_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Last Date: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><%# Eval("university.deadLine") %></span><span class="green_text col-lg-2 col-md-2 col-sm-2 col-xs-2">Status: </span><span class="panel_text col-lg-2 col-md-2 col-sm-2 col-xs-2"><%# Eval("CurrentStatus_") %></span>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <div class="row" style="border-top: 1px solid #d0d0d0;">
-                    <a data-toggle="collapse"  data-parent="#accordion" href='<%# "#details"+Container.ItemIndex %>' class="pull-right viewbutton margin_top" style="margin-right: 30px;"><b>VIEW</b></a>
+                    <a id='<%# "href_"+Container.ItemIndex %>' data-toggle="collapse"  data-parent="#accordion" class="pull-right viewbutton margin_top" style="cursor: pointer;margin-right: 30px;"><b>VIEW</b></a>
                 </div>
             </div>
             <div id='<%# "details"+Container.ItemIndex %>' class="panel-collapse collapse panel_shadow">

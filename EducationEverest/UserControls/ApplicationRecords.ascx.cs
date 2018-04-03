@@ -33,6 +33,11 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         }
         else
         {
+            if((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+            {
+                ApplicationsList.DataSource = null;
+                ApplicationsList.DataBind();
+            }
             int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
 
             ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();

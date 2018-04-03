@@ -39,10 +39,17 @@ public partial class Upload_Documents : System.Web.UI.Page
         //List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
         //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         //TestResultDocList.DataBind();
-
-        int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-        TestResultDocList.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
-        TestResultDocList.DataBind();
+        if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+        {
+            TestResultDocList.DataSource = null;
+            TestResultDocList.DataBind();
+        }
+        else
+        {
+            int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+            TestResultDocList.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
+            TestResultDocList.DataBind();
+        }
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
     }
