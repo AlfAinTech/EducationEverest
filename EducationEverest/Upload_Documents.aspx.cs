@@ -46,9 +46,17 @@ public partial class Upload_Documents : System.Web.UI.Page
         }
         else
         {
-            int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-            TestResultDocList.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
-            TestResultDocList.DataBind();
+            if (db.MakeChoices.Any(a => a.User_ID == current_user))
+            {
+                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+                TestResultDocList.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
+                TestResultDocList.DataBind();
+            }
+            else
+            {
+                TestResultDocList.DataSource = null;
+                TestResultDocList.DataBind();
+            }
         }
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 

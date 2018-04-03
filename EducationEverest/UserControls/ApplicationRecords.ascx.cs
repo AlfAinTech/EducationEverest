@@ -40,10 +40,17 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
             }
             else
             {
-                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+                if (db.MakeChoices.Any(a => a.User_ID == current_user))
+                {
+                    int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
 
-                ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();
-                ApplicationsList.DataBind();
+                    ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();
+                    ApplicationsList.DataBind();
+                }else
+                {
+                    ApplicationsList.DataSource = null;
+                    ApplicationsList.DataBind();
+                }
             }
         }
     }

@@ -30,9 +30,16 @@ public partial class Test_Result : System.Web.UI.Page
         }
         else
         {
-            int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-            Repeater1.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
-            Repeater1.DataBind();
+            if (db.MakeChoices.Any(a => a.User_ID == current_user))
+            {
+                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+                Repeater1.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
+                Repeater1.DataBind();
+            }else
+            {
+                Repeater1.DataSource = null;
+                Repeater1.DataBind();
+            }
         }
     }
 
