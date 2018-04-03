@@ -32,6 +32,8 @@
                 var x = location.href;
                 if (x.includes("NA=true")) {
                     window.location.href = 'choices.aspx?NA=true';
+                } else {
+                    window.location.href = 'choices.aspx';
                 }
             });
             $('#testResult').on('click', function () {
@@ -40,12 +42,17 @@
                 if (x.includes("NA=true")) {
                     window.location.href = 'Test_Result.aspx?NA=true';
                 }
+                else {
+                    window.location.href = 'Test_Result.aspx'
+                }
             });
             $('#Upload_Documents').on('click', function () {
 
                 var x = location.href;
                 if (x.includes("NA=true")) {
                     window.location.href = 'Upload_Documents.aspx?NA=true';
+                } else {
+                    window.location.href = 'Upload_Documents.aspx'
                 }
             });
             //  OpenCurrentPage();
