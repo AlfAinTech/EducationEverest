@@ -167,17 +167,16 @@
             }
 
             if (!Page_IsValid) {
-                for(var i=0;i<10;i++){
-                if (Page_ClientValidate('vgTestResults'+i)) {
-                    document.getElementById('imgCaution'+i).style.display = 'none';
-                    document.getElementById('imgSuccess'+i).style.display = 'inline-block';
+                if (Page_ClientValidate('vgTestResults0')) {
+                    document.getElementById('imgCaution0').style.display = 'none';
+                    document.getElementById('imgSuccess0').style.display = 'inline-block';
                 }
             else {
-                document.getElementById('imgCaution'+i).style.display = 'inline-block';
-                document.getElementById('imgSuccess'+i).style.display = 'none';
+                document.getElementById('imgCaution0').style.display = 'inline-block';
+                document.getElementById('imgSuccess0').style.display = 'none';
             }
-        }
-                return (Page_ClientValidate('vgTestResults1'));
+        
+                return (Page_ClientValidate('vgTestResults0'));
             }
         }
 
