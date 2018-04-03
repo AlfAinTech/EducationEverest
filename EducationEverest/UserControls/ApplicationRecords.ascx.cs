@@ -205,7 +205,9 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         if (e.Item.DataItem is UniversityProfile)
         {
             UniversityProfile dataItem = e.Item.DataItem as UniversityProfile;
-            TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID).FirstOrDefault();
+            List<int> docs = db.Documents.Where(a => a.userID == current_user).Select(a => a.id).ToList();
+            TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID && docs.Contains(q.documentID)).FirstOrDefault();
+            //TestResult_Document td = db.TestResult_Document.Where(q => q.UniID == dataItem.UniversityID).FirstOrDefault();
 
             if (td != null)
             {
