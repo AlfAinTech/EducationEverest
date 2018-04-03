@@ -173,21 +173,21 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                 TestResultList.DataBind();
                 //Documents detail 
                 Repeater studentCNICList = (Repeater)e.Item.FindControl("studentCNICList");
-                studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC").ToList();
+                studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC" && q.userID == current_user).ToList();
                 studentCNICList.DataBind();
                 Repeater FatherCNICList = (Repeater)e.Item.FindControl("FatherCNICList");
-                FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC").ToList();
+                FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC" && q.userID == current_user).ToList();
                 FatherCNICList.DataBind();
                 Repeater FatherIncomeCertiList = (Repeater)e.Item.FindControl("FatherIncomeCertiList");
-                FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti").ToList();
+                FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti" && q.userID == current_user).ToList();
                 FatherIncomeCertiList.DataBind();
                 Repeater MatricCertiList = (Repeater)e.Item.FindControl("MatricCertiList");
-                MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti").ToList();
+                MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti" && q.userID == current_user).ToList();
                 MatricCertiList.DataBind();
                 Repeater InterCertiList = (Repeater)e.Item.FindControl("InterCertiList");
-                InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti").ToList();
+                InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti" && q.userID == current_user).ToList();
                 InterCertiList.DataBind();
-                Repeater TestResultDocList = (Repeater)e.Item.FindControl("TestResultDocList");
+                Repeater TestResultDocList = (Repeater)e.Item.FindControl("TestResultDocList" && q.userID == current_user);
 
                 List<int> universities = new List<int>();
                 if (dataItem.deptID != null)
