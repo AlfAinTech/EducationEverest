@@ -28,7 +28,7 @@ public partial class Login : System.Web.UI.Page
             var manager = new UserManager();
             ApplicationUser user = manager.Find(Email.Text, Password.Text);
             EducationEverestEntities db = new EducationEverestEntities();
-            if(db.UserActivations.Any(a => a.UserId == user.Id)) {
+            if(user != null && db.UserActivations.Any(a => a.UserId == user.Id)) {
                 FailureText.Text = "Please Activate your account first.";
                 ErrorMessage.Visible = true;
     
