@@ -79,7 +79,8 @@ public partial class Test_Result : System.Web.UI.Page
                 var p = db.Test_Results.Single(x => x.User_ID == current_user && x.Test_Name == label.Text);
                // board.SelectedValue = p.Board;
                 roll_no.Text = p.Rollno;
-                passing_year.Text = p.Passing_Year;
+                //passing_year.Text = p.Passing_Year;
+                passing_year.SelectedValue = p.Passing_Year;
                 total_marks.Text = p.Total_Marks;
                 obtained_marks.Text = p.Obtained_Marks;
                 

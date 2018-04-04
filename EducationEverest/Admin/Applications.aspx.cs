@@ -578,9 +578,11 @@ public partial class Applications : System.Web.UI.Page
                     }
 
                 }
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Email sent successfully');fading();", true);
             }
             catch(Exception ex)
             {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Something went wrong, Please try again or contact your support team.');fading();", true);
                 Console.WriteLine(ex.Message);
             }
         }

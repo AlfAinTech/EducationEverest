@@ -21,6 +21,11 @@
                     $('.overlay').css("display", "block");
                 
             });
+            $('#ddl_current_status').change(function () {
+
+                $('.overlay').css("display", "block");
+
+            });
         });
 //        $(function () {
 //            $("#btn_view").click(function () {

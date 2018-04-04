@@ -348,6 +348,16 @@ public partial class Choices : System.Web.UI.Page
 
                                                 dbcontext.SystemNotifications.Add(newNotification);
                                                 dbcontext.SaveChanges();
+                                                //remove app_Start rows if there are any for this user
+                                                if (dbcontext.App_Start.Any(a => a.AspNetUserID == current_user))
+                                                {
+                                                    List<App_Start> incompleteAppsForCurrentUser = dbcontext.App_Start.Where(a => a.AspNetUserID == current_user).ToList();
+                                                    foreach(var entry in incompleteAppsForCurrentUser)
+                                                    {
+                                                        dbcontext.App_Start.Remove(entry);   
+                                                    }
+                                                    dbcontext.SaveChanges();
+                                                }
                                             }
                                             catch(Exception e)
                                             {
@@ -380,6 +390,16 @@ public partial class Choices : System.Web.UI.Page
 
                                         dbcontext.SystemNotifications.Add(newNotification);
                                         dbcontext.SaveChanges();
+                                        //remove app_Start rows if there are any for this user
+                                        if (dbcontext.App_Start.Any(a => a.AspNetUserID == current_user))
+                                        {
+                                            List<App_Start> incompleteAppsForCurrentUser = dbcontext.App_Start.Where(a => a.AspNetUserID == current_user).ToList();
+                                            foreach (var entry in incompleteAppsForCurrentUser)
+                                            {
+                                                dbcontext.App_Start.Remove(entry);
+                                            }
+                                            dbcontext.SaveChanges();
+                                        }
 
                                     }
                                    

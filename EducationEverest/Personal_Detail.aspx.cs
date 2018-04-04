@@ -26,7 +26,8 @@ public partial class Personal_Detail : System.Web.UI.Page
 
             // DateTime s = DateTime.ParseExact(personal.DOB, "MM/dd/yyyy", null);
             // nationality.Value = personal.Nationality; need dropdown list here
-            ddlnationality.SelectedItem.Text = personal.Nationality;
+            ddlnationality.SelectedValue = ddlnationality.Items.FindByText(personal.Nationality).Value;
+            //ddlnationality.SelectedItem.Text = personal.Nationality;
         }
         if(db.Media.Any(a => a.User_ID == current_user))
         {
