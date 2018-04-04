@@ -187,16 +187,18 @@
     </body>
 <br/>
      
-<div style="margin-left: 115px;" >
+<%--<div style="margin-left: 115px;" >
     
  
      
     <a > <fb:login-button id="btn_fb"  scope="public_profile,email" data-width="350" data-max-rows="1" data-size="large" data-button-type="login_with"  style="background-repeat:no-repeat;position:absolute; padding-top:15px; "   onlogin="checkLoginState();"></fb:login-button></a>
- <%-- <div class="fb-login-button" data-width="350" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>--%>
+ 
 
     <br /> <br /> <br /> <br />
      <div id="my-signin2"></div>
-    </div>
+    <button onclick="logOut()">Log Out of Facebook</button>
+    <a href="#" onclick="signOut();">Sign out</a>
+    </div>--%>
     <script>
         
         var googleUser = {};
@@ -521,8 +523,7 @@
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
  
-     <button onclick="logOut()">Log Out of Facebook</button>
-    <a href="#" onclick="signOut();">Sign out</a>
+     
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
