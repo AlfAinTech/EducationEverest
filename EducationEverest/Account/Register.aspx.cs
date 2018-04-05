@@ -255,9 +255,17 @@ public partial class Account_Register : Page
 
             }
 
+            IdentityHelper.SignIn(manager, user, false);
+
         }
         else
         {
+            AspNetUser currentUser = db.AspNetUsers.Where(a => a.UserName == gpemail_).First();
+            var manager = new UserManager();
+            var user = manager.FindById(currentUser.Id);
+            
+            
+            IdentityHelper.SignIn(manager, user, false);
             //Console.WriteLine("email already registered");
 
         }
