@@ -12,7 +12,7 @@
 
             <div id="div_artWork" runat="server">
                 <img src="images/Dashboard.png" />
-                <h3 style="color:#a7a7a7">You have no admission applicaiton yet!</h3>
+                <h3 style="color:#a7a7a7">You have no admission application yet!</h3>
             </div>
                 <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
             <div style="display:inline-block">

@@ -89,19 +89,25 @@ public partial class Login : System.Web.UI.Page
                 db.SaveChanges();
 
 
-               
+                IdentityHelper.SignIn(manager, user, false);
 
             }
 
         }
         else
         {
-            //Console.WriteLine("email already registered");
+            AspNetUser currentUser = db.AspNetUsers.Where(a => a.UserName == fbemail_).First();
+            var manager = new UserManager();
+            var user = manager.FindById(currentUser.Id);
+
+
+            IdentityHelper.SignIn(manager, user, false);
+
 
         }
         //redirect to dashboard
 
-       // HttpContext.Current.Response.Redirect("Dashboard.aspx");
+        // HttpContext.Current.Response.Redirect("Dashboard.aspx");
 
         string[] array = new string[3];
         array[0] = fbfirstname_;

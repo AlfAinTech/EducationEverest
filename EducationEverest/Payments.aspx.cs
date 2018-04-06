@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class Payments : System.Web.UI.Page
 {
+    bool allPaid = true;
     public static string current_user = HttpContext.Current.User.Identity.GetUserId();
     EducationEverestEntities db = new EducationEverestEntities();
     protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +25,10 @@ public partial class Payments : System.Web.UI.Page
             ChoicesList.DataSource = applicationList;
             ChoicesList.DataBind();
             totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
-           
+            if (allPaid)
+            {
+                btn_MakeTotalPayment.Style.Add("display", "none");
+            }
         }
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
@@ -113,11 +117,12 @@ public partial class Payments : System.Web.UI.Page
             }
         }
         SingleTrackingId.Value = "";
+        Response.Redirect(Request.RawUrl);
         }
 
     protected void ChoicesList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        bool allPaid = true;
+        
         if (e.Item.DataItem is Application)
         {
             Application dataItem = e.Item.DataItem as Application;
@@ -127,7 +132,7 @@ public partial class Payments : System.Web.UI.Page
                 Image im = (Image)e.Item.FindControl("logo");
                 im.ImageUrl = um.Path;
             }
-            if(dataItem.TrackingID != null)
+            if(dataItem.TrackingID != null && dataItem.TrackingID != "" && dataItem.TrackingID != "No payment")
             {
                 System.Web.UI.HtmlControls.HtmlButton button = e.Item.FindControl("btn_MakePayment") as System.Web.UI.HtmlControls.HtmlButton;
                 button.Style.Add("display", "none");
@@ -138,9 +143,8 @@ public partial class Payments : System.Web.UI.Page
             }
 
         }
-        if (allPaid)
-        {
-            btn_MakeTotalPayment.Style.Add("display", "none");
-        }
+        
     }
+
+    
 }

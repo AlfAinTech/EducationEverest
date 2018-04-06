@@ -48,7 +48,11 @@
                                         </div>
                                         <div class="margin_top col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             
-                                            <button type="button" data-toggle="modal" id="btn_MakePayment" data-target="#exampleModalCenterSingleItem"  onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)' runat="server"   class=" btn make_paymeny_button_bg pull-right">Make Payment</button>
+                                            <%--<button type="button" data-toggle="modal" runat="server" id="btn_MakePayment"  data-target="#exampleModalCenterSingleItem" onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)'   class=" btn make_paymeny_button_bg pull-right">Make Payment</button>--%>
+                                            <button type="button" data-toggle="modal" runat="server" id="btn_MakePayment"  data-target="#exampleModalCenterSingleItem" onclick='<%# String.Format("javascript:return AddPayment(\"{0}\",\"{1}\")", Eval("id").ToString(),Eval("Fees").ToString())   %>'   class=" btn make_paymeny_button_bg pull-right">Make Payment</button>
+                                            
+                                            <%--<button type="button" data-toggle="modal" data-target="#exampleModalCenterSingleItem" onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)' class=" btn make_paymeny_button_bg pull-right">Make Payment</button>--%>
+                                            
                                         </div>
                                     </div>
                                     <br />
@@ -317,12 +321,18 @@
             </div>
 
             <script type="text/javascript">
+                
                 function AddPayment(appid, price) {
+                    
                     console.log(appid, price);
                     $("[id*=paymentAppID]").val(appid);
                     $("[id*=InvoicePayment]")[0].innerHTML = "";
                     $("[id*=InvoicePayment]")[0].innerHTML = price;
 
+                }
+
+                function myFunction() {
+                    alert("hellooo");
                 }
 
                 $(window).on('load', function () {
@@ -347,6 +357,7 @@
                     //  OpenCurrentPage();
                 });
 
+                
 
                 function OpenCurrentPage() {
                     $("#Payments").parent().addClass("selected_bg");
