@@ -3,7 +3,7 @@
 <%@ Register Src="~/UserControls/ApplicationRecords.ascx" TagPrefix="uc1" TagName="ApplicationRecords" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" runat="Server">
-    <div style="margin-top: 15px">Dashboard > Applications</div>
+    <div style="margin-top: 15px"><a class="breadcrumbLinks" href="Dashboard.aspx">Dashboard</a> > Applications</div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-center">

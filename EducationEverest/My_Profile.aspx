@@ -105,7 +105,7 @@
 
 <div class="container-fluid col-sm-12 header2 NormalCharacterStyle25">
   
-    <div style="margin-top: 12px">Dashboard > Profile</div>
+    <div style="margin-top: 12px"><a class="breadcrumbLinks" href="Dashboard.aspx">Dashboard ></a> <a class="breadcrumbLinks" href="My_Profile.aspx">Profile</a></div>
 
 </div>
 <br/>

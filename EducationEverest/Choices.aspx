@@ -3,7 +3,7 @@
 <%@ Register Src="~/UserControls/ApplicationRecords.ascx" TagPrefix="uc1" TagName="ApplicationRecords" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" runat="Server">
-    <div style="margin-top: 15px">Dashboard > File Admission Application > Make Choices</div>
+    <div style="margin-top: 15px"><a class="breadcrumbLinks" href="Dashboard.aspx">Dashboard </a> > <a class="breadcrumbLinks" href="Personal_Detail.aspx"> File Admission Application </a> > <a class="breadcrumbLinks" href="Choices.aspx">Make Choices </a></div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
@@ -19,6 +19,8 @@
         
 
         $(document).ready(function () {
+
+            
 
             $('#exampleModalCenter').on('hidden.bs.modal', function () {
                 location.reload();
@@ -164,7 +166,7 @@
             }
             function OnProgramSuccess(r) {
                 var ddl5 = $("[id*=DropDownList5]");
-                ddl5.empty().append('<option selected="selected" value="0">Select Programm</option>');
+                ddl5.empty().append('<option selected="selected" value="0">Select Program</option>');
                 for (var i = 0; i < r.d.length; i++) {
                     var data = r.d[i];
                     var dataList = data.split(",");
@@ -282,7 +284,7 @@
             }
             function OnModalProgram1Success(r) {
                 var ddl8 = $("[id*=DropDownList8]");
-                ddl8.empty().append('<option selected="selected" value="0">Select Programm</option>');
+                ddl8.empty().append('<option selected="selected" value="0">Select Program</option>');
                 for (var i = 0; i < r.d.length; i++) {
                     var data = r.d[i];
                     var dataList = data.split(",");

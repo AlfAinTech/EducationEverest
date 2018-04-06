@@ -3,7 +3,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" runat="Server">
-    <div style="margin-top: 15px">Dashboard > File Admission Application > Personal Details</div>
+    <div style="margin-top: 15px"><a class="breadcrumbLinks" href="Dashboard.aspx">Dashboard</a> > <a class="breadcrumbLinks" href="Personal_Detail.aspx">File Admission Application</a> > <a class="breadcrumbLinks" href="Personal_Detail.aspx">Personal Details</a></div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     

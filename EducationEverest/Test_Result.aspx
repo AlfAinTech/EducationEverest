@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client.master" AutoEventWireup="true" CodeFile="Test_Result.aspx.cs" Inherits="Test_Result" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="StatusBas" runat="Server">
-    <div style="margin-top: 15px">Dashboard > File Admission Application > Test Results</div>
+    <div style="margin-top: 15px"><a class="breadcrumbLinks" href="Dashboard.aspx">Dashboard </a> > <a class="breadcrumbLinks" href="Personal_Detail.aspx">File Admission Application </a> > <a class="breadcrumbLinks" href="Test_Result.aspx">Test Results </a></div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
