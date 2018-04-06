@@ -112,10 +112,12 @@ public partial class Payments : System.Web.UI.Page
 
             }
         }
+        SingleTrackingId.Value = "";
         }
 
     protected void ChoicesList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
+        bool allPaid = true;
         if (e.Item.DataItem is Application)
         {
             Application dataItem = e.Item.DataItem as Application;
@@ -125,7 +127,20 @@ public partial class Payments : System.Web.UI.Page
                 Image im = (Image)e.Item.FindControl("logo");
                 im.ImageUrl = um.Path;
             }
+            if(dataItem.TrackingID != null)
+            {
+                System.Web.UI.HtmlControls.HtmlButton button = e.Item.FindControl("btn_MakePayment") as System.Web.UI.HtmlControls.HtmlButton;
+                button.Style.Add("display", "none");
+            }
+            else
+            {
+                allPaid = false;
+            }
 
+        }
+        if (allPaid)
+        {
+            btn_MakeTotalPayment.Style.Add("display", "none");
         }
     }
 }

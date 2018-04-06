@@ -127,7 +127,7 @@ public partial class Test_Result : System.Web.UI.Page
                     Test_Name = label.Text,
                     //Board = board.SelectedValue,
                     Rollno = roll_no.Text,
-                    Passing_Year = passing_year.Text,
+                    Passing_Year = passing_year.SelectedValue,
                     Total_Marks = total_marks.Text,
                     Obtained_Marks = obtained_marks.Text,
                     Percentage = percentage.Value,

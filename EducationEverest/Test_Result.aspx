@@ -22,7 +22,7 @@
                                         <img id='<%# "imgSuccess"+Container.ItemIndex %>' src="images/check_icon.png"   style="margin-right:10px"/>
                                         <div class="icon-arrow-right pull-right">
                                             <div class="check-"></div>
-                                            <i class="glyphicon glyphicon-chevron-up normal-color"></i>
+                                            <i class="glyphicon glyphicon-chevron-down normal-color"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -65,22 +65,22 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
                                         <div class="form">
-                                            <asp:DropDownList ID="year_of_passing" Class="combobox select_option col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc5" runat="server">
+                                            <asp:DropDownList ID="year_of_passing" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                                 <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
-                                        </Items>
-                                        <Items>
-                                            <asp:ListItem Text="2015" Value="2015" />
-                                        </Items>
-                                        <Items>
-                                            <asp:ListItem Text="2014" Value="2014" />
-                                        </Items>
+                                                    <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
+                                                </Items>
                                                 <Items>
-                                            <asp:ListItem Text="2013" Value="2013" />
-                                        </Items>
+                                                    <asp:ListItem Text="2015" Value="2015" />
+                                                </Items>
                                                 <Items>
-                                            <asp:ListItem Text="2012" Value="2012" />
-                                        </Items>
+                                                    <asp:ListItem Text="2014" Value="2014" />
+                                                </Items>
+                                                <Items>
+                                                    <asp:ListItem Text="2013" Value="2013" />
+                                                </Items>
+                                                <Items>
+                                                    <asp:ListItem Text="2012" Value="2012" />
+                                                </Items>
 
 
                                             </asp:DropDownList>
@@ -239,16 +239,7 @@
             //  OpenCurrentPage();
         });
 
-        $('#menu_toggle').on('click', function () {
-            var iSelector = $(this).find('i:first');
-            if (iSelector.hasClass('glyphicon-chevron-down')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-up')
-            } else if (iSelector.hasClass('glyphicon-chevron-up')) {
-                iSelector.removeClass('glyphicon-chevron-down')
-                iSelector.addClass('glyphicon-chevron-down')
-            }
-        });
+        
         $('#menu_toggle2').on('click', function () {
             var iSelector = $(this).find('i:first');
             if (iSelector.hasClass('glyphicon-chevron-down')) {

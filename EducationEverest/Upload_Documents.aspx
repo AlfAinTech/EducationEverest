@@ -310,7 +310,7 @@
                             <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
-                            <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
+                            <i class="glyphicon glyphicon-chevron-up normal-color"></i></div>
                             </div>
                         </div>
                     </h4>

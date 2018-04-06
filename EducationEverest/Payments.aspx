@@ -47,7 +47,8 @@
                                             </div>
                                         </div>
                                         <div class="margin_top col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <button type="button" data-toggle="modal" data-target="#exampleModalCenterSingleItem" onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)' class=" btn make_paymeny_button_bg pull-right">Make Payment</button>
+                                            
+                                            <button type="button" data-toggle="modal" id="btn_MakePayment" data-target="#exampleModalCenterSingleItem"  onclick='AddPayment(<%# Eval("id") %> , <%# Eval("Fees") %>)' runat="server"   class=" btn make_paymeny_button_bg pull-right">Make Payment</button>
                                         </div>
                                     </div>
                                     <br />
@@ -61,7 +62,7 @@
         </div>
 
         <div style="padding-bottom: 3%">
-            <button type="button" class=" btn button_bg" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">Make Payment</span></button>
+            <button id="btn_MakeTotalPayment" runat="server" type="button" class=" btn button_bg" data-toggle="modal" data-target="#exampleModalCenter"><span class="NormalCharacterStyle">Make Payment</span></button>
         </div>
         <div class="modal fade" id="exampleModalCenter">
             <div class="modal-dialog">
@@ -330,6 +331,7 @@
                 });
 
                 $(document).ready(function () {
+
                     $('.menu_toggles').on('click', function () {
 
                         var iSelector = $(this).find('i:first');
