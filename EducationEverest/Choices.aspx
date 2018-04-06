@@ -8,6 +8,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
 
+        var preferencesAdded = false;
 
         function populateGridview(universityId) {
             alert("this is university Id : " + universityId);
@@ -23,7 +24,12 @@
             
 
             $('#exampleModalCenter').on('hidden.bs.modal', function () {
-                location.reload();
+                if (preferencesAdded) {
+                    window.location.href = 'choices.aspx';
+                }
+                else {
+                    location.reload();
+                }
             })
             
             var count = 0;
@@ -199,7 +205,10 @@
                     },
                     success: function (result) {
                         console.log("this is the data" + result.toString());
-                        BindData(result)
+                        if (result.d.length > 2) {
+                            preferencesAdded = true;
+                        }
+                        BindData(result);
                         //populateGridview(result);
 
                     }
@@ -458,7 +467,7 @@
                         <div class="NormalCharacterStyle10 margin_top">
                             Add Choices<div class="icon-arrow-right pull-right">
                                 <div class="check-"></div>
-                                <i class="glyphicon glyphicon-chevron-up normal-color"></i>
+                                <i class="glyphicon glyphicon-chevron-down normal-color"></i>
                             </div>
                         </div>
                     </h4>
