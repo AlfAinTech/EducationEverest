@@ -2091,3 +2091,7 @@ select option {
   color: black !important;
   font-size:17px;
 }
+
+.breadcrumbLinks{
+    color:#CCCCCC;
+}
