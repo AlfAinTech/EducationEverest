@@ -340,7 +340,10 @@ public partial class Applications : System.Web.UI.Page
             }else if(application.Payments.FirstOrDefault() == null)
             {
                 LinkButton lb_confirm = e.Row.FindControl("LinkButton1") as LinkButton;
-                lb_confirm.Enabled = false;
+                lb_confirm.Visible = false;
+                Label lbl_confirmed = e.Row.FindControl("Label1") as Label;
+                lbl_confirmed.Text = "N/A";
+                lbl_confirmed.Visible = true;
             }
             //Repeater rptr_files = e.Row.FindControl("rptr_files") as Repeater;
             //EducationEverestEntities db = new EducationEverestEntities();

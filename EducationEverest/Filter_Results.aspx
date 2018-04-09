@@ -271,7 +271,7 @@
 
                                         <%--<img src='<%# Eval("Path") %>'' style="width: :90px;height: 90px;margin-left: 0px;margin-top: 10px;">--%>
                                         <%--<img  id="logoImage" style="width: 90px;height: 90px;margin-left: 0px;margin-top: 10px;">--%>
-                                        <asp:Image ID="Image1" runat="server" />
+                                        <asp:Image  ImageUrl="~/images/university_icon.png" ID="Image1" runat="server" />
 
                                         <%--<img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: 0px;margin-top: 10px;">--%>
                                     </div>
@@ -340,7 +340,7 @@
                 <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" id="dvUnivDetailsShow" runat="server" style="height: 100%">
                     <div class="row" style="border-bottom: 1px solid #b3b3b3; padding-bottom: 4%">
                         <div class="col-md-2">
-                            <asp:Image ID="Image2" runat="server" />
+                            <asp:Image  ImageUrl="~/images/university_icon.png" ID="Image2" runat="server" />
                             <%--<img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">--%>
                         </div>
                         <div class="col-md-10 text-left" style="margin-top: 10px">

@@ -180,7 +180,7 @@ public partial class Filter_Results : System.Web.UI.Page
                     }
                     else
                     {
-                        Image2.ImageUrl = "";
+                        Image2.ImageUrl = "~/images/university_icon.png";
                     }
                 }
                 //
@@ -502,7 +502,7 @@ public partial class Filter_Results : System.Web.UI.Page
                 }
                 else
                 {
-                    Image2.ImageUrl = "";
+                    Image2.ImageUrl = "~/images/university_icon.png";
                 }
             }
 
@@ -757,7 +757,7 @@ public partial class Filter_Results : System.Web.UI.Page
                         }
                         else
                         {
-                            Image2.ImageUrl = "";
+                            Image2.ImageUrl = "~/images/university_icon.png";
                         }
                     }
                 }
@@ -1124,7 +1124,7 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
         }
         else
         {
-            Image2.ImageUrl = "";
+            Image2.ImageUrl = "~/images/university_icon.png";
         }
 
     }

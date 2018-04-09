@@ -83,10 +83,10 @@ textarea {
   
 }
 
-.tag:hover {
+/*.tag:hover {
   background-color: #e9ecef;
   color: #007bff;
-}
+}*/
 
 .tag:hover::after {
    border-left-color: #e9ecef;

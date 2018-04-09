@@ -24,30 +24,7 @@ public partial class Search_Results : System.Web.UI.Page
             rptSearch.DataBind();
         }
 
-        //var q = from University in db.Universities
-        //        select University;
-        //rptSearch.DataSource = q.ToList();
-        //rptSearch.DataBind();
-
-        //var q1 = from u in db.Universities
-        //         join um in db.UniversityMedias on u.id equals um.UniversityId
-        //         select new  { u.id, u.Name, um.Path };
-        //var q1 = from u in db.Universities
-        //         join um in db.UniversityMedias on u.id equals um.UniversityId //previous.id equals present.id
-        //         join up in db.UniversityProfiles on u.id equals up.UniversityID
-        //         join cam in db.Campuses on u.id equals cam.Uni_ID
-        //         join camp in db.CampusProfiles on cam.id equals camp.CampusID
-
-        //         orderby u.id 
-        //         select new { u.id, u.Name, um.Path, up.Address, up.LastDate, up.AdmissionOpen, rating = camp.AdminRatings};
-
-
-
-
-
-
-        //return;
-        //on pageload show default values for first university on right side
+        
         University uv = new University();
         int checkempty = db.Universities.Count();
         if (checkempty > 0)//check if table has some value
@@ -179,10 +156,7 @@ public partial class Search_Results : System.Web.UI.Page
                             Image2.ImageUrl = logoPath2;
                         }
                     }
-                    else
-                    {
-                        Image2.ImageUrl = "";
-                    }
+                    
                 }
                 //
             }
@@ -418,10 +392,7 @@ public partial class Search_Results : System.Web.UI.Page
                             }
 
                         }
-                        else
-                        {
-                            Image2.ImageUrl = "";
-                        }
+                        
                     }
                 }
 
@@ -747,10 +718,11 @@ public partial class Search_Results : System.Web.UI.Page
                     Image2.ImageUrl = logoPath2;
                 }
             }
-            else
-            {
-                Image2.ImageUrl = "";
-            }
+        else
+        {
+            Image2.ImageUrl = "~/images/university_icon.png";
+        }
+            
 
         
 

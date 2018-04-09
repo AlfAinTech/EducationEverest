@@ -82,10 +82,10 @@ textarea {
   
 }
 
-.tag:hover {
+/*.tag:hover {
   background-color: #ff99b4 !important;
   color: white !important;
-}
+}*/
 
 .tag:hover a{
     color: white !important;
