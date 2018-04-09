@@ -88,7 +88,7 @@ public partial class Test_Result : System.Web.UI.Page
                 division.Text = p.Division;
             }
             //image of caution and success
-            if (db.Test_Results.Any(a => (a.User_ID == current_user) && (a.Rollno == null || a.Passing_Year == null || a.Total_Marks == null || a.Obtained_Marks == null || a.Percentage == null || a.Division == null)))
+            if (db.Test_Results.Any(a => (a.User_ID == current_user && a.Test_Name == label.Text) && (a.Rollno == null || a.Passing_Year == null || a.Total_Marks == null || a.Obtained_Marks == null || a.Percentage == null || a.Division == null)))
             {
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "showCaution();", true);
             }
