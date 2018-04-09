@@ -29,8 +29,14 @@
             if (typeof (Page_ClientValidate) == 'function') {
                 Page_ClientValidate();
             }
+            var imageAttached = true;
+            var url = document.getElementById('<%= ibtn_FileUpload.ClientID %>').src;
+            if (url.includes("ee_fileUpload") || url.includes("ee_UserDefault") || url == "") {
+                document.getElementById('lbl_reqImage').style.display = 'inline-block';
+                imageAttached = false;
+            }
             
-            if (!Page_IsValid) {
+            if (!Page_IsValid || !imageAttached) {
                 
                 if (Page_ClientValidate('vgPersonalDetails2')) {
                     showSuccess2();
@@ -38,11 +44,13 @@
                 else {
                     showCaution2();
                 }
-                if (Page_ClientValidate('vgPersonalDetails')) {
+                if (Page_ClientValidate('vgPersonalDetails') && imageAttached) {
                     showSuccess();
                 }
                 else {
                     showCaution();
+                    e.preventDefault();
+                    
                 }
                 return (Page_ClientValidate('vgPersonalDetails2') && Page_ClientValidate('vgPersonalDetails'));
             }
@@ -212,7 +220,7 @@
                                     <br />
                                     <asp:RequiredFieldValidator ID="rvDOB" runat="server" ErrorMessage="Date of Birth is required" Display="Dynamic" ValidationGroup="vgPersonalDetails" ControlToValidate="dob" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <asp:RangeValidator ID="rv1" runat="server" ErrorMessage="Date of birth should be between 1990 and 2006" ControlToValidate="dob" ValidationGroup="vgPersonalDetails" Type="Date" ForeColor="Red" Display="Dynamic" MinimumValue="01/01/1990" MaximumValue="01/01/2006"></asp:RangeValidator>
-
+                                    
                                 </div>
                             </div>
 
@@ -705,10 +713,10 @@
 
 
 
-                            <asp:Image runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" Style="cursor: pointer" onclick="browse()" />
+                            <asp:Image runat="server" ImageUrl="~/images/ee_fileUpload.png" ID="ibtn_FileUpload" Style="cursor: pointer" onclick="browse()" />
                             <asp:FileUpload ID="FileUpload1" accept="image/*" Style="display: none;" ClientIDMode="Static" runat="server" onchange="this.form.submit()" />
                             <asp:RegularExpressionValidator ValidationGroup="validateFile" ID="RegularExpressionValidator1" ControlToValidate="FileUpload1" ForeColor="Red" ValidationExpression="^.*\.(jpg|png|JPG|gif|GIF|jpeg|JPEG|PNG)$" runat="server" ErrorMessage="Select a Valid File"></asp:RegularExpressionValidator>
-                            
+                            <label id="lbl_reqImage" style="display:none;color:red" >Image is required</label>
                             <asp:Button ID="btn_UplaodImage" ValidationGroup="validateFile" Style="display: none;" OnClick="btn_UplaodImage_Click" runat="server" />
 
                         </div>

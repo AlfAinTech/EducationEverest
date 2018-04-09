@@ -90,12 +90,13 @@ public partial class Personal_Detail : System.Web.UI.Page
         }
         if (FileUpload1.PostedFile != null)
         {
-         
             
             if (FileUpload1.PostedFile.FileName.Length > 0 && (FileUpload1.PostedFile.ContentType == "image/png"|| FileUpload1.PostedFile.ContentType == "image/jpg" || FileUpload1.PostedFile.ContentType == "image/jpeg") )
             {
                 FileUpload1.SaveAs(Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName);
+                
                 string imagePath = Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName;
+                
                 byte[] photoBytes = File.ReadAllBytes(imagePath); // change imagePath with a valid image path
 
                 // Format is automatically detected though can be changed.
@@ -207,7 +208,7 @@ public partial class Personal_Detail : System.Web.UI.Page
             }
             else
             {
-                newMedia.Path = "~/Content/UsersMedia/download.png";
+                newMedia.Path = "~/Content/UsersMedia/ee_UserDefault.png";
             }
             db.Media.Add(newMedia);
             db.SaveChanges();
