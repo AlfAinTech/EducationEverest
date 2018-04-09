@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 
 public partial class Educational_Detail : System.Web.UI.Page
 {
+    string jsString = ""; string jsString2 = "";
     EducationEverestEntities db = new EducationEverestEntities();
     string current_user = HttpContext.Current.User.Identity.GetUserId();
 
@@ -26,6 +27,15 @@ public partial class Educational_Detail : System.Web.UI.Page
             percentage_matric.Value = matric.Percentage;
             division_matric.Value = matric.Division;
         }
+        //image of caution and success
+        if (db.Matriculation_Education.Any(a => (a.User_ID == current_user) && (a.Board == null || a.Rollno == null || a.Passing_Year == null || a.Total_Marks == null || a.Obtained_Marks == null || a.Percentage == null || a.Division == null)))
+        {
+            jsString = "showCaution();";
+        }
+        else if (db.Matriculation_Education.Any(a => a.User_ID == current_user))
+        {
+            jsString = "showSuccess();";
+        }
     }
 
     public void populate_intermediate_data()
@@ -41,6 +51,15 @@ public partial class Educational_Detail : System.Web.UI.Page
             percentage_intermediate.Value = inter.Percentage;
             division_intermediate.Value = inter.Division;
         }
+        //image of caution and success
+        if (db.Intermediate_Education.Any(a => (a.User_ID == current_user) && (a.Board == null || a.Rollno == null || a.Passing_Year == null || a.Total_Marks == null || a.Obtained_Marks == null || a.Percentage == null || a.Division == null)))
+        {
+            jsString2 = "showCaution2();";
+        }
+        else if (db.Intermediate_Education.Any(a => a.User_ID == current_user))
+        {
+            jsString2 = "showSuccess2();";
+        }
 
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -54,6 +73,8 @@ public partial class Educational_Detail : System.Web.UI.Page
         {
             populate_matric_data();
             populate_intermediate_data();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "text", jsString + jsString2, true);
+
         }
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }

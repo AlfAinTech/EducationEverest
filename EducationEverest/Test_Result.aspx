@@ -19,7 +19,7 @@
                                     <asp:Label ID="Label12" runat="server" Text='<%#Eval("TestName")%>'></asp:Label>
                                     <div class="pull-right">
                                         <img id='<%# "imgCaution"+Container.ItemIndex %>'  src="images/caution_icon.png"   style="margin-right:5px;display:none;" />
-                                        <img id='<%# "imgSuccess"+Container.ItemIndex %>' src="images/check_icon.png"   style="margin-right:10px"/>
+                                        <img id='<%# "imgSuccess"+Container.ItemIndex %>' src="images/check_icon.png"   style="margin-right:10px;display:none;"/>
                                         <div class="icon-arrow-right pull-right">
                                             <div class="check-"></div>
                                             <i class="glyphicon glyphicon-chevron-down normal-color"></i>
@@ -171,6 +171,14 @@
     </div>
 
     <script type="text/javascript">
+        function showCaution() {
+            document.getElementById('imgCaution0').style.display = 'inline-block';
+            document.getElementById('imgSuccess0').style.display = 'none';
+        }
+        function showSuccess() {
+            document.getElementById('imgCaution0').style.display = 'none';
+            document.getElementById('imgSuccess0').style.display = 'inline-block';
+        }
         function validatePage() {
             if (typeof (Page_ClientValidate) == 'function') {
                 Page_ClientValidate();
@@ -178,12 +186,10 @@
 
             if (!Page_IsValid) {
                 if (Page_ClientValidate('vgTestResults0')) {
-                    document.getElementById('imgCaution0').style.display = 'none';
-                    document.getElementById('imgSuccess0').style.display = 'inline-block';
+                    showSuccess();
                 }
             else {
-                document.getElementById('imgCaution0').style.display = 'inline-block';
-                document.getElementById('imgSuccess0').style.display = 'none';
+                    showCaution();
             }
         
                 return (Page_ClientValidate('vgTestResults0'));

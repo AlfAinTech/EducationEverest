@@ -87,6 +87,15 @@ public partial class Test_Result : System.Web.UI.Page
                 percentage.Value = p.Percentage;
                 division.Text = p.Division;
             }
+            //image of caution and success
+            if (db.Test_Results.Any(a => (a.User_ID == current_user) && (a.Rollno == null || a.Passing_Year == null || a.Total_Marks == null || a.Obtained_Marks == null || a.Percentage == null || a.Division == null)))
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "showCaution();", true);
+            }
+            else if (db.Test_Results.Any(a => a.User_ID == current_user))
+            {
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "showSuccess();", true);
+            }
         }
 
      }

@@ -6,6 +6,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <header>
         <script  type="text/javascript">
+            function showCaution() {
+                document.getElementById('imgCaution').style.display = 'inline-block';
+                document.getElementById('imgSuccess').style.display = 'none';
+            }
+            function showSuccess() {
+                document.getElementById('imgCaution').style.display = 'none';
+                document.getElementById('imgSuccess').style.display = 'inline-block';
+            }
+            function showCaution2() {
+                document.getElementById('imgCaution2').style.display = 'inline-block';
+                document.getElementById('imgSuccess2').style.display = 'none';
+            }
+            function showSuccess2() {
+                document.getElementById('imgCaution2').style.display = 'none';
+                document.getElementById('imgSuccess2').style.display = 'inline-block';
+            }
             function validatePage() {
                 if (typeof (Page_ClientValidate) == 'function') {
                     Page_ClientValidate();
@@ -13,20 +29,16 @@
                 
                 if (!Page_IsValid) {
                     if (Page_ClientValidate('vgEducationalDetails')) {
-                        document.getElementById('imgCaution').style.display = 'none';
-                        document.getElementById('imgSuccess').style.display = 'inline-block';
+                        showSuccess();
                     }
                     else {
-                        document.getElementById('imgCaution').style.display = 'inline-block';
-                        document.getElementById('imgSuccess').style.display = 'none';
+                        showCaution();
                     }
                     if (Page_ClientValidate('vgEducationalDetails2')) {
-                        document.getElementById('imgCaution2').style.display = 'none';
-                        document.getElementById('imgSuccess2').style.display = 'inline-block';
+                        showSuccess2();
                     }
                     else {
-                        document.getElementById('imgCaution2').style.display = 'inline-block';
-                        document.getElementById('imgSuccess2').style.display = 'none';
+                        showCaution2();
                     }
                     return (Page_ClientValidate('vgEducationalDetails') && Page_ClientValidate('vgEducationalDetails2'));
                 }
@@ -107,7 +119,7 @@
                         <div class="NormalCharacterStyle10 margin_top">Matriculation/O-Level
                             <div class="pull-right">
                             <img id="imgCaution" src="images/caution_icon.png"   style="margin-right:5px;display:none;" />
-                            <img id="imgSuccess" src="images/check_icon.png"   style="margin-right:10px"/>
+                            <img id="imgSuccess" src="images/check_icon.png"   style="margin-right:10px;display:none;"/>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
@@ -234,7 +246,7 @@
                         <div class="NormalCharacterStyle10 margin_top">Intermediate/A-Level
                             <div class="pull-right">
                             <img id="imgCaution2" src="images/caution_icon.png"   style="margin-right:5px;display:none;" />
-                            <img id="imgSuccess2" src="images/check_icon.png"   style="margin-right:10px"/>
+                            <img id="imgSuccess2" src="images/check_icon.png"   style="margin-right:10px;display:none;"/>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>

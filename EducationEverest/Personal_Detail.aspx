@@ -8,6 +8,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     
     <script type="text/javascript">
+        function showCaution() {
+            document.getElementById('imgCaution').style.display = 'inline-block';
+            document.getElementById('imgSuccess').style.display = 'none';
+        }
+        function showSuccess() {
+            document.getElementById('imgCaution').style.display = 'none';
+            document.getElementById('imgSuccess').style.display = 'inline-block';
+        }
+        function showCaution2() {
+            document.getElementById('imgCaution2').style.display = 'inline-block';
+            document.getElementById('imgSuccess2').style.display = 'none';
+        }
+        function showSuccess2() {
+            document.getElementById('imgCaution2').style.display = 'none';
+            document.getElementById('imgSuccess2').style.display = 'inline-block';
+        }
+        
         function validatePage() {
             if (typeof (Page_ClientValidate) == 'function') {
                 Page_ClientValidate();
@@ -16,20 +33,16 @@
             if (!Page_IsValid) {
                 
                 if (Page_ClientValidate('vgPersonalDetails2')) {
-                    document.getElementById('imgCaution2').style.display = 'none';
-                    document.getElementById('imgSuccess2').style.display = 'inline-block';
+                    showSuccess2();
                 }
                 else {
-                    document.getElementById('imgCaution2').style.display = 'inline-block';
-                    document.getElementById('imgSuccess2').style.display = 'none';
+                    showCaution2();
                 }
                 if (Page_ClientValidate('vgPersonalDetails')) {
-                    document.getElementById('imgCaution').style.display = 'none';
-                    document.getElementById('imgSuccess').style.display = 'inline-block';
+                    showSuccess();
                 }
                 else {
-                    document.getElementById('imgCaution').style.display = 'inline-block';
-                    document.getElementById('imgSuccess').style.display = 'none';
+                    showCaution();
                 }
                 return (Page_ClientValidate('vgPersonalDetails2') && Page_ClientValidate('vgPersonalDetails'));
             }
@@ -92,6 +105,8 @@
                     }
                 };
             });
+
+            
         });
         
         
@@ -124,8 +139,8 @@
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Personal Information
                             <div class="pull-right">
-                            <img id="imgCaution" src="images/caution_icon.png"   style="margin-right:5px;display:none;" />
-                            <img id="imgSuccess" src="images/check_icon.png"   style="margin-right:10px"/>
+                            <img id="imgCaution" src="images/caution_icon.png"    style="margin-right:5px;display:none;" />
+                            <img id="imgSuccess" src="images/check_icon.png"  style="margin-right:10px;display:none;"/>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
@@ -693,6 +708,7 @@
                             <asp:Image runat="server" ImageUrl="~/images/fileUpload.png" ID="ibtn_FileUpload" Style="cursor: pointer" onclick="browse()" />
                             <asp:FileUpload ID="FileUpload1" accept="image/*" Style="display: none;" ClientIDMode="Static" runat="server" onchange="this.form.submit()" />
                             <asp:RegularExpressionValidator ValidationGroup="validateFile" ID="RegularExpressionValidator1" ControlToValidate="FileUpload1" ForeColor="Red" ValidationExpression="^.*\.(jpg|png|JPG|gif|GIF|jpeg|JPEG|PNG)$" runat="server" ErrorMessage="Select a Valid File"></asp:RegularExpressionValidator>
+                            
                             <asp:Button ID="btn_UplaodImage" ValidationGroup="validateFile" Style="display: none;" OnClick="btn_UplaodImage_Click" runat="server" />
 
                         </div>
@@ -709,7 +725,7 @@
                         <div class="NormalCharacterStyle10 margin_top">Contact Information
                             <div class="pull-right">
                             <img src="images/caution_icon.png" id="imgCaution2" style="margin-right:5px;display:none;" />
-                            <img src="images/check_icon.png" id="imgSuccess2"   style="margin-right:10px"/>
+                            <img src="images/check_icon.png" id="imgSuccess2"   style="margin-right:10px;display:none;"/>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>

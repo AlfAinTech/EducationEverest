@@ -213,7 +213,12 @@ public partial class Account_Register : Page
         }
         else
         {
-            //Console.WriteLine("email already registered");
+            AspNetUser currentUser = db.AspNetUsers.Where(a => a.UserName == fbemail_).First();
+            var manager = new UserManager();
+            var user = manager.FindById(currentUser.Id);
+
+
+            IdentityHelper.SignIn(manager, user, false);
 
         }
       

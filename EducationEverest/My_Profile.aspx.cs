@@ -29,6 +29,7 @@ public partial class My_Profile : System.Web.UI.Page
             Response.Redirect("Login.aspx");
         }
 
+        
         UserProfile up = new UserProfile();
 
         //code to show user information

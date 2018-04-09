@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI;
 public partial class Personal_Detail : System.Web.UI.Page
 {
+    string jsString = ""; string jsString2 = "";
     EducationEverestEntities db = new EducationEverestEntities();
     string current_user = HttpContext.Current.User.Identity.GetUserId();
 
@@ -32,11 +33,20 @@ public partial class Personal_Detail : System.Web.UI.Page
             }
             //ddlnationality.SelectedItem.Text = personal.Nationality;
         }
-        if(db.Media.Any(a => a.User_ID == current_user))
+        if (db.Media.Any(a => a.User_ID == current_user))
         {
             Medium media = db.Media.Where(a => a.User_ID == current_user).First();
             ibtn_FileUpload.ImageUrl = media.Path;
-                 
+
+        }
+        //image of caution and success
+        if (db.Personal_Details.Any(a => (a.User_ID == current_user) && (a.Father_CNIC == null || a.Name == null || a.Father_Name == null || a.CNIC == null || a.Father_CNIC == null || a.DOB == null || a.Nationality == null)))
+        {
+            jsString = "showCaution();";
+        }
+        else if(db.Personal_Details.Any(a => a.User_ID == current_user))
+        {
+            jsString = "showSuccess();";
         }
     }
 
@@ -53,6 +63,15 @@ public partial class Personal_Detail : System.Web.UI.Page
             father_phone.Value = info.Phone_Father;
             zip.Value = info.Zip;
         }
+        //image of caution and success
+        if (db.ContactInformations.Any(a => (a.User_ID == current_user) && (a.Current_Address == null || a.Permanent_Address == null || a.Email == null || a.Landline == null || a.Phone == null || a.Phone_Father == null || a.Zip == null)))
+        {
+            jsString2 = "showCaution2();";
+        }
+        else if (db.ContactInformations.Any(a => a.User_ID == current_user))
+        {
+            jsString2 = "showSuccess2();";
+        }
     }
 
 
@@ -67,6 +86,7 @@ public partial class Personal_Detail : System.Web.UI.Page
         {
             populate_personal_details();
             populate_contact_information();
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "text", jsString+jsString2, true);
         }
         if (FileUpload1.PostedFile != null)
         {
