@@ -26,7 +26,9 @@
     <script src='<%= ResolveUrl("~/Content/js/jquery.quicksearch.js") %>'></script>
     <script src='<%= ResolveUrl("~/Content/js/jquery.tmpl.min.js") %>'></script>
     <script type="text/javascript">
+        
         $(document).ready(function () {
+            
             $('#makeChoices').on('click', function () {
 
                 var x = location.href;
@@ -79,6 +81,7 @@
             var clickButton = document.getElementById("<%= btn_notfxn.ClientID %>");
             clickButton.click();
         }
+        
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
@@ -309,12 +312,12 @@
     <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25"><div>File Admission App<div class="pull-right"><span class="glyphicon glyphicon-chevron-right dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></div></a>
     <div class="collapse" id="clps2">
       <br/>
-        <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail"><p>Personal Detail<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
-        <li class="menu_list"><a  class="NormalCharacterStyle24" id="makeChoices"><p>Make Choices&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li> 
-        <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" ><p>Educational Details&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickEducationDetails"  visible="false" style="float:right;height:20px;width:20px"  /></span></p></a></li>
-        <li class="menu_list"><a  class="NormalCharacterStyle24" id="testResult"><p>Test Results&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
-        <li class="menu_list"><a  id="Upload_Documents" class="NormalCharacterStyle24"><p>Documents&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
-        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments"><p>Payments&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  style="float:right;height:20px;width:20px"  /></span></p></a></li>
+        <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail"><p>Personal Detail<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /><img src="~/images/caution_icon.png" runat="server" id="imgExcPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+        <li class="menu_list"><a  class="NormalCharacterStyle24" id="makeChoices"><p>Make Choices&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcChoices"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li> 
+        <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" ><p>Educational Details&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickEducationDetails"  visible="false" style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcEducationDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+        <li class="menu_list"><a  class="NormalCharacterStyle24" id="testResult"><p>Test Results&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcTestResults"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+        <li class="menu_list"><a  id="Upload_Documents" class="NormalCharacterStyle24"><p>Documents&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcDocuments"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+        <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments"><p>Payments&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcPayments"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
 
 
 
@@ -344,6 +347,6 @@
                     <asp:HiddenField runat="server" ID="hf1" />
                     <asp:Button ID="btn_notfxn" runat="server" OnClick="btn_notfxn_Click" style="display:none;" />
     </form>
-    
+     
 </body>
 </html>

@@ -78,6 +78,7 @@ public partial class Client : System.Web.UI.MasterPage
     protected void logout_Click(object sender, EventArgs e)
     {
         Context.GetOwinContext().Authentication.SignOut();
+
         Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
     }
 
@@ -86,6 +87,9 @@ public partial class Client : System.Web.UI.MasterPage
         if (db.Personal_Details.Any(q => q.User_ID == current_user))
         {
             imgTickPersonalDetails.Visible = true;
+        }else
+        {
+            imgExcPersonalDetails.Visible = true;
         }
         if (Request.QueryString["NA"] != null && Request.QueryString["NA"]=="true")
         {
@@ -93,18 +97,35 @@ public partial class Client : System.Web.UI.MasterPage
         }
         else
         {
-            if(db.MakeChoices.Any(q => q.User_ID == current_user))
+            imgTickChoices.Visible = false;
+            if (db.MakeChoices.Any(a => a.User_ID == current_user))
             {
-                imgTickChoices.Visible = true;
+                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+                if (db.MakeChoices.Any(q => q.User_ID == current_user && q.Uni_ID == universityID))
+                {
+                    imgTickChoices.Visible = true;
+                }
+                else
+                {
+                    imgExcChoices.Visible = true;
+                }
             }
         }
         if (db.Matriculation_Education.Any(q => q.User_ID == current_user) && db.Intermediate_Education.Any(q => q.User_ID == current_user))
         {
             imgTickEducationDetails.Visible = true;
         }
+        else
+        {
+            imgExcEducationDetails.Visible = true;
+        }
         if(db.Test_Results.Where(q=>q.User_ID == current_user).Count() == db.MakeChoices.Where(q=>q.User_ID==current_user).GroupBy(q=>q.Uni_ID).Count() && (db.Test_Results.Where(q => q.User_ID == current_user).Count() >0))
         {
             imgTickTestResults.Visible = true;
+        }
+        else
+        {
+            imgExcTestResults.Visible = true;
         }
         if(db.Documents.Any(q=>q.userID == current_user))
         {
@@ -116,13 +137,20 @@ public partial class Client : System.Web.UI.MasterPage
             if (TestResultDocsCount >= db.MakeChoices.Where(q => q.User_ID == current_user).GroupBy(q => q.Uni_ID).Count() && staticDocsCount >= EEUtil.totalStaticDocumentFields)
             {
                 imgTickDocuments.Visible = true;
+            }else
+            {
+                imgExcDocuments.Visible = true;
             }
         }
         List<int> appids = db.Applications.Where(q => q.UserID == current_user).Select(q => q.id).ToList();
         if(db.Payments.Where(q=>appids.Contains(q.ApplicationID)).Count() == appids.Count() && (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() > 0))
         {
             imgTickPayments.Visible = true;
-        } 
+        }
+        else
+        {
+            imgExcPayments.Visible = true;
+        }
     }
 
     protected void btnFilter_Click(object sender, EventArgs e)
