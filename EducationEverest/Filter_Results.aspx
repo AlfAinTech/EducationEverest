@@ -85,8 +85,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="https://educationeverest.org/" target="_blank" style="font-size: 20px; top: 6px;">Home </a></li>
-                    <li><a href="Dashboard.aspx">
-                        <img src="images/header_dashboard_button_1_.png" style="margin: -15px; height: 65px"></a></li>
+                    <li><a href="Dashboard.aspx" style="font-size: 20px; top: 6px;">Dashboard</a></li>
                     <li style="color: transparent;">home</li>
                 </ul>
                 <div class="navbar-form navbar-left">
