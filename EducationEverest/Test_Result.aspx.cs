@@ -92,7 +92,7 @@ public partial class Test_Result : System.Web.UI.Page
             {
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "showCaution();", true);
             }
-            else if (db.Test_Results.Any(a => a.User_ID == current_user))
+            else if (db.Test_Results.Any(a => a.User_ID == current_user && a.Test_Name == label.Text))
             {
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "showSuccess();", true);
             }
