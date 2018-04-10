@@ -154,9 +154,8 @@ public partial class Search_Results : System.Web.UI.Page
                     if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                     {
                         string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == uniid).First().Path;
-                        if (logoPath2 != null)
+                        if (logoPath2 != null && logoPath2 != "")
                         {
-                            
                             Image2.ImageUrl = logoPath2;
                         }
                     }
@@ -559,17 +558,13 @@ public partial class Search_Results : System.Web.UI.Page
                     if (db.UniversityMedias.Any(x => x.UniversityId == parentuniversityid))
                     {
                         string logoPath = db.UniversityMedias.Where(m => m.UniversityId == parentuniversityid).First().Path;
-                        if (logoPath != null)
+                        if (logoPath != null && logoPath != "")
                         {
                             Image imgpd = e.Item.FindControl("Image1") as Image;
                             imgpd.ImageUrl = logoPath;
                         }
                     }
-                    else
-                    {
-                        Image2.ImageUrl = "";
-                    }
-
+                    
 
                     //bind repeater here
 
@@ -748,7 +743,7 @@ public partial class Search_Results : System.Web.UI.Page
         if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
             {
                 string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
-                if (logoPath2 != null)
+                if (logoPath2 != null && logoPath2 != "")
                 {
                     //Image imgpd2 = e.Item.FindControl("Image2") as Image;
                     Image2.ImageUrl = logoPath2;
