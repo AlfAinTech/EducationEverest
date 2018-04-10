@@ -286,11 +286,11 @@
                                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline" UpdateMode="Always">
                                                         <ContentTemplate>
 
-                                                            <ajaxToolkit:Rating ID="Rating1" runat="server"
+                                                            <ajaxToolkit:Rating ID="Rating1" ReadOnly="true" runat="server"
                                                                 StarCssClass="starrating"
                                                                 EmptyStarCssClass="emptystars"
                                                                 FilledStarCssClass="filledstars"
-                                                                WaitingStarCssClass="waitingstars" OnChanged="Rating1_Changed" Tag='<%# Eval("UniversityID") %>'>
+                                                                WaitingStarCssClass="waitingstars" >
                                                             </ajaxToolkit:Rating>
                                                             &nbsp;&nbsp;<br />
 
@@ -359,11 +359,11 @@
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server" RenderMode="Inline" UpdateMode="Always">
                                         <ContentTemplate>
 
-                                            <ajaxToolkit:Rating ID="Rating2" runat="server"
+                                            <ajaxToolkit:Rating ID="Rating2" ReadOnly="true" runat="server"
                                                 StarCssClass="starrating"
                                                 EmptyStarCssClass="emptystars"
                                                 FilledStarCssClass="filledstars"
-                                                WaitingStarCssClass="waitingstars" OnChanged="Rating1_Changed" Tag="0">
+                                                WaitingStarCssClass="waitingstars">
                                             </ajaxToolkit:Rating>
                                             &nbsp;&nbsp;
                     

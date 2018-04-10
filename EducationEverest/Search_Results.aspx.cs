@@ -127,20 +127,22 @@ public partial class Search_Results : System.Web.UI.Page
                             lblAdmissionDocuments.Text = "Admission Documents Not Available";
                         }
                     }
+                    
 
-                    //rating 
-                    if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == uniid))
+                    if (db.Campuses.Any(x => x.Uni_ID == uniid))
                     {
-                        int userRating = (int)db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == uniid).First().UserRating1;
-                        Rating2.CurrentRating = userRating;
-
+                        CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == uniid && a.MainCampus == true).First();
+                        
+                        if (campusProfile.AdminRatings != null && campusProfile.AdminRatings !=  "")
+                        {
+                            Rating2.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
+                                                                                          /*   }*/                                                        //coding for rating
+                        }
                     }
                     else
                     {
                         Rating2.CurrentRating = 0;
                     }
-                    Rating2.Tag = uniid.ToString();
-
                     if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                     {
                         string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == uniid).First().Path;
@@ -522,20 +524,19 @@ public partial class Search_Results : System.Web.UI.Page
                             lblCountDegreePrograms.Text = Convert.ToString(0);
                         }
                     }
-                    //coding for rating
-                    if (db.CampusProfiles.Any(x => x.CampusID == campusid.cid))
+                    if (db.Campuses.Any(x => x.Uni_ID == univ.UniversityID))
                     {
-                        CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
+                        CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
 
-                        if (urating.AdminRatings != null && urating.AdminRatings != "")
+                        if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
                         {
-                            Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
+                            Rating1.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
+                                                                                                /*   }*/                                                        //coding for rating
                         }
-
                     }
                     else
                     {
-                        Rating2.CurrentRating = 0;
+                        Rating1.CurrentRating = 0;
                     }
                     //show univeristy logo here
                     UniversityMedia um = new UniversityMedia();
@@ -572,17 +573,21 @@ public partial class Search_Results : System.Web.UI.Page
                 Rating1.CurrentRating = 0;
 
             }
-            //rating 
-            Rating ratingControl = e.Item.FindControl("Rating1") as Rating;
-            if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == univ.UniversityID))
+            if (db.Campuses.Any(x => x.Uni_ID == univ.UniversityID))
             {
-                int userRating = (int)db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == univ.UniversityID).First().UserRating1;
-                ratingControl.CurrentRating = userRating;
+                CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+
+                if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
+                {
+                    Rating2.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
+                                                                                        /*   }*/                                                        //coding for rating
+                }
             }
             else
             {
-                ratingControl.CurrentRating = 0;
+                Rating2.CurrentRating = 0;
             }
+            
 
 
         }
@@ -693,18 +698,20 @@ public partial class Search_Results : System.Web.UI.Page
                 }
             }//uniprofile ends here
 
-        //rating 
-        if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == universityid))
+        if (db.Campuses.Any(x => x.Uni_ID == universityid))
         {
-            int userRating = (int)db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == universityid).First().UserRating1;
-            Rating2.CurrentRating = userRating;
+            CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == universityid && a.MainCampus == true).First();
 
+            if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
+            {
+                Rating2.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
+                                                                                    /*   }*/                                                        //coding for rating
+            }
         }
         else
         {
             Rating2.CurrentRating = 0;
         }
-        Rating2.Tag = universityid.ToString();
 
 
 
@@ -743,28 +750,28 @@ public partial class Search_Results : System.Web.UI.Page
         
 
     }
-    protected void Rating1_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
-    {
-        Rating ratingControl = sender as Rating;
-        int rating;
-        rating = ratingControl.MaxRating;
-        int univID = Convert.ToInt32(ratingControl.Tag.ToString());
-        if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == univID))
-        {
-            UserRating ur = db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == univID).First();
-            ur.UserRating1 = Convert.ToInt32(e.Value);
+    //protected void Rating1_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+    //{
+    //    Rating ratingControl = sender as Rating;
+    //    int rating;
+    //    rating = ratingControl.MaxRating;
+    //    int univID = Convert.ToInt32(ratingControl.Tag.ToString());
+    //    if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == univID))
+    //    {
+    //        UserRating ur = db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == univID).First();
+    //        ur.UserRating1 = Convert.ToInt32(e.Value);
 
-        }
-        else if (univID != 0)
-        {
-            UserRating ur = new UserRating();
-            ur.UniversityID = univID;
-            ur.User_ID = current_user;
-            ur.UserRating1 = Convert.ToInt32(e.Value);
-            db.UserRatings.Add(ur);
-        }
-        db.SaveChanges();
-    }
+    //    }
+    //    else if (univID != 0)
+    //    {
+    //        UserRating ur = new UserRating();
+    //        ur.UniversityID = univID;
+    //        ur.User_ID = current_user;
+    //        ur.UserRating1 = Convert.ToInt32(e.Value);
+    //        db.UserRatings.Add(ur);
+    //    }
+    //    db.SaveChanges();
+    //}
 }
 
 

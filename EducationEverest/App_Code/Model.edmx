@@ -393,15 +393,6 @@
           <Property Name="Email" Type="nvarchar" MaxLength="256" />
           <Property Name="CandidateID" Type="nvarchar" MaxLength="128" />
         </EntityType>
-        <EntityType Name="UserRatings">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="User_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UniversityID" Type="int" Nullable="false" />
-          <Property Name="UserRating" Type="int" />
-        </EntityType>
         <Association Name="FK__Admission__Uni_I__628FA481">
           <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
           <End Role="AdmissionDetails" Type="Self.AdmissionDetails" Multiplicity="*" />
@@ -750,30 +741,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRatin__Unive__4865BE2A">
-          <End Role="Universities" Type="Self.Universities" Multiplicity="1" />
-          <End Role="UserRatings" Type="Self.UserRatings" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Universities">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="UserRatings">
-              <PropertyRef Name="UniversityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserRatin__User___477199F1">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="UserRatings" Type="Self.UserRatings" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserRatings">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_App_Start_AspNetUsers1">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="App_Start" Type="Self.App_Start" Multiplicity="*" />
@@ -953,7 +920,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySet Name="UniversityProfile" EntityType="Self.UniversityProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserActivation" EntityType="Self.UserActivation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserRatings" EntityType="Self.UserRatings" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Admission__Uni_I__628FA481" Association="Self.FK__Admission__Uni_I__628FA481">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="AdmissionDetails" EntitySet="AdmissionDetails" />
@@ -1069,14 +1035,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <AssociationSet Name="FK__Universit__Unive__4D5F7D71" Association="Self.FK__Universit__Unive__4D5F7D71">
             <End Role="Universities" EntitySet="Universities" />
             <End Role="UniversityMedia" EntitySet="UniversityMedia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserRatin__Unive__4865BE2A" Association="Self.FK__UserRatin__Unive__4865BE2A">
-            <End Role="Universities" EntitySet="Universities" />
-            <End Role="UserRatings" EntitySet="UserRatings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserRatin__User___477199F1" Association="Self.FK__UserRatin__User___477199F1">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="UserRatings" EntitySet="UserRatings" />
           </AssociationSet>
           <AssociationSet Name="FK_App_Start_AspNetUsers1" Association="Self.FK_App_Start_AspNetUsers1">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -1209,7 +1167,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <NavigationProperty Name="Personal_Details" Relationship="EducationEverestModel.FK__Personal___User___73BA3083" FromRole="AspNetUser" ToRole="Personal_Details" />
           <NavigationProperty Name="App_Start" Relationship="EducationEverestModel.FK_App_Start_AspNetUsers1" FromRole="AspNetUser" ToRole="App_Start" />
           <NavigationProperty Name="SystemNotifications" Relationship="EducationEverestModel.FK__SystemNot__User___39237A9A" FromRole="AspNetUser" ToRole="SystemNotification" />
-          <NavigationProperty Name="UserRatings" Relationship="EducationEverestModel.FK__UserRatin__User___477199F1" FromRole="AspNetUser" ToRole="UserRating" />
         </EntityType>
         <EntityType Name="Campus">
           <Key>
@@ -1653,15 +1610,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="SystemNotification" EntitySet="SystemNotifications" />
           </AssociationSet>
-          <EntitySet Name="UserRatings" EntityType="EducationEverestModel.UserRating" />
-          <AssociationSet Name="FK__UserRatin__User___477199F1" Association="EducationEverestModel.FK__UserRatin__User___477199F1">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="UserRating" EntitySet="UserRatings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserRatin__Unive__4865BE2A" Association="EducationEverestModel.FK__UserRatin__Unive__4865BE2A">
-            <End Role="University" EntitySet="Universities" />
-            <End Role="UserRating" EntitySet="UserRatings" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DepartmentProfile">
           <Key>
@@ -1894,7 +1842,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <NavigationProperty Name="UniversityMedias" Relationship="EducationEverestModel.FK__Universit__Unive__4D5F7D71" FromRole="University" ToRole="UniversityMedia" />
           <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Uni_I__72C60C4A" FromRole="University" ToRole="MakeChoice" />
           <NavigationProperty Name="Applications" Relationship="EducationEverestModel.FK_Applications_Universities" FromRole="University" ToRole="Application" />
-          <NavigationProperty Name="UserRatings" Relationship="EducationEverestModel.FK__UserRatin__Unive__4865BE2A" FromRole="University" ToRole="UserRating" />
         </EntityType>
         <Association Name="FK__Admission__Uni_I__628FA481">
           <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
@@ -2267,41 +2214,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Principal>
             <Dependent Role="SystemNotification">
               <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="UserRating">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UniversityID" Type="Int32" Nullable="false" />
-          <Property Name="UserRating1" Type="Int32" />
-          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__UserRatin__User___477199F1" FromRole="UserRating" ToRole="AspNetUser" />
-          <NavigationProperty Name="University" Relationship="EducationEverestModel.FK__UserRatin__Unive__4865BE2A" FromRole="UserRating" ToRole="University" />
-        </EntityType>
-        <Association Name="FK__UserRatin__User___477199F1">
-          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="EducationEverestModel.UserRating" Role="UserRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserRating">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserRatin__Unive__4865BE2A">
-          <End Type="EducationEverestModel.University" Role="University" Multiplicity="1" />
-          <End Type="EducationEverestModel.UserRating" Role="UserRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="University">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="UserRating">
-              <PropertyRef Name="UniversityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2726,16 +2638,6 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
                 <ScalarProperty Name="AppID" ColumnName="AppID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserRatings">
-            <EntityTypeMapping TypeName="EducationEverestModel.UserRating">
-              <MappingFragment StoreEntitySet="UserRatings">
-                <ScalarProperty Name="UserRating1" ColumnName="UserRating" />
-                <ScalarProperty Name="UniversityID" ColumnName="UniversityID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

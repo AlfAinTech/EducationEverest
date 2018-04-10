@@ -79,9 +79,6 @@
         <AssociationConnector Association="EducationEverestModel.FK_App_Start_AspNetUsers1" />
         <AssociationConnector Association="EducationEverestModel.FK__SystemNot__AppID__3A179ED3" />
         <AssociationConnector Association="EducationEverestModel.FK__SystemNot__User___39237A9A" />
-        <EntityTypeShape EntityType="EducationEverestModel.UserRating" Width="1.5" PointX="8.25" PointY="22.375" />
-        <AssociationConnector Association="EducationEverestModel.FK__UserRatin__User___477199F1" />
-        <AssociationConnector Association="EducationEverestModel.FK__UserRatin__Unive__4865BE2A" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
