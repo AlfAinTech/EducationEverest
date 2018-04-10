@@ -50,8 +50,7 @@ public partial class Login : System.Web.UI.Page
             }
             else
             {
-                FailureText.Text = "Invalid username or password.";
-                ErrorMessage.Visible = true;
+                div_Alert.Style.Add("visibility", "visible");
             }
             
         }

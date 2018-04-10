@@ -96,6 +96,7 @@ public partial class AspNetUser
         this.Personal_Details = new HashSet<Personal_Details>();
         this.App_Start = new HashSet<App_Start>();
         this.SystemNotifications = new HashSet<SystemNotification>();
+        this.UserRatings = new HashSet<UserRating>();
     }
 
     public string Id { get; set; }
@@ -143,6 +144,8 @@ public partial class AspNetUser
     public virtual ICollection<App_Start> App_Start { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<SystemNotification> SystemNotifications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<UserRating> UserRatings { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -512,6 +515,7 @@ public partial class University
         this.UniversityMedias = new HashSet<UniversityMedia>();
         this.MakeChoices = new HashSet<MakeChoice>();
         this.Applications = new HashSet<Application>();
+        this.UserRatings = new HashSet<UserRating>();
     }
 
     public int id { get; set; }
@@ -536,6 +540,8 @@ public partial class University
     public virtual ICollection<MakeChoice> MakeChoices { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Application> Applications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<UserRating> UserRatings { get; set; }
 }
 
 public partial class University_Tests
@@ -600,4 +606,15 @@ public partial class UserProfile
     public string CandidateID { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
+}
+
+public partial class UserRating
+{
+    public int id { get; set; }
+    public string User_ID { get; set; }
+    public int UniversityID { get; set; }
+    public Nullable<int> UserRating1 { get; set; }
+
+    public virtual AspNetUser AspNetUser { get; set; }
+    public virtual University University { get; set; }
 }

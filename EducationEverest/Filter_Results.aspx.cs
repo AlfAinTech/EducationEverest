@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using AjaxControlToolkit;
 
 public partial class Filter_Results : System.Web.UI.Page
 {
@@ -149,26 +150,18 @@ public partial class Filter_Results : System.Web.UI.Page
                             lblAdmissionDocuments.Text = "Admission Documents Not Available";
                         }
                     }
-                    
-
-                    if (db.Campuses.Any(x => x.Uni_ID == uniid))
+                    //rating 
+                    if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == uniid))
                     {
-                        var campusid = db.Campuses.Where(a => a.Uni_ID == uniid).Select(ci => new { cid = ci.id }).FirstOrDefault();
+                        int userRating = (int)db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == uniid).First().UserRating1;
+                        Rating2.CurrentRating = userRating;
 
-                        //if (db.CampusProfiles.Any(x => x.CampusID == campusid.cid))
-                        //{
-                        CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
-
-                        if (urating.AdminRatings != null && urating.AdminRatings !=  "")
-                        {
-                            Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-                                                                                          /*   }*/                                                        //coding for rating
-                        }
                     }
                     else
                     {
                         Rating2.CurrentRating = 0;
                     }
+                    Rating2.Tag = uniid.ToString();
                     if (db.UniversityMedias.Any(x => x.UniversityId == uniid))
                     {
                         string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == uniid).First().Path;
@@ -938,21 +931,7 @@ public partial class Filter_Results : System.Web.UI.Page
                             lblCountDegreePrograms.Text = Convert.ToString(0);
                         }
                     }
-                    //coding for rating
-                    if (db.CampusProfiles.Any(x => x.CampusID == campusid.cid))
-                    {
-                        CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
-
-                        if (urating.AdminRatings != null && urating.AdminRatings != "")
-                        {
-                            Rating1.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-                        }
-                       
-                    }
-                    else
-                    {
-                        Rating2.CurrentRating = 0;
-                    }
+                    
                     //show univeristy logo here
                     UniversityMedia um = new UniversityMedia();
                     if (db.UniversityMedias.Any(x => x.UniversityId == parentuniversityid))
@@ -969,11 +948,7 @@ public partial class Filter_Results : System.Web.UI.Page
                         Image2.ImageUrl = "";
                     }
 
-
-                    //bind repeater here
-
-
-                    //end of data on page load in repeater
+                    
 
                 }
             }
@@ -985,10 +960,18 @@ public partial class Filter_Results : System.Web.UI.Page
                 Label lblCountDegreePrograms = e.Item.FindControl("lblCountDegreePrograms") as Label;
                 lblCountDegreePrograms.Text = Convert.ToString(0);
 
-                Rating1.CurrentRating = 0;
-
             }
-
+            //rating 
+            Rating ratingControl = e.Item.FindControl("Rating1") as Rating;
+            if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == univ.UniversityID))
+            {
+                int userRating = (int) db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == univ.UniversityID).First().UserRating1;
+                ratingControl.CurrentRating = userRating;
+            }
+            else
+            {
+                ratingControl.CurrentRating = 0;
+            }
 
         }
 
@@ -1091,28 +1074,22 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
                 lbl_IsAdmissionOpen2.Text = "Admission status not mentioned";
             }
         }//uniprofile ends here
-
-
-
-
-
-        //code for rating
-
-        if (db.Campuses.Any(x => x.Uni_ID == universityid))
+         //rating 
+        if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == universityid))
         {
-            var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
-            CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
-
-            if (urating != null && urating.AdminRatings != "")
-            {
-                Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-            }
-
+            int userRating = (int)db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == universityid).First().UserRating1;
+            Rating2.CurrentRating = userRating;
+            
         }
         else
         {
             Rating2.CurrentRating = 0;
         }
+        Rating2.Tag = universityid.ToString();
+
+
+
+
         if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
         {
             string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
@@ -1127,5 +1104,28 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
             Image2.ImageUrl = "~/images/university_icon.png";
         }
 
+    }
+
+    protected void Rating1_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+    {
+        Rating ratingControl = sender as Rating;
+        int rating;
+        rating = ratingControl.MaxRating;
+        int univID = Convert.ToInt32(ratingControl.Tag.ToString());
+        if (db.UserRatings.Any(a => a.User_ID == current_user && a.UniversityID == univID))
+        {
+            UserRating ur = db.UserRatings.Where(a => a.User_ID == current_user && a.UniversityID == univID).First();
+            ur.UserRating1 = Convert.ToInt32(e.Value);
+            
+        }
+        else if (univID !=  0)
+        {
+            UserRating ur = new UserRating();
+            ur.UniversityID = univID;
+            ur.User_ID = current_user;
+            ur.UserRating1 = Convert.ToInt32(e.Value);
+            db.UserRatings.Add(ur);
+        }
+        db.SaveChanges();
     }
 }

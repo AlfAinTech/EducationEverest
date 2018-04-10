@@ -290,7 +290,7 @@
                                                                 StarCssClass="starrating"
                                                                 EmptyStarCssClass="emptystars"
                                                                 FilledStarCssClass="filledstars"
-                                                                WaitingStarCssClass="waitingstars">
+                                                                WaitingStarCssClass="waitingstars" OnChanged="Rating1_Changed" Tag='<%# Eval("UniversityID") %>'>
                                                             </ajaxToolkit:Rating>
                                                             &nbsp;&nbsp;<br />
 
@@ -363,7 +363,7 @@
                                                 StarCssClass="starrating"
                                                 EmptyStarCssClass="emptystars"
                                                 FilledStarCssClass="filledstars"
-                                                WaitingStarCssClass="waitingstars">
+                                                WaitingStarCssClass="waitingstars" OnChanged="Rating1_Changed" Tag="0">
                                             </ajaxToolkit:Rating>
                                             &nbsp;&nbsp;
                     
