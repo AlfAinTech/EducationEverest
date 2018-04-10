@@ -2,6 +2,7 @@
 
 <%@ Register Src="~/UserControls/TopNavBar.ascx" TagPrefix="uc1" TagName="TopNavBar" %>
 <%@ Register Src="~/UserControls/SideNavBar.ascx" TagPrefix="uc1" TagName="SideNavBar" %>
+<%@ Register Src="~/UserControls/SideNavBar2.ascx" TagPrefix="uc1" TagName="SideNavBar2" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,6 +62,7 @@
         </div>
         <br />
         <uc1:SideNavBar runat="server" ID="SideNavBar" />
+        <uc1:SideNavBar2 runat="server" ID="SideNavBar2" Visible="false" />
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
                     
