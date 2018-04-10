@@ -10,16 +10,13 @@ using AjaxControlToolkit;
 public partial class Filter_Results : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
-  
     public static string current_user = HttpContext.Current.User.Identity.GetUserId();
+    protected string SearchedText = "";
     public void show()
     {
 
 
-        //var q = from University in db.Universities
-        //        select University;
-        //rptSearch.DataSource = q.ToList();
-        //rptSearch.DataBind();
+        
         if (db.UniversityProfiles.Any())
         {
             List<UniversityProfile> universities = db.UniversityProfiles.ToList();
@@ -28,22 +25,7 @@ public partial class Filter_Results : System.Web.UI.Page
         }
 
         
-        //lblUniversity.Text = lblUniversity.
-
-
-
-        //var q1 = from u in db.Universities
-        //         join um in db.UniversityMedias on u.id equals um.UniversityId
-        //         select new  { u.id, u.Name, um.Path };
-        //var q1 = from u in db.Universities
-        //         join um in db.UniversityMedias on u.id equals um.UniversityId //previous.id equals present.id
-        //         join up in db.UniversityProfiles on u.id equals up.UniversityID
-        //         join cam in db.Campuses on u.id equals cam.Uni_ID
-        //         join camp in db.CampusProfiles on cam.id equals camp.CampusID
-
-        //         orderby u.id 
-        //         select new { u.id, u.Name, um.Path, up.Address, up.LastDate, up.AdmissionOpen, rating = camp.AdminRatings};
-
+        
 
 
         
@@ -208,20 +190,6 @@ public partial class Filter_Results : System.Web.UI.Page
 
 
         current_user = HttpContext.Current.User.Identity.GetUserId();
-        UserProfile up = new UserProfile();
-
-        //code to show user information
-        var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em = q.Email, fn = q.FirstName, ln = q.LastName, c = q.City, p = q.Phone }).FirstOrDefault();
-        //show user first name
-        if (logged != null)
-            lblLoggedUser.Text = logged.fn;
-
-
-
-
-
-
-
         if (!IsPostBack)
         {
 
@@ -230,14 +198,10 @@ public partial class Filter_Results : System.Web.UI.Page
             show();
             if (Request.QueryString["searchBox"] != null && Request.QueryString["searchBox"] != string.Empty)
             {
-                TextBox1.Text = Request.QueryString["searchBox"];
+                SearchedText = Request.QueryString["searchBox"];
                 btnSearch_Click(sender, e);
             }
             // btn_reset.Visible = false;
-            EducationEverestEntities db = new EducationEverestEntities();
-
-
-
             //load  data in location dropdown list
 
            
@@ -585,7 +549,7 @@ public partial class Filter_Results : System.Web.UI.Page
     {
 
 
-        var a = TextBox1.Text;
+        var a = SearchedText;
         if (a == "")
         {
             show();
@@ -628,7 +592,7 @@ public partial class Filter_Results : System.Web.UI.Page
                 if (lblcount.Visible == true)
 
                 {
-                    var showcount = "Result(s) found related to " + TextBox1.Text;
+                    var showcount = "Result(s) found related to " + SearchedText;
                     lblShowSearchCount.Text = showcount;
                     lblShowSearchCount.Visible = true;
                     if (ViewState["id"] != null)

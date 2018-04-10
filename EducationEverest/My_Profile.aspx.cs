@@ -45,31 +45,13 @@ public partial class My_Profile : System.Web.UI.Page
         contact.Text = logged.p;
 
 
-        //show user first name
-        lblLoggedUser.Text = logged.fn;
+        
         //ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
         //ChoicesList.DataBind();
         PaymentsList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
         PaymentsList.DataBind();
 
     }
-    protected void logout_Click(object sender, EventArgs e)
-    {
-        Context.GetOwinContext().Authentication.SignOut();
-        Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
-    }
-    protected void btnFilter_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Filter_Results.aspx");
-    }
-
-
-    protected void btnSearch_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Search_Results.aspx?searchBox=" + TextBox1.Text);
-    }
-
-
     protected void SendEmail_Click(object sender, EventArgs e)
     {
         //string var2 = Session["username"].ToString();

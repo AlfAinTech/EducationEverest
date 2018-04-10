@@ -13,6 +13,7 @@ public partial class Search_Results : System.Web.UI.Page
 {
     EducationEverestEntities db = new EducationEverestEntities();
     public static string current_user = HttpContext.Current.User.Identity.GetUserId();
+    protected string SearchedText = "";
 
     public void show()
     {
@@ -188,28 +189,15 @@ public partial class Search_Results : System.Web.UI.Page
         current_user = HttpContext.Current.User.Identity.GetUserId();
         UserProfile up = new UserProfile();
 
-        //code to show user information
-        var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em = q.Email, fn = q.FirstName, ln = q.LastName, c = q.City, p = q.Phone }).FirstOrDefault();
-        //show user first name
-        if (logged != null)
-            lblLoggedUser.Text = logged.fn;
-
-
 
         if (!IsPostBack)
         {
-
-
-
             show();
             if (Request.QueryString["searchBox"] != null && Request.QueryString["searchBox"] != string.Empty)
             {
-                TextBox1.Text = Request.QueryString["searchBox"];
+                SearchedText = Request.QueryString["searchBox"];
                 btnSearch_Click(sender, e);
             }
-            // btn_reset.Visible = false;
-            EducationEverestEntities db = new EducationEverestEntities();
-
         }
 
     }
@@ -221,7 +209,7 @@ public partial class Search_Results : System.Web.UI.Page
     {
 
 
-        var a = TextBox1.Text;
+        var a = SearchedText;
         if (a == "")
         {
             show();
@@ -230,18 +218,7 @@ public partial class Search_Results : System.Web.UI.Page
         }
         else
         {
-
-
-            //List<University> universities = db.Universities.Where(x => x.Name.Contains(a)).ToList();
-
-            //rptSearch.DataSource = universities;
-
-            //rptSearch.DataBind();
-
-
-
             List<UniversityProfile> universities = db.UniversityProfiles.Where(x => x.University.Name.Contains(a)).ToList();
-
             rptSearch.DataSource = universities;
 
             rptSearch.DataBind();
@@ -264,7 +241,7 @@ public partial class Search_Results : System.Web.UI.Page
                 if (lblcount.Visible == true)
 
                 {
-                    var showcount = "Result(s) found related to " + TextBox1.Text;
+                    var showcount = "Result(s) found related to " + SearchedText;
                     lblShowSearchCount.Text = showcount;
                     lblShowSearchCount.Visible = true;
                     if (ViewState["id"] != null)
@@ -406,24 +383,6 @@ public partial class Search_Results : System.Web.UI.Page
 
     protected void rptSearch_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        //data in repeater on page load
-        //return;
-        //University checkUV = new University();
-        //int checkemptyUniversity = db.Universities.Count();
-        //UniversityProfile checkUP = new UniversityProfile();
-        //int checkemptyUniversityProfile = db.UniversityProfiles.Count();
-        //Campus checkC = new Campus();
-        //int checkemptyCampus = db.Campuses.Count();
-        //Department checkD = new Department();
-        //int checkemptyDepartment = db.Departments.Count();
-        //Programm checkP = new Programm();
-        //int checkemptyProgram = db.Programms.Count();
-        //CampusProfile checkCP = new CampusProfile();
-        //int checkemptyCampusProfile = db.CampusProfiles.Count();
-        //if (checkemptyUniversity > 0 && checkemptyUniversityProfile > 0 && checkemptyCampus > 0 && checkemptyCampus > 0 && checkemptyProgram > 0 && checkemptyCampusProfile > 0)//first check if tables are not emtpy not empty
-        //{
-
-
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             //get the University object that is bound to the current row.
@@ -617,20 +576,7 @@ public partial class Search_Results : System.Web.UI.Page
 
         //}
     }
-
-
-
-
     
-    protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
-    {
-        //on click open university details
-      
-
-
-
-
-    }
     protected void btnFilter_Click(object sender, EventArgs e)
     {
         Response.Redirect("Filter_Results.aspx");
