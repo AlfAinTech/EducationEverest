@@ -591,19 +591,27 @@ public partial class Search_Results : System.Web.UI.Page
             }
             if (db.Campuses.Any(x => x.Uni_ID == univ.UniversityID))
             {
-                CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+                CampusProfile campusProfile = new CampusProfile();
+                if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true))
+                {
+                    campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+                }
+                else
+                {
+                    campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID).First();
+                }
 
                 if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
                 {
-                    Rating2.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
+                    Rating1.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
                                                                                         /*   }*/                                                        //coding for rating
                 }
             }
             else
             {
-                Rating2.CurrentRating = 0;
+                Rating1.CurrentRating = 0;
             }
-            
+
 
 
         }
