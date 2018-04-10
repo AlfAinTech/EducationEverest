@@ -129,18 +129,32 @@ public partial class Client : System.Web.UI.MasterPage
         }
         if(db.Documents.Any(q=>q.userID == current_user))
         {
-            List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
-            //count of all test result documents
-            int TestResultDocsCount = documents.Where(a => a.TestResult_Document.Any()).Count();
-            //count of all static docs
-            int staticDocsCount = documents.Count - TestResultDocsCount;
-            if (TestResultDocsCount >= db.MakeChoices.Where(q => q.User_ID == current_user).GroupBy(q => q.Uni_ID).Count() && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+            if (Request.QueryString["NA"] != null && Request.QueryString["NA"] == "true")
             {
-                imgTickDocuments.Visible = true;
-            }else
-            {
-                imgExcDocuments.Visible = true;
+                imgTickDocuments.Visible = false;
             }
+            else
+            {
+                if (db.MakeChoices.Any(a => a.User_ID == current_user))
+                {
+                    int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
+                    List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
+                    int staticDocsCount = documents.Count() - documents.Where(a => a.TestResult_Document.Any()).Count();
+                    if (documents.Any(a => a.TestResult_Document.Any(x => x.UniID == universityID)) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+                    {
+                        imgTickDocuments.Visible = true;
+                    }
+                    else
+                    {
+                        imgExcDocuments.Visible = true;
+                    }
+                }
+                
+            }
+        }
+        else
+        {
+            imgExcDocuments.Visible = true;
         }
         List<int> appids = db.Applications.Where(q => q.UserID == current_user).Select(q => q.id).ToList();
         if(db.Payments.Where(q=>appids.Contains(q.ApplicationID)).Count() == appids.Count() && (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() > 0))
