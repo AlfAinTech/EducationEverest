@@ -131,7 +131,15 @@ public partial class Search_Results : System.Web.UI.Page
 
                     if (db.Campuses.Any(x => x.Uni_ID == uniid))
                     {
-                        CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == uniid && a.MainCampus == true).First();
+                        CampusProfile campusProfile = new CampusProfile();
+                        if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == uniid && a.MainCampus == true))
+                        {
+                             campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == uniid && a.MainCampus == true).First();
+                        }
+                        else
+                        {
+                             campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == uniid).First();
+                        }
                         
                         if (campusProfile.AdminRatings != null && campusProfile.AdminRatings !=  "")
                         {
@@ -526,7 +534,15 @@ public partial class Search_Results : System.Web.UI.Page
                     }
                     if (db.Campuses.Any(x => x.Uni_ID == univ.UniversityID))
                     {
-                        CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+                        CampusProfile campusProfile = new CampusProfile();
+                        if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true))
+                        {
+                            campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+                        }
+                        else
+                        {
+                            campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID).First();
+                        }
 
                         if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
                         {
@@ -700,7 +716,15 @@ public partial class Search_Results : System.Web.UI.Page
 
         if (db.Campuses.Any(x => x.Uni_ID == universityid))
         {
-            CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == universityid && a.MainCampus == true).First();
+            CampusProfile campusProfile = new CampusProfile();
+            if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == universityid && a.MainCampus == true))
+            {
+                campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == universityid && a.MainCampus == true).First();
+            }
+            else
+            {
+                campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == universityid).First();
+            }
 
             if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
             {
@@ -713,26 +737,7 @@ public partial class Search_Results : System.Web.UI.Page
             Rating2.CurrentRating = 0;
         }
 
-
-
-        //code for rating
-
-        if (db.Campuses.Any(x => x.Uni_ID == universityid))
-            {
-                var campusid = db.Campuses.Where(a => a.Uni_ID == universityid).Select(ci => new { cid = ci.id }).FirstOrDefault();
-                CampusProfile urating = db.CampusProfiles.Where(h => h.CampusID == campusid.cid).FirstOrDefault();
-
-                if (urating != null && urating.AdminRatings != "")
-                {
-                    Rating2.CurrentRating = Convert.ToInt32(urating.AdminRatings);//get the current rating from database
-                }
-
-            }
-            else
-            {
-                Rating2.CurrentRating = 0;
-            }
-            if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
+        if (db.UniversityMedias.Any(x => x.UniversityId == universityid))
             {
                 string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == universityid).First().Path;
                 if (logoPath2 != null)

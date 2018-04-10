@@ -152,7 +152,15 @@ public partial class Filter_Results : System.Web.UI.Page
                     }
                     if (db.Campuses.Any(x => x.Uni_ID == uniid))
                     {
-                        CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == uniid && a.MainCampus == true).First();
+                        CampusProfile campusProfile = new CampusProfile();
+                        if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == uniid && a.MainCampus == true))
+                        {
+                            campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == uniid && a.MainCampus == true).First();
+                        }
+                        else
+                        {
+                            campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == uniid).First();
+                        }
 
                         if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
                         {
@@ -966,7 +974,15 @@ public partial class Filter_Results : System.Web.UI.Page
             }
             if (db.Campuses.Any(x => x.Uni_ID == univ.UniversityID))
             {
-                CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+                CampusProfile campusProfile = new CampusProfile();
+                if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true))
+                {
+                    campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+                }
+                else
+                {
+                    campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID).First();
+                }
 
                 if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
                 {
@@ -1082,7 +1098,15 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
         }//uniprofile ends here
         if (db.Campuses.Any(x => x.Uni_ID == universityid))
         {
-            CampusProfile campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == universityid && a.MainCampus == true).First();
+            CampusProfile campusProfile = new CampusProfile();
+            if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == universityid && a.MainCampus == true))
+            {
+                campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == universityid && a.MainCampus == true).First();
+            }
+            else
+            {
+                campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == universityid).First();
+            }
 
             if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
             {
@@ -1094,6 +1118,7 @@ protected void rptSearch_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             Rating2.CurrentRating = 0;
         }
+
 
 
 
