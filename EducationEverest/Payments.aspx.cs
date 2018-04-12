@@ -21,10 +21,43 @@ public partial class Payments : System.Web.UI.Page
             }
 
             current_user = HttpContext.Current.User.Identity.GetUserId();
-            List<Application> applicationList = db.Applications.Where(q => q.UserID == current_user).ToList();
-            ChoicesList.DataSource = applicationList;
-            ChoicesList.DataBind();
-            totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
+            int newApps = 1;
+            if (Request.QueryString["apps"] != null)
+            {
+                newApps = Convert.ToInt32(Request.QueryString["apps"]);
+
+            }
+            Guid appID = Guid.Empty;
+            if (Request.QueryString["appID"] != null)
+            {
+                appID = new Guid(Request.QueryString["appID"].ToString());
+            }
+            if (db.Applications.Any(a => a.UserID == current_user))
+            {
+                if (appID != Guid.Empty)
+                {
+                    List<Application> applicationList = db.Applications.Where(a => a.UserID == current_user && a.appID == appID).ToList();
+                    ChoicesList.DataSource = applicationList;
+                    ChoicesList.DataBind();
+                    totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
+                }
+                else
+                {
+                    List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
+                    List<Application> applicationList = db.Applications.Where(q => q.UserID == current_user && universityIDs.Contains(q.University.id)).ToList();
+                    ChoicesList.DataSource = applicationList;
+                    ChoicesList.DataBind();
+                    totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
+                }
+                
+
+            }
+            else
+            {
+                ChoicesList.DataSource = null;
+                ChoicesList.DataBind();
+            }
+            
             if (allPaid)
             {
                 btn_MakeTotalPayment.Style.Add("display", "none");
@@ -113,6 +146,7 @@ public partial class Payments : System.Web.UI.Page
 
                 db.SystemNotifications.Add(newNotification);
                 db.SaveChanges();
+                
 
             }
         }
