@@ -68,7 +68,7 @@ public partial class Dashboard : System.Web.UI.Page
    
     protected void btnFileAdmission_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Personal_Detail.aspx?NA=true");
+        Response.Redirect("Personal_Detail.aspx?apps=0");
     }
 
    

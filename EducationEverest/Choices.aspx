@@ -8,14 +8,29 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
 
-        var preferencesAdded = false;
+        var preferencesadded = 0;
+        if (getParameterByName('apps') != null) {
+            preferencesadded = getParameterByName('apps');
+            preferencesadded = parseInt(preferencesadded);
+        }
+        
 
+        var anypreferencesAdded = false;
         function populateGridview(universityId) {
             alert("this is university Id : " + universityId);
             document.getElementById('<%= hf_UniID.ClientID %>').value = universityId.toString();
             alert(document.getElementById("hf_UniID").value);
             <%= show() %>
 
+        }
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return null;
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
         
 
@@ -24,8 +39,8 @@
             
 
             $('#exampleModalCenter').on('hidden.bs.modal', function () {
-                if (preferencesAdded) {
-                    window.location.href = 'choices.aspx';
+                if (anypreferencesAdded) {
+                    window.location.href = 'choices.aspx?apps='+preferencesadded;
                 }
                 else {
                     location.reload();
@@ -206,9 +221,17 @@
                     success: function (result) {
                         console.log("this is the data" + result.toString());
                         if (result.d.length > 2) {
-                            preferencesAdded = true;
+                            
+                            var data = result.d;
+                            data1 = JSON.parse(data);
+                            console.log(data1.isNewApp);
+                            if (data1.isNewApp == true) {
+                                preferencesadded = preferencesadded + 1;
+                            }
+                            anypreferencesAdded = true;
                         }
-                        BindData(result);
+                        
+                        BindDataNew(data1.data);
                         //populateGridview(result);
 
                     }
@@ -360,9 +383,19 @@
                     failure: function (response) {
                         alert(response.d);
                     },
-                    success: function (response) {
+                    success: function (result) {
+                        if (result.d.length > 2) {
 
-                        BindData(response)
+                            var data = result.d;
+                            data1 = JSON.parse(data);
+                            console.log(data1.isNewApp);
+                            if (data1.isNewApp == true) {
+                                preferencesadded = preferencesadded + 1;
+                            }
+                            anypreferencesAdded = true;
+                        }
+
+                        BindDataNew(data1.data);
 
                     }
                 });
@@ -396,6 +429,14 @@
 
 
         })
+        BindDataNew = function (response) {
+            //alert(response.d);
+            
+            $("#GridPreferences").find("tr:gt(0)").remove();
+            $("#preferences_template").tmpl(response).appendTo("#GridPreferences");
+            // $("GridPreferences")
+        }
+        
         BindData = function (response) {
             //alert(response.d);
             var data = response.d;

@@ -16,15 +16,21 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
     }
     protected void CompletionCheck()
     {
+        // 1 or greater= normal , 0 =filing new apps 
+        int actionStatus = 1;
+        if(Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
+        {
+            actionStatus = Convert.ToInt32(Request.QueryString["apps"]);
+        }
         if (db.Personal_Details.Any(q => q.User_ID == current_user))
         {
             imgTickPersonalDetails.Visible = true;
         }
-        else
+        else if(actionStatus >0)
         {
             imgExcPersonalDetails.Visible = true;
         }
-        if (Request.QueryString["NA"] != null && Request.QueryString["NA"] == "true")
+        if (actionStatus == 0)
         {
             imgTickChoices.Visible = false;
         }
@@ -33,8 +39,8 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
             imgTickChoices.Visible = false;
             if (db.MakeChoices.Any(a => a.User_ID == current_user))
             {
-                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-                if (db.MakeChoices.Any(q => q.User_ID == current_user && q.Uni_ID == universityID))
+                List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(actionStatus).Select(a => a.Uni_ID).ToList();
+                if (db.MakeChoices.Any(q => q.User_ID == current_user && universityIDs.Contains(q.University.id)))
                 {
                     imgTickChoices.Visible = true;
                 }
@@ -48,21 +54,56 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
         {
             imgTickEducationDetails.Visible = true;
         }
-        else
+        else if (actionStatus > 0)
         {
             imgExcEducationDetails.Visible = true;
         }
-        if (db.Test_Results.Where(q => q.User_ID == current_user).Count() == db.MakeChoices.Where(q => q.User_ID == current_user).GroupBy(q => q.Uni_ID).Count() && (db.Test_Results.Where(q => q.User_ID == current_user).Count() > 0))
+        if (db.Test_Results.Any(a => a.User_ID == current_user) && actionStatus != 0)
         {
-            imgTickTestResults.Visible = true;
+            Guid appID = Guid.Empty;
+            if (Request.QueryString["appID"] != null)
+            {
+                appID = new Guid(Request.QueryString["appID"].ToString());
+            }
+            if(appID != Guid.Empty)
+            {
+                //get a university id based on appID 
+                int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
+                string testName = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).First().TestName;
+                if(db.Test_Results.Any(a => a.Test_Name == testName))
+                {
+                    imgTickTestResults.Visible = true;
+                }
+                else
+                {
+                    imgExcTestResults.Visible = true;
+                }
+            }
+            else 
+            {
+                List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(actionStatus).Select(a => a.Uni_ID).ToList();
+                List<string> testNames = db.UniversityProfiles.Where(a => universityIDs.Contains(a.UniversityID)).Select(a => a.TestName).ToList();
+                foreach(string testname in testNames)
+                {
+                    if (db.Test_Results.Any(a => a.Test_Name == testname))
+                    {
+                        imgTickTestResults.Visible = true;
+                    }
+                    else
+                    {   
+                        imgExcTestResults.Visible = true;
+                        break;
+                    }
+                }
+            }
         }
-        else
+        else if (actionStatus > 0)
         {
             imgExcTestResults.Visible = true;
         }
         if (db.Documents.Any(q => q.userID == current_user))
         {
-            if (Request.QueryString["NA"] != null && Request.QueryString["NA"] == "true")
+            if (actionStatus == 0)
             {
                 imgTickDocuments.Visible = false;
             }
@@ -70,22 +111,45 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
             {
                 if (db.MakeChoices.Any(a => a.User_ID == current_user))
                 {
-                    int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-                    List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
-                    int staticDocsCount = documents.Count() - documents.Where(a => a.TestResult_Document.Any()).Count();
-                    if (documents.Any(a => a.TestResult_Document.Any(x => x.UniID == universityID)) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+                    Guid appID = Guid.Empty;
+                    if (Request.QueryString["appID"] != null)
                     {
-                        imgTickDocuments.Visible = true;
+                        appID = new Guid(Request.QueryString["appID"].ToString());
+                    }
+                    if (appID != Guid.Empty)
+                    {
+                        //get a university id based on appID 
+                        int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
+                        List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
+                        int staticDocsCount = documents.Count() - documents.Where(a => a.TestResult_Document.Any()).Count();
+                        if (documents.Any(a => a.TestResult_Document.Any(x => x.UniID == UniversityID)) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+                        {
+                            imgTickDocuments.Visible = true;
+                        }
+                        else
+                        {
+                            imgExcDocuments.Visible = true;
+                        }
                     }
                     else
                     {
-                        imgExcDocuments.Visible = true;
+                        List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(actionStatus).Select(a => a.Uni_ID).ToList();
+                        List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
+                        int staticDocsCount = documents.Count() - documents.Where(a => a.TestResult_Document.Any()).Count();
+                        if (documents.Any(a => a.TestResult_Document.Any(x => universityIDs.Contains(x.UniID))) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+                        {
+                            imgTickDocuments.Visible = true;
+                        }
+                        else
+                        {
+                            imgExcDocuments.Visible = true;
+                        }
                     }
                 }
 
             }
         }
-        else
+        else if (actionStatus > 0)
         {
             imgExcDocuments.Visible = true;
         }
@@ -94,7 +158,7 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
         {
             imgTickPayments.Visible = true;
         }
-        else
+        else if (actionStatus > 0)
         {
             imgExcPayments.Visible = true;
         }

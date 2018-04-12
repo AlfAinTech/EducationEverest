@@ -293,6 +293,23 @@
         color: red;
         /*border: 1px solid red;*/
     }
+    /*View Button Hover and Simple CSS*/
+.editbutton {
+    font-family: Raleway;
+    font-size: 16px;
+    line-height: 22px;
+    color: rgb(33, 150, 243);
+    /*border: 1px solid rgb(33, 150, 243);
+    border-radius : 2px;
+	-moz-border-radius : 2px;
+	-webkit-border-radius : 2px;*/
+    padding: 1% 2%;
+}
+
+    .editbutton:hover {
+        color: green;
+        /*border: 1px solid red;*/
+    }
 
 .NormalCharacterStyle18 {
     font-family: Raleway;

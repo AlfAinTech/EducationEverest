@@ -34,24 +34,35 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         }
         else
         {
-            if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+            int newApps = 1;
+            if (Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
+            {
+                newApps = Convert.ToInt32(Request.QueryString["apps"]);
+                    
+            }
+            Guid appID = Guid.Empty;
+            if(Request.QueryString["appID"] != null)
+            {
+                appID = new Guid(Request.QueryString["appID"].ToString());
+            } 
+            if (db.MakeChoices.Any(a => a.User_ID == current_user))
+            {
+                if (appID != Guid.Empty)
+                {
+                    ApplicationsList.DataSource = db.Applications.Where(a => a.UserID == UserID && a.appID == appID).ToList();
+                    ApplicationsList.DataBind(); 
+                }
+                else
+                {
+                    List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
+
+                    ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && universityIDs.Contains(q.University.id)).OrderByDescending(u => u.id).ToList();
+                    ApplicationsList.DataBind();
+                }
+            }else
             {
                 ApplicationsList.DataSource = null;
                 ApplicationsList.DataBind();
-            }
-            else
-            {
-                if (db.MakeChoices.Any(a => a.User_ID == current_user))
-                {
-                    int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-
-                    ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();
-                    ApplicationsList.DataBind();
-                }else
-                {
-                    ApplicationsList.DataSource = null;
-                    ApplicationsList.DataBind();
-                }
             }
         }
     }
@@ -229,6 +240,15 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                 }
 
             }
+        }
+    }
+
+    protected void btn_editApplication_Click(object sender, EventArgs e)
+    {
+        string applicationID = hf1.Value.ToString();
+        if (applicationID != "")
+        {
+            Response.Redirect("Personal_Detail.aspx?appID=" + applicationID);
         }
     }
 }

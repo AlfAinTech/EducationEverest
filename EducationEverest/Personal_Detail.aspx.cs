@@ -270,9 +270,13 @@ public partial class Personal_Detail : System.Web.UI.Page
 
 
         //button next click from Personal Details to Choice
-        if (Request.QueryString["NA"] != null && Request.QueryString["NA"] == "true")
+        if (Request.QueryString["apps"] != null)
         {
-            Response.Redirect("Choices.aspx?NA=true");
+            Response.Redirect("Choices.aspx?apps="+Request.QueryString["apps"].ToString());
+        }
+        if(Request.QueryString["appID"] != null)
+        {
+            Response.Redirect("Choices.aspx?appID="+Request.QueryString["appID"].ToString());
         }
         else
         {

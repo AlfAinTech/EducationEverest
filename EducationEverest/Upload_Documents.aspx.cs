@@ -39,25 +39,39 @@ public partial class Upload_Documents : System.Web.UI.Page
         //List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
         //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         //TestResultDocList.DataBind();
-        if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+        int newApps = 1;
+        if (Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
         {
-            TestResultDocList.DataSource = null;
-            TestResultDocList.DataBind();
+            newApps = Convert.ToInt32(Request.QueryString["apps"]);
+
         }
-        else
+        Guid appID = Guid.Empty;
+        if (Request.QueryString["appID"] != null)
         {
-            if (db.MakeChoices.Any(a => a.User_ID == current_user))
+            appID = new Guid(Request.QueryString["appID"].ToString());
+        }
+        if (db.MakeChoices.Any(a => a.User_ID == current_user))
+        {
+            if (appID != Guid.Empty)
             {
-                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-                TestResultDocList.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
+                //get a university id based on appID 
+                int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
+                TestResultDocList.DataSource = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).ToList();
                 TestResultDocList.DataBind();
             }
             else
             {
-                TestResultDocList.DataSource = null;
+                List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
+                TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
                 TestResultDocList.DataBind();
             }
         }
+        else
+        {
+            TestResultDocList.DataSource = null;
+            TestResultDocList.DataBind();
+        }
+        
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 
     }
@@ -287,8 +301,18 @@ public partial class Upload_Documents : System.Web.UI.Page
 
         }
 
-
-        Response.Redirect("~/Payments.aspx");
+        if (Request.QueryString["apps"] != null)
+        {
+            Response.Redirect("Payments.aspx?apps=" + Request.QueryString["apps"].ToString());
+        }
+        if (Request.QueryString["appID"] != null)
+        {
+            Response.Redirect("Payments.aspx?appID=" + Request.QueryString["appID"].ToString());
+        }
+        else
+        {
+            Response.Redirect("~/Payments.aspx");
+        }
     }
 
   

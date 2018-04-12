@@ -17,8 +17,7 @@ public partial class Test_Result : System.Web.UI.Page
 
     public void panels()
     {
-       
-         List<int> Univ =   db.MakeChoices.Where(a=>a.User_ID == current_user).Select(a => a.Uni_ID).ToList();
+        List<int> Univ =   db.MakeChoices.Where(a=>a.User_ID == current_user).Select(a => a.Uni_ID).ToList();
 
         Repeater1.DataSource = db.UniversityProfiles.Where(q => Univ.Contains(q.UniversityID)).ToList();
         Repeater1.DataBind();
@@ -30,11 +29,31 @@ public partial class Test_Result : System.Web.UI.Page
         }
         else
         {
+            int newApps = 1;
+            if (Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
+            {
+                newApps = Convert.ToInt32(Request.QueryString["apps"]);
+            }
+            Guid appID = Guid.Empty;
+            if (Request.QueryString["appID"] != null)
+            {
+                appID = new Guid(Request.QueryString["appID"].ToString());
+            }
             if (db.MakeChoices.Any(a => a.User_ID == current_user))
             {
-                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-                Repeater1.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
-                Repeater1.DataBind();
+                if (appID != Guid.Empty)
+                {
+                    //get a university id based on appID 
+                    int UniversityID = (int) db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
+                    Repeater1.DataSource = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).ToList();
+                    Repeater1.DataBind();
+                }
+                else
+                {
+                    List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
+                    Repeater1.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
+                    Repeater1.DataBind();
+                }
             }else
             {
                 Repeater1.DataSource = null;
@@ -163,7 +182,18 @@ public partial class Test_Result : System.Web.UI.Page
 
 
         //button next click from Test Results to Document
-        Response.Redirect("Upload_Documents.aspx");
+        if (Request.QueryString["apps"] != null)
+        {
+            Response.Redirect("Upload_Documents.aspx?apps=" + Request.QueryString["apps"].ToString());
+        }
+        if (Request.QueryString["appID"] != null)
+        {
+            Response.Redirect("Upload_Documents.aspx?appID=" + Request.QueryString["appID"].ToString());
+        }
+        else
+        {
+            Response.Redirect("Upload_Documents.aspx");
+        }
 
 
     }

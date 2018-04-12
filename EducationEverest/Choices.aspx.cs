@@ -12,6 +12,12 @@ using System.Web.UI.HtmlControls;
 
 public partial class Choices : System.Web.UI.Page
 {
+   public class ApplicationData
+    {
+        public Array data { get; set; }
+        public bool isNewApp { get; set; }
+        
+    }
     string ddlvalue;
     EducationEverestEntities db = new EducationEverestEntities();
 
@@ -77,6 +83,7 @@ public partial class Choices : System.Web.UI.Page
             
              current_user = HttpContext.Current.User.Identity.GetUserId();
             //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+           
         }
     }
 
@@ -267,8 +274,8 @@ public partial class Choices : System.Web.UI.Page
     [System.Web.Services.WebMethod]
     // public static List<MakeChoice> SaveMainPageData(string uni,string cmp,string dpt,string ctg,string pgm)
     public static string SaveMainPageData(string uni, string cmp, string dpt, string ctg, string pgm)
-
     {
+        bool isNewAppAdded = false;
         int uni_ = int.Parse(uni);
         int cmp_ = int.Parse(cmp);
         int dpt_ = int.Parse(dpt);
@@ -336,6 +343,7 @@ public partial class Choices : System.Web.UI.Page
                                             };
                                             dbcontext.Applications.Add(app);
                                             try { dbcontext.SaveChanges();
+                                                isNewAppAdded = true;
                                                 //create a notification for user
                                                 SystemNotification newNotification = new SystemNotification();
                                                 newNotification.User_ID = current_user;
@@ -348,16 +356,8 @@ public partial class Choices : System.Web.UI.Page
 
                                                 dbcontext.SystemNotifications.Add(newNotification);
                                                 dbcontext.SaveChanges();
-                                                //remove app_Start rows if there are any for this user
-                                                if (dbcontext.App_Start.Any(a => a.AspNetUserID == current_user))
-                                                {
-                                                    List<App_Start> incompleteAppsForCurrentUser = dbcontext.App_Start.Where(a => a.AspNetUserID == current_user).ToList();
-                                                    foreach(var entry in incompleteAppsForCurrentUser)
-                                                    {
-                                                        dbcontext.App_Start.Remove(entry);   
-                                                    }
-                                                    dbcontext.SaveChanges();
-                                                }
+                                                
+                                                
                                             }
                                             catch(Exception e)
                                             {
@@ -377,7 +377,7 @@ public partial class Choices : System.Web.UI.Page
                                         };
                                         dbcontext.Applications.Add(app);
                                         dbcontext.SaveChanges();
-
+                                        isNewAppAdded = true;
                                         //create a notification for user
                                         SystemNotification newNotification = new SystemNotification();
                                         newNotification.User_ID = current_user;
@@ -390,16 +390,7 @@ public partial class Choices : System.Web.UI.Page
 
                                         dbcontext.SystemNotifications.Add(newNotification);
                                         dbcontext.SaveChanges();
-                                        //remove app_Start rows if there are any for this user
-                                        if (dbcontext.App_Start.Any(a => a.AspNetUserID == current_user))
-                                        {
-                                            List<App_Start> incompleteAppsForCurrentUser = dbcontext.App_Start.Where(a => a.AspNetUserID == current_user).ToList();
-                                            foreach (var entry in incompleteAppsForCurrentUser)
-                                            {
-                                                dbcontext.App_Start.Remove(entry);
-                                            }
-                                            dbcontext.SaveChanges();
-                                        }
+                                        
 
                                     }
                                    
@@ -437,14 +428,20 @@ public partial class Choices : System.Web.UI.Page
 
 
         }
+        
         var data1 = choicesdata.Select(q => new { q.id, departmentName = q.Department.Department_Name, campusName = q.Campus.Campus_Name, catagory = q.ProgrammCategory.Category.Category_Name }).ToArray();
+        ApplicationData appData = new ApplicationData();
+        appData.data = data1;
+        appData.isNewApp = isNewAppAdded;
         // JsonConvert.SerializeObject(data1);
         var serializer = new JavaScriptSerializer();
         //String result = serializer.Serialize(data1);
-        var js = JsonConvert.SerializeObject(data1);
-        String result = serializer.Serialize(data1);
+        var js = JsonConvert.SerializeObject(appData);
+        String result = serializer.Serialize(appData);
+        
         //choicesdata = dbcontext.MakeChoices.ToList();
-        return result;
+        
+        return js;
     }
     [System.Web.Services.WebMethod]
     public static string deletePreference(string id)
@@ -473,36 +470,27 @@ public partial class Choices : System.Web.UI.Page
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-
-        //ddlvalue = DropDownList1.SelectedItem.Value;
         Label1.Text = DropDownList1.SelectedItem.Text;
-
-        // Session["ddlsessionvalue"] = DropDownList1.SelectedValue;
-
-        //show();
     }
     //button next click from make choice to educational details
     protected void next_click(object sender, EventArgs e)
     {
-        //HtmlImage imgc = Master.FindControl("imgTickChoices") as HtmlImage;
-
-
-        //if (imgc != null)
-
-        //{
-
-        //    imgc.Visible = true;
-        //    Session["IMGC"] = "imgc";
-            
-        //}
-
-
-        Response.Redirect("Educational_Detail.aspx");
+        if (Request.QueryString["apps"] != null)
+        {
+            Response.Redirect("Educational_Detail.aspx?apps=" + Request.QueryString["apps"].ToString());
+        }
+        if (Request.QueryString["appID"] != null)
+        {
+            Response.Redirect("Educational_Detail.aspx?appID=" + Request.QueryString["appID"].ToString());
+        }
+        else
+        {
+            Response.Redirect("Educational_Detail.aspx");
+        }
     }
 
     protected void buttonEdit_Click(object sender, EventArgs e)
     {
-
     }
 
     

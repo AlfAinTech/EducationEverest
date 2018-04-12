@@ -2,21 +2,47 @@
 
 <script type="text/javascript">
         $(document).ready(function () {
-           
+            $('#prsonalDetail').on('click', function () {
+                var x = location.href;
+                if(x.includes("apps")){
+                    window.location.href = 'Personal_Detail.aspx?apps=' + getParameterByName('apps',x);
+                } else if (x.includes("appID")) {
+                    window.location.href = 'Personal_Detail.aspx?appID=' + getParameterByName('appID', x);
+                }
+                else {
+                    window.location.href = 'Personal_Detail.aspx';
+                }
+            });
             $('#makeChoices').on('click', function () {
 
                 var x = location.href;
-                if (x.includes("NA=true")) {
-                    window.location.href = 'choices.aspx?NA=true';
+                if (x.includes("apps")) {
+                    window.location.href = 'choices.aspx?apps=' + getParameterByName('apps', x);
+                } else if (x.includes("appID")) {
+                    window.location.href = 'choices.aspx?appID=' + getParameterByName('appID', x);
                 } else {
                     window.location.href = 'choices.aspx';
+                }
+            });
+            
+            $('#educationalDocument').on('click', function () {
+
+                var x = location.href;
+                if (x.includes("apps")) {
+                    window.location.href = 'educational_detail.aspx?apps=' + getParameterByName('apps', x);
+                } else if (x.includes("appID")) {
+                    window.location.href = 'educational_detail.aspx?appID=' + getParameterByName('appID', x);
+                } else {
+                    window.location.href = 'educational_detail.aspx';
                 }
             });
             $('#testResult').on('click', function () {
 
                 var x = location.href;
-                if (x.includes("NA=true")) {
-                    window.location.href = 'Test_Result.aspx?NA=true';
+                if (x.includes("apps")) {
+                    window.location.href = 'Test_Result.aspx?apps=' + getParameterByName('apps', x);
+                } else if (x.includes("appID")) {
+                    window.location.href = 'Test_Result.aspx?appID=' + getParameterByName('appID', x);
                 }
                 else {
                     window.location.href = 'Test_Result.aspx'
@@ -25,12 +51,34 @@
             $('#Upload_Documents').on('click', function () {
 
                 var x = location.href;
-                if (x.includes("NA=true")) {
-                    window.location.href = 'Upload_Documents.aspx?NA=true';
+                if (x.includes("apps")) {
+                    window.location.href = 'Upload_Documents.aspx?apps=' + getParameterByName('apps', x);
+                } else if (x.includes("appID")) {
+                    window.location.href = 'Upload_Documents.aspx?appID=' + getParameterByName('appID', x);
                 } else {
                     window.location.href = 'Upload_Documents.aspx'
                 }
             });
+            $('#Payments').on('click', function () {
+
+                var x = location.href;
+                if (x.includes("apps")) {
+                    window.location.href = 'Payments.aspx?apps=' + getParameterByName('apps', x);
+                } else if (x.includes("appID")) {
+                    window.location.href = 'Payments.aspx?appID=' + getParameterByName('appID', x);
+                } else {
+                    window.location.href = 'Payments.aspx'
+                }
+            });
+            function getParameterByName(name, url) {
+                if (!url) url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return null;
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
 
             $('#fileAdmission').on('click', function () {
                 var iSelector = $(this).find('span:first');
@@ -76,12 +124,12 @@
                 <a data-toggle="collapse" id="fileAdmission" data-target="#clps2" class="main_list NormalCharacterStyle25"><div>File Admission App<div class="pull-right"><span class="glyphicon glyphicon-chevron-right dropdown_icon " data-toggle="collapse" data-target="#clps2"></span></div></div></a>
                 <div class="collapse" id="clps2">
                     <br/>
-                    <li class="menu_list"><a href="Personal_Detail" class="NormalCharacterStyle24" id="prsonalDetail"><p>Personal Detail<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /><img src="~/images/caution_icon.png" runat="server" id="imgExcPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+                    <li class="menu_list"><a  class="NormalCharacterStyle24" id="prsonalDetail"><p>Personal Detail<span><img src="~/images/check_icon.png" runat="server" id="imgTickPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /><img src="~/images/caution_icon.png" runat="server" id="imgExcPersonalDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
                     <li class="menu_list"><a  class="NormalCharacterStyle24" id="makeChoices"><p>Make Choices&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickChoices"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcChoices"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li> 
-                    <li class="menu_list"><a href="educational_detail" id="educationalDocument"  class="NormalCharacterStyle24" ><p>Educational Details&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickEducationDetails"  visible="false" style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcEducationDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+                    <li class="menu_list"><a  class="NormalCharacterStyle24" id="educationalDocument" ><p>Educational Details&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickEducationDetails"  visible="false" style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcEducationDetails"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
                     <li class="menu_list"><a  class="NormalCharacterStyle24" id="testResult"><p>Test Results&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickTestResults"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcTestResults"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
-                    <li class="menu_list"><a  id="Upload_Documents" class="NormalCharacterStyle24"><p>Documents&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcDocuments"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
-                    <li class="menu_list"><a href="Payments" class="NormalCharacterStyle24" id="Payments"><p>Payments&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcPayments"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+                    <li class="menu_list"><a  class="NormalCharacterStyle24" id="Upload_Documents" ><p>Documents&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickDocuments"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcDocuments"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
+                    <li class="menu_list"><a  class="NormalCharacterStyle24" id="Payments"><p>Payments&nbsp;&nbsp;&nbsp;&nbsp;<span><img src="~/images/check_icon.png" runat="server" id="imgTickPayments"  visible="false"  style="float:right;height:20px;width:20px"  /><img src="~/images/caution_icon.png" runat="server" id="imgExcPayments"  visible="false"   style="float:right;height:20px;width:20px" /></span></p></a></li>
 
 
                 </div>

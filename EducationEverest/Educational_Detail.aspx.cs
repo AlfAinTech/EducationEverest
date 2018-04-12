@@ -159,7 +159,18 @@ public partial class Educational_Detail : System.Web.UI.Page
 
 
         //button next click from Educational Details to Test Result
-        Response.Redirect("Test_Result.aspx");
+        if (Request.QueryString["apps"] != null)
+        {
+            Response.Redirect("Test_Result.aspx?apps=" + Request.QueryString["apps"].ToString());
+        }
+        if (Request.QueryString["appID"] != null)
+        {
+            Response.Redirect("Test_Result.aspx?appID=" + Request.QueryString["appID"].ToString());
+        }
+        else
+        {
+            Response.Redirect("Test_Result.aspx");
+        }
 
 
        
