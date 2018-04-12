@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+    <link href="Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
     <title>Login</title>
     <meta charset="utf-8" />
     <meta name="google-signin-scope" content="profile email">
@@ -238,7 +239,7 @@
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
-                testAPI();
+               // testAPI();
             } else {
                 // The person is not logged into your app or we are unable to tell.
                 //document.getElementById('status').innerHTML = 'Please log ' +

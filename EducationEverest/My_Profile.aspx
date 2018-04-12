@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="~/Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
+    <link href="Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
      <title>My Profile</title>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -183,13 +183,12 @@
           <div class="Profile_sidemenu_Name4 text-center" style="margin-top: 100px;">Share on your Media Wall</div><br/>
           <div class="text-center">
 
-            <div class="fb-share-button" data-href="http://www.bbc.com/urdu/science-42912340" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bbc.com%2Furdu%2Fscience-42912340&amp;src=sdkpreparse"></a></div>
-           <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A//www.bbc.com/urdu/science-42912340&title=Education%20Everest&summary=I%20would%20like%20you%20to%20visit%20Education%20Everest&source="><img src="images/linkedin.png" style="width: 30px;height: 30px"></a>
+            <div class="fb-share-button" data-href="http://educationeverest.com/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bbc.com%2Furdu%2Fscience-42912340&amp;src=sdkpreparse"></a></div>
+           <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://educationeverest.com/&title=Education%20Everest&summary=I%20would%20like%20you%20to%20visit%20Education%20Everest&source="><img src="images/linkedin.png" style="width: 30px;height: 30px"></a>
 
-            <a href="https://ctt.ec/82Mle"><img src="images/Twitter.png" style="width: 30px;height: 30px"" alt="Tweet: I would like you to visit https://ctt.ec/82Mle+ " /></a>
+            <a href="https://ctt.ec/82Mle"><img src="images/Twitter.png" style="width: 30px;height: 30px"" alt="Tweet: I would like you to visit http://educationeverest.com/ " /></a>
                   <a href="https://plus.google.com/share?url=http%3A//www.bbc.com/urdu/science-42912340"><img src="images/google.png" style="width: 30px;height: 30px"></a>       
-              <%--<a href=""><img src="images/google.png" style="width: 30px;height: 30px"></a> &nbsp;--%>
-                          <%--<a href="https://ctt.ec/82Mle"><img src="http://clicktotweet.com/img/tweet-graphic-4.png" alt="Tweet: I would like you to visit https://ctt.ec/82Mle+ " /></a>--%>
+              
         </div>
         </div>
                 <div class="col-md-1"></div>
