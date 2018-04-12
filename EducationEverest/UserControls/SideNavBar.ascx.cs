@@ -67,16 +67,19 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
             }
             if(appID != Guid.Empty)
             {
-                //get a university id based on appID 
-                int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
-                string testName = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).First().TestName;
-                if(db.Test_Results.Any(a => a.Test_Name == testName))
+                //get a university id based on appID
+                if (db.Applications.Any(a => a.UserID == current_user && a.appID == appID))
                 {
-                    imgTickTestResults.Visible = true;
-                }
-                else
-                {
-                    imgExcTestResults.Visible = true;
+                    int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
+                    string testName = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).First().TestName;
+                    if (db.Test_Results.Any(a => a.Test_Name == testName))
+                    {
+                        imgTickTestResults.Visible = true;
+                    }
+                    else
+                    {
+                        imgExcTestResults.Visible = true;
+                    }
                 }
             }
             else 
@@ -118,17 +121,20 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
                     }
                     if (appID != Guid.Empty)
                     {
-                        //get a university id based on appID 
-                        int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
-                        List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
-                        int staticDocsCount = documents.Count() - documents.Where(a => a.TestResult_Document.Any()).Count();
-                        if (documents.Any(a => a.TestResult_Document.Any(x => x.UniID == UniversityID)) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+                        if (db.Applications.Any(a => a.UserID == current_user && a.appID == appID))
                         {
-                            imgTickDocuments.Visible = true;
-                        }
-                        else
-                        {
-                            imgExcDocuments.Visible = true;
+                            //get a university id based on appID 
+                            int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
+                            List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
+                            int staticDocsCount = documents.Count() - documents.Where(a => a.TestResult_Document.Any()).Count();
+                            if (documents.Any(a => a.TestResult_Document.Any(x => x.UniID == UniversityID)) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+                            {
+                                imgTickDocuments.Visible = true;
+                            }
+                            else
+                            {
+                                imgExcDocuments.Visible = true;
+                            }
                         }
                     }
                     else
