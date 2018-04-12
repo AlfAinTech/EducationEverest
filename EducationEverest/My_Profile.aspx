@@ -20,6 +20,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/myScript.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script type="text/javascript">
       $(function () {
@@ -182,12 +183,31 @@
                  
           <div class="Profile_sidemenu_Name4 text-center" style="margin-top: 100px;">Share on your Media Wall</div><br/>
           <div class="text-center">
+              <div class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-2">
+                      <div class="fb-share-button" data-href="http://educationeverest.com/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bbc.com%2Furdu%2Fscience-42912340&amp;src=sdkpreparse"></a></div>
+                  </div>
+                  <div class="col-md-2">
+                      <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-url="http://educationeverest.com/"></script>
+                  </div>
+                  <div class="col-md-2">
+                      <div class="g-plus" data-action="share" data-annotation="none" data-href="http://educationeverest.com/"></div>
+                  </div>
+                  <div class="col-md-2">
+                      <a href="https://twitter.com/share?url=http://educationeverest.com/"><img src="images/Twitter.png" style="width: 30px;height: 30px"" alt="Tweet: I would like you to visit http://educationeverest.com/ " /></a>
+                  </div>
+                  <div class="col-md-1"></div>
+              </div>
+            
+           
+              
+              
 
-            <div class="fb-share-button" data-href="http://educationeverest.com/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bbc.com%2Furdu%2Fscience-42912340&amp;src=sdkpreparse"></a></div>
-           <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://educationeverest.com/&title=Education%20Everest&summary=I%20would%20like%20you%20to%20visit%20Education%20Everest&source="><img src="images/linkedin.png" style="width: 30px;height: 30px"></a>
-
-            <a href="https://ctt.ec/82Mle"><img src="images/Twitter.png" style="width: 30px;height: 30px"" alt="Tweet: I would like you to visit http://educationeverest.com/ " /></a>
-                  <a href="https://plus.google.com/share?url=http%3A//www.bbc.com/urdu/science-42912340"><img src="images/google.png" style="width: 30px;height: 30px"></a>       
+            
+                  
+              <!-- Place this tag in your head or just before your close body tag. -->
+            
               
         </div>
         </div>
