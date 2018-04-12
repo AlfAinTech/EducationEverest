@@ -153,10 +153,38 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
         {
             imgExcDocuments.Visible = true;
         }
-        List<int> appids = db.Applications.Where(q => q.UserID == current_user).Select(q => q.id).ToList();
-        if (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() == appids.Count() && (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() > 0))
-        {
-            imgTickPayments.Visible = true;
+        if(db.Applications.Any(a => a.UserID == current_user) && actionStatus != 0) {
+            Guid appID = Guid.Empty;
+            if (Request.QueryString["appID"] != null)
+            {
+                appID = new Guid(Request.QueryString["appID"].ToString());
+            }
+            if(appID != Guid.Empty)
+            {
+                int applicationID = db.Applications.Where(a => a.appID == appID).First().id;
+                if(db.Payments.Any(a => a.ApplicationID == applicationID))
+                {
+                    imgTickPayments.Visible = true;
+                }
+                else
+                {
+                    imgExcPayments.Visible = true;
+                }
+            }else
+            {
+                List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(actionStatus).Select(a => a.Uni_ID).ToList();
+                List<int> appids = db.Applications.Where(q => q.UserID == current_user && universityIDs.Contains(q.University.id)).Select(q => q.id).ToList();
+
+                if (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() == appids.Count() && (db.Payments.Where(q => appids.Contains(q.ApplicationID)).Count() > 0))
+                {
+                    imgTickPayments.Visible = true;
+                }
+                else
+                {
+                    imgExcPayments.Visible = true;
+                }
+            }
+            
         }
         else if (actionStatus > 0)
         {
