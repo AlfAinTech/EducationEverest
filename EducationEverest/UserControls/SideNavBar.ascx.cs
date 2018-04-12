@@ -88,7 +88,7 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
                 List<string> testNames = db.UniversityProfiles.Where(a => universityIDs.Contains(a.UniversityID)).Select(a => a.TestName).ToList();
                 foreach(string testname in testNames)
                 {
-                    if (db.Test_Results.Any(a => a.Test_Name == testname))
+                    if (db.Test_Results.Any(a => a.Test_Name == testname && a.User_ID == current_user))
                     {
                         imgTickTestResults.Visible = true;
                     }

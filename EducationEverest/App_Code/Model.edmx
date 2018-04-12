@@ -185,6 +185,15 @@
           <Property Name="documentType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="documentSizeInKB" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ICAppEmails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AppID" Type="int" Nullable="false" />
+          <Property Name="SubmittedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="Intermediate_Education">
           <Key>
             <PropertyRef Name="id" />
@@ -486,6 +495,30 @@
             </Principal>
             <Dependent Role="Document">
               <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ICAppEmai__AppID__4C364F0E">
+          <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+          <End Role="ICAppEmails" Type="Self.ICAppEmails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Applications">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ICAppEmails">
+              <PropertyRef Name="AppID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ICAppEmai__UserI__4B422AD5">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ICAppEmails" Type="Self.ICAppEmails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ICAppEmails">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -902,6 +935,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <EntitySet Name="DepartmentProfile" EntityType="Self.DepartmentProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICAppEmails" EntityType="Self.ICAppEmails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Intermediate_Education" EntityType="Self.Intermediate_Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MakeChoices" EntityType="Self.MakeChoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Matriculation_Education" EntityType="Self.Matriculation_Education" Schema="dbo" store:Type="Tables" />
@@ -951,6 +985,14 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <AssociationSet Name="FK__Document__userID__36470DEF" Association="Self.FK__Document__userID__36470DEF">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ICAppEmai__AppID__4C364F0E" Association="Self.FK__ICAppEmai__AppID__4C364F0E">
+            <End Role="Applications" EntitySet="Applications" />
+            <End Role="ICAppEmails" EntitySet="ICAppEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ICAppEmai__UserI__4B422AD5" Association="Self.FK__ICAppEmai__UserI__4B422AD5">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ICAppEmails" EntitySet="ICAppEmails" />
           </AssociationSet>
           <AssociationSet Name="FK__Intermedi__User___3D5E1FD2" Association="Self.FK__Intermedi__User___3D5E1FD2">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -1167,6 +1209,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <NavigationProperty Name="Personal_Details" Relationship="EducationEverestModel.FK__Personal___User___73BA3083" FromRole="AspNetUser" ToRole="Personal_Details" />
           <NavigationProperty Name="App_Start" Relationship="EducationEverestModel.FK_App_Start_AspNetUsers1" FromRole="AspNetUser" ToRole="App_Start" />
           <NavigationProperty Name="SystemNotifications" Relationship="EducationEverestModel.FK__SystemNot__User___39237A9A" FromRole="AspNetUser" ToRole="SystemNotification" />
+          <NavigationProperty Name="ICAppEmails" Relationship="EducationEverestModel.FK__ICAppEmai__UserI__4B422AD5" FromRole="AspNetUser" ToRole="ICAppEmail" />
         </EntityType>
         <EntityType Name="Campus">
           <Key>
@@ -1610,6 +1653,15 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="SystemNotification" EntitySet="SystemNotifications" />
           </AssociationSet>
+          <EntitySet Name="ICAppEmails" EntityType="EducationEverestModel.ICAppEmail" />
+          <AssociationSet Name="FK__ICAppEmai__AppID__4C364F0E" Association="EducationEverestModel.FK__ICAppEmai__AppID__4C364F0E">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="ICAppEmail" EntitySet="ICAppEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ICAppEmai__UserI__4B422AD5" Association="EducationEverestModel.FK__ICAppEmai__UserI__4B422AD5">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ICAppEmail" EntitySet="ICAppEmails" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DepartmentProfile">
           <Key>
@@ -2022,6 +2074,7 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
           <NavigationProperty Name="University" Relationship="EducationEverestModel.FK_Applications_Universities" FromRole="Application" ToRole="University" />
           <NavigationProperty Name="Payments" Relationship="EducationEverestModel.FK_Payment_Applications" FromRole="Application" ToRole="Payment" />
           <NavigationProperty Name="SystemNotifications" Relationship="EducationEverestModel.FK__SystemNot__AppID__3A179ED3" FromRole="Application" ToRole="SystemNotification" />
+          <NavigationProperty Name="ICAppEmails" Relationship="EducationEverestModel.FK__ICAppEmai__AppID__4C364F0E" FromRole="Application" ToRole="ICAppEmail" />
         </EntityType>
         <Association Name="FK__Applicati__UserI__5FB337D6">
           <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -2214,6 +2267,41 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
             </Principal>
             <Dependent Role="SystemNotification">
               <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ICAppEmail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AppID" Type="Int32" Nullable="false" />
+          <Property Name="SubmittedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Application" Relationship="EducationEverestModel.FK__ICAppEmai__AppID__4C364F0E" FromRole="ICAppEmail" ToRole="Application" />
+          <NavigationProperty Name="AspNetUser" Relationship="EducationEverestModel.FK__ICAppEmai__UserI__4B422AD5" FromRole="ICAppEmail" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK__ICAppEmai__AppID__4C364F0E">
+          <End Type="EducationEverestModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="EducationEverestModel.ICAppEmail" Role="ICAppEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ICAppEmail">
+              <PropertyRef Name="AppID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ICAppEmai__UserI__4B422AD5">
+          <End Type="EducationEverestModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EducationEverestModel.ICAppEmail" Role="ICAppEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ICAppEmail">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2638,6 +2726,16 @@ warning 6035: The relationship 'FK_UserProfile_AspNetUsers1' has columns that ar
                 <ScalarProperty Name="AppID" ColumnName="AppID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICAppEmails">
+            <EntityTypeMapping TypeName="EducationEverestModel.ICAppEmail">
+              <MappingFragment StoreEntitySet="ICAppEmails">
+                <ScalarProperty Name="SubmittedOn" ColumnName="SubmittedOn" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

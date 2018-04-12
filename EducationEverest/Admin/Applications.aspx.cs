@@ -26,9 +26,15 @@ public partial class Applications : System.Web.UI.Page
                 BindData();
             }
             //BindData();
-            if(ViewState["PageNumber"] != null) {
+            if (ViewState["PageNumber"] != null) {
                 dataTable.PageIndex = Convert.ToInt32(ViewState["PageNumber"]);
             }
+            //text of button
+            //incomplete applicants to whom email isnt sent
+            List<Application> inCompleteApplicationsNow = db.Applications.Where(a => a.CurrentStatus == "pending" || a.CurrentStatus == "Pending").ToList();
+            List<int> sentApplicationIDs = db.ICAppEmails.Select(a => a.AppID).ToList();
+            int toSendEmail = inCompleteApplicationsNow.Where(a => !sentApplicationIDs.Contains(a.id)).Count();
+            btnSendEmail.Text += "(" + toSendEmail + ")";
         }
         
     }
@@ -515,72 +521,60 @@ public partial class Applications : System.Web.UI.Page
     protected void btnSendEmail_Click(object sender, EventArgs e)
     {
         EducationEverestEntities db = new EducationEverestEntities();
+        //List<App_Start> results = db.App_Start.Where(a => a.incompleteEmailSent == false && a.ApplicationAdded == false && a.Email!=null   ).ToList();
+        //get all users whose applications are in pending state and emails are not sent to them
+        List<Application> incompleteApplications = db.Applications.Where(a => a.CurrentStatus == "pending" || a.CurrentStatus == "Pending").ToList();
+        //email not sent to them
+        List<int> sentApplicationIDs = db.ICAppEmails.Select(a => a.AppID).ToList();
+        List<Application> results =  incompleteApplications.Where(a => !sentApplicationIDs.Contains(a.id)).ToList();
         
 
-        //App_Start aps = new App_Start();
-        //Application ap = new Application();
-
-        //var result = from a in db.App_Start
-        //             from b in db.Applications
-        //             where (a.AspNetUserID == b.UserID)
-        //             select a;
-        // var result = db.App_Start.Select(ad => new { email = ad.Email }).ToList();
-
-        //var result = db.App_Start.Select(ad => new { email = ad.Email, dtime = ad.datetime, alreadysent = ad.incompleteEmailSent, appadded = ad.ApplicationAdded, id = ad.AspNetUserID }).ToList().FirstOrDefault();
-
-
-
-        List<App_Start> results = db.App_Start.Where(a => a.incompleteEmailSent == false && a.ApplicationAdded == false && a.Email!=null   ).ToList();
-
-
-
-
-
+        //send email to them
         foreach (var result in results)
         {
-            DateTime dtnow = DateTime.Now;
-            DateTime dtdb = Convert.ToDateTime(result.datetime);
-            TimeSpan ts = dtnow - dtdb;
-
-            var diff = ts.TotalHours;
             try
             {
-
-                if (diff > 12)
+                AspNetUser thisUser = result.AspNetUser;
+                UserProfile up = db.UserProfiles.Where(a => a.AspNetUserID == thisUser.Id).First() ;
+                //loop
+                using (MailMessage mm = new MailMessage(EEUtil.FromEmail, up.Email))  //here ID changed 02-feb-18
                 {
-                    //loop
-                    using (MailMessage mm = new MailMessage(EEUtil.FromEmail, result.Email))  //here ID changed 02-feb-18
-                    {
-                        UserProfile up = db.UserProfiles.Where(a => a.Email == result.Email).First();
-                        mm.Subject = "Complete Your Admission Application";
+                    
+                    mm.Subject = "Complete Your Admission Application";
 
-                        string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
-                        Body = Body.Replace("{title}", "Complete Your Admission Application");
-                        Body = Body.Replace("{fullName}", up.FirstName + " " + up.LastName);
-                        Body = Body.Replace("{body}", "Your admission application is incomplete, click on the following link to complete your application at Education Everest, in case of any issue, let us know");
-                        Body = Body.Replace("{ButtonText}", "" + "Login");
-                        Body = Body.Replace("{href}", "" + "http://" + Request.Url.Authority + "/Login");
+                    string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+                    Body = Body.Replace("{title}", "Complete Your Admission Application");
+                    Body = Body.Replace("{fullName}", up.FirstName + " " + up.LastName);
+                    Body = Body.Replace("{body}", "Your admission application is incomplete, click on the following link to complete your application at Education Everest, in case of any issue, let us know");
+                    Body = Body.Replace("{ButtonText}", "" + "Login");
+                    Body = Body.Replace("{href}", "" + "http://" + Request.Url.Authority + "/Login");
 
                         
-                        mm.Body = Body;
-                        mm.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
-                                                                                                                      //NetworkCredential NetworkCred = new NetworkCredential("", ""); // here ID and password changed 02-feb-18
+                    mm.Body = Body;
+                    mm.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
+                                                                                                                    //NetworkCredential NetworkCred = new NetworkCredential("", ""); // here ID and password changed 02-feb-18
 
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = NetworkCred;
-                        smtp.Port = 587;
-                        smtp.Send(mm);
-                        //change status in db
-                        result.incompleteEmailSent = true;
-                       // db.App_Start.(result);
-                        db.SaveChanges();
-                    }
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+
+                    //keep record of this email
+                    ICAppEmail newEmail = new ICAppEmail();
+                    newEmail.AppID = result.id;
+                    newEmail.UserID = thisUser.Id;
+                    newEmail.SubmittedOn = DateTime.Now;
+
+                    db.ICAppEmails.Add(newEmail);
+                    db.SaveChanges();
 
                 }
+
+                
                 ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "alert('Email sent successfully');fading();", true);
             }
             catch(Exception ex)

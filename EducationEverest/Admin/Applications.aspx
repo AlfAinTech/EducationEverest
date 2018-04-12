@@ -53,7 +53,7 @@
             <div class="overlay">
                 <img src="Content/img/contact_loading.gif" />
             </div>
-            <span style="float:right"><asp:Button ID="btnSendEmail" CssClass="btn btn-primary form-control" runat="server" Text="Send Email to Incomplete Applicants"  OnClick="btnSendEmail_Click" Width="300px"  /></span>
+            <span style="float:right"><asp:Button ID="btnSendEmail" CssClass="btn btn-primary form-control" runat="server" Text="Send Email to Incomplete Applicants" Font-Size="Small"  OnClick="btnSendEmail_Click" Width="350px"  /></span>
             <div class="row">
 
                 <!-- Breadcrumbs-->
@@ -262,7 +262,7 @@
                                                     <asp:ListItem Text="Accepted" Value="Accepted"></asp:ListItem>
                                                     <asp:ListItem Text="In Progress" Value="In Progress"></asp:ListItem>
                                                     <asp:ListItem Text="Dispatched" Value="Dispatched"></asp:ListItem>
-                                                    <asp:ListItem Text="Pending" Value="Pending"></asp:ListItem>
+                                                    <asp:ListItem Text="Pending" Value="pending"></asp:ListItem>
                                                 </asp:DropDownList>
                                             </ItemTemplate>
                                         </asp:TemplateField>
