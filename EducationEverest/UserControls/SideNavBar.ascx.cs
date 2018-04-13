@@ -18,9 +18,9 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
     {
         // 1 or greater= normal , 0 =filing new apps 
         int actionStatus = 1;
-        if(Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
+        if(Session["apps"] != null )
         {
-            actionStatus = Convert.ToInt32(Request.QueryString["apps"]);
+            actionStatus = Convert.ToInt32(Session["apps"]);
         }
         if (db.Personal_Details.Any(q => q.User_ID == current_user))
         {

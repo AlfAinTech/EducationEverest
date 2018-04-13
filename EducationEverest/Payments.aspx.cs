@@ -19,15 +19,15 @@ public partial class Payments : System.Web.UI.Page
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
             }
-            if (Request.QueryString["apps"] == null && Session["appID"] == null)
+            if (Session["apps"] == null && Session["appID"] == null)
             {
                 Response.Redirect("Dashboard.aspx");
             }
             current_user = HttpContext.Current.User.Identity.GetUserId();
             int newApps = 1;
-            if (Request.QueryString["apps"] != null)
+            if (Session["apps"] != null)
             {
-                newApps = Convert.ToInt32(Request.QueryString["apps"]);
+                newApps = Convert.ToInt32(Session["apps"]);
 
             }
             Guid appID = Guid.Empty;

@@ -6,15 +6,9 @@
     <div style="margin-top: 15px"><a class="breadcrumbLinks" href="Dashboard.aspx">Dashboard </a> > <a class="breadcrumbLinks" href="Personal_Detail.aspx"> File Admission Application </a> > <a class="breadcrumbLinks" href="Choices.aspx">Make Choices </a></div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <script type="text/javascript">
-
         var preferencesadded = 0;
-        if (getParameterByName('apps') != null) {
-            preferencesadded = getParameterByName('apps');
-            preferencesadded = parseInt(preferencesadded);
-        }
-        
-
         var anypreferencesAdded = false;
         function populateGridview(universityId) {
             alert("this is university Id : " + universityId);
@@ -23,28 +17,17 @@
             <%= show() %>
 
         }
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return null;
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
         
-
         $(document).ready(function () {
 
             
 
             $('#exampleModalCenter').on('hidden.bs.modal', function () {
                 if (anypreferencesAdded) {
-                    window.location.href = 'choices.aspx?apps='+preferencesadded;
+                    //call for storing session 
+                    document.getElementById("<%= btn_saveSession.ClientID %>").click();
                 }
-                else {
-                    location.reload();
-                }
+                location.reload();
             })
             
             var count = 0;
@@ -734,6 +717,7 @@
 
         <br />
         <asp:HiddenField ID="hf_UniID" Value="0" runat="server" />
+        <asp:Button runat="server" ID="btn_saveSession" OnClick="btn_saveSession_Click" style="display:none;" />
     </div>
 
 

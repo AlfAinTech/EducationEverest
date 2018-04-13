@@ -35,9 +35,9 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         else
         {
             int newApps = 1;
-            if (Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
+            if (Session["apps"] != null)
             {
-                newApps = Convert.ToInt32(Request.QueryString["apps"]);
+                newApps = Convert.ToInt32(Session["apps"]);
                     
             }
             Guid appID = Guid.Empty;

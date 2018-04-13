@@ -17,7 +17,7 @@ public partial class Upload_Documents : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Request.QueryString["apps"] == null && Session["appID"] == null)
+        if (Session["apps"] == null && Session["appID"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }
@@ -43,9 +43,9 @@ public partial class Upload_Documents : System.Web.UI.Page
         //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         //TestResultDocList.DataBind();
         int newApps = 1;
-        if (Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
+        if (Session["apps"] != null)
         {
-            newApps = Convert.ToInt32(Request.QueryString["apps"]);
+            newApps = Convert.ToInt32(Session["apps"]);
 
         }
         Guid appID = Guid.Empty;
@@ -304,15 +304,10 @@ public partial class Upload_Documents : System.Web.UI.Page
 
         }
 
-        if (Request.QueryString["apps"] != null)
-        {
-            Response.Redirect("Payments.aspx?apps=" + Request.QueryString["apps"].ToString());
-        }
         
-        else
-        {
+        
             Response.Redirect("~/Payments.aspx");
-        }
+        
     }
 
   

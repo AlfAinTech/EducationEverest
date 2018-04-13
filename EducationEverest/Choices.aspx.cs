@@ -77,7 +77,7 @@ public partial class Choices : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Request.QueryString["apps"] == null && Session["appID"] == null)
+        if (Session["apps"] == null && Session["appID"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }
@@ -479,21 +479,28 @@ public partial class Choices : System.Web.UI.Page
     //button next click from make choice to educational details
     protected void next_click(object sender, EventArgs e)
     {
-        if (Request.QueryString["apps"] != null)
-        {
-            Response.Redirect("Educational_Detail.aspx?apps=" + Request.QueryString["apps"].ToString());
-        }
-        else
-        {
+        
             Response.Redirect("Educational_Detail.aspx");
-        }
+        
     }
 
     protected void buttonEdit_Click(object sender, EventArgs e)
     {
     }
 
-    
+
+
+    protected void btn_saveSession_Click(object sender, EventArgs e)
+    {
+        if(Session["apps"] == null)
+        {
+            Response.Redirect("Dashboard.aspx");
+        }else
+        {
+            Session["apps"] = Convert.ToInt32(Session["apps"]) + 1;
+        }
+        
+    }
 }
 
 

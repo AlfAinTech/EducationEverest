@@ -22,44 +22,38 @@ public partial class Test_Result : System.Web.UI.Page
         Repeater1.DataSource = db.UniversityProfiles.Where(q => Univ.Contains(q.UniversityID)).ToList();
         Repeater1.DataBind();
         //getting recent make choice 'stest
-        if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+        
+        int newApps = 1;
+        if (Session["apps"] != null)
+        {
+            newApps = Convert.ToInt32(Session["apps"]);
+        }
+        Guid appID = Guid.Empty;
+        if (Session["appID"] != null)
+        {
+            appID = new Guid(Session["appID"].ToString());
+        }
+        if (db.MakeChoices.Any(a => a.User_ID == current_user))
+        {
+            if (appID != Guid.Empty)
+            {
+                //get a university id based on appID 
+                int UniversityID = (int) db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
+                Repeater1.DataSource = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).ToList();
+                Repeater1.DataBind();
+            }
+            else
+            {
+                List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
+                Repeater1.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
+                Repeater1.DataBind();
+            }
+        }else
         {
             Repeater1.DataSource = null;
             Repeater1.DataBind();
         }
-        else
-        {
-            int newApps = 1;
-            if (Request.QueryString["apps"] != null && Request.QueryString["apps"] != "null")
-            {
-                newApps = Convert.ToInt32(Request.QueryString["apps"]);
-            }
-            Guid appID = Guid.Empty;
-            if (Request.QueryString["appID"] != null)
-            {
-                appID = new Guid(Request.QueryString["appID"].ToString());
-            }
-            if (db.MakeChoices.Any(a => a.User_ID == current_user))
-            {
-                if (appID != Guid.Empty)
-                {
-                    //get a university id based on appID 
-                    int UniversityID = (int) db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
-                    Repeater1.DataSource = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).ToList();
-                    Repeater1.DataBind();
-                }
-                else
-                {
-                    List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
-                    Repeater1.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
-                    Repeater1.DataBind();
-                }
-            }else
-            {
-                Repeater1.DataSource = null;
-                Repeater1.DataBind();
-            }
-        }
+        
     }
 
 
@@ -69,7 +63,7 @@ public partial class Test_Result : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Request.QueryString["apps"] == null && Session["appID"] == null)
+        if (Session["apps"] == null && Session["appID"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }
@@ -185,15 +179,10 @@ public partial class Test_Result : System.Web.UI.Page
 
 
         //button next click from Test Results to Document
-        if (Request.QueryString["apps"] != null)
-        {
-            Response.Redirect("Upload_Documents.aspx?apps=" + Request.QueryString["apps"].ToString());
-        }
         
-        else
-        {
+        
             Response.Redirect("Upload_Documents.aspx");
-        }
+        
 
 
     }

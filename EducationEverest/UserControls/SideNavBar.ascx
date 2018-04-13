@@ -3,70 +3,36 @@
 <script type="text/javascript">
         $(document).ready(function () {
             $('#prsonalDetail').on('click', function () {
-                var x = location.href;
-                if(x.includes("apps")){
-                    window.location.href = 'Personal_Detail.aspx?apps=' + getParameterByName('apps',x);
-                }
-                else {
-                    window.location.href = 'Personal_Detail.aspx';
-                }
+                window.location.href = 'Personal_Detail.aspx';
+                
             });
             $('#makeChoices').on('click', function () {
-
-                var x = location.href;
-                if (x.includes("apps")) {
-                    window.location.href = 'choices.aspx?apps=' + getParameterByName('apps', x);
-                } else {
-                    window.location.href = 'choices.aspx';
-                }
+                window.location.href = 'choices.aspx';
             });
             
             $('#educationalDocument').on('click', function () {
 
-                var x = location.href;
-                if (x.includes("apps")) {
-                    window.location.href = 'educational_detail.aspx?apps=' + getParameterByName('apps', x);
-                } else {
-                    window.location.href = 'educational_detail.aspx';
-                }
+                window.location.href = 'educational_detail.aspx';
+                
             });
             $('#testResult').on('click', function () {
 
-                var x = location.href;
-                if (x.includes("apps")) {
-                    window.location.href = 'Test_Result.aspx?apps=' + getParameterByName('apps', x);
-                }
-                else {
-                    window.location.href = 'Test_Result.aspx'
-                }
+                window.location.href = 'Test_Result.aspx'
+                
             });
             $('#Upload_Documents').on('click', function () {
 
-                var x = location.href;
-                if (x.includes("apps")) {
-                    window.location.href = 'Upload_Documents.aspx?apps=' + getParameterByName('apps', x);
-                } else {
-                    window.location.href = 'Upload_Documents.aspx'
-                }
+                
+                window.location.href = 'Upload_Documents.aspx'
+                
             });
             $('#Payments').on('click', function () {
 
-                var x = location.href;
-                if (x.includes("apps")) {
-                    window.location.href = 'Payments.aspx?apps=' + getParameterByName('apps', x);
-                } else {
-                    window.location.href = 'Payments.aspx'
-                }
+                
+                window.location.href = 'Payments.aspx'
+            
             });
-            function getParameterByName(name, url) {
-                if (!url) url = window.location.href;
-                name = name.replace(/[\[\]]/g, "\\$&");
-                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                    results = regex.exec(url);
-                if (!results) return null;
-                if (!results[2]) return null;
-                return decodeURIComponent(results[2].replace(/\+/g, " "));
-            }
+            
 
             $('#fileAdmission').on('click', function () {
                 var iSelector = $(this).find('span:first');
