@@ -17,7 +17,10 @@ public partial class Upload_Documents : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-
+        if (Request.QueryString["apps"] == null && Request.QueryString["appID"] == null)
+        {
+            Response.Redirect("Dashboard.aspx");
+        }
         if (!Page.IsPostBack)
         { bindData();
             //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);

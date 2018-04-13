@@ -69,7 +69,10 @@ public partial class Test_Result : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-
+        if (Request.QueryString["apps"] == null && Request.QueryString["appID"] == null)
+        {
+            Response.Redirect("Dashboard.aspx");
+        }
         if (!IsPostBack)
         {
             panels();

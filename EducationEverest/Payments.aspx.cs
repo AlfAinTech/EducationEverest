@@ -19,7 +19,10 @@ public partial class Payments : System.Web.UI.Page
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
             }
-
+            if (Request.QueryString["apps"] == null && Request.QueryString["appID"] == null)
+            {
+                Response.Redirect("Dashboard.aspx");
+            }
             current_user = HttpContext.Current.User.Identity.GetUserId();
             int newApps = 1;
             if (Request.QueryString["apps"] != null)
