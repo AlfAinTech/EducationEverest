@@ -6,8 +6,6 @@
                 var x = location.href;
                 if(x.includes("apps")){
                     window.location.href = 'Personal_Detail.aspx?apps=' + getParameterByName('apps',x);
-                } else if (x.includes("appID")) {
-                    window.location.href = 'Personal_Detail.aspx?appID=' + getParameterByName('appID', x);
                 }
                 else {
                     window.location.href = 'Personal_Detail.aspx';
@@ -18,8 +16,6 @@
                 var x = location.href;
                 if (x.includes("apps")) {
                     window.location.href = 'choices.aspx?apps=' + getParameterByName('apps', x);
-                } else if (x.includes("appID")) {
-                    window.location.href = 'choices.aspx?appID=' + getParameterByName('appID', x);
                 } else {
                     window.location.href = 'choices.aspx';
                 }
@@ -30,8 +26,6 @@
                 var x = location.href;
                 if (x.includes("apps")) {
                     window.location.href = 'educational_detail.aspx?apps=' + getParameterByName('apps', x);
-                } else if (x.includes("appID")) {
-                    window.location.href = 'educational_detail.aspx?appID=' + getParameterByName('appID', x);
                 } else {
                     window.location.href = 'educational_detail.aspx';
                 }
@@ -41,8 +35,6 @@
                 var x = location.href;
                 if (x.includes("apps")) {
                     window.location.href = 'Test_Result.aspx?apps=' + getParameterByName('apps', x);
-                } else if (x.includes("appID")) {
-                    window.location.href = 'Test_Result.aspx?appID=' + getParameterByName('appID', x);
                 }
                 else {
                     window.location.href = 'Test_Result.aspx'
@@ -53,8 +45,6 @@
                 var x = location.href;
                 if (x.includes("apps")) {
                     window.location.href = 'Upload_Documents.aspx?apps=' + getParameterByName('apps', x);
-                } else if (x.includes("appID")) {
-                    window.location.href = 'Upload_Documents.aspx?appID=' + getParameterByName('appID', x);
                 } else {
                     window.location.href = 'Upload_Documents.aspx'
                 }
@@ -64,8 +54,6 @@
                 var x = location.href;
                 if (x.includes("apps")) {
                     window.location.href = 'Payments.aspx?apps=' + getParameterByName('apps', x);
-                } else if (x.includes("appID")) {
-                    window.location.href = 'Payments.aspx?appID=' + getParameterByName('appID', x);
                 } else {
                     window.location.href = 'Payments.aspx'
                 }

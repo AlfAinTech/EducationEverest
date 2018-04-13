@@ -61,9 +61,9 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
         if (db.Test_Results.Any(a => a.User_ID == current_user) && actionStatus != 0)
         {
             Guid appID = Guid.Empty;
-            if (Request.QueryString["appID"] != null)
+            if (Session["appID"] != null)
             {
-                appID = new Guid(Request.QueryString["appID"].ToString());
+                appID = new Guid(Session["appID"].ToString());
             }
             if(appID != Guid.Empty)
             {
@@ -115,9 +115,9 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
                 if (db.MakeChoices.Any(a => a.User_ID == current_user))
                 {
                     Guid appID = Guid.Empty;
-                    if (Request.QueryString["appID"] != null)
+                    if (Session["appID"] != null)
                     {
-                        appID = new Guid(Request.QueryString["appID"].ToString());
+                        appID = new Guid(Session["appID"].ToString());
                     }
                     if (appID != Guid.Empty)
                     {
@@ -161,9 +161,9 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
         }
         if(db.Applications.Any(a => a.UserID == current_user) && actionStatus != 0) {
             Guid appID = Guid.Empty;
-            if (Request.QueryString["appID"] != null)
+            if (Session["appID"] != null)
             {
-                appID = new Guid(Request.QueryString["appID"].ToString());
+                appID = new Guid(Session["appID"].ToString());
             }
             if(appID != Guid.Empty)
             {

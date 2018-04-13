@@ -82,7 +82,7 @@ public partial class Personal_Detail : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if(Request.QueryString["apps"] == null && Request.QueryString["appID"] == null)
+        if(Request.QueryString["apps"] == null && Session["appID"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }
@@ -277,10 +277,6 @@ public partial class Personal_Detail : System.Web.UI.Page
         if (Request.QueryString["apps"] != null)
         {
             Response.Redirect("Choices.aspx?apps="+Request.QueryString["apps"].ToString());
-        }
-        if(Request.QueryString["appID"] != null)
-        {
-            Response.Redirect("Choices.aspx?appID="+Request.QueryString["appID"].ToString());
         }
         else
         {

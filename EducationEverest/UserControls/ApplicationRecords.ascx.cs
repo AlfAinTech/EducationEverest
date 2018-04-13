@@ -41,9 +41,9 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                     
             }
             Guid appID = Guid.Empty;
-            if(Request.QueryString["appID"] != null)
+            if(Session["appID"] != null)
             {
-                appID = new Guid(Request.QueryString["appID"].ToString());
+                appID = new Guid(Session["appID"].ToString());
             } 
             if (db.MakeChoices.Any(a => a.User_ID == current_user))
             {
@@ -248,7 +248,8 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         string applicationID = hf1.Value.ToString();
         if (applicationID != "")
         {
-            Response.Redirect("Personal_Detail.aspx?appID=" + applicationID);
+            Session["appID"] = applicationID;
+            Response.Redirect("Personal_Detail.aspx");
         }
     }
 }

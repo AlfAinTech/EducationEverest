@@ -19,7 +19,7 @@ public partial class Payments : System.Web.UI.Page
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
             }
-            if (Request.QueryString["apps"] == null && Request.QueryString["appID"] == null)
+            if (Request.QueryString["apps"] == null && Session["appID"] == null)
             {
                 Response.Redirect("Dashboard.aspx");
             }
@@ -31,9 +31,9 @@ public partial class Payments : System.Web.UI.Page
 
             }
             Guid appID = Guid.Empty;
-            if (Request.QueryString["appID"] != null)
+            if (Session["appID"] != null)
             {
-                appID = new Guid(Request.QueryString["appID"].ToString());
+                appID = new Guid(Session["appID"].ToString());
             }
             if (db.Applications.Any(a => a.UserID == current_user))
             {

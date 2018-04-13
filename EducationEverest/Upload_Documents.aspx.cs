@@ -17,7 +17,7 @@ public partial class Upload_Documents : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Request.QueryString["apps"] == null && Request.QueryString["appID"] == null)
+        if (Request.QueryString["apps"] == null && Session["appID"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }
@@ -49,9 +49,9 @@ public partial class Upload_Documents : System.Web.UI.Page
 
         }
         Guid appID = Guid.Empty;
-        if (Request.QueryString["appID"] != null)
+        if (Session["appID"] != null)
         {
-            appID = new Guid(Request.QueryString["appID"].ToString());
+            appID = new Guid(Session["appID"].ToString());
         }
         if (db.MakeChoices.Any(a => a.User_ID == current_user))
         {
@@ -308,10 +308,7 @@ public partial class Upload_Documents : System.Web.UI.Page
         {
             Response.Redirect("Payments.aspx?apps=" + Request.QueryString["apps"].ToString());
         }
-        if (Request.QueryString["appID"] != null)
-        {
-            Response.Redirect("Payments.aspx?appID=" + Request.QueryString["appID"].ToString());
-        }
+        
         else
         {
             Response.Redirect("~/Payments.aspx");
