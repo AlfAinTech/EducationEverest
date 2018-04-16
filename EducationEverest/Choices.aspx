@@ -510,7 +510,7 @@
 
                                     <asp:DropDownList ID="DropDownList1" runat="server" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
+                                            <asp:ListItem Text="Select University" Enabled="true" Selected="true" Value="1" />
                                         </Items>
 
 
@@ -523,7 +523,7 @@
 
                                     <asp:DropDownList ID="DropDownList2" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Campus" Enabled="true" Selected="true" Value="0" />
                                         </Items>
 
 
@@ -536,7 +536,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList3" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Department" Enabled="true" Selected="true" Value="0" />
                                         </Items>
 
 
@@ -550,7 +550,7 @@
 
                                     <asp:DropDownList ID="DropDownList5" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Program" Enabled="true" Selected="true" Value="0" />
                                         </Items>
 
 
@@ -564,7 +564,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList4" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Category" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
@@ -607,7 +607,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList6" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Campus" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
@@ -618,7 +618,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList7" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Department" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
@@ -636,7 +636,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList8" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Program" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
                                 </div>
@@ -648,7 +648,7 @@
 
                                     <asp:DropDownList ID="DropDownList9" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Category" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
