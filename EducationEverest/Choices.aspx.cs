@@ -423,7 +423,16 @@ public partial class Choices : System.Web.UI.Page
 
 
                                 }
-
+                                else
+                                {
+                                    // getting application id of existing application
+                                    MakeChoice mc = dbcontext.MakeChoices.Where(x => x.User_ID == current_user && x.Uni_ID == univ.id && x.Campus_Id == cmps.id && x.Department_Id == depart.id && x.Programm_Id == prgm.id && x.Category_Id == pgcat.id).First();
+                                    List<Application> applications = dbcontext.Applications.Where(a => a.UnivID == mc.Uni_ID && a.UserID== current_user).ToList();
+                                    foreach(var application in applications)
+                                    {
+                                        applicationIDs.Add(application.id);
+                                    }
+                                }
 
                             }
 
@@ -500,7 +509,7 @@ public partial class Choices : System.Web.UI.Page
 
     protected void btn_saveSession_Click(object sender, EventArgs e)
     {
-        
+        applicationIDs = applicationIDs.Distinct().ToList();   
         Session["appIDS"] = applicationIDs;
         Response.Redirect(Request.RawUrl);
        
