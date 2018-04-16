@@ -9,6 +9,7 @@
     <link href="Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
      <title>My Profile</title>
   <meta charset="utf-8" />
+    
   <link rel="stylesheet" href="css/bootstrap.css">
 
     <!-- Optional theme -->
@@ -19,7 +20,7 @@
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/myScript.js"></script>
+    
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <script type="text/javascript">
@@ -37,8 +38,17 @@
           //  OpenCurrentPage();
       });
   </script>
+    <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=516503188742935&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </head>
     <body>
+        <div id="fb-root"></div>
+
     <form id="form" runat="server">
         <uc1:TopNavBar runat="server" ID="TopNavBar" />
 
@@ -186,7 +196,7 @@
               <div class="row">
                   <div class="col-md-1"></div>
                   <div class="col-md-2">
-                      <div class="fb-share-button" data-href="http://educationeverest.com/" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.bbc.com%2Furdu%2Fscience-42912340&amp;src=sdkpreparse"></a></div>
+                      <div class="fb-share-button" data-href="http://educationeverest.com/" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Feducationeverest.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
                   </div>
                   <div class="col-md-2">
                       <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-url="http://educationeverest.com/"></script>
