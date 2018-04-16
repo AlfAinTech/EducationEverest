@@ -181,12 +181,14 @@ public partial class Choices : System.Web.UI.Page
 
                     if(dbcontext.ProgrammCategories.Any(x=> x.Programm_ID == program.id))
                     {
-                        List<ProgrammCategory> pgcat = dbcontext.ProgrammCategories.Where(x =>  x.Programm_ID == program.id).ToList();
+                        List<int> categories = dbcontext.Categories.Where(a => a.CampusID == depart.CampusID).Select(a => a.id).ToList();
+                        List<ProgrammCategory> pgcat = dbcontext.ProgrammCategories.Where(x =>  x.Programm_ID == program.id && categories.Contains(x.Category_ID)).ToList();
+                        
                         string[] array = new string[pgcat.Count];
                         var i = 0;
                         foreach (var z in pgcat)
-
                         {
+                            
                             array[i] = z.Category.id + "," + z.Category.Category_Name;
                             i++;
                         }
