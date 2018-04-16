@@ -9,7 +9,7 @@
     
     <script type="text/javascript">
         var preferencesadded = 0;
-        var anypreferencesAdded = false;
+        var anypreferencesAdded = true;
         function populateGridview(universityId) {
             alert("this is university Id : " + universityId);
             document.getElementById('<%= hf_UniID.ClientID %>').value = universityId.toString();
@@ -27,7 +27,7 @@
                     //call for storing session 
                     document.getElementById("<%= btn_saveSession.ClientID %>").click();
                 }
-                location.reload();
+                //location.reload();
             })
             
             var count = 0;

@@ -17,7 +17,7 @@ public partial class Upload_Documents : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Session["apps"] == null && Session["appID"] == null)
+        if (Session["appIDS"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }
@@ -42,36 +42,11 @@ public partial class Upload_Documents : System.Web.UI.Page
         //List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
         //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         //TestResultDocList.DataBind();
-        int newApps = 1;
-        if (Session["apps"] != null)
+        if (Session["appIDS"] != null)
         {
-            newApps = Convert.ToInt32(Session["apps"]);
-
-        }
-        Guid appID = Guid.Empty;
-        if (Session["appID"] != null)
-        {
-            appID = new Guid(Session["appID"].ToString());
-        }
-        if (db.MakeChoices.Any(a => a.User_ID == current_user))
-        {
-            if (appID != Guid.Empty)
-            {
-                //get a university id based on appID 
-                int UniversityID = (int)db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
-                TestResultDocList.DataSource = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).ToList();
-                TestResultDocList.DataBind();
-            }
-            else
-            {
-                List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
-                TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
-                TestResultDocList.DataBind();
-            }
-        }
-        else
-        {
-            TestResultDocList.DataSource = null;
+            List<int> applicationIDS = (List<int>)Session["appIDS"];
+            List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
+            TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
             TestResultDocList.DataBind();
         }
         

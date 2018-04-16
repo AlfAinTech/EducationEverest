@@ -22,35 +22,12 @@ public partial class Test_Result : System.Web.UI.Page
         Repeater1.DataSource = db.UniversityProfiles.Where(q => Univ.Contains(q.UniversityID)).ToList();
         Repeater1.DataBind();
         //getting recent make choice 'stest
-        
-        int newApps = 1;
-        if (Session["apps"] != null)
+
+        if (Session["appIDS"] != null)
         {
-            newApps = Convert.ToInt32(Session["apps"]);
-        }
-        Guid appID = Guid.Empty;
-        if (Session["appID"] != null)
-        {
-            appID = new Guid(Session["appID"].ToString());
-        }
-        if (db.MakeChoices.Any(a => a.User_ID == current_user))
-        {
-            if (appID != Guid.Empty)
-            {
-                //get a university id based on appID 
-                int UniversityID = (int) db.Applications.Where(a => a.UserID == current_user && a.appID == appID).First().UnivID;
-                Repeater1.DataSource = db.UniversityProfiles.Where(a => a.UniversityID == UniversityID).ToList();
-                Repeater1.DataBind();
-            }
-            else
-            {
-                List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
-                Repeater1.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
-                Repeater1.DataBind();
-            }
-        }else
-        {
-            Repeater1.DataSource = null;
+            List<int> applicationIDS = (List<int>)Session["appIDS"];
+            List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
+            Repeater1.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
             Repeater1.DataBind();
         }
         
@@ -63,7 +40,7 @@ public partial class Test_Result : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Session["apps"] == null && Session["appID"] == null)
+        if (Session["appIDS"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }

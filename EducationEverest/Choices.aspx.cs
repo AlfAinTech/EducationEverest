@@ -12,6 +12,7 @@ using System.Web.UI.HtmlControls;
 
 public partial class Choices : System.Web.UI.Page
 {
+    public static List<int> applicationIDs = new List<int>();
    public class ApplicationData
     {
         public Array data { get; set; }
@@ -77,7 +78,7 @@ public partial class Choices : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Session["apps"] == null && Session["appID"] == null)
+        if (Session["appIDS"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }
@@ -327,6 +328,7 @@ public partial class Choices : System.Web.UI.Page
                                     try
                                     {
                                         dbcontext.SaveChanges();
+                                        isNewAppAdded = true;
                                     }
                                     catch(DbUpdateException e)
                                     {
@@ -348,6 +350,7 @@ public partial class Choices : System.Web.UI.Page
                                             dbcontext.Applications.Add(app);
                                             try { dbcontext.SaveChanges();
                                                 isNewAppAdded = true;
+                                                applicationIDs.Add(app.id);
                                                 //create a notification for user
                                                 SystemNotification newNotification = new SystemNotification();
                                                 newNotification.User_ID = current_user;
@@ -368,6 +371,10 @@ public partial class Choices : System.Web.UI.Page
                                                
                                             }
                                         }
+                                        else
+                                        {
+                                            applicationIDs.Add(dbcontext.Applications.Where(q => q.UserID == current_user && q.UnivID == univ.id).First().id);
+                                        }
                                     }
                                     else
                                     { 
@@ -381,6 +388,7 @@ public partial class Choices : System.Web.UI.Page
                                         };
                                         dbcontext.Applications.Add(app);
                                         dbcontext.SaveChanges();
+                                        applicationIDs.Add(app.id);
                                         isNewAppAdded = true;
                                         //create a notification for user
                                         SystemNotification newNotification = new SystemNotification();
@@ -442,7 +450,7 @@ public partial class Choices : System.Web.UI.Page
         //String result = serializer.Serialize(data1);
         var js = JsonConvert.SerializeObject(appData);
         String result = serializer.Serialize(appData);
-        
+
         //choicesdata = dbcontext.MakeChoices.ToList();
         
         return js;
@@ -492,14 +500,10 @@ public partial class Choices : System.Web.UI.Page
 
     protected void btn_saveSession_Click(object sender, EventArgs e)
     {
-        if(Session["apps"] == null)
-        {
-            Response.Redirect("Dashboard.aspx");
-        }else
-        {
-            Session["apps"] = Convert.ToInt32(Session["apps"]) + 1;
-        }
         
+        Session["appIDS"] = applicationIDs;
+        Response.Redirect(Request.RawUrl);
+       
     }
 }
 

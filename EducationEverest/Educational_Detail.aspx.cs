@@ -68,7 +68,7 @@ public partial class Educational_Detail : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Session["apps"] == null && Session["appID"] == null)
+        if (Session["appIDS"] == null)
         {
             Response.Redirect("Dashboard.aspx");
         }

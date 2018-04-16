@@ -19,46 +19,20 @@ public partial class Payments : System.Web.UI.Page
             {
                 Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
             }
-            if (Session["apps"] == null && Session["appID"] == null)
+
+            
+            if (Session["appIDS"] == null)
             {
                 Response.Redirect("Dashboard.aspx");
             }
             current_user = HttpContext.Current.User.Identity.GetUserId();
-            int newApps = 1;
-            if (Session["apps"] != null)
+            if (Session["appIDS"] != null)
             {
-                newApps = Convert.ToInt32(Session["apps"]);
-
-            }
-            Guid appID = Guid.Empty;
-            if (Session["appID"] != null)
-            {
-                appID = new Guid(Session["appID"].ToString());
-            }
-            if (db.Applications.Any(a => a.UserID == current_user))
-            {
-                if (appID != Guid.Empty)
-                {
-                    List<Application> applicationList = db.Applications.Where(a => a.UserID == current_user && a.appID == appID).ToList();
-                    ChoicesList.DataSource = applicationList;
-                    ChoicesList.DataBind();
-                    totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
-                }
-                else
-                {
-                    List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
-                    List<Application> applicationList = db.Applications.Where(q => q.UserID == current_user && universityIDs.Contains(q.University.id)).ToList();
-                    ChoicesList.DataSource = applicationList;
-                    ChoicesList.DataBind();
-                    totalInvoice.Text = applicationList.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
-                }
-                
-
-            }
-            else
-            {
-                ChoicesList.DataSource = null;
+                List<int> applicationIDS = (List<int>)Session["appIDS"];
+                List<Application> applications = db.Applications.Where(a => applicationIDS.Contains(a.id)).ToList();
+                ChoicesList.DataSource = applications;
                 ChoicesList.DataBind();
+                totalInvoice.Text = applications.Select(q => q.Fees).DefaultIfEmpty(0).Sum().ToString();
             }
             
             if (allPaid)

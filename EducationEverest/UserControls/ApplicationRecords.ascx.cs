@@ -34,34 +34,11 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         }
         else
         {
-            int newApps = 1;
-            if (Session["apps"] != null)
+            if(Session["appIDS"] != null)
             {
-                newApps = Convert.ToInt32(Session["apps"]);
-                    
-            }
-            Guid appID = Guid.Empty;
-            if(Session["appID"] != null)
-            {
-                appID = new Guid(Session["appID"].ToString());
-            } 
-            if (db.MakeChoices.Any(a => a.User_ID == current_user))
-            {
-                if (appID != Guid.Empty)
-                {
-                    ApplicationsList.DataSource = db.Applications.Where(a => a.UserID == UserID && a.appID == appID).ToList();
-                    ApplicationsList.DataBind(); 
-                }
-                else
-                {
-                    List<int> universityIDs = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).Take(newApps).Select(a => a.Uni_ID).ToList();
-
-                    ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && universityIDs.Contains(q.University.id)).OrderByDescending(u => u.id).ToList();
-                    ApplicationsList.DataBind();
-                }
-            }else
-            {
-                ApplicationsList.DataSource = null;
+                List<int> applicationIDS = (List<int>)Session["appIDS"];
+                List<Application> applications = db.Applications.Where(a => applicationIDS.Contains(a.id)).ToList();
+                ApplicationsList.DataSource = applications;
                 ApplicationsList.DataBind();
             }
         }
@@ -248,7 +225,9 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         string applicationID = hf1.Value.ToString();
         if (applicationID != "")
         {
-            Session["appID"] = applicationID;
+            List<int> applicationIDS = new List<int>();
+            applicationIDS.Add(Convert.ToInt32(applicationID));
+            Session["appIDS"] = applicationIDS;
             Response.Redirect("Personal_Detail.aspx");
         }
     }
