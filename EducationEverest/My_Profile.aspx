@@ -270,13 +270,6 @@
 </ItemTemplate></asp:Repeater>
           
 
-
-   
-    <br/><br/>
-         <button type="button" class=" btn button_bg"><span class="NormalCharacterStyle">File Admission Application</span></button>
-         <br/><br/><br/><br/>
-          
-
 </div>
         
 </div>

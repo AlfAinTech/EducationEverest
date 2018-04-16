@@ -9,15 +9,16 @@ using System.Web.UI.WebControls;
 public partial class UserControls_SideNavBar : System.Web.UI.UserControl
 {
     EducationEverestEntities db = new EducationEverestEntities();
-    public static string current_user = HttpContext.Current.User.Identity.GetUserId();
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         CompletionCheck();
     }
     protected void CompletionCheck()
     {
-        // 1 or greater= normal , 0 =filing new apps 
-        int actionStatus = 1;
+        string current_user = HttpContext.Current.User.Identity.GetUserId();
+    // 1 or greater= normal , 0 =filing new apps 
+    int actionStatus = 1;
         if(Session["apps"] != null )
         {
             actionStatus = Convert.ToInt32(Session["apps"]);
