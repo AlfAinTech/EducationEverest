@@ -123,16 +123,16 @@ public partial class Applications : System.Web.UI.Page
             List<Application> applications = new List<Application>();
             if (ApplicationID != Guid.Empty && university !=0 )
             {
-                applications = db.Applications.Where(x => x.appID.Equals(ApplicationID)  && x.UnivID == university && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
+                applications = db.Applications.Where(x => x.appID.Equals(ApplicationID)  && x.UnivID == university && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
             }
             if(ApplicationID != Guid.Empty && university == 0)
             {
-                 applications = db.Applications.Where(x => x.appID.Equals(ApplicationID)   && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate  && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
+                 applications = db.Applications.Where(x => x.appID.Equals(ApplicationID)   && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate ).OrderByDescending(x => x.SubmittedOn).ToList();
                
             }
             if(ApplicationID == Guid.Empty && university != 0)
             {
-                 applications = db.Applications.Where(x =>  x.UnivID == university    && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate && x.TrackingID.Contains(TrackingID)).OrderByDescending(x => x.SubmittedOn).ToList();
+                 applications = db.Applications.Where(x =>  x.UnivID == university    && x.CurrentStatus.Contains(CurrentStatus) && x.SubmittedOn >= startDate && x.SubmittedOn < endDate).OrderByDescending(x => x.SubmittedOn).ToList();
                
             }
             if(ApplicationID == Guid.Empty && university == 0)
