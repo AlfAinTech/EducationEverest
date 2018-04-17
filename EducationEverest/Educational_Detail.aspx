@@ -357,7 +357,7 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
                                 <div class="form">
-                                    <input class="inputs" maxlength="6" id="division_intermediate" type="text" name="Division" placeholder="Division" runat="server" />
+                                    <input class="inputs" maxlength="6" id="division_intermediate" type="text" name="Division" placeholder="Division" runat="server"  readonly="true"/>
                                     <br />
                                     <asp:RequiredFieldValidator ID="reDivisionIntermediate" runat="server" ErrorMessage="Division required" ValidationGroup="vgEducationalDetails2" ControlToValidate="division_intermediate" ForeColor="Red"></asp:RequiredFieldValidator>
 
