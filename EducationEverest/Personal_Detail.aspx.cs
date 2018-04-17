@@ -58,13 +58,13 @@ public partial class Personal_Detail : System.Web.UI.Page
             current_address.Value = info.Current_Address;
             permanent_address.Value = info.Permanent_Address;
             email.Value = info.Email;
-            landline.Value = info.Landline;
+            //landline.Value = info.Landline;
             phone.Value = info.Phone;
             father_phone.Value = info.Phone_Father;
             zip.Value = info.Zip;
         }
         //image of caution and success
-        if (db.ContactInformations.Any(a => (a.User_ID == current_user) && (a.Current_Address == null || a.Permanent_Address == null || a.Email == null || a.Landline == null || a.Phone == null || a.Phone_Father == null || a.Zip == null)))
+        if (db.ContactInformations.Any(a => (a.User_ID == current_user) && (a.Current_Address == null || a.Permanent_Address == null || a.Email == null  || a.Phone == null || a.Phone_Father == null || a.Zip == null)))
         {
             jsString2 = "showCaution2();";
         }
@@ -224,7 +224,7 @@ public partial class Personal_Detail : System.Web.UI.Page
             x.Current_Address = current_address.Value;
             x.Permanent_Address = permanent_address.Value;
             x.Email = email.Value;
-            x.Landline = landline.Value;
+            //x.Landline = landline.Value;
             x.Phone = phone.Value;
             x.Phone_Father = father_phone.Value;
             x.Zip = zip.Value;
@@ -252,7 +252,7 @@ public partial class Personal_Detail : System.Web.UI.Page
                 Current_Address = current_address.Value,
                 Permanent_Address = permanent_address.Value,
                 Email = email.Value,
-                Landline = landline.Value,
+                //Landline = landline.Value,
                 Phone = phone.Value,
                 Phone_Father = father_phone.Value,
                 Zip = zip.Value
