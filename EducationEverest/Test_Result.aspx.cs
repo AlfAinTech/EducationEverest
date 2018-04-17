@@ -116,7 +116,7 @@ public partial class Test_Result : System.Web.UI.Page
                 p.Total_Marks = total_marks.Text;
                 p.Obtained_Marks = obtained_marks.Text;
                 p.Percentage = percentage.Value;
-                p.Division = division.Text;
+                p.Division = EEUtil.calcDivision(Convert.ToInt32(p.Percentage));
 
                 db.SaveChanges();
             }
@@ -133,7 +133,7 @@ public partial class Test_Result : System.Web.UI.Page
                     Total_Marks = total_marks.Text,
                     Obtained_Marks = obtained_marks.Text,
                     Percentage = percentage.Value,
-                    Division = division.Text
+                    Division = EEUtil.calcDivision(Convert.ToInt32(Convert.ToInt32(percentage.Value)))
                 };
 
                 db.Test_Results.Add(test_result);

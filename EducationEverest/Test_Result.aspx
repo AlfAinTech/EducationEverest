@@ -145,7 +145,7 @@
                                         <div class="form">
 
                                             <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
-                                            <asp:TextBox ID="division" MaxLength="6" class="inputs" Placeholder="Division" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="division" MaxLength="6" class="inputs" Placeholder="Division" ReadOnly="true" runat="server"></asp:TextBox>
                                             <br />
                                             <asp:RequiredFieldValidator ID="rvDivision" runat="server" ErrorMessage="Division required" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="division" ForeColor="Red"></asp:RequiredFieldValidator>
 
