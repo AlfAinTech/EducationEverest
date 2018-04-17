@@ -43,10 +43,26 @@
                     return (Page_ClientValidate('vgEducationalDetails') && Page_ClientValidate('vgEducationalDetails2'));
                 }
             }
+            function calcDivision(percentage) {
+                if (percentage >= 0 && percentage <= 32) {
+                    return "Fail";
+                }
+                if (percentage >= 33 && percentage <= 35) {
+                    return "Third";
+                }
+                if (percentage >= 36 && percentage <= 59) {
+                    return "Second";
+                }
+                if (percentage >= 60 && percentage <= 100) {
+                    return "First";
+                }
+                return "none";
+            }
             function OnMatricMarksChange() {
                 var total = $("[id*=total_marks_matric]")[0];
                 var obtained = $("[id*=obtained_marks_matric]")[0];
                 var percentage = $("[id*=percentage_matric]")[0];
+                var division = $("[id*=division_matric]")[0];
                 var totalValue = 0;
                 var obtainedValue = 0;
                 var percentageValue = 0;
@@ -60,12 +76,13 @@
                 percentageValue = (obtainedValue / totalValue) * 100;
                 console.log(percentageValue);
                 percentage.value = percentageValue.toFixed(0).toString();
-
+                division.value = calcDivision(percentage.value);
             }
             function OnintermediateMarksChange() {
                 var total = $("[id*=total_marks_intermediate]")[0];
                 var obtained = $("[id*=obtained_marks_intermediate]")[0];
-                var percentage = $("[id*=percentage_intermediate]")[0];
+                var percentage = $("[id*=percentage_intermediate]")[0]; 
+                var division = $("[id*=division_intermediate]")[0];
                 var totalValue = 0;
                 var obtainedValue = 0;
                 var percentageValue = 0;
@@ -79,7 +96,7 @@
                 percentageValue = (obtainedValue / totalValue) * 100;
                 console.log(percentageValue);
                 percentage.value = percentageValue.toFixed(0).toString();
-
+                division.value = calcDivision(percentage.value);
             }
             function OpenCurrentPage() {
                 $("#educationalDocument").removeClass("NormalCharacterStyle24")
