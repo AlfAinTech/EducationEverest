@@ -223,7 +223,7 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
                                 <div class="form">
-                                    <input class="inputs" maxlength="6" id="division_matric" type="text" name="Division" placeholder="Division" runat="server" />
+                                    <input class="inputs" maxlength="6" id="division_matric" type="text" name="Division" placeholder="Division" readonly="true" runat="server" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="rvDivisioMatric" runat="server" ErrorMessage="Division required" ValidationGroup="vgEducationalDetails" ControlToValidate="division_matric" ForeColor="Red"></asp:RequiredFieldValidator>
 

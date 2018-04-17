@@ -81,7 +81,27 @@ public partial class Educational_Detail : System.Web.UI.Page
         }
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }
-
+    protected string calcDivision(int percentage)
+    {
+        if(percentage >= 0 && percentage <= 32)
+        {
+            return "Fail";
+        }
+        if (percentage >= 33 && percentage <= 35)
+        {
+            return "Third";
+        }
+        if (percentage >= 36 && percentage <= 59)
+        {
+            return "Second";
+        }
+        if (percentage >= 60 && percentage <= 100)
+        {
+            return "First";
+        }
+        return "none";
+    }
+    
     protected void button_click(object sender, EventArgs e)
 
     {
@@ -94,11 +114,11 @@ public partial class Educational_Detail : System.Web.UI.Page
             z.Total_Marks = total_marks_matric.Value;
             z.Obtained_Marks = obtained_marks_matric.Value;
             z.Percentage = percentage_matric.Value;
-            z.Division = division_matric.Value;
+            z.Division = calcDivision(Convert.ToInt32(z.Percentage));
             db.SaveChanges();
 
 
-           
+
         }
         else
         {
@@ -111,8 +131,8 @@ public partial class Educational_Detail : System.Web.UI.Page
                 Total_Marks = total_marks_matric.Value,
                 Obtained_Marks = obtained_marks_matric.Value,
                 Percentage = percentage_matric.Value,
-                Division = division_matric.Value
-            };
+                Division = calcDivision(Convert.ToInt32(percentage_matric.Value))
+        };
             db.Matriculation_Education.Add(mat_edu);
             db.SaveChanges();
         }
@@ -126,7 +146,7 @@ public partial class Educational_Detail : System.Web.UI.Page
             i.Total_Marks = total_marks_intermediate.Value;
             i.Obtained_Marks = obtained_marks_intermediate.Value;
             i.Percentage = percentage_intermediate.Value;
-            i.Division = division_intermediate.Value;
+            i.Division = calcDivision(Convert.ToInt32(i.Percentage));
             db.SaveChanges();
         }
         else
@@ -140,7 +160,7 @@ public partial class Educational_Detail : System.Web.UI.Page
             Total_Marks = total_marks_intermediate.Value,
             Obtained_Marks = obtained_marks_intermediate.Value,
             Percentage = percentage_intermediate.Value,
-            Division = division_intermediate.Value
+            Division = calcDivision(Convert.ToInt32(percentage_intermediate.Value))
         };
             db.Intermediate_Education.Add(inter_edu);
             db.SaveChanges();
