@@ -88,7 +88,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
 
                             <div class="form">
-                                <asp:DropDownList ID="ddlLocation" CssClass="form-control" runat="server" Style="background-color: #e6e2e2">
+                                <asp:DropDownList ID="ddlLocation" CssClass="form-control" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" runat="server" Style="background-color: #e6e2e2">
                                     <asp:ListItem Text="City"></asp:ListItem>
                                     <asp:ListItem Text="Lahore"></asp:ListItem>
                                     <asp:ListItem Text="Karachi"></asp:ListItem>
@@ -107,7 +107,7 @@
 
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                             <div class="form">
-                                <asp:DropDownList ID="ddlUniversityType" runat="server" CssClass="form-control" Style="background-color: #e6e2e2">
+                                <asp:DropDownList ID="ddlUniversityType" runat="server" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" Style="background-color: #e6e2e2">
                                     <Items>
                                         <asp:ListItem Text="University Type" Enabled="true" Selected="true" Value="1" />
                                     </Items>
@@ -120,7 +120,7 @@
 
                             <div class="form">
                                 <div class="form">
-                                    <asp:DropDownList ID="ddlAdmissionStatus" runat="server" Class="form-control" Style="background-color: #e6e2e2">
+                                    <asp:DropDownList ID="ddlAdmissionStatus" runat="server" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" Class="form-control" Style="background-color: #e6e2e2">
                                         <Items>
                                             <asp:ListItem Text="Admission Status" Enabled="true" Selected="true" />
                                         </Items>
@@ -130,7 +130,7 @@
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                             <div class="form">
-                                <asp:DropDownList ID="ddlHECRanking" runat="server" Class="form-control" Style="background-color: #e6e2e2">
+                                <asp:DropDownList ID="ddlHECRanking" runat="server" OnSelectedIndexChanged="ddlLocation_SelectedIndexChanged" AutoPostBack="true" Class="form-control" Style="background-color: #e6e2e2">
                                     <Items>
                                         <asp:ListItem Text="HEC Ranking" Enabled="true" Selected="true" Value="1" />
                                     </Items>
@@ -335,7 +335,10 @@
                             <br />
                             <div>
                                 <span>
-                                    <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Personal_Detail.aspx" style="color: white;">Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>
+                                    <asp:Button ID ="btn_Apply" CssClass="btn filter_results_apply_button_bg_2_"  OnClick="btn_Apply_Click" runat="server" Text="Apply" style="display:none;color:white;" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <asp:LinkButton ID="lb_viewProspectus" runat="server" CssClass="NormalCharacterStyle217" style="display:none;color:white;" Text="View Prospectus"></asp:LinkButton>
+                                   <%-- <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Personal_Detail.aspx" style="color: white;">Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
                             </div>
 
                         </div>

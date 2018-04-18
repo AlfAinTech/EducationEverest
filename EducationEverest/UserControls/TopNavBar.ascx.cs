@@ -22,6 +22,13 @@ public partial class UserControls_TopNavBar : System.Web.UI.UserControl
             lblLoggedUser.Text = logged.fn;
 
         populateNotifications();
+        if (!IsPostBack)
+        {
+            if (Request.QueryString["searchBox"] != null)
+            {
+                TextBox1.Text = Request.QueryString["searchBox"].ToString();
+            }
+        }
     }
     protected void populateNotifications()
     {
@@ -49,13 +56,13 @@ public partial class UserControls_TopNavBar : System.Web.UI.UserControl
     }
     protected void btnFilter_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Filter_Results.aspx");
+        Response.Redirect("Filter_Results.aspx?searchBox=" + TextBox1.Text);
     }
 
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Search_Results.aspx?searchBox=" + TextBox1.Text);
+        Response.Redirect("Filter_Results.aspx?searchBox=" + TextBox1.Text);
     }
     protected void btn_notfxn_Click(object sender, EventArgs e)
     {

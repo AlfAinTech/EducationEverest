@@ -85,9 +85,14 @@ public partial class Choices : System.Web.UI.Page
         if (!IsPostBack)
         {
             populate_uni();
-            
-             current_user = HttpContext.Current.User.Identity.GetUserId();
-            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+            current_user = HttpContext.Current.User.Identity.GetUserId();
+            //if user is coming from searc or filter screeen check session
+            if(Session["UniversityID"] != null)
+            {
+                string universityID = Session["UniversityID"].ToString();
+                DropDownList1.SelectedValue = universityID;
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "GetData('"+universityID+"')", true);
+            }
            
         }
     }
