@@ -35,16 +35,17 @@
           if (x.includes("pays=true")) {
               document.getElementById("link_payment").click();
           }
-          //  OpenCurrentPage();
+
+          (function (d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=516503188742935&autoLogAppEvents=1';
+              fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
       });
   </script>
-    <script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=516503188742935&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    
 </head>
     <body>
         <div id="fb-root"></div>
@@ -92,9 +93,9 @@
       </div>
           </div>
 
- <div class="panel panel-default">
+ <%--<div class="panel panel-default">
       <div class="panel-heading text-center" >
-        <div class="Profile_sidemenu_Name3 text-left">Payment Details<span class="pull-right" style="margin-right: 10px;"><%--<a href="" class="edit_icon_1_"></a>--%></span></div>
+        <div class="Profile_sidemenu_Name3 text-left">Payment Details<span class="pull-right" style="margin-right: 10px;"></span></div>
                 <div class="profile_panel_text">
                 <div>Total Spendings</div>
                 <div class="profile_panel_text2 ">PKR <strong>6999</strong></div>
@@ -105,7 +106,7 @@
                 <div>exp 12/17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;***</div>
                 </div>
       </div>
-          </div>
+          </div>--%>
 
   <%--<a href="">
           <div class="panel panel-default panel_shadow">
