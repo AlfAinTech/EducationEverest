@@ -48,45 +48,44 @@ public partial class Payments : System.Web.UI.Page
 
     protected void SubmitTrackingID_Click(object sender, EventArgs e)
     {
-        
-        List<Application> apps = db.Applications.Where(q => q.UserID == current_user).ToList();
-        if (TrackingID.Value != "" && !String.IsNullOrWhiteSpace(TrackingID.Value))
-        {
-            int firstApplicationID = 0;
-            foreach (Application app in apps)
-            {
-                if (apps.First() == app)
-                {
-                    firstApplicationID = app.id;
-                }
-                if (!db.Payments.Any(q => q.ApplicationID == app.id))
-                {
-                    Payment p = new Payment()
-                    {
-                        TrackingID = TrackingID.Value.ToString(),
-                        ApplicationID = app.id,
-                    };
-                    app.CurrentStatus = "In Progress";
-                    db.Payments.Add(p);
-                    db.SaveChanges();
-                }
-            }
-            if (firstApplicationID != 0)
-            {
-                //create a notification for user
-                SystemNotification newNotification = new SystemNotification();
-                newNotification.User_ID = current_user;
-                newNotification.AppID = firstApplicationID;
-                newNotification.Read = false;
-                newNotification.Type = "Payment";
-                newNotification.TriggeredBy = "System";
-                newNotification.DateTime = DateTime.Now;
-                newNotification.Title = "Your Payment against tracking Id :" + TrackingID.Value + " is sent to Education Everest team.You'll get confirmation message soon";
 
-                db.SystemNotifications.Add(newNotification);
-                db.SaveChanges();
+        if (Session["appIDS"] != null)
+        {
+            List<int> applicationIDS = (List<int>)Session["appIDS"];
+            List<Application> applications = db.Applications.Where(a => applicationIDS.Contains(a.id)).ToList();
+            if (TrackingID.Value != "" && !String.IsNullOrWhiteSpace(TrackingID.Value))
+            {
+                foreach (Application app in applications)
+                {
+                    if (!db.Payments.Any(q => q.ApplicationID == app.id))
+                    {
+                        Payment p = new Payment()
+                        {
+                            TrackingID = TrackingID.Value.ToString(),
+                            ApplicationID = app.id,
+                        };
+                        app.CurrentStatus = "In Progress";
+                        db.Payments.Add(p);
+                        db.SaveChanges();
+                        //create a notification for user
+                        SystemNotification newNotification = new SystemNotification();
+                        newNotification.User_ID = current_user;
+                        newNotification.AppID = app.id;
+                        newNotification.Read = false;
+                        newNotification.Type = "Payment";
+                        newNotification.TriggeredBy = "System";
+                        newNotification.DateTime = DateTime.Now;
+                        newNotification.Title = "Your Payment against tracking Id :" + TrackingID.Value + " is sent to Education Everest team.You'll get confirmation message soon";
+
+                        db.SystemNotifications.Add(newNotification);
+                        db.SaveChanges();
+                    }
+                }
             }
+            TrackingID.Value = "";
+            Response.Redirect(Request.RawUrl);
         }
+        
 
     }
 
@@ -143,7 +142,7 @@ public partial class Payments : System.Web.UI.Page
                 Image im = (Image)e.Item.FindControl("logo");
                 im.ImageUrl = um.Path;
             }
-            if(dataItem.TrackingID != null && dataItem.TrackingID != "" && dataItem.TrackingID != "No payment")
+            if(dataItem.TrackingID != null && dataItem.TrackingID != "" && dataItem.TrackingID != "No Tracking Id")
             {
                 System.Web.UI.HtmlControls.HtmlButton button = e.Item.FindControl("btn_MakePayment") as System.Web.UI.HtmlControls.HtmlButton;
                 button.Style.Add("display", "none");
