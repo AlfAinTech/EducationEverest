@@ -18,6 +18,14 @@ public partial class Login : System.Web.UI.Page
         //Response.Redirect("Dashboard.aspx");
 
         //Session["username"] = Email.Text;
+        if (!Page.IsPostBack)
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Dashboard.aspx");
+            }
+        }
+
     }
     protected void LogIn(object sender, EventArgs e)
     {
