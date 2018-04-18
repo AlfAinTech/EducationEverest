@@ -20,6 +20,76 @@
     <%--<script type="text/javascript" src="/js/myScript.js"></script>--%>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <style type="text/css">
+        /* Customize the label (the container) */
+        .checkbox-container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 23px;
+            width: 23px;
+            /*background-color: #eee;*/
+            border:2px solid rgb(255, 152, 0);
+        }
+
+        /* On mouse-over, add a grey background color */
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: rgba(255, 162, 10, 0.1);
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: rgb(255, 152, 0);
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .checkbox-container .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 7px;
+            height: 13px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+
 </head>
     <div class="navbar-inverse" style="border-radius: 0px;height: 60px;">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,7 +124,9 @@
                         <asp:TextBox ID="fName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="First Name"></asp:TextBox>
                         <br />
                         <asp:RequiredFieldValidator ID="fNameRequired" runat="server" ErrorMessage="First Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>
-
+                        <br />
+                        <asp:RegularExpressionValidator ID="reFName" runat="server" ControlToValidate="fName"
+                        ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as First Name " ForeColor="Red" />
                     </div>
 
 
@@ -64,14 +136,13 @@
                         <asp:TextBox ID="lName" MaxLength="20" runat="server" class="student_reg_inputs" placeholder="Last Name"></asp:TextBox>
                         <br />
                         <asp:RequiredFieldValidator ID="lNameRequired" runat="server" ErrorMessage="Last Name is required" ControlToValidate="lName" ForeColor="Red"></asp:RequiredFieldValidator>
-
+                        <br />    
+                        <asp:RegularExpressionValidator ID="reLName" runat="server" ControlToValidate="lName"
+                        ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as Last Name " ForeColor="Red" />
 
                     </div>
-                    <asp:RegularExpressionValidator ID="reFName" runat="server" ControlToValidate="fName"
-                        ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as First Name " ForeColor="Red" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    <asp:RegularExpressionValidator ID="reLName" runat="server" ControlToValidate="lName"
-                        ValidationExpression="[a-zA-Z ]*$" ErrorMessage="Only Alphabets as Last Name " ForeColor="Red" />
+                    <%--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --%>
+                    
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form">
@@ -79,6 +150,7 @@
                         </div>
                         <br />
                         <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ErrorMessage="Email is Required" ControlToValidate="Email" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
                         <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" ErrorMessage="Please Enter Valid Email ID" ControlToValidate="Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="Red"></asp:RegularExpressionValidator>
 
                     </div>
@@ -98,6 +170,7 @@
                         </div>
                         <br />
                         <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ErrorMessage="Confirm is Required" ControlToValidate="confirmPassword" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
                         <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="password" ControlToValidate="confirmPassword" ErrorMessage="Both passwords must match" ForeColor="Red"></asp:CompareValidator>
 
                     </div>
@@ -109,6 +182,7 @@
                         </div>
                         <br />
                         <asp:RequiredFieldValidator ID="PhoneRequired" runat="server" ErrorMessage="Phone Number is Required" ControlToValidate="phone" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
                         <asp:RegularExpressionValidator ID="RegularExpressionphone" runat="server" ErrorMessage="Please Enter Valid Phone Number" ControlToValidate="phone" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -125,7 +199,11 @@
 
                     <%--<asp:CheckBox ID="CheckBox1" runat="server"  class="check_box" /><label  class="checkbox-inline NormalCharacterStyle112" style="  margin-left: 10px;"> <span >&nbsp;&nbsp;&nbsp;I agree to the Terms and Conditions</span></label>--%>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <asp:CheckBox ID="CheckBox1" runat="server" Style="height: 100px; width: 100px" /><label class="checkbox-inline NormalCharacterStyle112" style="margin-left: 10px;"> <span>&nbsp;&nbsp;&nbsp;I agree to the <i>Terms and Conditions</i></span></label>
+                        <label for="CheckBox1" class="checkbox-inline checkbox-container NormalCharacterStyle112"<%-- style="margin-left: 10px;"--%>>
+                            I agree to the <i>Terms and Conditions</i>
+                            <asp:CheckBox ID="CheckBox1" runat="server" />
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <asp:Label ID="lblCheckBox" runat="server" ForeColor="Red" Text="I agree to <i>terms and conditions</i>" Visible="False"></asp:Label>
@@ -142,22 +220,21 @@
 
 
 
-                <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center mybspc3" >
+                <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center " >
                     <br />
                     Already have an account?&nbsp;
                     <asp:HyperLink ID="hplSignIn" NavigateUrl="~/Login.aspx" runat="server">Sign in</asp:HyperLink>
 
                 </div>
-                <div class=" myspc3 NormalCharacterStyle7 text-center">OR</div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 NormalCharacterStyle7 text-center" style="padding:15px 0;">OR</div>
                
-                
                 <%--<br />
                 <div class="NormalCharacterStyle12 text-center">SignUp with</div>--%>
                 
                 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                          <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
-                        <div class="g-signin2" data-width="350" data-height="50" style="padding-left:105px;" data-theme="dark" data-longtitle="true"  data-onsuccess="onSignIn"></div>
+                        <div class="g-signin2" data-width="350" data-height="50" style="display:inline-block;" data-theme="dark" data-longtitle="true"  data-onsuccess="onSignIn"></div>
                     </div>
                 <%--<div id="status">   </div>--%>
                 

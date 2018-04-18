@@ -39,33 +39,35 @@
 </head>
 <body>
     
-    <form id="form" runat="server">
-        <div>
-            <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
 
-                    <a class="navbar-brand" href="#">
-                        <img src="images/Logo_1_.png" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-            </div>
-    <div class="row">
-                
-        <div class="container-fluid text-left">
-            <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="visibility:hidden;margin-top: 50px; background-color: #f01970 !important; padding-bottom: 7px;padding-top: 7px;">
-                        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: white; font-size: 14px"></span>
-                        <span class="sr-only" style="color: white; font-size: 14px">Error:</span>
-                        <span style="color: white; font-size: 16px">Wrong Email or Passowrd. Please provide valid ID details.</span>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-lg-3 col-md-3 col-sm-3"></div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <a class="navbar-brand" href="#">
+                <img src="images/Logo_1_.png" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <form id="form" runat="server">
+        <div class="container" style="position:relative;">
+            <div class="row">
+                <div class="text-left">
+                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                        <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="position: absolute; left: 0; right: 0; margin-top: 50px; background-color: #f01970 !important; padding-bottom: 7px; padding-top: 7px;">
+                            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: white; font-size: 14px"></span>
+                            <span class="sr-only" style="color: white; font-size: 14px">Error:</span>
+                            <span style="color: white; font-size: 16px">
+                                <asp:Literal runat="server" ID="FailureText" /></span>
+                        </div>
+                    </asp:PlaceHolder>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:65px;">
+                        <%--<div class="col-lg-3 col-md-3 col-sm-3"></div>--%>
+                        <div class="col-md-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left NormalCharacterStyle12 mybspc4" style="margin-top: 20px">Login</div>
-                            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                            <%--<asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                                 <p class="text-danger" style="font-size: 18px; margin-left: 100px">
                                     <asp:Literal runat="server" ID="FailureText" />
                                 </p>
-                            </asp:PlaceHolder>
+                            </asp:PlaceHolder>--%>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
                                 <div class="form">
                                     <asp:TextBox runat="server" ID="Email" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12" data-error="Bruh, that email address is invalid"
@@ -86,7 +88,7 @@
                                         ForeColor="red" Style="text-align: center" />
                                 </div>
                             </div>
-                    <div class="NormalCharacterStyle213 col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc3">
+                            <div class="NormalCharacterStyle213 col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc3">
                                 Forgot password?
                                 <a href="ForgotPassword.aspx">
                                     <span class="NormalCharacterStyle221">
@@ -94,38 +96,36 @@
                                     </span>
                                 </a>
                             </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                                 <asp:Button class=" btn registration_btn" runat="server" ValidationGroup="loginForm" OnClick="LogIn" Text="LOGIN" Style="font-size: 16px;" />
                             </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                             </div>
 
-                    <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc1" style="font-size: 16px !important;">
+                            <div class="NormalCharacterStyle7 col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc1" style="font-size: 16px !important;">
                                 Doesn’t Have Account?
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc3">
                                 <%--<button type="button" class="btn registration_btn2"><a href="/Account/Register.aspx"><span class="NormalCharacterStyle220">REGISTER</span></a></button>--%>
                                 <asp:Button ID="btn_register" class="btn registration_btn2" runat="server" OnClick="btn_register_Click" Text="REGISTER" Style="font-size: 16px;" />
-                                
+
                             </div>
-    
-                            <div class=" myspc5 NormalCharacterStyle7 text-center" >OR</div>
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 NormalCharacterStyle7 text-center" style="padding:15px 0;">OR</div>
                             <%--<br />
                             <div class="NormalCharacterStyle12 text-center">SignUp with</div>--%>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
-                         <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
-                                 <div class="g-signin2" data-width="350" data-height="50" data-theme="dark" data-longtitle="true" style="padding-left:105px;"  data-onsuccess="onSignIn"></div>
-                    </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
-                               
- 
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
+                                <div class="g-signin2" data-width="350" data-height="50" data-theme="dark" data-longtitle="true" style="display:inline-block" data-onsuccess="onSignIn"></div>
                             </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
      <%--<div id="fb-root"></div>
     <a > <fb:login-button id="btn_fb"  scope="public_profile,email" data-width="350" data-max-rows="1" data-size="large" data-button-type="login_with"  style="background-repeat:no-repeat;position:absolute; padding-top:15px; "   onlogin="checkLoginState();"></fb:login-button></a>

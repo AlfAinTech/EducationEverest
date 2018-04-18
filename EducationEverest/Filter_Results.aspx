@@ -130,14 +130,15 @@
             <!-- /.navbar-collapse -->
         </div>
 
-
-        <%--Filter Starts here--%>
+        <div class="container-fluid">
+            <div class="row">
+            <%--Filter Starts here--%>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 filter_results_border" style="background: white">
 
             <div class="filter_results_callout bottom text-left">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="NormalCharacterStyle12 myspc1 mybspc1" style="border-bottom: 1px solid #b3b3b3">Filter Universities</div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  myspc1 mybspc2" style="border-bottom: 1px solid #b3b3b3; margin-bottom: 20px">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  myspc1 mybspc2" style="/*border-bottom: 1px solid #b3b3b3; margin-bottom: 20px*/">
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
 
                             <div class="form">
@@ -196,11 +197,12 @@
                 </div>
             </div>
         </div>
-
-
+        </div>
+        </div>
+        
         <%--Filter Ends here--%>
         <div class="container-fluid text-center">
-            <div class="row" style="height: 100%;">
+            <div class="row" style="height: 100%;margin-bottom:30px;">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 sidenav text-left">
 
                     <div class="NormalCharacterStyle16">
@@ -243,19 +245,21 @@
 
                     <%--panels end here--%>
 
-                    <br />
+                    <span></span>
                     <asp:Label ID="lblNoDatainFilter" runat="server" Text="No Match Found" Visible="false"></asp:Label>
 
                     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                    <asp:Repeater ID="rptSearch" runat="server" OnItemDataBound="rptSearch_ItemDataBound" OnItemCommand="rptSearch_ItemCommand">
+                    <div id="university_lists" style="position:relative;overflow:auto;/*max-height:calc(100vh - 200px);*/">
+                        <asp:Repeater ID="rptSearch" runat="server" OnItemDataBound="rptSearch_ItemDataBound" OnItemCommand="rptSearch_ItemCommand">
                         <ItemTemplate>
 
 
 
-                            <div class="panel panel-default panel_shadow results_cards" onclick="Div_repeaterclick('<%# Eval("UniversityID") %>')" style="cursor: pointer;">
+                            <div class="panel panel-default panel_shadow results_cards container-fluid " 
+                                onclick="Div_repeaterclick('<%# Eval("UniversityID") %>')" style="cursor: pointer;margin-bottom:7px;">
 
 
-                                <div class="container-fluid row">
+                                <div class="row">
                                     <div class="col-md-2">
                                         <div class="centered text-center">
 
@@ -329,6 +333,7 @@
                             
                         </ItemTemplate>
                     </asp:Repeater>
+                    </div>
                 </div>
 
 
@@ -338,7 +343,8 @@
 
 
                 <div class="col-md-6 filter_results_details_callout right  text-left uni_details_page_bg_2_" id="dvUnivDetailsShow" runat="server" style="height: 100%">
-                    <div class="row" style="border-bottom: 1px solid #b3b3b3; padding-bottom: 4%">
+                    <div id="university_content" style="/*overflow:auto;max-height:calc(100vh - 200px);*/" class="container-fluid">
+                        <div class="row" style="border-bottom: 1px solid #b3b3b3; padding-bottom: 4%">
                         <div class="col-md-2">
                             <asp:Image  ImageUrl="~/images/university_icon.png" ID="Image2" runat="server" />
                             <%--<img src="images/uet_logo.png" style="width: :90px;height: 90px;margin-left: -5px;margin-top: 10px;">--%>
@@ -447,11 +453,22 @@
                         <br />
                     </div>
 
+                    </div>
                 </div>
             </div>
         </div>
          <asp:HiddenField runat="server" ID="hf1"/>
         <asp:Button runat="server" ID="btn_UniversityClicked" OnClick="btn_UniversityClicked_Click" style="display:none;" />
     </form>
+
+    <script>
+        $(document).ready(function () {
+            var heightContent = $('#university_content').height();
+            console.log(heightContent); 
+            if (heightContent > 50) {
+                $('#university_lists').height(heightContent-23);
+            }
+        })
+    </script>
 </body>
 </html>
