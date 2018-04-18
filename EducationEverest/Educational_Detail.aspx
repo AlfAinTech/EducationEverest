@@ -43,10 +43,26 @@
                     return (Page_ClientValidate('vgEducationalDetails') && Page_ClientValidate('vgEducationalDetails2'));
                 }
             }
+            function calcDivision(percentage) {
+                if (percentage >= 0 && percentage <= 32) {
+                    return "Fail";
+                }
+                if (percentage >= 33 && percentage <= 35) {
+                    return "Third";
+                }
+                if (percentage >= 36 && percentage <= 59) {
+                    return "Second";
+                }
+                if (percentage >= 60 && percentage <= 100) {
+                    return "First";
+                }
+                return "none";
+            }
             function OnMatricMarksChange() {
                 var total = $("[id*=total_marks_matric]")[0];
                 var obtained = $("[id*=obtained_marks_matric]")[0];
                 var percentage = $("[id*=percentage_matric]")[0];
+                var division = $("[id*=division_matric]")[0];
                 var totalValue = 0;
                 var obtainedValue = 0;
                 var percentageValue = 0;
@@ -60,12 +76,13 @@
                 percentageValue = (obtainedValue / totalValue) * 100;
                 console.log(percentageValue);
                 percentage.value = percentageValue.toFixed(0).toString();
-
+                division.value = calcDivision(percentage.value);
             }
             function OnintermediateMarksChange() {
                 var total = $("[id*=total_marks_intermediate]")[0];
                 var obtained = $("[id*=obtained_marks_intermediate]")[0];
-                var percentage = $("[id*=percentage_intermediate]")[0];
+                var percentage = $("[id*=percentage_intermediate]")[0]; 
+                var division = $("[id*=division_intermediate]")[0];
                 var totalValue = 0;
                 var obtainedValue = 0;
                 var percentageValue = 0;
@@ -79,7 +96,7 @@
                 percentageValue = (obtainedValue / totalValue) * 100;
                 console.log(percentageValue);
                 percentage.value = percentageValue.toFixed(0).toString();
-
+                division.value = calcDivision(percentage.value);
             }
             function OpenCurrentPage() {
                 $("#educationalDocument").removeClass("NormalCharacterStyle24")
@@ -167,10 +184,61 @@
                                             <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
                                         </Items>
                                         <Items>
+                                            <asp:ListItem Text="2018" Value="2018" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2017" Value="2017" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2016" Value="2016" />
+                                        </Items>
+                                        <Items>
                                             <asp:ListItem Text="2015" Value="2015" />
                                         </Items>
                                         <Items>
                                             <asp:ListItem Text="2014" Value="2014" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2013" Value="2013" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2012" Value="2012" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2011" Value="2011" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2010" Value="2010" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2009" Value="2009" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2008" Value="2008" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2007" Value="2007" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2006" Value="2006" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2005" Value="2005" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2004" Value="2004" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2003" Value="2003" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2002" Value="2002" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2001" Value="2001" />
+                                        </Items>
+                                        <Items>
+                                            <asp:ListItem Text="2000" Value="2000" />
                                         </Items>
 
                                     </asp:DropDownList>
@@ -223,7 +291,7 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
                                 <div class="form">
-                                    <input class="inputs" maxlength="6" id="division_matric" type="text" name="Division" placeholder="Division" runat="server" />
+                                    <input class="inputs" maxlength="6" id="division_matric" type="text" name="Division" placeholder="Division" readonly="true" runat="server" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="rvDivisioMatric" runat="server" ErrorMessage="Division required" ValidationGroup="vgEducationalDetails" ControlToValidate="division_matric" ForeColor="Red"></asp:RequiredFieldValidator>
 
@@ -357,7 +425,7 @@
 
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mybspc5">
                                 <div class="form">
-                                    <input class="inputs" maxlength="6" id="division_intermediate" type="text" name="Division" placeholder="Division" runat="server" />
+                                    <input class="inputs" maxlength="6" id="division_intermediate" type="text" name="Division" placeholder="Division" runat="server"  readonly="true"/>
                                     <br />
                                     <asp:RequiredFieldValidator ID="reDivisionIntermediate" runat="server" ErrorMessage="Division required" ValidationGroup="vgEducationalDetails2" ControlToValidate="division_intermediate" ForeColor="Red"></asp:RequiredFieldValidator>
 

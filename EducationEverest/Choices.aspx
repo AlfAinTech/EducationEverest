@@ -6,10 +6,10 @@
     <div style="margin-top: 15px"><a class="breadcrumbLinks" href="Dashboard.aspx">Dashboard </a> > <a class="breadcrumbLinks" href="Personal_Detail.aspx"> File Admission Application </a> > <a class="breadcrumbLinks" href="Choices.aspx">Make Choices </a></div>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <script type="text/javascript">
-
-        var preferencesAdded = false;
-
+        var preferencesadded = 0;
+        var anypreferencesAdded = true;
         function populateGridview(universityId) {
             alert("this is university Id : " + universityId);
             document.getElementById('<%= hf_UniID.ClientID %>').value = universityId.toString();
@@ -18,18 +18,16 @@
 
         }
         
-
         $(document).ready(function () {
 
             
 
             $('#exampleModalCenter').on('hidden.bs.modal', function () {
-                if (preferencesAdded) {
-                    window.location.href = 'choices.aspx';
+                if (anypreferencesAdded) {
+                    //call for storing session 
+                    document.getElementById("<%= btn_saveSession.ClientID %>").click();
                 }
-                else {
-                    location.reload();
-                }
+                //location.reload();
             })
             
             var count = 0;
@@ -206,9 +204,17 @@
                     success: function (result) {
                         console.log("this is the data" + result.toString());
                         if (result.d.length > 2) {
-                            preferencesAdded = true;
+                            
+                            var data = result.d;
+                            data1 = JSON.parse(data);
+                            console.log(data1.isNewApp);
+                            if (data1.isNewApp == true) {
+                                preferencesadded = preferencesadded + 1;
+                            }
+                            anypreferencesAdded = true;
                         }
-                        BindData(result);
+                        
+                        BindDataNew(data1.data);
                         //populateGridview(result);
 
                     }
@@ -360,9 +366,19 @@
                     failure: function (response) {
                         alert(response.d);
                     },
-                    success: function (response) {
+                    success: function (result) {
+                        if (result.d.length > 2) {
 
-                        BindData(response)
+                            var data = result.d;
+                            data1 = JSON.parse(data);
+                            console.log(data1.isNewApp);
+                            if (data1.isNewApp == true) {
+                                preferencesadded = preferencesadded + 1;
+                            }
+                            anypreferencesAdded = true;
+                        }
+
+                        BindDataNew(data1.data);
 
                     }
                 });
@@ -396,6 +412,14 @@
 
 
         })
+        BindDataNew = function (response) {
+            //alert(response.d);
+            
+            $("#GridPreferences").find("tr:gt(0)").remove();
+            $("#preferences_template").tmpl(response).appendTo("#GridPreferences");
+            // $("GridPreferences")
+        }
+        
         BindData = function (response) {
             //alert(response.d);
             var data = response.d;
@@ -486,7 +510,7 @@
 
                                     <asp:DropDownList ID="DropDownList1" runat="server" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="1" />
+                                            <asp:ListItem Text="Select University" Enabled="true" Selected="true" Value="1" />
                                         </Items>
 
 
@@ -499,7 +523,7 @@
 
                                     <asp:DropDownList ID="DropDownList2" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Campus" Enabled="true" Selected="true" Value="0" />
                                         </Items>
 
 
@@ -512,7 +536,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList3" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Department" Enabled="true" Selected="true" Value="0" />
                                         </Items>
 
 
@@ -526,7 +550,7 @@
 
                                     <asp:DropDownList ID="DropDownList5" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Program" Enabled="true" Selected="true" Value="0" />
                                         </Items>
 
 
@@ -540,7 +564,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList4" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Category" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
@@ -583,7 +607,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList6" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Campus" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
@@ -594,7 +618,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList7" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Department" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
@@ -612,7 +636,7 @@
                                 <div class="form">
                                     <asp:DropDownList ID="DropDownList8" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Program" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
                                 </div>
@@ -624,7 +648,7 @@
 
                                     <asp:DropDownList ID="DropDownList9" class="combobox preference_select_campus" runat="server">
                                         <Items>
-                                            <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="0" />
+                                            <asp:ListItem Text="Select Category" Enabled="true" Selected="true" Value="0" />
                                         </Items>
                                     </asp:DropDownList>
 
@@ -693,6 +717,7 @@
 
         <br />
         <asp:HiddenField ID="hf_UniID" Value="0" runat="server" />
+        <asp:Button runat="server" ID="btn_saveSession" OnClick="btn_saveSession_Click" style="display:none;" />
     </div>
 
 

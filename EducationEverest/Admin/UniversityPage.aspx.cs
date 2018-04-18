@@ -180,9 +180,12 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
                     filePath = null;
                 }
             }
-            UniversityMedia existingUniversityMedia = db.UniversityMedias.Where(a => a.UniversityId == UniversityId).First();
-            existingUniversityMedia.Path = filePath;
-            db.SaveChanges();
+            if (db.UniversityMedias.Any(a => a.UniversityId == UniversityId))
+            {
+                UniversityMedia existingUniversityMedia = db.UniversityMedias.Where(a => a.UniversityId == UniversityId).First();
+                existingUniversityMedia.Path = filePath;
+                db.SaveChanges();
+            }
 
             UniversityProfile existingUniversityProfile = db.UniversityProfiles.Where(a => a.UniversityID == UniversityId).First();
             existingUniversityProfile.Contact1 = tb_uniContact1.Text;

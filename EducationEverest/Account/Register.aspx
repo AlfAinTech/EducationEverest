@@ -4,6 +4,7 @@
  
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+    <link href="../Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
      <title>Registration</title>
     <meta charset="utf-8" />
     <meta name="google-signin-client_id" content="569202583432-j80c5hsj78tippoqicmfucf8hld4pa2m.apps.googleusercontent.com" />
@@ -161,7 +162,7 @@
                         <br />
                         <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ErrorMessage="Password is Required" ControlToValidate="password" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
-                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" ErrorMessage="Password must be minimum 6 characters long  at least  one upper case and one special character " ForeColor="Red" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" ControlToValidate="password" runat="server"></asp:RegularExpressionValidator>
+                        <%--<asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" ErrorMessage="Password must be minimum 6 characters long  at least  one upper case and one special character " ForeColor="Red" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" ControlToValidate="password" runat="server"></asp:RegularExpressionValidator>--%>
 
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -232,16 +233,15 @@
                 <div class="NormalCharacterStyle12 text-center">SignUp with</div>--%>
                 
                 
+
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                          <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
                         <div class="g-signin2" data-width="350" data-height="50" style="display:inline-block;" data-theme="dark" data-longtitle="true"  data-onsuccess="onSignIn"></div>
-                    </div>
-                <%--<div id="status">   </div>--%>
+
+                    <%--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
+                         <fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>
+                    </div>--%>
                 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
-                         
- 
-                    </div>
                 
             </div>
             
@@ -450,9 +450,8 @@
                 // Person is now logged out
             });
         };
-  
-   
-       <%--  Logout code ends here --%>
+        <%--  Logout code ends here --%>
+        
 
        
        

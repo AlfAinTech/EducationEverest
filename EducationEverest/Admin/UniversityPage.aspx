@@ -50,7 +50,7 @@
                 <asp:RequiredFieldValidator ID="rfv_Testname" runat="server" Display="Dynamic" ValidationGroup="UniversityFields" CssClass="text-danger"
                     ControlToValidate="tb_TestName" ForeColor="Red" ErrorMessage="* Test Name is required field" ></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" Display="Dynamic" ValidationGroup="UniversityFields" CssClass="text-danger"
-                        ValidationExpression="^[A-Za-z]{1,100}$" ControlToValidate="tb_TestName" ForeColor="red"
+                        ValidationExpression="^[A-Z a-z]{1,100}$" ControlToValidate="tb_TestName" ForeColor="red"
                         ErrorMessage="* Test Name should consist of alphabets"></asp:RegularExpressionValidator>
             </div>
             </div>

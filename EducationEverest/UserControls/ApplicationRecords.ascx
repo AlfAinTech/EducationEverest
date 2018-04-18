@@ -1,7 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ApplicationRecords.ascx.cs" Inherits="UserControls_ApplicationRecords" %>
 <script type="text/javascript">
     
-
+    function edit_repeaterclick(id) {
+            
+            document.getElementById("<%= hf1.ClientID %>").value = id;
+            document.getElementById("<%= btn_editApplication.ClientID %>").click();
+        }
     $(document).ready(function () {
 
         $('.viewbutton').on('click', function () {
@@ -48,6 +52,7 @@
                 </div> 
                 <div class="row" style="border-top: 1px solid #d0d0d0;">
                     <a id='<%# "href_"+Container.ItemIndex %>' data-toggle="collapse"  data-parent="#accordion" class="pull-right viewbutton margin_top" style="cursor: pointer;margin-right: 30px;"><b>VIEW</b></a>
+                    <a id='<%# "edit"+Container.ItemIndex %>' class="pull-right editbutton margin_top" onclick="edit_repeaterclick('<%# Eval("id") %>')" style="cursor: pointer;margin-right: 30px;"><b>EDIT</b></a>
                 </div>
             </div>
             <div id='<%# "details"+Container.ItemIndex %>' class="panel-collapse collapse panel_shadow">
@@ -463,3 +468,5 @@
         <br />
     </FooterTemplate>
 </asp:Repeater>
+<asp:HiddenField runat="server" Value="" ID="hf1"/>
+        <asp:Button runat="server" ID="btn_editApplication" OnClick="btn_editApplication_Click" style="display:none;" />

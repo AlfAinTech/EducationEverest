@@ -781,17 +781,16 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <%--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="landline" maxlength="11" class="input_father_CINC_no" type="text" name="Phone_Landline" placeholder="Phone Landline" runat="server" />
                                     <br />
                                     <asp:RequiredFieldValidator ID="rvLandline" runat="server" ErrorMessage="Landline number is required" ValidationGroup="vgPersonalDetails2" ControlToValidate="landline" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
-                                    <%--<asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails" ControlToValidate="landline" ValidationExpression="^([0-9\(\)\/\+ \-]*)$" ForeColor="Red"></asp:RegularExpressionValidator>--%>
                                    <asp:RegularExpressionValidator ID="reLandline" runat="server" ErrorMessage="Please Enter Valid Phone Number" ValidationGroup="vgPersonalDetails2" ControlToValidate="landline" ValidationExpression="\d+" ForeColor="Red"></asp:RegularExpressionValidator>
 
                                 </div>
-                            </div>
+                            </div>--%>
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="form">
                                     <input id="phone" maxlength="11" class="input_DOB" type="text" name="Yphone" placeholder="Phone (Your Phone)" runat="server" />

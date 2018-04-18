@@ -145,7 +145,7 @@
                                         <div class="form">
 
                                             <%--<input class="inputs" type="text" name="Division" placeholder="Division" >--%>
-                                            <asp:TextBox ID="division" MaxLength="6" class="inputs" Placeholder="Division" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="division" MaxLength="6" class="inputs" Placeholder="Division" ReadOnly="true" runat="server"></asp:TextBox>
                                             <br />
                                             <asp:RequiredFieldValidator ID="rvDivision" runat="server" ErrorMessage="Division required" ValidationGroup='<%# "vgTestResults"+Container.ItemIndex %>' ControlToValidate="division" ForeColor="Red"></asp:RequiredFieldValidator>
 
@@ -196,6 +196,21 @@
             }
         }
 
+        function calcDivision(percentage) {
+            if (percentage >= 0 && percentage <= 32) {
+                return "Fail";
+            }
+            if (percentage >= 33 && percentage <= 35) {
+                return "Third";
+            }
+            if (percentage >= 36 && percentage <= 59) {
+                return "Second";
+            }
+            if (percentage >= 60 && percentage <= 100) {
+                return "First";
+            }
+            return "none";
+        }
         function OnMarksChange(textbox) {
             //var total = $("[id*=total_marks]")[0];
             //var obtained = $("[id*=obtained_marks]")[0];
@@ -203,6 +218,7 @@
             var total = $(textbox).parent().parent().parent().find('input[type="text"]')[1];
             var obtained = $(textbox).parent().parent().parent().find('input[type="text"]')[2];
             var percentage = $(textbox).parent().parent().parent().find('input[type="text"]')[3];
+            var division = $(textbox).parent().parent().parent().find('input[type="text"]')[4];
             var totalValue = 0;
             var obtainedValue = 0;
             var percentageValue = 0;
@@ -216,7 +232,7 @@
             percentageValue = (obtainedValue / totalValue) * 100;
             console.log(percentageValue);
             percentage.value = percentageValue.toFixed(0).toString();
-
+            division.value = calcDivision(percentage.value);
         }
         function OpenCurrentPage() {
             $("#testResult").removeClass("NormalCharacterStyle24")

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+    <link href="Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
     <title>Login</title>
     <meta charset="utf-8" />
     <meta name="google-signin-scope" content="profile email">
@@ -118,8 +119,11 @@
                                 <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
                                 <div class="g-signin2" data-width="350" data-height="50" data-theme="dark" data-longtitle="true" style="display:inline-block" data-onsuccess="onSignIn"></div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
-                            </div>
+                            <%--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
+                         <fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>
+                                 
+                    </div>--%>
+                            
                         </div>
                     </div>
                 </div>
@@ -238,7 +242,7 @@
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
-                testAPI();
+               // testAPI();
             } else {
                 // The person is not logged into your app or we are unable to tell.
                 //document.getElementById('status').innerHTML = 'Please log ' +

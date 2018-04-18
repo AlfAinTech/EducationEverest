@@ -17,30 +17,20 @@ public partial class Test_Result : System.Web.UI.Page
 
     public void panels()
     {
-       
-         List<int> Univ =   db.MakeChoices.Where(a=>a.User_ID == current_user).Select(a => a.Uni_ID).ToList();
+        List<int> Univ =   db.MakeChoices.Where(a=>a.User_ID == current_user).Select(a => a.Uni_ID).ToList();
 
         Repeater1.DataSource = db.UniversityProfiles.Where(q => Univ.Contains(q.UniversityID)).ToList();
         Repeater1.DataBind();
         //getting recent make choice 'stest
-        if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+
+        if (Session["appIDS"] != null)
         {
-            Repeater1.DataSource = null;
+            List<int> applicationIDS = (List<int>)Session["appIDS"];
+            List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
+            Repeater1.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
             Repeater1.DataBind();
         }
-        else
-        {
-            if (db.MakeChoices.Any(a => a.User_ID == current_user))
-            {
-                int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-                Repeater1.DataSource = db.UniversityProfiles.Where(q => q.UniversityID == universityID).ToList();
-                Repeater1.DataBind();
-            }else
-            {
-                Repeater1.DataSource = null;
-                Repeater1.DataBind();
-            }
-        }
+        
     }
 
 
@@ -50,7 +40,10 @@ public partial class Test_Result : System.Web.UI.Page
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-
+        if (Session["appIDS"] == null)
+        {
+            Response.Redirect("Dashboard.aspx");
+        }
         if (!IsPostBack)
         {
             panels();
@@ -123,7 +116,7 @@ public partial class Test_Result : System.Web.UI.Page
                 p.Total_Marks = total_marks.Text;
                 p.Obtained_Marks = obtained_marks.Text;
                 p.Percentage = percentage.Value;
-                p.Division = division.Text;
+                p.Division = EEUtil.calcDivision(Convert.ToInt32(p.Percentage));
 
                 db.SaveChanges();
             }
@@ -140,7 +133,7 @@ public partial class Test_Result : System.Web.UI.Page
                     Total_Marks = total_marks.Text,
                     Obtained_Marks = obtained_marks.Text,
                     Percentage = percentage.Value,
-                    Division = division.Text
+                    Division = EEUtil.calcDivision(Convert.ToInt32(Convert.ToInt32(percentage.Value)))
                 };
 
                 db.Test_Results.Add(test_result);
@@ -163,7 +156,10 @@ public partial class Test_Result : System.Web.UI.Page
 
 
         //button next click from Test Results to Document
-        Response.Redirect("Upload_Documents.aspx");
+        
+        
+            Response.Redirect("Upload_Documents.aspx");
+        
 
 
     }

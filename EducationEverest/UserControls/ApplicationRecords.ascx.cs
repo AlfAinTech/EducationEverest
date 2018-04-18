@@ -34,24 +34,12 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
         }
         else
         {
-            if ((Request.QueryString["NA"] != null) && (Request.QueryString["NA"] == "true"))
+            if(Session["appIDS"] != null)
             {
-                ApplicationsList.DataSource = null;
+                List<int> applicationIDS = (List<int>)Session["appIDS"];
+                List<Application> applications = db.Applications.Where(a => applicationIDS.Contains(a.id)).ToList();
+                ApplicationsList.DataSource = applications;
                 ApplicationsList.DataBind();
-            }
-            else
-            {
-                if (db.MakeChoices.Any(a => a.User_ID == current_user))
-                {
-                    int universityID = db.MakeChoices.Where(a => a.User_ID == current_user).OrderByDescending(u => u.id).First().Uni_ID;
-
-                    ApplicationsList.DataSource = db.Applications.Where(q => q.UserID == UserID && q.UnivID == universityID).OrderByDescending(u => u.id).ToList();
-                    ApplicationsList.DataBind();
-                }else
-                {
-                    ApplicationsList.DataSource = null;
-                    ApplicationsList.DataBind();
-                }
             }
         }
     }
@@ -229,6 +217,18 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                 }
 
             }
+        }
+    }
+
+    protected void btn_editApplication_Click(object sender, EventArgs e)
+    {
+        string applicationID = hf1.Value.ToString();
+        if (applicationID != "")
+        {
+            List<int> applicationIDS = new List<int>();
+            applicationIDS.Add(Convert.ToInt32(applicationID));
+            Session["appIDS"] = applicationIDS;
+            Response.Redirect("Personal_Detail.aspx");
         }
     }
 }

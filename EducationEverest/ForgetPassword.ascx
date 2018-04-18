@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <head>
+    <link href="Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
     <title>Forgot Password</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/bootstrap.css">

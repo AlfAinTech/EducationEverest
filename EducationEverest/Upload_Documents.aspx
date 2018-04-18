@@ -48,7 +48,8 @@
                 document.getElementById("fileAdmission").click();
 
             }
-            var validFilesTypes = ["pdf", "doc", "docx"];
+            
+            var validFilesTypes = ["pdf", "doc", "docx","jpg","png","JPG","gif","GIF","jpeg","JPEG","PNG"];
 
             function ValidateFile(UploadControl) {
                 var file = document.getElementById(UploadControl);

@@ -40,6 +40,7 @@ public partial class Application
     {
         this.Payments = new HashSet<Payment>();
         this.SystemNotifications = new HashSet<SystemNotification>();
+        this.ICAppEmails = new HashSet<ICAppEmail>();
     }
 
     public int id { get; set; }
@@ -58,6 +59,8 @@ public partial class Application
     public virtual ICollection<Payment> Payments { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<SystemNotification> SystemNotifications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<ICAppEmail> ICAppEmails { get; set; }
 }
 
 public partial class AspNetRole
@@ -96,6 +99,7 @@ public partial class AspNetUser
         this.Personal_Details = new HashSet<Personal_Details>();
         this.App_Start = new HashSet<App_Start>();
         this.SystemNotifications = new HashSet<SystemNotification>();
+        this.ICAppEmails = new HashSet<ICAppEmail>();
     }
 
     public string Id { get; set; }
@@ -143,6 +147,8 @@ public partial class AspNetUser
     public virtual ICollection<App_Start> App_Start { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<SystemNotification> SystemNotifications { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<ICAppEmail> ICAppEmails { get; set; }
 }
 
 public partial class AspNetUserClaim
@@ -313,6 +319,17 @@ public partial class Document
     public virtual AspNetUser AspNetUser { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<TestResult_Document> TestResult_Document { get; set; }
+}
+
+public partial class ICAppEmail
+{
+    public int id { get; set; }
+    public string UserID { get; set; }
+    public int AppID { get; set; }
+    public Nullable<System.DateTime> SubmittedOn { get; set; }
+
+    public virtual Application Application { get; set; }
+    public virtual AspNetUser AspNetUser { get; set; }
 }
 
 public partial class Intermediate_Education

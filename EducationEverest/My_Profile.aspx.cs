@@ -45,54 +45,38 @@ public partial class My_Profile : System.Web.UI.Page
         contact.Text = logged.p;
 
 
-        //show user first name
-        lblLoggedUser.Text = logged.fn;
+        
         //ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
         //ChoicesList.DataBind();
         PaymentsList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
         PaymentsList.DataBind();
 
     }
-    protected void logout_Click(object sender, EventArgs e)
-    {
-        Context.GetOwinContext().Authentication.SignOut();
-        Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
-    }
-    protected void btnFilter_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Filter_Results.aspx");
-    }
-
-
-    protected void btnSearch_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Search_Results.aspx?searchBox=" + TextBox1.Text);
-    }
-
-
     protected void SendEmail_Click(object sender, EventArgs e)
     {
         //string var2 = Session["username"].ToString();
 
-        using (MailMessage mm = new MailMessage("www.hahisb@gmail.com", txtEmailSend.Text))  //here ID changed 02-feb-18
+        using (MailMessage mm = new MailMessage(EEUtil.FromEmail, txtEmailSend.Text))  //here ID changed 02-feb-18
         {
             UserProfile up = new UserProfile();
 
             var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { fn = q.FirstName, ln = q.LastName, eml = q.Email }).FirstOrDefault();
 
 
-            mm.Subject = "Education Everest Invitation from" + " " + logged.eml;
-            string body = "Hello " + txtEmailSend.Text.Trim() + ",";
-            body += "<br /><br />I would like to invite you to visit Education Everest";
-            body += "<br /><a href = '" + "http://localhost:65465/My_Profile.aspx" + "'>Click here to visit Education Everest.</a>";
-            body += "<br /><br />Thanks & regards";
-            body += "<br /><br />" + logged.fn + " " + logged.ln;
-            mm.Body = body;
+            mm.Subject = "Education Everest Invitation from " + logged.eml;
+            string Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~/EmailContent.html"));
+            Body = Body.Replace("{title}", "Education Everest Invitation");
+            Body = Body.Replace("{fullName}", txtEmailSend.Text.Trim());
+            Body = Body.Replace("{body}", "I would like to invite you to visit Education Everest");
+            Body = Body.Replace("{ButtonText}", "" + "Education Everest");
+            Body = Body.Replace("{href}", "" + "http://" + HttpContext.Current.Request.Url.Authority + "/Login.aspx" + "" + "");
+            
+            mm.Body = Body;
             mm.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
-            NetworkCredential NetworkCred = new NetworkCredential("www.hahisb@gmail.com", "EducationEverest"); // here ID and password changed 02-feb-18
+            NetworkCredential NetworkCred = new NetworkCredential(EEUtil.FromEmail, EEUtil.FromPassword); // here ID and password changed 02-feb-18
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = NetworkCred;
             smtp.Port = 587;
