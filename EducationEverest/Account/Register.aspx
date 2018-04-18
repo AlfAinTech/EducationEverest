@@ -4,6 +4,7 @@
  
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
+    <link href="../Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
      <title>Registration</title>
     <meta charset="utf-8" />
     <meta name="google-signin-client_id" content="569202583432-j80c5hsj78tippoqicmfucf8hld4pa2m.apps.googleusercontent.com" />
@@ -89,7 +90,7 @@
                         <br />
                         <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ErrorMessage="Password is Required" ControlToValidate="password" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
-                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" ErrorMessage="Password must be minimum 6 characters long  at least  one upper case and one special character " ForeColor="Red" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" ControlToValidate="password" runat="server"></asp:RegularExpressionValidator>
+                        <%--<asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" ErrorMessage="Password must be minimum 6 characters long  at least  one upper case and one special character " ForeColor="Red" ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}" ControlToValidate="password" runat="server"></asp:RegularExpressionValidator>--%>
 
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -372,9 +373,7 @@
             });
         };
         <%--  Logout code ends here --%>
-        FB.Event.subscribe('auth.login', function (response) {
-            logOut();
-        });
+        
 
        
        
