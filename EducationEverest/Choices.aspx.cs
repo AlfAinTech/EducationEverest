@@ -90,8 +90,25 @@ public partial class Choices : System.Web.UI.Page
             if(Session["UniversityID"] != null)
             {
                 string universityID = Session["UniversityID"].ToString();
-                DropDownList1.SelectedValue = universityID;
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "text", "GetData('"+universityID+"')", true);
+                var firstItem = DropDownList1.Items[0];
+                var item = DropDownList1.Items.FindByValue(universityID);
+                DropDownList1.Items.Clear();
+                DropDownList1.Items.Add(firstItem);
+                DropDownList1.Items.Add(item);
+                DropDownList1.DataBind();
+            }
+            if (Session["EditMode"] != null && Convert.ToBoolean(Session["EditMode"])==true)
+            {
+                List<int> appIDS = (List<int>)Session["appIDS"];
+                int appID = appIDS.First();
+                int UniversityID = db.Applications.Where(a => a.id == appID).First().University.id;
+                var firstItem = DropDownList1.Items[0];
+                var item = DropDownList1.Items.FindByValue(UniversityID.ToString());
+                DropDownList1.Items.Clear();
+                DropDownList1.Items.Add(firstItem);
+                DropDownList1.Items.Add(item);
+                DropDownList1.DataBind();
+                
             }
            
         }

@@ -228,6 +228,8 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
             List<int> applicationIDS = new List<int>();
             applicationIDS.Add(Convert.ToInt32(applicationID));
             Session["appIDS"] = applicationIDS;
+            Session["EditMode"] = true;
+            Session["UniversityID"] = null;
             Response.Redirect("Personal_Detail.aspx");
         }
     }

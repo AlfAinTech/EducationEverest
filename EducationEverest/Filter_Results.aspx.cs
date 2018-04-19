@@ -604,6 +604,7 @@ public partial class Filter_Results : System.Web.UI.Page
         {
             Session["UniversityID"] = btn_Apply.CommandArgument;
             Session["appIDS"] = new List<int>();
+            Session["EditMode"] = null;
             Response.Redirect("Personal_Detail.aspx");
         }
 

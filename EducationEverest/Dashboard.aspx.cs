@@ -69,6 +69,8 @@ public partial class Dashboard : System.Web.UI.Page
     protected void btnFileAdmission_Click(object sender, EventArgs e)
     {
         Session["appIDS"] = new List<int>();
+        Session["EditMode"] = null;
+        Session["UniversityID"] = null;
         Response.Redirect("Personal_Detail.aspx");
     }
 
