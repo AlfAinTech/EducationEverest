@@ -92,6 +92,10 @@ public partial class Personal_Detail : System.Web.UI.Page
             populate_contact_information();
             ScriptManager.RegisterStartupScript(this, typeof(Page), "text", jsString+jsString2, true);
         }
+        saveUploadedFile();
+    }
+    protected void saveUploadedFile()
+    {
         if (FileUpload1.PostedFile != null)
         {
             
@@ -131,9 +135,7 @@ public partial class Personal_Detail : System.Web.UI.Page
                 ViewState["ImageName"] = FileUpload1.PostedFile.FileName;
             }
         }
-        //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
     }
-
     protected void next_click(object sender, EventArgs e)
 
     {
@@ -190,7 +192,7 @@ public partial class Personal_Detail : System.Web.UI.Page
 
         }
 
-        if(db.Media.Any(a => a.User_ID == current_user))
+        if(db.Media.Any(a => a.User_ID == current_user && a.Type == "Personal Detail"))
         {
             Medium media = db.Media.Where(a => a.User_ID == current_user).First();
             if(ViewState["ImagePath"] != null && ViewState["ImagePath"].ToString() != "")
@@ -214,6 +216,7 @@ public partial class Personal_Detail : System.Web.UI.Page
             {
                 newMedia.Path = "~/Content/UsersMedia/ee_UserDefault.png";
             }
+            newMedia.Type = "Personal Detail";
             db.Media.Add(newMedia);
             db.SaveChanges();
         }

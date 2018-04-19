@@ -30,6 +30,11 @@
               $(this).addClass('active');
           });
       });
+      function browse(e) {
+
+            document.getElementById('<%= FileUpload1.ClientID %>').click();
+            e.preventDefault();
+        }
       $(document).ready(function () {
           var x = location.href;
           if (x.includes("pays=true")) {
@@ -77,7 +82,10 @@
         <div class="profile_user_text" style="margin-top: 0px">  <asp:Label ID="id" runat="server" Text="ID: 432521"></asp:Label></div>
         <div class="profile_email_text" style="margin-top: 5px"><asp:Label ID="city" runat="server" Text="Label"></asp:Label></div>
       </div>
-      <div class="profile_image">    </div>
+          <asp:Image runat="server" ID="ibtn_FileUpload"  ImageUrl="~/images/profile_pic.png" CssClass="profile_image" Style="cursor: pointer" onclick="browse()" />
+      <%--<div class="profile_image" onclick="browse()">    </div>--%>
+            <asp:FileUpload ID="FileUpload1" accept="image/*" Style="display: none;" ClientIDMode="Static" runat="server" onchange="this.form.submit()" />
+            <asp:Button ID="btn_UplaodImage" ValidationGroup="validateFile" Style="display: none;" OnClick="btn_UplaodImage_Click" runat="server" />
           </div>
 
 
