@@ -43,14 +43,7 @@ public partial class My_Profile : System.Web.UI.Page
         city.Text = logged.c;
         city2.Text = logged.c;
         contact.Text = logged.p;
-
-
         
-        //ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
-        //ChoicesList.DataBind();
-        PaymentsList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
-        PaymentsList.DataBind();
-
     }
     protected void SendEmail_Click(object sender, EventArgs e)
     {
@@ -111,19 +104,5 @@ public partial class My_Profile : System.Web.UI.Page
     {
         Response.Redirect("Personal_Detail.aspx");
     }
-    protected void PaymentsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-
-        if (e.Item.DataItem is Application)
-        {
-            Application dataItem = e.Item.DataItem as Application;
-            UniversityMedia um = db.UniversityMedias.Where(q => q.UniversityId == dataItem.UnivID).FirstOrDefault();
-            if (um != null)
-            {
-                Image im = (Image)e.Item.FindControl("logo");
-                im.ImageUrl = um.Path;
-            }
-
-        }
-    }
+    
 }
