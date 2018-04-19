@@ -338,7 +338,7 @@
                                     <asp:Button ID ="btn_Apply" CssClass="btn filter_results_apply_button_bg_2_"  OnClick="btn_Apply_Click" runat="server" Text="Apply" style="display:none;color:white;" />
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                 <asp:LinkButton ID="lb_viewProspectus" runat="server" CssClass="NormalCharacterStyle217" style="display:none;color:white;" Text="View Prospectus"></asp:LinkButton>
-                                   <%-- <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Personal_Detail.aspx" style="color: white;">Apply</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a>--%>
+                                   
                             </div>
 
                         </div>
@@ -397,8 +397,8 @@
                         </div>
                     </div>
                     <div class="pull-right" style="margin-top: 50px;">
-                        <span>
-                            <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Personal_Detail.aspx" style="color: white;">Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br />
+                        <%--<span>
+                            <button type="button" class="btn filter_results_apply_button_bg_2_"><a href="Personal_Detail.aspx" style="color: white;">Apply</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=""><span class="NormalCharacterStyle217">View Prospectus</span></a><br />--%>
                         <br />
                     </div>
 
