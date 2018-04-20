@@ -254,7 +254,11 @@
     </body>
 
     <script>
-        
+        window.onload = load();
+        function load() {
+           // gapi.auth2.getAuthInstance().signOut();
+            logOut();
+        }
         window.onbeforeunload = function (e) {
             gapi.auth2.getAuthInstance().signOut();
             logOut();
@@ -294,6 +298,7 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (result) {
+                        FB.logout();
                         window.location.replace(window.location.origin + "/Dashboard.aspx");
                         //alert(window.location.origin);
                        
