@@ -2,7 +2,7 @@
 
 <%@ Register Src="~/UserControls/ApplicationRecords.ascx" TagPrefix="uc1" TagName="ApplicationRecords" %>
 <%@ Register Src="~/UserControls/TopNavBar.ascx" TagPrefix="uc1" TagName="TopNavBar" %>
-
+<%@ Register Src="~/UserControls/PaymentTiles.ascx" TagPrefix="uc1" TagName="PaymentTiles" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +30,11 @@
               $(this).addClass('active');
           });
       });
+      function browse(e) {
+
+            document.getElementById('<%= FileUpload1.ClientID %>').click();
+            e.preventDefault();
+        }
       $(document).ready(function () {
           var x = location.href;
           if (x.includes("pays=true")) {
@@ -77,7 +82,10 @@
         <div class="profile_user_text" style="margin-top: 0px">  <asp:Label ID="id" runat="server" Text="ID: 432521"></asp:Label></div>
         <div class="profile_email_text" style="margin-top: 5px"><asp:Label ID="city" runat="server" Text="Label"></asp:Label></div>
       </div>
-      <div class="profile_image">    </div>
+          <asp:Image runat="server" ID="ibtn_FileUpload"  ImageUrl="~/images/profile_pic.png" CssClass="profile_image" Style="cursor: pointer" onclick="browse()" />
+      <%--<div class="profile_image" onclick="browse()">    </div>--%>
+            <asp:FileUpload ID="FileUpload1" accept="image/*" Style="display: none;" ClientIDMode="Static" runat="server" onchange="this.form.submit()" />
+            <asp:Button ID="btn_UplaodImage" ValidationGroup="validateFile" Style="display: none;" OnClick="btn_UplaodImage_Click" runat="server" />
           </div>
 
 
@@ -249,36 +257,8 @@
       <h3 class="NormalCharacterStyle12">My Banks & Credit Cards</h3>
 
 <br/>
-          
-<asp:Repeater ID="PaymentsList" runat="server" OnItemDataBound="PaymentsList_ItemDataBound" ><ItemTemplate>
-    <div class="panel panel-default ">
-      <div class="panel-heading card_bg">
-        <div class="row text-left" style="border-bottom:1px solid #a3a3a3; padding:2% 2%">
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-             <asp:Image ID="logo" runat="server" src="../images/university_icon.png"/>
-                        
-            </div>
+          <uc1:PaymentTiles runat="server" ID="PaymentTiles" />
 
-             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-        <h4 class="panel-title">
-                  <div class="NormalCharacterStyle_new1 margin_left"><%# Eval("university.Name") %><small class='<%# Eval("CurrentStatus_").ToString()=="pending" || Eval("CurrentStatus_").ToString()=="rejected"?"rejected_text pull-right":"progress_text pull-right" %> pull-right'></span><b><%# Eval("CurrentStatus") %></b></small></div>
-        </h4>
-        <%--<div  class="NormalCharacterStyle_new2 margin_left margin_top">BBA &nbsp;&nbsp;&nbsp; Lahore Campus &nbsp;&nbsp;&nbsp; Spring Semester &nbsp; ...</div>--%>
-        <h4 class="blue_text margin_left">Application ID: <%# Eval("appID") %></h4>
-        <div><span class="orange_text margin_left">Application Date: </span><span class="panel_text"><%# Eval("ApplicationDate") %></span>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="red_text">Late Date: </span><span class="panel_text"><%# Eval("university.deadLine") %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="green_text">Status: </span><span class="panel_text"><%# Eval("CurrentStatus") %></span><small class="NormalCharacterStyle102 pull-right"><b>PKR <%# Eval("Fees") %></b></small>
-      </div>
-        </div>
-        </div><br/>
-        
-        <%--<a href="" class="pull-right NormalCharac terStyle18" style="margin-right: 30px;"><b>VIEW</b></a>--%>
-      </div>
-
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">Some Text</div>
-      </div>
-    </div>
-</ItemTemplate></asp:Repeater>
           
 
 </div>

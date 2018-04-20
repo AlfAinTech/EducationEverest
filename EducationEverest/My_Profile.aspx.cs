@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Drawing;
+using ImageProcessor;
 
 public partial class My_Profile : System.Web.UI.Page
 {
@@ -31,7 +33,6 @@ public partial class My_Profile : System.Web.UI.Page
 
         
         UserProfile up = new UserProfile();
-
         //code to show user information
 
         var logged = db.UserProfiles.Where(q => q.AspNetUserID == current_user).Select(q => new { em = q.Email, fn = q.FirstName, ln = q.LastName, c = q.City, p = q.Phone }).FirstOrDefault();
@@ -43,14 +44,81 @@ public partial class My_Profile : System.Web.UI.Page
         city.Text = logged.c;
         city2.Text = logged.c;
         contact.Text = logged.p;
+        if(db.Media.Any(a => a.User_ID == current_user && a.Type== "Profile Image"))
+        {
+            ibtn_FileUpload.ImageUrl = db.Media.Where(a => a.User_ID == current_user && a.Type == "Profile Image").First().Path;
+        }
+        saveUploadedFile();
+
+    }
+    protected void saveUploadedFile()
+    {
+        if (FileUpload1.PostedFile != null)
+        {
+
+            if (FileUpload1.PostedFile.FileName.Length > 0 && (FileUpload1.PostedFile.ContentType == "image/png" || FileUpload1.PostedFile.ContentType == "image/jpg" || FileUpload1.PostedFile.ContentType == "image/jpeg"))
+            {
+                FileUpload1.SaveAs(Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName);
+
+                string imagePath = Server.MapPath("~/Content/UsersMedia/") + FileUpload1.PostedFile.FileName;
+
+                byte[] photoBytes = File.ReadAllBytes(imagePath); // change imagePath with a valid image path
+
+                // Format is automatically detected though can be changed.
+                int quality = 70;
+                Size size = new Size(80, 80);
+                using (MemoryStream inStream = new MemoryStream(photoBytes))
+                {
+                    using (MemoryStream outStream = new MemoryStream())
+                    {
+                        // Initialize the ImageFactory using the overload to preserve EXIF metadata.
+                        using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+                        {
+                            // Load, resize, set the format and quality and save an image.
+
+                            imageFactory.Load(inStream)
+                                        .Resize(size)
+                                        .Quality(quality)
+                                        .Save(imagePath);
+                        }
+                        // Do something with the stream.
+                    }
+                }
 
 
-        
-        //ChoicesList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
-        //ChoicesList.DataBind();
-        PaymentsList.DataSource = db.Applications.Where(q => q.UserID == current_user).ToList();
-        PaymentsList.DataBind();
+                ibtn_FileUpload.ImageUrl = "~/Content/UsersMedia/" + FileUpload1.PostedFile.FileName;
+                ViewState["ImagePath"] = "~/Content/UsersMedia/" + FileUpload1.PostedFile.FileName;
+                ViewState["ImageName"] = FileUpload1.PostedFile.FileName;
+            }
+            if (db.Media.Any(a => a.User_ID == current_user && a.Type=="Profile Image"))
+            {
+                Medium media = db.Media.Where(a => a.User_ID == current_user && a.Type == "Profile Image").First();
+                if (ViewState["ImagePath"] != null && ViewState["ImagePath"].ToString() != "")
+                {
+                    media.Path = ViewState["ImagePath"].ToString();
+                }
 
+                db.SaveChanges();
+            }
+            else
+            {
+
+                Medium newMedia = new Medium();
+                newMedia.User_ID = current_user;
+                if (ViewState["ImagePath"] != null && ViewState["ImagePath"].ToString() != "")
+                {
+
+                    newMedia.Path = ViewState["ImagePath"].ToString();
+                }
+                else
+                {
+                    newMedia.Path = "~/Content/UsersMedia/ee_UserDefault.png";
+                }
+                newMedia.Type = "Profile Image";
+                db.Media.Add(newMedia);
+                db.SaveChanges();
+            }
+        }
     }
     protected void SendEmail_Click(object sender, EventArgs e)
     {
@@ -111,19 +179,28 @@ public partial class My_Profile : System.Web.UI.Page
     {
         Response.Redirect("Personal_Detail.aspx");
     }
-    protected void PaymentsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    protected void btn_UplaodImage_Click(object sender, EventArgs e)
     {
-
-        if (e.Item.DataItem is Application)
+        //save university logo 
+        string filePath = "";
+        if (FileUpload1.PostedFile != null && FileUpload1.PostedFile.ContentLength > 0)
         {
-            Application dataItem = e.Item.DataItem as Application;
-            UniversityMedia um = db.UniversityMedias.Where(q => q.UniversityId == dataItem.UnivID).FirstOrDefault();
-            if (um != null)
-            {
-                Image im = (Image)e.Item.FindControl("logo");
-                im.ImageUrl = um.Path;
-            }
 
+            string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+            string folder = Server.MapPath("~/Content/UsersMedia/");
+            filePath = Path.Combine(folder, fileName);
+            FileUpload1.PostedFile.SaveAs(filePath);
+            try
+            {
+                Console.WriteLine("File uploaded successfully!!");
+            }
+            catch
+            {
+                Console.WriteLine("File uploading failed!!");
+                filePath = null;
+            }
         }
+
+        ibtn_FileUpload.ImageUrl = filePath;
     }
 }

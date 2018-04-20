@@ -217,6 +217,8 @@ public partial class CampusProfile
     public string AdminRatings { get; set; }
     public string ProspectusLink { get; set; }
     public Nullable<bool> MainCampus { get; set; }
+    public Nullable<bool> ApplicationFeeSame { get; set; }
+    public string ApplicationFee { get; set; }
 
     public virtual Campus Campus { get; set; }
 }
@@ -391,6 +393,7 @@ public partial class Medium
     public int id { get; set; }
     public string User_ID { get; set; }
     public string Path { get; set; }
+    public string Type { get; set; }
 
     public virtual AspNetUser AspNetUser { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

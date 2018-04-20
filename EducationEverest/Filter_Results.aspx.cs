@@ -225,7 +225,7 @@ public partial class Filter_Results : System.Web.UI.Page
             var uniprofiledefault = db.UniversityProfiles.Where(ad => ad.UniversityID == UniversityId).Select(ad => new { address = ad.Address, admissionstatus = ad.AdmissionOpen }).FirstOrDefault();
             //apply and prospetcus button 
             UniversityProfile uniProfile = db.UniversityProfiles.Where(a => a.UniversityID == UniversityId).First();
-            if (uniProfile.LastDate == null || uniProfile.LastDate > DateTime.Today)
+            if ((uniProfile.LastDate == null || uniProfile.LastDate > DateTime.Today) && !(db.Applications.Any(a => a.UnivID == UniversityId && a.UserID == current_user)))
             {
                 btn_Apply.Style.Add("display", "block");
                 btn_Apply.CommandArgument = UniversityId.ToString();
@@ -604,6 +604,7 @@ public partial class Filter_Results : System.Web.UI.Page
         {
             Session["UniversityID"] = btn_Apply.CommandArgument;
             Session["appIDS"] = new List<int>();
+            Session["EditMode"] = null;
             Response.Redirect("Personal_Detail.aspx");
         }
 
