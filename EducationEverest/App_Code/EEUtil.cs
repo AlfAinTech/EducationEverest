@@ -16,7 +16,7 @@ public class EEUtil
     }
     public static string FromEmail = "www.hahisb@gmail.com";
     public static string FromPassword = "EducationEverest";
-    public static int totalStaticDocumentFields = 5;
+    public static int totalStaticDocumentFields = 6;
     public static string calcDivision(int percentage)
     {
         if (percentage >= 0 && percentage <= 32)
