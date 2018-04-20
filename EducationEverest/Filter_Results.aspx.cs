@@ -314,28 +314,28 @@ public partial class Filter_Results : System.Web.UI.Page
         }
 
 
-        if (db.Campuses.Any(x => x.Uni_ID == UniversityId))
-        {
-            CampusProfile campusProfile = new CampusProfile();
-            if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == UniversityId && a.MainCampus == true))
-            {
-                campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == UniversityId && a.MainCampus == true).First();
-            }
-            else
-            {
-                campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == UniversityId).First();
-            }
+        //if (db.Campuses.Any(x => x.Uni_ID == UniversityId))
+        //{
+        //    CampusProfile campusProfile = new CampusProfile();
+        //    if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == UniversityId && a.MainCampus == true))
+        //    {
+        //        campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == UniversityId && a.MainCampus == true).First();
+        //    }
+        //    else
+        //    {
+        //        campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == UniversityId).First();
+        //    }
 
-            if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
-            {
-                Rating2.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
-                                                                                    /*   }*/                                                        //coding for rating
-            }
-        }
-        else
-        {
-            Rating2.CurrentRating = 0;
-        }
+        //    if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
+        //    {
+        //        Rating2.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
+        //                                                                            /*   }*/                                                        //coding for rating
+        //    }
+        //}
+        //else
+        //{
+        //    Rating2.CurrentRating = 0;
+        //}
         if (db.UniversityMedias.Any(x => x.UniversityId == UniversityId))
         {
             string logoPath2 = db.UniversityMedias.Where(m => m.UniversityId == UniversityId).First().Path;
@@ -544,28 +544,28 @@ public partial class Filter_Results : System.Web.UI.Page
                 lblCountDegreePrograms.Text = Convert.ToString(0);
 
             }
-            if (db.Campuses.Any(x => x.Uni_ID == univ.UniversityID))
-            {
-                CampusProfile campusProfile = new CampusProfile();
-                if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true))
-                {
-                    campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
-                }
-                else
-                {
-                    campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID).First();
-                }
+            //if (db.Campuses.Any(x => x.Uni_ID == univ.UniversityID))
+            //{
+            //    CampusProfile campusProfile = new CampusProfile();
+            //    if (db.CampusProfiles.Any(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true))
+            //    {
+            //        campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID && a.MainCampus == true).First();
+            //    }
+            //    else
+            //    {
+            //        campusProfile = db.CampusProfiles.Where(a => a.Campus.Uni_ID == univ.UniversityID).First();
+            //    }
 
-                if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
-                {
-                    Rating1.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
-                                                                                        /*   }*/                                                        //coding for rating
-                }
-            }
-            else
-            {
-                Rating1.CurrentRating = 0;
-            }
+            //    if (campusProfile.AdminRatings != null && campusProfile.AdminRatings != "")
+            //    {
+            //        Rating1.CurrentRating = Convert.ToInt32(campusProfile.AdminRatings);//get the current rating from database
+            //                                                                            /*   }*/                                                        //coding for rating
+            //    }
+            //}
+            //else
+            //{
+            //    Rating1.CurrentRating = 0;
+            //}
 
         }
 
