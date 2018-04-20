@@ -6,16 +6,16 @@
     <link href="Content/img/EducationEverestIcon.jpg" rel="shortcut icon" type="image/jpg" />
     <title>Login</title>
     <meta charset="utf-8" />
-    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-scope" content="profile email" />
     <meta name="google-signin-client_id" content="569202583432-j80c5hsj78tippoqicmfucf8hld4pa2m.apps.googleusercontent.com" />
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://apis.google.com/js/api:client.js"></script>
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/File_admission_application.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/File_admission_application.css" />
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
@@ -23,8 +23,11 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <%--google  button design ends here--%>
     <script type="text/javascript">
-        
-        
+        window.onload = load();
+        function load() {
+           // gapi.auth2.getAuthInstance().signOut();
+            logOut();
+        }
         $(function () {
             var links = $('a.link').click(function () {
                 links.removeClass('active');
@@ -36,6 +39,8 @@
             var fb_button = document.getElementById("btn_fb");
             fb_button.click();
         }
+
+     
     </script>
 </head>
 <body>
@@ -116,7 +121,7 @@
                             <%--<br />
                             <div class="NormalCharacterStyle12 text-center">SignUp with</div>--%>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
+                         <fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkloginstate();"></fb:login-button>
                                 <div class="g-signin2" data-width="350" data-height="50" data-theme="dark" data-longtitle="true" style="display:inline-block" data-onsuccess="onSignIn"></div>
                             </div>
                             <%--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
@@ -242,7 +247,7 @@
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
-               // testAPI();
+                testAPI();
             } else {
                 // The person is not logged into your app or we are unable to tell.
                 //document.getElementById('status').innerHTML = 'Please log ' +
@@ -253,7 +258,7 @@
         // This function is called when someone finishes with the Login
         // Button.  See the onlogin handler attached to it in the sample
         // code below.
-        function checkLoginState() {
+        function checkloginstate() {
             FB.getLoginStatus(function (response) {
                 statusChangeCallback(response);
             });
@@ -337,6 +342,7 @@
                            contentType: "application/json; charset=utf-8",
                            dataType: "json",
                            success: function (result) {
+                               FB.logout();
                                window.location.replace(window.location.origin + "/Dashboard.aspx");
                            },
                            failure: function (response) {

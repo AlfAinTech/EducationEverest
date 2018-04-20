@@ -203,20 +203,20 @@
           <div class="Profile_sidemenu_Name4 text-center" style="margin-top: 100px;">Share on your Media Wall</div><br/>
           <div class="text-center">
               <div class="row">
-                  <div class="col-md-1"></div>
-                  <div class="col-md-2">
-                      <div class="fb-share-button" data-href="http://educationeverest.com/" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Feducationeverest.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                  <div class="col-md-4"></div>
+                  <div class="col-md-1">
+                      <a rel="noopener noreferrer" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://educationeverest.com/"><img src="images/facebook_icon2.png" style="width: 30px;height: 30px"" alt="I would like you to visit http://educationeverest.com/ " /></a>
                   </div>
-                  <div class="col-md-2">
-                      <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script><script type="IN/Share" data-url="http://educationeverest.com/"></script>
+                  <div class="col-md-1">
+                      <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A//educationeverest.com&title=EducationEverest&summary=&source="><img src="images/linkedin.png" style="width: 30px;height: 30px"" alt="I would like you to visit http://educationeverest.com/ " /></a>
                   </div>
-                  <div class="col-md-2">
-                      <div class="g-plus" data-action="share" data-annotation="none" data-href="http://educationeverest.com/"></div>
+                  <div class="col-md-1">
+                      <a rel="noopener noreferrer" target="_blank" href="https://plus.google.com/share?url=http://educationeverest.com/"><img src="images/google_icon2.png" style="width: 30px;height: 30px"" alt="I would like you to visit http://educationeverest.com/ " /></a>
                   </div>
-                  <div class="col-md-2">
-                      <a href="https://twitter.com/share?url=http://educationeverest.com/"><img src="images/Twitter.png" style="width: 30px;height: 30px"" alt="Tweet: I would like you to visit http://educationeverest.com/ " /></a>
+                  <div class="col-md-1">
+                      <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/share?url=http://educationeverest.com/"><img src="images/Twitter.png" style="width: 30px;height: 30px"" alt="Tweet: I would like you to visit http://educationeverest.com/ " /></a>
                   </div>
-                  <div class="col-md-1"></div>
+                  <div class="col-md-4"></div>
               </div>
             
            
