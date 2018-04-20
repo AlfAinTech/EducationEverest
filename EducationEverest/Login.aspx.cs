@@ -17,7 +17,7 @@ public partial class Login : System.Web.UI.Page
     {
         //Response.Redirect("Dashboard.aspx");
 
-        //Session["username"] = Email.Text;
+        // Session["username"] = Email.Text;  
         if (!Page.IsPostBack)
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -45,6 +45,8 @@ public partial class Login : System.Web.UI.Page
             {
                 
                 IdentityHelper.SignIn(manager, user, false);
+                
+               
                 if (Request.QueryString["ReturnUrl"] != null)
                 {
                     IdentityHelper.RedirectToReturnUrl("~/Dashboard.aspx?ReturnUrl=" + Request.QueryString["ReturnUrl"], Response);
@@ -64,6 +66,7 @@ public partial class Login : System.Web.UI.Page
         }
     }
 
+    
     protected void btn_register_Click(object sender, EventArgs e)
     {
         Response.Redirect("/Account/Register.aspx");
@@ -72,6 +75,7 @@ public partial class Login : System.Web.UI.Page
     [System.Web.Services.WebMethod]
     public static Array loginUsingFB(string fbfirstname, string fblastname, string fbemail)
     {
+
         EducationEverestEntities db = new EducationEverestEntities();
         string fbfirstname_ = fbfirstname;
         string fblastname_ = fblastname;
@@ -83,6 +87,8 @@ public partial class Login : System.Web.UI.Page
             IdentityResult result = manager.Create(user);
             if (result.Succeeded)
             {
+
+                
                 AspNetUser anu = new AspNetUser();
                 anu.UserName = fbemail_;
 
@@ -115,7 +121,7 @@ public partial class Login : System.Web.UI.Page
         //redirect to dashboard
 
         // HttpContext.Current.Response.Redirect("Dashboard.aspx");
-
+        
         string[] array = new string[3];
         array[0] = fbfirstname_;
         array[1] = fblastname_;

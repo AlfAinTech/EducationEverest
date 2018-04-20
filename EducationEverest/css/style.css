@@ -8,7 +8,12 @@ html, body
     height: 100%;
 }
 
-
+.homecallout{
+    position: absolute;
+    bottom: 45px;
+    right: 355px;
+    opacity:0.9;
+}
 input[type="text"],input[type="date"]
 {
     font-family : 'Raleway', sans-serif;

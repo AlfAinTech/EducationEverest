@@ -12,13 +12,13 @@
 
             <div id="div_artWork" runat="server">
                 <img src="images/Dashboard.png" />
-                <h3 style="color:#a7a7a7">You have no admission application yet!</h3>
+                <h3></h3>
             </div>
                 <uc1:ApplicationRecords runat="server" ID="ApplicationRecords" />
             <div style="display:inline-block">
                 <asp:Button ID="btnFileAdmission" class=" btn File_Admission_btn NormalCharacterStyle pull-right" runat="server" Text="File Admission Application" OnClick="btnFileAdmission_Click" />
             </div>
-            <div class="homecallout right" id="div_CallOut" runat="server" style="display:inline-block;margin-top: 0px;margin-right: 0px;">
+            <div class="homecallout top" id="div_CallOut" runat="server" style="display:inline-block;margin-top: 0px;margin-right: 0px;">
                 <p class="orange_text">No Admission File yet?</p>
                 <p class="panel_text">Click here to file a new admission application</p>
                 <br />
