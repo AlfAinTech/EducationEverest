@@ -235,8 +235,8 @@
                 
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                         <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
-                        <div class="g-signin2" data-width="350" data-height="50" style="display:inline-block;" data-theme="dark" data-longtitle="true"  data-onsuccess="onSignIn"></div>
+                         <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-width="350" data-height="50" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>--%>
+                        <div class="g-signin2" data-width="350" data-height="50" style="display:inline-block;padding-top:10px;" data-theme="dark" data-longtitle="true"  data-onsuccess="onSignIn"></div>
 
                     <%--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center myspc5">
                          <fb:login-button scope="public_profile,email" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkLoginState();"></fb:login-button>

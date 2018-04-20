@@ -35,6 +35,8 @@ public partial class Upload_Documents : System.Web.UI.Page
         FatherCNICList.DataBind();
         FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti" && q.userID == current_user).ToList();
         FatherIncomeCertiList.DataBind();
+        StudentDomicileList.DataSource = db.Documents.Where(q => q.documentType == "StudentDomicile" && q.userID == current_user).ToList();
+        StudentDomicileList.DataBind();
         MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti" && q.userID == current_user).ToList();
         MatricCertiList.DataBind();
         InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti" && q.userID == current_user).ToList();
@@ -285,5 +287,32 @@ public partial class Upload_Documents : System.Web.UI.Page
         
     }
 
-  
+
+
+    protected void uploadStudentDomicile_Click(object sender, EventArgs e)
+    {
+        string path = Server.MapPath("~/UserDocuments/PersonalDocuments/" + FileUploadStudentDomicile.PostedFile.FileName);
+        FileUploadStudentDomicile.PostedFile.SaveAs(path);
+        Personal_Details pd = db.Personal_Details.Where(q => q.User_ID == current_user).FirstOrDefault();
+        if (pd != null)
+        {
+            Document d = new Document
+            {
+                documentName = FileUploadStudentDomicile.PostedFile.FileName,
+                documentType = "StudentDomicile",
+                userID = current_user,
+                documentURL = path,
+                documentSizeInKB = FileUploadStudentDomicile.PostedFile.ContentLength / 1000,
+            };
+            db.Documents.Add(d);
+            db.SaveChanges();
+        }
+        bindData();
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
+    }
+
+    protected void StudentDomicileList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+
+    }
 }

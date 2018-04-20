@@ -233,7 +233,7 @@
                                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Eval("University.Name") %>' />
                                                 </div>
                                                 <div class="col-md-4 myspc1">
-                                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline" UpdateMode="Always">
+                                                    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server" RenderMode="Inline" UpdateMode="Always">
                                                         <ContentTemplate>
 
                                                             <ajaxToolkit:Rating ID="Rating1" ReadOnly="true" runat="server"
@@ -246,7 +246,7 @@
 
                                                             <asp:Label ID="lblRating" runat="server"></asp:Label>
                                                         </ContentTemplate>
-                                                    </asp:UpdatePanel>
+                                                    </asp:UpdatePanel>--%>
                                                 </div>
                                             </div>
 
@@ -308,7 +308,7 @@
                                 <span style="margin-top: 5px">
                                     <%--Rating Started here--%>
 
-                                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" RenderMode="Inline" UpdateMode="Always">
+                                    <%--<asp:UpdatePanel ID="UpdatePanel2" runat="server" RenderMode="Inline" UpdateMode="Always">
                                         <ContentTemplate>
 
                                             <ajaxToolkit:Rating ID="Rating2" ReadOnly="true" runat="server"
@@ -321,7 +321,7 @@
                     
                     <asp:Label ID="lblRating2" runat="server"></asp:Label>
                                         </ContentTemplate>
-                                    </asp:UpdatePanel>
+                                    </asp:UpdatePanel>--%>
                                     <%--Rating Ends here--%>
 
 

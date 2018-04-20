@@ -131,7 +131,32 @@
                          window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
                      }
                  }
-             }
+                 }
+            function UplaodStudentDomicile() {
+                var ProgressPanel = "showProgressStudentDomicile";
+                var Progressbardiv = "progressStudentDomicile";
+                var UploadControl = '<%=FileUploadStudentDomicile.ClientID %>';
+                 var FileNameLabel = "studentDomicileName";
+                 var FileSizeLabel = "studentDomicileSize";
+                 var FileSizeValidation = ValidateSize(UploadControl);
+                 if (FileSizeValidation) {
+                     var CorectFileType = ValidateFile(UploadControl);
+                     console.log(CorectFileType);
+                     if (CorectFileType) {
+                         var flag = ProgressBar(ProgressPanel, Progressbardiv, UploadControl, FileNameLabel, FileSizeLabel);
+                         if (flag) {
+
+                             var btnID = '<%=uploadStudentDomicile.ClientID %>';
+                                 document.getElementById('<%=uploadStudentDomicile.ClientID %>').click();
+                                 document.getElementById(Progressbardiv).style.display = "block";
+                             }
+                         }
+                         else {
+
+                             window.alert("Invalid File. Please upload a File with" + " extension:\n\n" + validFilesTypes.join(", "));
+                         }
+                     }
+                 }
 
              function UplaodFatherIncomeCerti() {
                  var ProgressPanel = "showProgressFatherIncomeCerti";
@@ -456,6 +481,48 @@
 
                     <br />
                     <div class="panel_divider2"></div>
+                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
+                            <div class="upload_documents_names1">&#9656;Domicile&nbsp;<span class="upload_documents_info">(Scanned Copy)</span></div>
+                            <asp:Repeater ID="StudentDomicileList" OnItemDataBound="StudentDomicileList_ItemDataBound" runat="server">
+                                <ItemTemplate>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
+                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                                            <div class="upload_image_icon margin_top"></div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                                            <div class="upload_documents_names margin_top3"><%# Eval("documentName") %></div>
+                                            <div class="upload_documents_complete_text">Completed&nbsp;&nbsp;&nbsp;<span class="upload_documents_filesize_text"><%# Eval("documentSizeInKB") %> KB</span></div>
+                                        </div>
+                                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+                                            <asp:LinkButton runat="server" ID="deleteStudentDomicile" CommandArgument='<%# Eval("id")  %>' OnClick="delete"><div class=" cancel_icon margin_top3"></div></asp:LinkButton></div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                            <br />
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="showProgressStudentDomicile" style="display: none">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                    <div class="upload_image_icon margin_top"></div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="upload_documents_progress_text margin_top3">
+                                        <asp:Label runat="server" ClientIDMode="Static" ID="studentDomicileName"></asp:Label>&nbsp;&nbsp;&nbsp;<asp:Label runat="server" ClientIDMode="Static" ID="studentDomicileSize" class="upload_documents_filesize_text"></asp:Label></div>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" id="progressStudentDomicile" role="progressbar" style="width: 0%; height: 5px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mybspc2">
+                                <div class="fileUpload btn btn-link NormalCharacterStyle22 pull-right">Upload Document<input id="FileUploadStudentDomicile" type="file" runat="server" onclose="closing(this)" onchange="UplaodStudentDomicile()" name="Upload Image" title="Upload Image" class="upload" /></div>
+                                <asp:Button ID="uploadStudentDomicile" OnClick="uploadStudentDomicile_Click" ClientIDMode="Static" Style="display: none" runat="server" Text="Button" />
+                            </div>
+                            <br />
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:PostBackTrigger ControlID="uploadStudentDomicile"></asp:PostBackTrigger>
+                        </Triggers>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>
