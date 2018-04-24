@@ -132,19 +132,19 @@ public partial class UserControls_ApplicationDetails : System.Web.UI.UserControl
                 TestResultList.DataBind();
                 //Documents detail 
                 
-                studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC").ToList();
+                studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC" && q.userID == application.UserID).ToList();
                 studentCNICList.DataBind();
                 
-                FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC").ToList();
+                FatherCNICList.DataSource = db.Documents.Where(q => q.documentType == "FatherCNIC" && q.userID == application.UserID).ToList();
                 FatherCNICList.DataBind();
                 
-                FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti").ToList();
+                FatherIncomeCertiList.DataSource = db.Documents.Where(q => q.documentType == "FatherIncomeCerti" && q.userID == application.UserID).ToList();
                 FatherIncomeCertiList.DataBind();
                 
-                MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti").ToList();
+                MatricCertiList.DataSource = db.Documents.Where(q => q.documentType == "MatricCerti" && q.userID == application.UserID).ToList();
                 MatricCertiList.DataBind();
                 
-                InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti").ToList();
+                InterCertiList.DataSource = db.Documents.Where(q => q.documentType == "IntermediateCerti" && q.userID == application.UserID).ToList();
                 InterCertiList.DataBind();
                 
 
