@@ -57,23 +57,20 @@
         <div class="container" style="position:relative;">
             <div class="row">
                 <div class="text-left">
-                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                        <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="position: absolute; left: 0; right: 0; margin-top: 50px; background-color: #f01970 !important; padding-bottom: 7px; padding-top: 7px;">
-                            <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: white; font-size: 14px"></span>
-                            <span class="sr-only" style="color: white; font-size: 14px">Error:</span>
-                            <span style="color: white; font-size: 16px">
-                                <asp:Literal runat="server" ID="FailureText" /></span>
-                        </div>
-                    </asp:PlaceHolder>
+                    <div class="alert text-center" id="div_Alert" runat="server" role="alert" style="visibility:hidden;margin-top: 50px; background-color: #f01970 !important; padding-bottom: 7px;padding-top: 7px;">
+                        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true" style="color: white; font-size: 14px"></span>
+                        <span class="sr-only" style="color: white; font-size: 14px">Error:</span>
+                        <span style="color: white; font-size: 16px">Wrong Email or Password. Please provide valid ID details.</span>
+                    </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:65px;">
                         <%--<div class="col-lg-3 col-md-3 col-sm-3"></div>--%>
                         <div class="col-md-offset-3 col-sm-offset-3 col-xs-offset-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left NormalCharacterStyle12 mybspc4" style="margin-top: 20px">Login</div>
-                            <%--<asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                                 <p class="text-danger" style="font-size: 18px; margin-left: 100px">
                                     <asp:Literal runat="server" ID="FailureText" />
                                 </p>
-                            </asp:PlaceHolder>--%>
+                            </asp:PlaceHolder>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 myspc4">
                                 <div class="form">
                                     <asp:TextBox runat="server" ID="Email" class="student_reg_inputs col-lg-6 col-md-6 col-sm-6 col-xs-12" data-error="Bruh, that email address is invalid"
