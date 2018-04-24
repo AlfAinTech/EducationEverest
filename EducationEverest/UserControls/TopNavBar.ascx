@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="TopNavBar.ascx.cs" Inherits="UserControls_TopNavBar" %>
+
 <script type="text/javascript">
+
 function excluirItemNotificacao(e) {
             $('#item_notification_' + e.id).remove()
         }
@@ -9,6 +11,7 @@ function excluirItemNotificacao(e) {
             var clickButton = document.getElementById("<%= btn_notfxn.ClientID %>");
             clickButton.click();
         }
+    
     </script>
 <div class="navbar-inverse" style="border-radius: 0px; height: 60px;">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -118,6 +121,8 @@ function excluirItemNotificacao(e) {
                                 <asp:LinkButton ID="logout" CausesValidation="false" OnClick="logout_Click" runat="server">
                                         <i class=" NormalCharacterStyle24"></i>Logout
                                 </asp:LinkButton></li>
+                         
+                                                     
                         </ul>
                     </li>
                 </ul>

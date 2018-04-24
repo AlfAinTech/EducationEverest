@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -50,8 +52,10 @@ public partial class UserControls_TopNavBar : System.Web.UI.UserControl
     }
     protected void logout_Click(object sender, EventArgs e)
     {
-        Context.GetOwinContext().Authentication.SignOut();
 
+         
+        Context.GetOwinContext().Authentication.SignOut();
+        
         Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
     }
     protected void btnFilter_Click(object sender, EventArgs e)

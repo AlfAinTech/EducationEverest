@@ -20,13 +20,13 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/myScript.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <%--google  button design ends here--%>
     <script type="text/javascript">
         window.onload = load();
         function load() {
-           // gapi.auth2.getAuthInstance().signOut();
-            logOut();
+            
+            
         }
         $(function () {
             var links = $('a.link').click(function () {
@@ -243,8 +243,10 @@
             // app know the current login status of the person.
             // Full docs on the response object can be found in the documentation
             // for FB.getLoginStatus().
+            
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
+                
                 testAPI();
             } else {
                 // The person is not logged into your app or we are unable to tell.
@@ -256,20 +258,22 @@
         // This function is called when someone finishes with the Login
         // Button.  See the onlogin handler attached to it in the sample
         // code below.
-        function checkloginstate() {
-            FB.getLoginStatus(function (response) {
-                statusChangeCallback(response);
-            });
-        }
+        
+            window.fbAsyncInit = function () {
+           FB.init({
+               appId: '516503188742935',
+                    cookie: true,  // enable cookies to allow the server to access 
+                    // the session
+                    xfbml: true,  // parse social plugins on this page
+                    version: 'v2.11' // use graph api version 2.8
+                
+           });
 
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '516503188742935',
-                cookie: true,  // enable cookies to allow the server to access 
-                // the session
-                xfbml: true,  // parse social plugins on this page
-                version: 'v2.11' // use graph api version 2.8
-            });
+           function checkloginstate() {
+               FB.getLoginStatus(function (response) {
+                   statusChangeCallback(response);
+               });
+           }
 
             // Now that we've initialized the JavaScript SDK, we call 
             // FB.getLoginStatus().  This function gets the state of the
@@ -340,7 +344,7 @@
                            contentType: "application/json; charset=utf-8",
                            dataType: "json",
                            success: function (result) {
-                               FB.logout();
+                              FB.logout();
                                window.location.replace(window.location.origin + "/Dashboard.aspx");
                            },
                            failure: function (response) {
@@ -348,14 +352,10 @@
                            }
 
                        });
-
-
-                   
+                                      
                }
                //when user click on fb login code ends here
-             
-
-           });
+          });
        }
 
 
