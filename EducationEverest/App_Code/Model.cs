@@ -597,6 +597,7 @@ public partial class UniversityProfile
     public string Criteria { get; set; }
     public string About { get; set; }
     public string AdmisssionDocs { get; set; }
+    public Nullable<bool> hide { get; set; }
 
     public virtual Medium Medium { get; set; }
     public virtual University University { get; set; }

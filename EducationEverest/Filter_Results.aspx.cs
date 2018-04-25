@@ -135,7 +135,7 @@ public partial class Filter_Results : System.Web.UI.Page
     protected void FillData(string locationStatus, /*string program,*/ string universityStatus, string admissionStatus, string rankingStatus)
 {
         EducationEverestEntities db = new EducationEverestEntities();
-        List<UniversityProfile> Filters = db.UniversityProfiles.Where(x => x.University.Name.Contains(SearchedText) && x.Address.Contains(locationStatus) && x.Type.Contains(universityStatus) && x.AdmissionOpen.ToString().Contains(admissionStatus) && x.HecRanking.Contains(rankingStatus)/*&& x.program.Contains(program)*/).ToList();
+        List<UniversityProfile> Filters = db.UniversityProfiles.Where(x => x.University.Name.Contains(SearchedText) && x.Address.Contains(locationStatus) && x.Type.Contains(universityStatus) && x.AdmissionOpen.ToString().Contains(admissionStatus) && x.HecRanking.Contains(rankingStatus) && (x.hide == null || x.hide == false)).OrderBy(a => a.University.Name).ToList(); ;
         rptSearch.DataSource = Filters;
         rptSearch.DataBind();
         if (Filters.Count==0)

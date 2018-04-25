@@ -384,6 +384,7 @@
           <Property Name="Criteria" Type="nvarchar(max)" />
           <Property Name="About" Type="nvarchar(max)" />
           <Property Name="AdmisssionDocs" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
         </EntityType>
         <EntityType Name="UserActivation">
           <Key>
@@ -1940,6 +1941,7 @@
           <Property Name="Criteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AdmisssionDocs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
         </EntityType>
         <Association Name="FK__Universit__LogoA__2180FB33">
           <End Type="EducationEverestModel.Medium" Role="Medium" Multiplicity="0..1" />
@@ -2689,6 +2691,7 @@
           <EntitySetMapping Name="UniversityProfiles">
             <EntityTypeMapping TypeName="EducationEverestModel.UniversityProfile">
               <MappingFragment StoreEntitySet="UniversityProfile">
+                <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="AdmisssionDocs" ColumnName="AdmisssionDocs" />
                 <ScalarProperty Name="About" ColumnName="About" />
                 <ScalarProperty Name="Criteria" ColumnName="Criteria" />

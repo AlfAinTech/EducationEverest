@@ -31,7 +31,7 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
         {
             DepartmentId = Convert.ToInt32(Request.QueryString["did"]);
         }
-
+        bool flag = false;
         if(db.CampusProfiles.Any(a => a.CampusID == CampusID))
         {
             UniversityProfile university = db.Campuses.Where(a => a.id == CampusID).First().University.UniversityProfiles.First();
@@ -39,6 +39,7 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
             {
                 tb_ApplicationFee.Text = university.ApplicationFee;
                 tb_ApplicationFee.Enabled = false;
+                flag = true;
             }
             else
             {
@@ -57,7 +58,10 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
                 if (db.DepartmentProfiles.Any(a => a.DepartmentID == DepartmentId))
                 {
                     DepartmentProfile departmentProfile = db.DepartmentProfiles.Where(a => a.DepartmentID == DepartmentId).First();
-                    tb_ApplicationFee.Text = departmentProfile.ApplicationFee;
+                    if (!flag)
+                    {
+                        tb_ApplicationFee.Text = departmentProfile.ApplicationFee;
+                    }
                     tb_AdmissionDocs.Text = departmentProfile.AdmissionDocs;
                     tb_Criteria.Text = departmentProfile.Criteria;
                 }

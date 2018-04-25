@@ -66,6 +66,11 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
                 {
                     tb_Deadline.Text = universityProfile.LastDate.Value.ToString("yyyy-MM-dd");
                 }
+                cb_hideUni.Checked = false;
+                if(universityProfile.hide != null && universityProfile.hide == true)
+                {
+                    cb_hideUni.Checked = true;
+                }
                 tb_AdmissionDocs.Text = universityProfile.AdmisssionDocs;
                 tb_About.Text = universityProfile.About;
                 tb_Criteria.Text = universityProfile.Criteria;
@@ -146,6 +151,11 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             {
                 newUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
             }
+            newUniversityProfile.hide = false;
+            if (cb_hideUni.Checked)
+            {
+                newUniversityProfile.hide = true;
+            }
             newUniversityProfile.About = tb_About.Text;
             newUniversityProfile.Criteria = tb_Criteria.Text;
             newUniversityProfile.AdmisssionDocs = tb_AdmissionDocs.Text;
@@ -213,6 +223,11 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             {
                 existingUniversityProfile.LastDate = Convert.ToDateTime(tb_Deadline.Text);
             }
+            existingUniversityProfile.hide = false;
+            if (cb_hideUni.Checked)
+            {
+                existingUniversityProfile.hide = true;
+            }
             existingUniversityProfile.About = tb_About.Text;
             existingUniversityProfile.Criteria = tb_Criteria.Text;
             existingUniversityProfile.AdmisssionDocs = tb_AdmissionDocs.Text;
@@ -267,4 +282,6 @@ public partial class Admin_UniversityPage : System.Web.UI.Page
             divDeadline.Visible = false;
         }
     }
+
+    
 }

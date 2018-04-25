@@ -11,7 +11,7 @@ public partial class Main_Uni : System.Web.UI.Page
     public void show()
     {
         var Universities = db.Universities.ToList();
-        List<University> universities = db.Universities.ToList();
+        List<University> universities = db.Universities.OrderBy(a => a.Name).ToList(); ;
         foreach (var university in universities)
         {
             if (db.Campuses.Any(a => a.Uni_ID == university.id))

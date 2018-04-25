@@ -30,13 +30,13 @@ public partial class Choices : System.Web.UI.Page
 
     public void populate_uni()
     {
-        List<University> uv = db.Universities.ToList();
+        List<University> uv = db.Universities.OrderBy(a => a.Name).ToList();
         
         DropDownList ddl1 = (DropDownList)DropDownList1;
         foreach (var z in uv)
         {
-            // if deadline has passed then skip university
-            if ((z.UniversityProfiles.Count != 0) && !(z.UniversityProfiles.First().LastDate < DateTime.Today))
+            // if deadline has passed then skip university && admission are open && university is not hidden
+            if ((z.UniversityProfiles.Count != 0) && !(z.UniversityProfiles.First().LastDate < DateTime.Today) &&(z.UniversityProfiles.First().AdmissionOpen == true) && (z.UniversityProfiles.First().hide == null || z.UniversityProfiles.First().hide == false))
             {
                 ListItem l = new ListItem();
                 l.Text = z.Name;
@@ -74,6 +74,7 @@ public partial class Choices : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if ((!(HttpContext.Current.User.Identity.IsAuthenticated)) || (HttpContext.Current.User.IsInRole("Super Admin")))
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
@@ -535,6 +536,7 @@ public partial class Choices : System.Web.UI.Page
     {
         applicationIDs = applicationIDs.Distinct().ToList();   
         Session["appIDS"] = applicationIDs;
+        applicationIDs = new List<int>();
         Response.Redirect(Request.RawUrl);
        
     }

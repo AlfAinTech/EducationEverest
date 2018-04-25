@@ -48,7 +48,7 @@
                                         <div class="form-group">
                                             <label class="col-xs-3 control-label">Candidate Id</label>
                                             <div class="col-xs-5">
-                                                <asp:TextBox runat="server" CssClass="form-control" ID="tb_CandidateId" TextMode="Number" placeholder="Please enter Candidate ID"></asp:TextBox>
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="tb_CandidateId" TextMode="SingleLine" placeholder="Please enter Candidate ID"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
