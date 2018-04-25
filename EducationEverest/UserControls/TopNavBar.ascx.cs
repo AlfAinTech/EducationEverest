@@ -76,6 +76,15 @@ public partial class UserControls_TopNavBar : System.Web.UI.UserControl
             SystemNotification thisNotification = db.SystemNotifications.Where(a => a.id == notificationID).First();
             thisNotification.Read = true;
             db.SaveChanges();
+            if (thisNotification.Type == "Application")
+            {
+                Response.Redirect("My_Profile.aspx?ntfxn=true");
+            }
+            else if(thisNotification.Type == "Payment")
+            {
+                Response.Redirect("My_Profile.aspx?ntfxn=false");
+            }
+            
             populateNotifications();
         }
     }

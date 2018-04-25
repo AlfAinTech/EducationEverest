@@ -37,7 +37,7 @@
         }
       $(document).ready(function () {
           var x = location.href;
-          if (x.includes("pays=true")) {
+          if (x.includes("ntfxn=false")) {
               document.getElementById("link_payment").click();
           }
 
