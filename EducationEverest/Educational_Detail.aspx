@@ -341,12 +341,10 @@
                                     <asp:DropDownList ID="DropDownList3" Class="combobox col-lg-12 col-md-12 col-sm-12 col-xs-12 select_option" runat="server">
                                         <Items>
                                             <asp:ListItem Text="Select" Enabled="true" Selected="true" Value="" />
-                                        </Items>
-                                        <Items>
-                                            <asp:ListItem Text="FBISE" Value="FBISE" />
-                                        </Items>
-                                        <Items>
-                                            <asp:ListItem Text="BISE LAHORE" Value="BISE LAHORE" />
+                                            <asp:ListItem Text="FBISE" Enabled="true" Selected="false" Value="FBISE" />
+                                            <asp:ListItem Text="BISE LAHORE" Enabled="true" Selected="false" Value="BISE LAHORE" />
+                                            <asp:ListItem Text="IGCSE" Enabled="true" Selected="false" Value="IGCSE" />
+                                            <asp:ListItem Text="A-/AS-Levels" Enabled="true" Selected="false" Value="A-/AS-Levels" />
                                         </Items>
                                     </asp:DropDownList>
                                     <br />

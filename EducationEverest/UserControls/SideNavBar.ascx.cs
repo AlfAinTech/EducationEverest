@@ -94,7 +94,7 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
                 List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
                 List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
                 int staticDocsCount = documents.Count();
-                if (documents.Any(a => a.TestResult_Document.Any(x => universityIDs.Contains(x.UniID))) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
+                if (staticDocsCount >= EEUtil.totalStaticDocumentFields)
                 {
                     imgTickDocuments.Visible = true;
                 }
