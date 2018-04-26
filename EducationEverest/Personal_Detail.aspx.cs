@@ -33,9 +33,9 @@ public partial class Personal_Detail : System.Web.UI.Page
             }
             //ddlnationality.SelectedItem.Text = personal.Nationality;
         }
-        if (db.Media.Any(a => a.User_ID == current_user))
+        if (db.Media.Any(a => a.User_ID == current_user && a.Type== "Personal Detail"))
         {
-            Medium media = db.Media.Where(a => a.User_ID == current_user).First();
+            Medium media = db.Media.Where(a => a.User_ID == current_user && a.Type == "Personal Detail").First();
             ibtn_FileUpload.ImageUrl = media.Path;
 
         }

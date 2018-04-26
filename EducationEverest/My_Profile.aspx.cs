@@ -177,6 +177,9 @@ public partial class My_Profile : System.Web.UI.Page
 
     protected void btnFileAdmission_Click(object sender, EventArgs e)
     {
+        Session["appIDS"] = new List<int>();
+        Session["EditMode"] = null;
+        Session["UniversityID"] = null;
         Response.Redirect("Personal_Detail.aspx");
     }
     protected void btn_UplaodImage_Click(object sender, EventArgs e)
