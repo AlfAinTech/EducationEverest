@@ -128,8 +128,8 @@ public partial class UserControls_ApplicationDetails : System.Web.UI.UserControl
                 }
                 //Test Results Detail
                 
-                TestResultList.DataSource = db.Test_Results.Where(q => q.User_ID == application.UserID).ToList();
-                TestResultList.DataBind();
+                //TestResultList.DataSource = db.Test_Results.Where(q => q.User_ID == application.UserID).ToList();
+                //TestResultList.DataBind();
                 //Documents detail 
                 
                 studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC" && q.userID == application.UserID).ToList();
@@ -154,8 +154,8 @@ public partial class UserControls_ApplicationDetails : System.Web.UI.UserControl
                 else
                     universities = db.MakeChoices.Where(q => q.User_ID == application.UserID && q.Uni_ID == application.UnivID).Select(q => q.Uni_ID).ToList();
 
-                TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
-                TestResultDocList.DataBind();
+                //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
+                //TestResultDocList.DataBind();
             
         }
         else

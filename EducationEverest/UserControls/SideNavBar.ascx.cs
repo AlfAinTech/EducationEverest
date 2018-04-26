@@ -60,32 +60,32 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
         {
             imgExcEducationDetails.Visible = true;
         }
-        if (db.Test_Results.Any(a => a.User_ID == current_user) && actionStatus != 0)
-        {
-            if (Session["appIDS"] != null)
-            {
-                List<int> applicationIDS = (List<int>)Session["appIDS"];
-                List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
-                List<string> testNames = db.UniversityProfiles.Where(a => universityIDs.Contains(a.UniversityID)).Select(a => a.TestName).ToList();
-                foreach (string testname in testNames)
-                {
-                    if (db.Test_Results.Any(a => a.Test_Name == testname && a.User_ID == current_user))
-                    {
-                        imgTickTestResults.Visible = true;
-                    }
-                    else
-                    {
-                        imgExcTestResults.Visible = true;
-                        imgTickTestResults.Visible = false;
-                        break;
-                    }
-                }
-            }
-        }
-        else if (actionStatus > 0)
-        {
-            imgExcTestResults.Visible = true;
-        }
+        //if (db.Test_Results.Any(a => a.User_ID == current_user) && actionStatus != 0)
+        //{
+        //    if (Session["appIDS"] != null)
+        //    {
+        //        List<int> applicationIDS = (List<int>)Session["appIDS"];
+        //        List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
+        //        List<string> testNames = db.UniversityProfiles.Where(a => universityIDs.Contains(a.UniversityID)).Select(a => a.TestName).ToList();
+        //        foreach (string testname in testNames)
+        //        {
+        //            if (db.Test_Results.Any(a => a.Test_Name == testname && a.User_ID == current_user))
+        //            {
+        //                imgTickTestResults.Visible = true;
+        //            }
+        //            else
+        //            {
+        //                imgExcTestResults.Visible = true;
+        //                imgTickTestResults.Visible = false;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
+        //else if (actionStatus > 0)
+        //{
+        //    imgExcTestResults.Visible = true;
+        //}
         if (db.Documents.Any(q => q.userID == current_user) && actionStatus != 0)
         {
             if (Session["appIDS"] != null)
@@ -93,7 +93,7 @@ public partial class UserControls_SideNavBar : System.Web.UI.UserControl
                 List<int> applicationIDS = (List<int>)Session["appIDS"];
                 List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
                 List<Document> documents = db.Documents.Where(a => a.userID == current_user).ToList();
-                int staticDocsCount = documents.Count() - documents.Where(a => a.TestResult_Document.Any()).Count();
+                int staticDocsCount = documents.Count();
                 if (documents.Any(a => a.TestResult_Document.Any(x => universityIDs.Contains(x.UniID))) && staticDocsCount >= EEUtil.totalStaticDocumentFields)
                 {
                     imgTickDocuments.Visible = true;

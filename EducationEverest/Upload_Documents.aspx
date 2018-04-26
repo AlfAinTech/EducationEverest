@@ -646,14 +646,12 @@
 
 
 
-        <div class="panel panel-default panel_shadow">
+        <%--<div class="panel panel-default panel_shadow">
             <a id="menu_toggleTest" class="menu_toggles" href="#Test" data-toggle="collapse" data-parent="#accordion">
                 <div class="panel-heading" style="height: 60px">
                     <h4 class="panel-title">
                         <div class="NormalCharacterStyle10 margin_top">Test Result Documents
                             <div class="pull-right">
-                            <%--<img src="images/caution_icon.png"  style="margin-right:5px" />
-                            <img src="images/check_icon.png"   style="margin-right:10px"/>--%>
                             <div class="icon-arrow-right pull-right">
                             <div class="check-"></div>
                             <i class="glyphicon glyphicon-chevron-down normal-color"></i></div>
@@ -706,7 +704,7 @@
                 </div>
             </div>
         </div>
-
+--%>
 
 
 

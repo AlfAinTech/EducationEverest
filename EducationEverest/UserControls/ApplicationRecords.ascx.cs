@@ -157,9 +157,9 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                     InterGrades.Text = ie.Division == null ? "" : ie.Division;
                 }
                 //Test Results Detail
-                Repeater TestResultList = (Repeater)e.Item.FindControl("TestResultList");
-                TestResultList.DataSource = db.Test_Results.Where(q => q.User_ID == current_user).ToList();
-                TestResultList.DataBind();
+                //Repeater TestResultList = (Repeater)e.Item.FindControl("TestResultList");
+                //TestResultList.DataSource = db.Test_Results.Where(q => q.User_ID == current_user).ToList();
+                //TestResultList.DataBind();
                 //Documents detail 
                 Repeater studentCNICList = (Repeater)e.Item.FindControl("studentCNICList");
                 studentCNICList.DataSource = db.Documents.Where(q => q.documentType == "StudentCNIC" && q.userID == current_user).ToList();
@@ -184,8 +184,8 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                 else
                     universities = db.MakeChoices.Where(q => q.User_ID == current_user && q.Uni_ID == dataItem.UnivID).Select(q => q.Uni_ID).ToList();
 
-                TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
-                TestResultDocList.DataBind();
+                //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
+                //TestResultDocList.DataBind();
             }
         }
     }

@@ -164,7 +164,7 @@ public partial class Educational_Detail : System.Web.UI.Page
 
         //button next click from Educational Details to Test Result
         
-            Response.Redirect("Test_Result.aspx");
+            Response.Redirect("Upload_Documents.aspx");
         
 
 

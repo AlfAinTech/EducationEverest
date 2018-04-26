@@ -44,13 +44,14 @@ public partial class Upload_Documents : System.Web.UI.Page
         //List<int> universities = db.MakeChoices.Where(q=>q.User_ID == current_user).Select(q => q.Uni_ID).ToList();
         //TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universities.Contains(q.UniversityID)).ToList();
         //TestResultDocList.DataBind();
-        if (Session["appIDS"] != null)
-        {
-            List<int> applicationIDS = (List<int>)Session["appIDS"];
-            List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
-            TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
-            TestResultDocList.DataBind();
-        }
+        //code commented for test results
+        //if (Session["appIDS"] != null)
+        //{
+        //    List<int> applicationIDS = (List<int>)Session["appIDS"];
+        //    List<int> universityIDs = db.Applications.Where(a => applicationIDS.Contains(a.id)).Select(a => a.University.id).ToList();
+        //    TestResultDocList.DataSource = db.UniversityProfiles.Where(q => universityIDs.Contains(q.University.id)).ToList();
+        //    TestResultDocList.DataBind();
+        //}
         
         //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "a_key", "OpenCurrentPage();", true);
 

@@ -260,7 +260,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card panel_shadow">
+                <%--<div class="card panel_shadow">
                     <a id="menu_toggle3" href="#mytests" data-toggle="collapse" data-parent="#accordion">
                         <div class="card-header text-left" style="background: white; height: 60px;">
 
@@ -283,7 +283,6 @@
                                             <div class="Profile_sidemenu_Name4">Total Marks:</div>
                                             <div class="Profile_sidemenu_Name4">Obtained Marks:</div>
                                             <div class="Profile_sidemenu_Name4">Percentage:</div>
-                                            <%--<div class="Profile_sidemenu_Name4">Aggregate:</div>--%>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
                                             <div><%# Eval("Rollno")  %></div>
@@ -291,7 +290,6 @@
                                             <div><%# Eval("Total_Marks")  %></div>
                                             <div><%# Eval("Obtained_Marks")  %></div>
                                             <div><%# Eval("Percentage")  %> %</div>
-                                            <%--<div ><%# Eval("Aggregate")  %> %</div>--%>
                                         </div>
                                     </div>
                                     <br />
@@ -301,7 +299,7 @@
                             </asp:Repeater>
                         </div>
                     </div>
-                </div>
+                </div>--%>
                 <div class="card panel_shadow">
                     <a id="menu_toggle3" href="#mydocs" data-toggle="collapse" data-parent="#accordion">
                         <div class="card-header text-left" style="background: white; height: 60px;">
@@ -437,7 +435,7 @@
                                 <br />
                                 <div class="profile_divider2"></div>
                                 <br />
-                                <asp:Repeater ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" runat="server">
+                                <%--<asp:Repeater ID="TestResultDocList" OnItemDataBound="TestResultDocList_ItemDataBound" runat="server">
                                     <ItemTemplate>
                                         <div class="NormalCharacterStyle101 ">&#9656;<%# Eval("TestName")  %> Certificate/Result Cards&nbsp;<span class="upload_documents_info">(Scaned Copy High Resolution)</span></div>
                                         <div class="row" style="padding: 2% 5% 2% 5%">
@@ -462,7 +460,7 @@
                                         <div class="profile_divider2"></div>
                                         <br />
                                     </ItemTemplate>
-                                </asp:Repeater>
+                                </asp:Repeater>--%>
                             </div>
                         </div>
                     </div>
