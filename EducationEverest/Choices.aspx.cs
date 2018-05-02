@@ -12,6 +12,8 @@ using System.Web.UI.HtmlControls;
 
 public partial class Choices : System.Web.UI.Page
 {
+    public static Dictionary<string, List<int>> usersApplications = new Dictionary<string, List<int>>();
+     
     public static List<int> applicationIDs = new List<int>();
    public class ApplicationData
     {
@@ -74,7 +76,10 @@ public partial class Choices : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (!usersApplications.ContainsKey(current_user))
+        {
+            usersApplications.Add(current_user, new List<int>());
+        }
         if ((!(HttpContext.Current.User.Identity.IsAuthenticated)) || (HttpContext.Current.User.IsInRole("Super Admin")))
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
@@ -375,7 +380,10 @@ public partial class Choices : System.Web.UI.Page
                                             dbcontext.Applications.Add(app);
                                             try { dbcontext.SaveChanges();
                                                 isNewAppAdded = true;
-                                                applicationIDs.Add(app.id);
+                                                List<int> applixnIds = usersApplications[current_user];
+                                                applixnIds.Add(app.id);
+                                                usersApplications[current_user] = applixnIds;
+                                                //applicationIDs.Add(app.id);
                                                 //create a notification for user
                                                 SystemNotification newNotification = new SystemNotification();
                                                 newNotification.User_ID = current_user;
@@ -398,7 +406,10 @@ public partial class Choices : System.Web.UI.Page
                                         }
                                         else
                                         {
-                                            applicationIDs.Add(dbcontext.Applications.Where(q => q.UserID == current_user && q.UnivID == univ.id).First().id);
+                                            List<int> applixnIds = usersApplications[current_user];
+                                            applixnIds.Add(dbcontext.Applications.Where(q => q.UserID == current_user && q.UnivID == univ.id).First().id);
+                                            usersApplications[current_user] = applixnIds;
+                                            //applicationIDs.Add(dbcontext.Applications.Where(q => q.UserID == current_user && q.UnivID == univ.id).First().id);
                                         }
                                     }
                                     else
@@ -413,7 +424,11 @@ public partial class Choices : System.Web.UI.Page
                                         };
                                         dbcontext.Applications.Add(app);
                                         dbcontext.SaveChanges();
-                                        applicationIDs.Add(app.id);
+                                        //applicationIDs.Add(app.id);
+                                        List<int> applixnIds = usersApplications[current_user];
+                                        applixnIds.Add(app.id);
+                                        usersApplications[current_user] = applixnIds;
+                                        
                                         isNewAppAdded = true;
                                         //create a notification for user
                                         SystemNotification newNotification = new SystemNotification();
@@ -453,10 +468,13 @@ public partial class Choices : System.Web.UI.Page
                                     // getting application id of existing application
                                     MakeChoice mc = dbcontext.MakeChoices.Where(x => x.User_ID == current_user && x.Uni_ID == univ.id && x.Campus_Id == cmps.id && x.Department_Id == depart.id && x.Programm_Id == prgm.id && x.Category_Id == pgcat.id).First();
                                     List<Application> applications = dbcontext.Applications.Where(a => a.UnivID == mc.Uni_ID && a.UserID== current_user).ToList();
-                                    foreach(var application in applications)
+                                    List<int> applixnIds = usersApplications[current_user];
+                                    foreach (var application in applications)
                                     {
-                                        applicationIDs.Add(application.id);
+                                        applixnIds.Add(application.id);
+                                        //applicationIDs.Add(application.id);
                                     }
+                                    usersApplications[current_user] = applixnIds;
                                 }
 
                             }
@@ -534,9 +552,13 @@ public partial class Choices : System.Web.UI.Page
 
     protected void btn_saveSession_Click(object sender, EventArgs e)
     {
-        applicationIDs = applicationIDs.Distinct().ToList();   
-        Session["appIDS"] = applicationIDs;
-        applicationIDs = new List<int>();
+        List<int> applicationsIDs = new List<int>();
+
+        applicationsIDs= usersApplications[current_user];
+        applicationsIDs = applicationsIDs.Distinct().ToList();
+        //applicationIDs = applicationIDs.Distinct().ToList();   
+        Session["appIDS"] = applicationsIDs;
+        //applicationIDs = new List<int>();
         Response.Redirect(Request.RawUrl);
        
     }
