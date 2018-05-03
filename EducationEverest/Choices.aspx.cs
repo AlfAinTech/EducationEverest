@@ -558,6 +558,7 @@ public partial class Choices : System.Web.UI.Page
         applicationsIDs = applicationsIDs.Distinct().ToList();
         //applicationIDs = applicationIDs.Distinct().ToList();   
         Session["appIDS"] = applicationsIDs;
+        usersApplications.Remove(current_user);
         //applicationIDs = new List<int>();
         Response.Redirect(Request.RawUrl);
        
