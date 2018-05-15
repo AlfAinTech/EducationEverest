@@ -63,7 +63,7 @@
 
 
                         <a href="" data-toggle="tab" data-target="#easypaisatab2">
-                            <div class="col-md-2" style="margin-left: 150px; box-shadow: 0px 0px 20px #999;">
+                            <div class="col-md-2" style="margin-left: 150px;">
                                 <div class="popup_cards2">
                                     <div class="easy_paisa_logo"></div>
                                     <br />
@@ -85,7 +85,7 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <div class="payment_methods_text">Jazz Cash</div>
+                                    <div class="payment_methods_text">Bank of Punjab</div>
                                 </div>
                             </div>
                         </a>
@@ -105,10 +105,11 @@
                                         </div>
                                         <br />
                                         <br />
-                                        <div class="NormalCharacterStyle222">Mr. Representative : +92 321 999 999</div>
+                                        <div class="NormalCharacterStyle222">EasyPaisa Account Title: Fahad Ali Subhan</div>
+                                        <div class="NormalCharacterStyle222">Phone Number: +92 321 6444374</div>
                                         <br />
-                                        <br />
-                                        <div class="NormalCharacterStyle16">Our representative will guide you through.</div>
+                                        
+                                        <div class="NormalCharacterStyle16">Call at 0322 EVEREST (3837378) if you have any questions.</div>
 
                                     </div>
 
@@ -127,14 +128,34 @@
                                         </div>
                                         <br />
                                         <br />
-                                        <div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4567</div>
+                                        <div class="NormalCharacterStyle222">Account No: 6020096349000012</div>
+                                        <div class="NormalCharacterStyle222">Account Title: Education Everest (pvt) Ltd Bank of Punjab</div>
                                         <br />
-                                        <br />
-                                        <div class="NormalCharacterStyle16">Our representative will guide you through.</div>
+                                        
+                                        <div class="NormalCharacterStyle16">Call at 0322 EVEREST (3837378) if you have any questions.</div>
 
                                     </div>
 
                                 </div>
+
+                                <%--<div class="callout1 bottom text-center">
+                                    <div class="col-md-12 text-center" style="margin-top: 40px">
+                                        <div class="NormalCharacterStyle16">
+                                            Please contact the following representative for
+                                                <br />
+                                            payment information.
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div class="NormalCharacterStyle222">EasyPaisa Account Title: Fahad Ali Subhan</div>
+                                        <div class="NormalCharacterStyle222">Phone Number: +92 321 6444374</div>
+                                        <br />
+                                        
+                                        <div class="NormalCharacterStyle16">Call at 0322 EVEREST (3837378) if you have any questions.</div>
+
+                                    </div>
+
+                                </div>--%>
 
                             </div>
 
@@ -212,7 +233,7 @@
                                     <br />
                                     <br />
                                     <br />
-                                    <div class="payment_methods_text">Jazz Cash</div>
+                                    <div class="payment_methods_text">Bank of Punjab</div>
                                 </div>
                             </div>
                         </a>
@@ -232,10 +253,11 @@
                                         </div>
                                         <br />
                                         <br />
-                                        <div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4587</div>
+                                        <div class="NormalCharacterStyle222">EasyPaisa Account Title: Fahad Ali Subhan</div>
+                                        <div class="NormalCharacterStyle222">Phone Number: +92 321 6444374</div>
+                                        
                                         <br />
-                                        <br />
-                                        <div class="NormalCharacterStyle16">Our representative will guide you through.</div>
+                                        <div class="NormalCharacterStyle16">Call at 0322 EVEREST (3837378) if you have any questions.</div>
 
                                     </div>
 
@@ -245,10 +267,27 @@
                             <div class="tab-pane fade in" id="jazztab">
 
                                
-                                    
+                                    <div class="callout1 bottom text-center">
+                                    <div class="col-md-12 text-center" style="margin-top: 40px">
+                                        <div class="NormalCharacterStyle16">
+                                            Please contact the following representative for
+                                                <br />
+                                            payment information.
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div class="NormalCharacterStyle222">Account No: 6020096349000012</div>
+                                        <div class="NormalCharacterStyle222">Account Title: Education Everest (pvt) Ltd Bank of Punjab</div>
+                                        <br />
+                                        
+                                        <div class="NormalCharacterStyle16">Call at 0322 EVEREST (3837378) if you have any questions.</div>
+
+                                    </div>
+
+                                </div>
                                     
                                         
-                                        <div class="callout1 bottom text-center">
+                                        <%--<div class="callout1 bottom text-center">
                                             <div class="col-md-12 text-center" style="margin-top: 40px">
                                                 <div class="NormalCharacterStyle16">
                                                     Please contact the following representative for
@@ -257,14 +296,15 @@
                                                 </div>
                                                 <br />
                                                 <br />
-                                                <div class="NormalCharacterStyle222">Mr. Representative : +92 321 123 4567</div>
-                                                <br />
-                                                <br />
-                                                <div class="NormalCharacterStyle16">Our representative will guide you through.</div>
+                                                <div class="NormalCharacterStyle222">EasyPaisa Account Title: Fahad Ali Subhan</div>
+                                        <div class="NormalCharacterStyle222">Phone Number: +92 321 6444374</div>
+                                        <br />
+                                        
+                                        <div class="NormalCharacterStyle16">Call at 0322 EVEREST (3837378) if you have any questions.</div>
 
                                             </div>
 
-                                        </div>
+                                        </div>--%>
 
                                   
                                

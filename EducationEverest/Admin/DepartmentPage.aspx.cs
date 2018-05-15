@@ -64,6 +64,11 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
                     }
                     tb_AdmissionDocs.Text = departmentProfile.AdmissionDocs;
                     tb_Criteria.Text = departmentProfile.Criteria;
+                    cb_hideDept.Checked = false;
+                    if (departmentProfile.hide != null && departmentProfile.hide == true)
+                    {
+                        cb_hideDept.Checked = true;
+                    }
                 }
             }
         }
@@ -104,6 +109,11 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
                 newDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
                 newDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
                 newDepartmentProfile.Criteria = tb_Criteria.Text;
+                newDepartmentProfile.hide = false;
+                if (cb_hideDept.Checked)
+                {
+                    newDepartmentProfile.hide = true;
+                }
 
 
                 db.DepartmentProfiles.Add(newDepartmentProfile);
@@ -123,6 +133,11 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
                     existingDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
                     existingDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
                     existingDepartmentProfile.Criteria = tb_Criteria.Text;
+                    existingDepartmentProfile.hide = false;
+                    if (cb_hideDept.Checked)
+                    {
+                        existingDepartmentProfile.hide = true;
+                    }
                 }
                 else
                 {
@@ -131,6 +146,11 @@ public partial class Admin_DepartmentPage : System.Web.UI.Page
                     newDepartmentProfile.AdmissionDocs = tb_AdmissionDocs.Text;
                     newDepartmentProfile.ApplicationFee = tb_ApplicationFee.Text;
                     newDepartmentProfile.Criteria = tb_Criteria.Text;
+                    newDepartmentProfile.hide = false;
+                    if (cb_hideDept.Checked)
+                    {
+                        newDepartmentProfile.hide = true;
+                    }
                     db.DepartmentProfiles.Add(newDepartmentProfile);
                 }
 

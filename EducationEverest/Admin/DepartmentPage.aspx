@@ -37,6 +37,8 @@
                 <asp:TextBox runat="server" ID="tb_ApplicationFee" CssClass="form-control" placeholder="Enter Application Fee" TextMode="Number" ></asp:TextBox>
             </div>
         </div>
+
+        
         
         <div class="row">
             <div class="col-md-2">
@@ -54,6 +56,18 @@
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="tb_AdmissionDocs" Width="1000" CssClass="form-control" placeholder="Enter Admission Docs For This Department" TextMode="MultiLine"  ></asp:TextBox>
             </div>
+        </div>
+
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-4">
+                Hide this Department for candidates
+            </div>
+                <div class="col-md-2">
+                <asp:CheckBox Text="Hide" runat="server"  ID="cb_hideDept" Checked="false" Enabled="true"  />
+                    </div>
+                <div class="col-md-6">
+                    </div>
+            
         </div>
 
         <div class="row" style="margin-top:50px;">

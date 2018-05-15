@@ -93,7 +93,12 @@ public partial class Admin_ProgramsPage : System.Web.UI.Page
             {
                 Programm program = db.Programms.Where(a => a.id == ProgramId).First();
                 tb_ProgramName.Text = program.Program_Name;
-                
+                cb_hidePrgrm.Checked = false;
+                if (program.hide != null && program.hide == true)
+                {
+                    cb_hidePrgrm.Checked = true;
+                }
+
                 //populate program categories
 
             }
@@ -124,6 +129,11 @@ public partial class Admin_ProgramsPage : System.Web.UI.Page
                 newPorgram.Program_Name = tb_ProgramName.Text;
                 newPorgram.Department_ID = DepartmentId;
                 newPorgram.Status = true;
+                newPorgram.hide = false;
+                if (cb_hidePrgrm.Checked)
+                {
+                    newPorgram.hide = true;
+                }
                 db.Programms.Add(newPorgram);
                 db.SaveChanges();
 
@@ -155,6 +165,11 @@ public partial class Admin_ProgramsPage : System.Web.UI.Page
 
                 existingProgram.Program_Name = tb_ProgramName.Text;
                 existingProgram.Status = true;
+                existingProgram.hide = false;
+                if (cb_hidePrgrm.Checked)
+                {
+                    existingProgram.hide = true;
+                }
 
                 db.SaveChanges();
 

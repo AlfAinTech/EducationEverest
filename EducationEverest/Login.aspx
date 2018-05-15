@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/myScript.js"></script>
+    
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <%--google  button design ends here--%>
     <script type="text/javascript">
@@ -118,7 +118,7 @@
                             <%--<br />
                             <div class="NormalCharacterStyle12 text-center">SignUp with</div>--%>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                <fb:login-button scope="public_profile,email" data-max-rows="1" data-width="350" data-height="50"  data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkloginstate();"></fb:login-button>
+                                <%--<fb:login-button scope="public_profile,email" data-max-rows="1" data-width="350" data-height="50"  data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"  onlogin="checkloginstate();"></fb:login-button>--%>
                                 
                                 <div class="g-signin2" data-width="350" data-height="50" data-theme="dark" data-longtitle="true" style="display:inline-block;padding-top:10px;" data-onsuccess="onSignIn"></div>
                             </div>

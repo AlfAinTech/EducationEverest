@@ -219,6 +219,7 @@ public partial class CampusProfile
     public Nullable<bool> MainCampus { get; set; }
     public Nullable<bool> ApplicationFeeSame { get; set; }
     public string ApplicationFee { get; set; }
+    public Nullable<bool> hide { get; set; }
 
     public virtual Campus Campus { get; set; }
 }
@@ -299,6 +300,7 @@ public partial class DepartmentProfile
     public string ApplicationFee { get; set; }
     public string Criteria { get; set; }
     public string AdmissionDocs { get; set; }
+    public Nullable<bool> hide { get; set; }
 
     public virtual Department Department { get; set; }
 }
@@ -453,6 +455,7 @@ public partial class Programm
     public int Department_ID { get; set; }
     public string Program_Name { get; set; }
     public Nullable<bool> Status { get; set; }
+    public Nullable<bool> hide { get; set; }
 
     public virtual Department Department { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

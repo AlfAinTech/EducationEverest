@@ -76,23 +76,34 @@ public partial class Choices : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!usersApplications.ContainsKey(current_user))
+        string currentUser = HttpContext.Current.User.Identity.GetUserId();
+        if (!usersApplications.ContainsKey(currentUser))
         {
-            usersApplications.Add(current_user, new List<int>());
+            usersApplications.Add(currentUser, new List<int>());
         }
         if ((!(HttpContext.Current.User.Identity.IsAuthenticated)) || (HttpContext.Current.User.IsInRole("Super Admin")))
         {
             Response.Redirect("~/Login.aspx?ReturnUrl=" + Request.RawUrl);
         }
-        if (Session["appIDS"] == null)
-        {
-            Response.Redirect("Dashboard.aspx");
-        }
+        
         if (!IsPostBack)
         {
+            if (Session["appIDS"] == null)
+            {
+                Response.Redirect("Dashboard.aspx");
+            }
+            else
+            {
+                List<int> appIds = (List<int>)Session["appIDS"];
+                if (appIds.Count == 0 && usersApplications.ContainsKey(currentUser))
+                {
+                    usersApplications[currentUser] = new List<int>();
+                }
+            }
             populate_uni();
             current_user = HttpContext.Current.User.Identity.GetUserId();
             //if user is coming from searc or filter screeen check session
+            
             if(Session["UniversityID"] != null)
             {
                 string universityID = Session["UniversityID"].ToString();
@@ -134,7 +145,7 @@ public partial class Choices : System.Web.UI.Page
             University univ = dbcontext.Universities.First(x => x.id == id_);
             if (dbcontext.Campuses.Any(x => x.Uni_ID == univ.id))
             {
-                List<Campus> cmps = dbcontext.Campuses.Where(x => x.Uni_ID == univ.id).ToList();
+                List<Campus> cmps = dbcontext.Campuses.Where(x => x.Uni_ID == univ.id && (x.CampusProfiles.FirstOrDefault().hide == false || x.CampusProfiles.FirstOrDefault().hide == null)).ToList();
                 string[] array = new string[cmps.Count];
                 var i = 0;
                 foreach (var z in cmps)
@@ -168,14 +179,15 @@ public partial class Choices : System.Web.UI.Page
         //University univ = dbcontext.Universities.First(x => x.Name == id);
         if (dbcontext.Departments.Any())
             {
-                List<Department> dpts = dbcontext.Departments.Where(q=>q.Campus.id == id_).ToList();
+                List<Department> dpts = dbcontext.Departments.Where(q=>q.Campus.id == id_&& (q.DepartmentProfiles.FirstOrDefault().hide == false || q.DepartmentProfiles.FirstOrDefault().hide == null)).ToList();
                 string[] array = new string[dpts.Count];
                 var i = 0;
                 foreach (var z in dpts)
-
-                {
-                    array[i] = z.id+","+z.Department_Name;
+            {
+                
+                    array[i] = z.id + "," + z.Department_Name;
                     i++;
+                
                 }
                 return array;
 
@@ -271,9 +283,9 @@ public partial class Choices : System.Web.UI.Page
             {
 
                 Department dpt = dbcontext.Departments.First(x => x.id == id_);
-                if (dbcontext.Programms.Any(x =>  x.Department_ID == dpt.id))
+                if (dbcontext.Programms.Any(x => x.Department_ID == dpt.id))
                 {
-                    List<Programm> pgms = dbcontext.Programms.Where(x =>  x.Department_ID == dpt.id).ToList();
+                    List<Programm> pgms = dbcontext.Programms.Where(x => x.Department_ID == dpt.id && (x.hide == false || x.hide == null)).ToList();
                     string[] array = new string[pgms.Count];
                     var i = 0;
                     foreach (var z in pgms)
@@ -553,12 +565,11 @@ public partial class Choices : System.Web.UI.Page
     protected void btn_saveSession_Click(object sender, EventArgs e)
     {
         List<int> applicationsIDs = new List<int>();
-
-        applicationsIDs= usersApplications[current_user];
+        string currentUser = HttpContext.Current.User.Identity.GetUserId();
+        applicationsIDs = usersApplications[currentUser];
         applicationsIDs = applicationsIDs.Distinct().ToList();
         //applicationIDs = applicationIDs.Distinct().ToList();   
         Session["appIDS"] = applicationsIDs;
-        usersApplications.Remove(current_user);
         //applicationIDs = new List<int>();
         Response.Redirect(Request.RawUrl);
        

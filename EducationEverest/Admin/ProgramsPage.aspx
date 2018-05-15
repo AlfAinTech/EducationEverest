@@ -29,6 +29,18 @@
                     
             </div>
         </div>
+
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-4">
+                Hide this Program for candidates
+            </div>
+                <div class="col-md-2">
+                <asp:CheckBox Text="Hide" runat="server"  ID="cb_hidePrgrm" Checked="false" Enabled="true"  />
+                    </div>
+                <div class="col-md-6">
+                    </div>
+            
+        </div>
         
         <div class="row" style="margin-top:20px;">
             <div class="col-md-2">

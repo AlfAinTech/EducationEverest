@@ -55,8 +55,13 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                 //tb_applicationFee.Text = campusProfile.ApplicationFee;
 
                 //Enable Departments button if admin has already some categories
+                cb_hideCampus.Checked = false;
+                if (campusProfile.hide != null && campusProfile.hide == true)
+                {
+                    cb_hideCampus.Checked = true;
+                }
 
-                if(db.Categories.Any(a => a.CampusID == CampusId))
+                if (db.Categories.Any(a => a.CampusID == CampusId))
                 {
                     btn_addDepartments.Enabled = true;
                 }
@@ -110,6 +115,11 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                 {
                     newCampusProfile.MainCampus = true;
                 }
+                newCampusProfile.hide = false;
+                if (cb_hideCampus.Checked)
+                {
+                    newCampusProfile.hide = true;
+                }
 
 
                 db.CampusProfiles.Add(newCampusProfile);
@@ -138,6 +148,11 @@ public partial class Admin_CampusPage : System.Web.UI.Page
                 if (cb_yesMC.Checked)
                 {
                     existingCampusProfile.MainCampus = true;
+                }
+                existingCampusProfile.hide = false;
+                if (cb_hideCampus.Checked)
+                {
+                    existingCampusProfile.hide = true;
                 }
                 db.SaveChanges();
             }

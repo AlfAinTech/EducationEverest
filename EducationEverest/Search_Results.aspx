@@ -17,7 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/myScript.js"></script>
+    
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <script type="text/javascript">
         function Div_repeaterclick(id) {

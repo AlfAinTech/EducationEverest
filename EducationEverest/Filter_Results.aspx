@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
     <!-- Latest compiled and minified JavaScript -->
     <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/myScript.js"></script>
+    <%--<script type="text/javascript" src="js/myScript.js"></script>--%>
     <script src="Content/vendor/jquery/jquery.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">

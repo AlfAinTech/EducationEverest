@@ -125,6 +125,7 @@
           <Property Name="MainCampus" Type="bit" />
           <Property Name="ApplicationFeeSame" Type="bit" />
           <Property Name="ApplicationFee" Type="nvarchar" MaxLength="128" />
+          <Property Name="hide" Type="bit" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -166,6 +167,7 @@
           <Property Name="ApplicationFee" Type="nvarchar" MaxLength="128" />
           <Property Name="Criteria" Type="nvarchar(max)" />
           <Property Name="AdmissionDocs" Type="nvarchar(max)" />
+          <Property Name="hide" Type="bit" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -298,6 +300,7 @@
           <Property Name="Department_ID" Type="int" Nullable="false" />
           <Property Name="Program_Name" Type="nvarchar" MaxLength="128" />
           <Property Name="Status" Type="bit" />
+          <Property Name="hide" Type="bit" />
         </EntityType>
         <EntityType Name="SystemNotifications">
           <Key>
@@ -1787,6 +1790,7 @@
           <Property Name="Criteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AdmissionDocs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK__Departmen__Depar__17036CC0" FromRole="DepartmentProfile" ToRole="Department" />
+          <Property Name="hide" Type="Boolean" />
         </EntityType>
         <EntityType Name="UniversityMedia">
           <Key>
@@ -1868,6 +1872,7 @@
           <NavigationProperty Name="Department" Relationship="EducationEverestModel.FK__Programms__Depar__68487DD7" FromRole="Programm" ToRole="Department" />
           <NavigationProperty Name="ProgrammCategories" Relationship="EducationEverestModel.FK__ProgrammC__Progr__66603565" FromRole="Programm" ToRole="ProgrammCategory" />
           <NavigationProperty Name="MakeChoices" Relationship="EducationEverestModel.FK__MakeChoic__Progr__6EF57B66" FromRole="Programm" ToRole="MakeChoice" />
+          <Property Name="hide" Type="Boolean" />
         </EntityType>
         <Association Name="FK__Programms__Depar__68487DD7">
           <End Type="EducationEverestModel.Department" Role="Department" Multiplicity="1" />
@@ -1972,6 +1977,7 @@
           <NavigationProperty Name="Campus" Relationship="EducationEverestModel.FK__CampusPro__Campu__123EB7A3" FromRole="CampusProfile" ToRole="Campus" />
           <Property Name="ApplicationFeeSame" Type="Boolean" />
           <Property Name="ApplicationFee" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="hide" Type="Boolean" />
         </EntityType>
         <Association Name="FK__CampusPro__Campu__123EB7A3">
           <End Type="EducationEverestModel.Campus" Role="Campus" Multiplicity="1" />
@@ -2633,6 +2639,7 @@
           <EntitySetMapping Name="DepartmentProfiles">
             <EntityTypeMapping TypeName="EducationEverestModel.DepartmentProfile">
               <MappingFragment StoreEntitySet="DepartmentProfile">
+                <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="AdmissionDocs" ColumnName="AdmissionDocs" />
                 <ScalarProperty Name="Criteria" ColumnName="Criteria" />
                 <ScalarProperty Name="ApplicationFee" ColumnName="ApplicationFee" />
@@ -2672,6 +2679,7 @@
           <EntitySetMapping Name="Programms">
             <EntityTypeMapping TypeName="EducationEverestModel.Programm">
               <MappingFragment StoreEntitySet="Programms">
+                <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Program_Name" ColumnName="Program_Name" />
                 <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
@@ -2717,6 +2725,7 @@
           <EntitySetMapping Name="CampusProfiles">
             <EntityTypeMapping TypeName="EducationEverestModel.CampusProfile">
               <MappingFragment StoreEntitySet="CampusProfile">
+                <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="ApplicationFee" ColumnName="ApplicationFee" />
                 <ScalarProperty Name="ApplicationFeeSame" ColumnName="ApplicationFeeSame" />
                 <ScalarProperty Name="MainCampus" ColumnName="MainCampus" />
