@@ -69,6 +69,12 @@ public partial class UserControls_ApplicationRecords : System.Web.UI.UserControl
                     Image im = (Image)e.Item.FindControl("logo");
                     im.ImageUrl = um.Path;
                 }
+                University currenUni = db.Universities.Where(a => a.id == dataItem.UnivID).First();
+                if (!((currenUni.UniversityProfiles.Count != 0) && !(currenUni.UniversityProfiles.First().LastDate < DateTime.Today) && (currenUni.UniversityProfiles.First().AdmissionOpen == true) && (currenUni.UniversityProfiles.First().hide == null || currenUni.UniversityProfiles.First().hide == false)))
+                {
+                    LinkButton lb = (LinkButton)e.Item.FindControl("Edit");
+                    lb.Visible = false;
+                }
 
                 //bind Application detail data
                 //personal detail
